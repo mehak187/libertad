@@ -978,7 +978,5 @@ class adminController extends Controller
     }
     public function edit_products(){
         return view('admin.edit_products');
-    }
-
-  
+    }  
 }
