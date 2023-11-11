@@ -31,9 +31,19 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <input type="text" class="w-100" placeholder="Product name" name="name">
+                            @error('name')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
                         </div>
                         <div class="input-field mt-4">
                             <input type="number" class="w-100" placeholder="Price in USD" name="price">
+                            @error('price')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -44,6 +54,11 @@
                                 <option value="{{$catagory['id']}}">{{$catagory['catg']}}</option>
                                 @endforeach
                             </select>
+                            @error('p_catg')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -54,6 +69,11 @@
                     </div>
                     <div class="mt-3">
                         <img id="image-preview" src="" alt="" class="w-300" style="display: none;">
+                        @error('img')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
