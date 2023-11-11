@@ -14,6 +14,7 @@ use App\Models\musuem;
 use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
 use App\Models\contact;
+use App\Models\product;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -239,5 +240,11 @@ class userController extends Controller
         ->get();
         return view('daily_activities_det',$data);
     }
-
+    public function productsandtools(){
+        $data=categories::all();
+        $data2 = product::leftJoin('categories', 'products.p_catg', '=', 'categories.id')
+        ->select('products.*', 'categories.catg')
+        ->get();
+        return view('productsandtools',['catagories'=>$data,'products'=>$data2]);
+    }
 }

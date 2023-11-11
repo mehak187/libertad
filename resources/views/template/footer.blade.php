@@ -29,6 +29,7 @@ $contact = \App\Models\Contact::first();
                                 <h5>Social Media:</h5>
                             </div>
                             <div class="d-flex align-items-center gap-2">
+                        @if ($contact)
                                 <a href="{{$contact->tripadvisor}}" target="_blank"
                                     class="p-0"><img src="{{asset('imgs/owl-2.png')}}" style="height: 40px; width: 40px;"
                                         alt=""></a>
@@ -39,6 +40,7 @@ $contact = \App\Models\Contact::first();
                                 <a href="{{$contact->insta_link}}" target="_blank"
                                     class="p-0"><img src="{{asset('imgs/insta2.png')}}" style="height: 40px; width: 40px;"
                                         alt=""></a>
+                           @endif
                             </div>
                         </div>
                     </div>
