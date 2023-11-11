@@ -89,13 +89,13 @@
                                 @foreach ($catagories as $catagory)
                                     <div class="px-3">
                                         <h5 class="text-white">{{ $catagory->catg }}</h5>
-                                        <div class="position-relative">
+                                        <div class="position-relative my-3">
                                             <div class="row autoplay_2">
                                                 @foreach ($products as $product)
                                                     @if ($product->p_catg == $catagory->id)
                                                         <div class="col mx-1">
                                                             <img class="img-fluid w-100"
-                                                                src="{{ asset('imgs/Group 42800.png') }}"
+                                                                src="<?php echo asset('uploads/' . $product['img'])?>"
                                                                 alt="">
                                                             <div
                                                                 class="dis1 d-flex p-3 sky-bg justify-content-between align-items-center">
