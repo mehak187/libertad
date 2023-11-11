@@ -7,6 +7,11 @@
 </head>
 
 <body>
+    @if (session('success'))
+    <script>
+        swal("Good job!", "{{session('success')}}", "success");
+    </script>
+  @endif
     <section class="main-tem">
         @include('admin.templates.sidebar-template')
         <div class="right-content p-0" style="background: #FAFBFE;">
@@ -92,6 +97,17 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
+                            <label for="google" class="text-dark fw-bold">Whatsapp</label>
+                            <input type="tel" id="google" class="w-100"
+                                value="{{ old('google', $contact->google ?? '') }}" name="google">
+                            {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
+                            @error('google')
+                                <span class="error text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="input-field mt-4">
                             <label for="tripadvisor" class="text-dark fw-bold">Trip Advisor Link</label>
                             <input type="text" id="tripadvisor" class="w-100"
                                 value="{{ old('tripadvisor', $contact->tripadvisor ?? '') }}"
@@ -103,25 +119,14 @@
                                 </span>
                             @enderror
                         </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="fb_link" class="text-dark fw-bold">Facebook Link</label>
                             <input type="text" id="fb_link" class="w-100"
                                 value="{{ old('fb_link', $contact->fb_link ?? '') }}" name="fb_link">
                             {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
                             @error('fb_link')
-                                <span class="error text-danger">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
-                        <div class="input-field mt-4">
-                            <label for="google" class="text-dark fw-bold">Google+ Link</label>
-                            <input type="text" id="google" class="w-100"
-                                value="{{ old('google', $contact->google ?? '') }}" name="google">
-                            {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
-                            @error('google')
                                 <span class="error text-danger">
                                     {{ $message }}
                                 </span>
@@ -144,7 +149,7 @@
                             <label for="insta_link" class="text-dark fw-bold">Instagram Link</label>
                             <input type="text" id="insta_link" class="w-100"
                                 value="{{ old('insta_link', $contact->insta_link ?? '') }}" name="insta_link">
-                            <p class="note mb-0"><b>Note:</b> Use # if there is no link</p>
+                            {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
                             @error('insta_link')
                                 <span class="error text-danger">
                                     {{ $message }}

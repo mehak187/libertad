@@ -75,7 +75,7 @@
                                 </button>
                             </div>
                         </div>
-                       @include('template.social_mbl')
+                        @includeif('template.social_desktop')
                     </div>
                 </div>
                 <div class="sidebar_content ms-md-4">

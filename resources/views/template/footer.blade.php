@@ -1,3 +1,6 @@
+@php
+$contact = \App\Models\Contact::first();
+@endphp
 <footer class="sky-light py-3">
     <div class="container-fluid">
         <div class="row">
@@ -26,16 +29,14 @@
                                 <h5>Social Media:</h5>
                             </div>
                             <div class="d-flex align-items-center gap-2">
-                                <a href="https://www.tripadvisor.com/Attraction_Review-g294201-d26208912-Reviews-Libertad_Del_Mundo-Cairo_Cairo_Governorate.html"
+                                <a href="{{$contact->tripadvisor}}" target="_blank"
                                     class="p-0"><img src="{{asset('imgs/owl-2.png')}}" style="height: 40px; width: 40px;"
                                         alt=""></a>
-                                <a href="https://www.facebook.com/profile.php?id=100090555392220" class="p-0"><img
+                                <a href="{{$contact->fb_link}}" target="_blank" class="p-0"><img
                                         src="{{asset('imgs/fb-2.png')}}" style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="mailto:info@libertadelmundo.com" class="p-0"><img
-                                        src="{{asset('imgs/google-plus2.png')}}" style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="mailto:info@libertadelmundo.com" class="p-0"><img src="{{asset('imgs/youtube2.png')}}"
+                                <a href="{{$contact->yt_link}}" target="_blank" class="p-0"><img src="{{asset('imgs/youtube2.png')}}"
                                         style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"
+                                <a href="{{$contact->insta_link}}" target="_blank"
                                     class="p-0"><img src="{{asset('imgs/insta2.png')}}" style="height: 40px; width: 40px;"
                                         alt=""></a>
                             </div>

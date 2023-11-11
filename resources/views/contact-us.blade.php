@@ -39,8 +39,7 @@
                                                     </div>
                                                     <div>
                                                         <h5>Office</h5>
-                                                        <p class="m-0 font-12">Lac 2, Tunis, Tunisie,
-                                                            France</p>
+                                                        <p class="m-0 font-12">{{ $contact->office_location}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,8 +50,8 @@
                                                     </div>
                                                     <div>
                                                         <h5>Call Center</h5>
-                                                        <p class="m-0 font-12">+33 6 98 59 05 22</p>
-                                                        <p class="m-0 font-12">+33 6 98 59 05 22</p>
+                                                        <p class="m-0 font-12">{{ $contact->phone1}}</p>
+                                                        <p class="m-0 font-12">{{ $contact->phone2}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,8 +62,8 @@
                                                     </div>
                                                     <div>
                                                         <h5>Email</h5>
-                                                        <p class="m-0 font-12">info@libertadelmundo.com</p>
-                                                        <p class="m-0 font-12">info@libertadelmundo.com</p>
+                                                        <p class="m-0 font-12">{{ $contact->email1}}</p>
+                                                        <p class="m-0 font-12">{{ $contact->email2}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,32 +73,27 @@
                                             <h3>Follow Us</h3>
                                             <div class="col-12">
                                                 <a
-                                                    href="https://www.tripadvisor.com/Attraction_Review-g294201-d26208912-Reviews-Libertad_Del_Mundo-Cairo_Cairo_Governorate.html"><img
+                                                    href="{{ $contact->tripadvisor}}" target="_blank"><img
                                                         src="./imgs/owl.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
-                                                <a href="https://www.facebook.com/profile.php?id=100090555392220"><img
+                                                <a href="{{ $contact->fb_link}}" target="_blank"><img
                                                         src="./imgs/fb.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
-                                                <a href="mailto:info@libertadelmundo.com"><img
+                                                <a href="mailto:{{ $contact->google}}" target="_blank"><img
                                                         src="./imgs/google-plus.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
-                                                <a href="mailto:info@libertadelmundo.com"><img src="./imgs/youtube.png"
+                                                <a href="{{ $contact->yt_link}}" target="_blank"><img src="./imgs/youtube.png"
                                                         style="height: 40px; width: 40px;" alt=""></a>
-                                                <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"><img
+                                                <a href="{{ $contact->insta_link}}" target="_blank"><img
                                                         src="./imgs/insta.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
                                             </div>
                                         </div>
-                                        <din class="row mt-3">
+                                        <div class="row mt-3">
                                             <div class="col-12">
-                                                <p>In publishing and graphic design, Lorem ipsum is a placeholder text
-                                                    commonly
-                                                    used to demonstrate the visual form of a document or a typeface
-                                                    without relying on meaningful content.
-                                                    Lorem ipsum may be used as a placeholder before final copy is
-                                                    available.</p>
+                                                <p>{{ $contact->des}}</p>
                                             </div>
-                                        </din>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
