@@ -1,3 +1,4 @@
+
 <form action="">
     <div class="div-main pic-bg d-md-none d-block py-2">
         <div class="container-fluid px-md-4">
@@ -419,8 +420,11 @@
         </div>
     </div>
 </div>
+@php
+$contact = \App\Models\Contact::first();
+@endphp
 <div class="icon">
-    <a href="https://api.whatsapp.com/send?phone=">
-        <img src="{{asset('imgs/whatsapp.png')}}" alt="Sticky Icon" class="whatsapp-img">
+    <a href="https://api.whatsapp.com/send?phone={{$contact->google_link}}" target="_blank">
+        <img src="{{asset('imgs/whatsapp.png')}}" alt="Sticky" class="whatsapp-img">
     </a>
 </div>

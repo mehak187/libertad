@@ -923,10 +923,12 @@ class adminController extends Controller
             'email2' => 'required|email',
             'tripadvisor' => 'required|url',
             'fb_link' => 'required|url',
-            'google' => 'required|url',
+            'google' => 'required',
             'yt_link' => 'required|url',
             'insta_link' => 'required|url',
-            'des' => 'required|url',
+            'des' => 'required',
+        ], [
+            'google.required' => 'Whatsapp field is required.',
         ]);
         if ($record) {
             $record->update($request->all());
@@ -935,7 +937,6 @@ class adminController extends Controller
         }
         return redirect('manage_contact')->with ('success','Contact information saved successfully');
     }
-
     public function manage_product_categories(){
         $data=categories::all();
         return view('admin.manage_product_categories',['categories'=>$data]);

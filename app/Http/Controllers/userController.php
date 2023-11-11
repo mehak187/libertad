@@ -13,6 +13,7 @@ use App\Models\GalleryImageMusuem;
 use App\Models\musuem;
 use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
+use App\Models\contact;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -43,7 +44,8 @@ class userController extends Controller
         return view('classic-tour-of-alexendria');
     }
     public function contact(){
-        return view('contact-us');
+        $data['contact'] = contact::first();
+        return view('contact-us',$data);
     }
    
     // public function dailytours(){
@@ -239,4 +241,5 @@ class userController extends Controller
         ->get();
         return view('daily_activities_det',$data);
     }
+
 }

@@ -68,6 +68,7 @@ Route::controller(userController::class)->group(function(){
 
     Route::get('dailyactivites','dailyactivites');
     Route::get('daily_activities_det/{id}','daily_activities_det');
+    Route::get('social','social');
 });
 
 Route::controller(adminController::class)->group(function(){
