@@ -143,7 +143,9 @@ Route::controller(adminController::class)->group(function(){
     Route::post('updatecatg',  'updatecatg');
     Route::get('deletecatg/{id}','deletecatg');
 
-    Route::get('manage_products','manage_products');
+    Route::get('manage_products','manage_products'); 
+    Route::post('addproducts','addproducts');
     Route::get('add_products','add_products');
-    Route::get('edit_products','edit_products');
+    Route::get('edit_products/{id}','edit_products');
+    Route::get('deleteproduct/{id}','deleteproduct');
 });
