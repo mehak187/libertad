@@ -148,3 +148,4 @@ Route::controller(adminController::class)->group(function(){
     Route::get('edit_products','edit_products');
 });
 
+// Route::get('edit_products','edit_products');
