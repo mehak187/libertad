@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>tours-1</title>
+    <title>Daily Activities</title>
     @include('template.csslinks')
 </head>
 
@@ -75,22 +75,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="d-md-block d-none">
-                            <p class="mb-0 fs-12" style="color: #E4C14F;">Social Media:</p>
-                            <div>
-                                <a
-                                    href="https://www.tripadvisor.com/Attraction_Review-g294201-d26208912-Reviews-Libertad_Del_Mundo-Cairo_Cairo_Governorate.html"><img
-                                        src="./imgs/social_icon_1.png" style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="https://www.facebook.com/profile.php?id=100090555392220"><img
-                                        src="./imgs/social_icon_2.png" style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="mailto:info@libertadelmundo.com"><img src="./imgs/social_icon_3.png"
-                                        style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="mailto:info@libertadelmundo.com"><img src="./imgs/social_icon_4.png"
-                                        style="height: 40px; width: 40px;" alt=""></a>
-                                <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"><img
-                                        src="./imgs/social_icon_5.png" style="height: 40px; width: 40px;" alt=""></a>
-                            </div>
-                        </div>
+                       @includeif('template.social_desktop')
                     </div>
                 </div>
                 <div class="sidebar_content ms-md-4">
@@ -103,22 +88,22 @@
                                     <span class="way_color">Activities</span>
                                 </p>
                             </div>
-                            @if (count($citytours) > 0)
+                            @if (count($activities) > 0)
                             <div class="row pt-2">
                                 @foreach ($activities as $activity)
                                     <div class="col-lg-4 col-md-6 col-sm-4 col-6 mt-3">
-                                        <div class="container1_2_3">
-                                            <a href="{{"daily_activities_details/" .$activity['id'] }}" class=""><img src="<?php echo asset('uploads/' . $activity['img']); ?>" alt="Avatar"
-                                                    class="image1_2_3"></a>
-                                            <a href="#" class="overlay text-decoration-none">
+                                        <a href="{{"daily_activities_det/" .$activity['id'] }}" class="container1_2_3">
+                                            <div  class=""><img src="<?php echo asset('uploads/' . $activity['img']); ?>" alt="Avatar"
+                                                    class="image1_2_3"></div>
+                                            <div href="#" class="overlay text-decoration-none">
                                                 <div class="text1 d-flex align-items-center justify-content-between">
                                                     <span>{{$activity['name']}}</span>
                                                     <i data-bs-toggle="modal" data-bs-target="#thankyouModal"
                                                         class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                                 </div>
                                                 <p class="text3 mt-3">{{$activity['des']}}</p>
-                                            </a>
-                                        </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 @endforeach
                             </div>
@@ -127,25 +112,7 @@
                                     <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5">No record to show</p>
                                 </div>
                             @endif
-                            <div class="d-md-none d-block mt-3 ms-1">
-                                <p class="mb-0 fs-12" style="color: #E4C14F;">Social Media:</p>
-                                <div>
-                                    <a
-                                        href="https://www.tripadvisor.com/Attraction_Review-g294201-d26208912-Reviews-Libertad_Del_Mundo-Cairo_Cairo_Governorate.html"><img
-                                            src="./imgs/social_icon_1.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                    <a href="https://www.facebook.com/profile.php?id=100090555392220"><img
-                                            src="./imgs/social_icon_2.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                    <a href="mailto:info@libertadelmundo.com"><img src="./imgs/social_icon_3.png"
-                                            style="height: 40px; width: 40px;" alt=""></a>
-                                    <a href="mailto:info@libertadelmundo.com"><img src="./imgs/social_icon_4.png"
-                                            style="height: 40px; width: 40px;" alt=""></a>
-                                    <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"><img
-                                            src="./imgs/social_icon_5.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                </div>
-                            </div>
+                           @includeif('template.social_mbl')
                         </div>
                     </div>
                 </div>

@@ -67,6 +67,7 @@ Route::controller(userController::class)->group(function(){
     Route::get('musuem_det/{id}','musuem_det');
 
     Route::get('dailyactivites','dailyactivites');
+    Route::get('daily_activities_det/{id}','daily_activities_det');
 });
 
 Route::controller(adminController::class)->group(function(){
@@ -133,6 +134,7 @@ Route::controller(adminController::class)->group(function(){
     Route::get('deletecity/{id}','deletecity');
 
     Route::get('manage_contact','manage_contact');
+    Route::post('contact_save','contact_save');
 
     Route::get('manage_product_categories','manage_product_categories');
     Route::post('addcategories','addcategories');

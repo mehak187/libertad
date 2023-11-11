@@ -11,6 +11,8 @@ use App\Models\specialtours;
 use App\Models\categories;
 use App\Models\GalleryImageMusuem;
 use App\Models\musuem;
+use App\Models\DailyActivities;
+use App\Models\GalleryImageActivities;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -44,9 +46,9 @@ class userController extends Controller
         return view('contact-us');
     }
    
-    public function dailytours(){
-        return view('daily-tours');
-    }
+    // public function dailytours(){
+    //     return view('daily-tours');
+    // }
     public function fayoum(){
         return view('fayoum-oasis');
     }
@@ -226,5 +228,15 @@ class userController extends Controller
     public function dailyactivites(){
         $data =DailyActivities::all();
         return view('daily-activities',['activities'=>$data]);
+    }
+    public function daily_activities_det($id){
+        $data['citytour'] =DailyActivities::find($id);
+        $cityTourId = $data['citytour']->id;
+
+        $data['galleryImages'] = GalleryImageActivities::leftJoin('daily_activities', 'gallery_image_activities.activities_id', '=', 'daily_activities.id')
+        ->where('gallery_image_activities.activities_id', $cityTourId)
+        ->select('gallery_image_activities.*')
+        ->get();
+        return view('daily_activities_det',$data);
     }
 }

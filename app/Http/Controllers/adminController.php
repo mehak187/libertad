@@ -14,6 +14,7 @@ use App\Models\GalleryImageMusuem;
 use App\Models\categories;
 use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
+use App\Models\Contact;
 use File;
 
 class adminController extends Controller
@@ -905,8 +906,34 @@ class adminController extends Controller
     }
 
     public function manage_contact(){
-        return view('admin.manage_contact');
+        $data['contact'] = contact::first();
+        return view('admin.manage_contact',$data);
     }
+
+    public function contact_save(request $request){
+        $record = contact::find(1);
+        $request->validate([
+            'office_location' => 'required',
+            'map_location' => 'required',
+            'phone1' => 'required',
+            'phone2' => 'required',
+            'email1' => 'required|email',
+            'email2' => 'required|email',
+            'tripadvisor' => 'required|url',
+            'fb_link' => 'required|url',
+            'google' => 'required|url',
+            'yt_link' => 'required|url',
+            'insta_link' => 'required|url',
+            'des' => 'required|url',
+        ]);
+        if ($record) {
+            $record->update($request->all());
+        } else {
+            contact::create($request->all());
+        }
+        return redirect('manage_contact')->with ('success','Contact information saved successfully');
+    }
+    
     
     public function manage_product_categories(){
         $data=categories::all();
@@ -952,7 +979,5 @@ class adminController extends Controller
         return view('admin.edit_products');
     }
 
-    public function test(string $name = NULL) {
-        return view('admin.test',['user'=>$name]);
-    }
+  
 }

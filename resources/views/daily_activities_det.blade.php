@@ -27,12 +27,12 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="./imgs/camel.png" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $citytour['img'])?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
                         <div class="d-flex align-items-center gap-2">
                             <i class="bi bi-geo-alt text-white m-0"></i>
-                            <p class="text-white m-0">Aswan location here</p>
+                            <p class="text-white m-0">{{$citytour->location}}</p>
                         </div>
                         <div class="row align-items-center mt-3">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
@@ -57,30 +57,30 @@
                         </div>
                         <div class="row mt-3">
                             <p class="text-white">
-                                In publishing and graphic design, Lorem ipsum is a placeholder text
-                                commonly used to demonstrate the visual form of a document or a typeface without relying
-                                on meaningful content. Lorem ipsum may be used as a placeholder before final copy is
-                                available.
+                                {{$citytour->des}}
                             </p>
                             <div>
                                 <h6 class="golden-clr">Sightseeing</h6>
-                                <ul>
-                                    <li class="text-white">Temple of philae</li>
-                                    <li class="text-white">Aswan high dam.</li>
-                                    <li class="text-white">Abu Simbel Temple.</li>
+                                @php
+                                $inputString = $citytour['sight_seeing'];
+                                $dataArray = explode(',', $inputString);
+                                @endphp
+                                <ul class="text-white">
+                                    @foreach ($dataArray as $item)
+                                        <li class="text-white">{{ $item }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div>
                                 <h6 class="golden-clr">Includes</h6>
-                                <ul>
-                                    <li class="text-white">Entrance fees to all the mentioned sites.</li>
-                                    <li class="text-white">Professional Egyptologist Multi-Ligual tour guide during your
-                                        trip</li>
-                                    <li class="text-white">Hotel pick-up and drop-off</li>
-                                    <li class="text-white">Lunch.</li>
-                                    <li class="text-white">Mineral water on board the vehicle during the tours.</li>
-                                    <li class="text-white">Private vehicles, modern, air-conditioned.</li>
-                                    <li class="text-white">All service charges and taxes.</li>
+                                @php
+                                $inputString = $citytour['include'];
+                                $dataArray = explode(',', $inputString);
+                                @endphp
+                                <ul class="text-white">
+                                    @foreach ($dataArray as $item)
+                                        <li class="text-white">{{ $item }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -101,6 +101,7 @@
                         </div>
                     </div>
                 </div>
+                @if (count($galleryImages) > 0)
                 <div class="row mt-5 position-relative">
                     <h5 class="text-white">Photos and gallery</h5>
                     <div class="col-10 col-sm-11 golden-bg golden-bg-remove rounded-4 py-2 px-4 mt-4 mx-auto">
@@ -108,33 +109,18 @@
                             <i class="fa-solid fa-arrow-left rounded-circle golden-bg px-2 py-2 text-dark"></i>
                         </div>
                         <div class="row site-mapt1">
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/luxor-4.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/aswan.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/luxor-7.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/luxor-8.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/luxor-5.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/luxor-9.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/luxor-6.png" alt="" class="img-fluid rounded-4">
-                            </div>
+                            @foreach ($galleryImages as $galleryImage)
+                                <div class="col-12 mx-2 my-2">
+                                    <img src="<?php echo asset('uploads/' . $galleryImage['image_path'])?>" alt="" class="img-fluid rounded-4">
+                                </div>
+                            @endforeach
                         </div>
                         <div class="next_arrow2t1">
                             <i class="fa-solid fa-arrow-right rounded-circle golden-bg px-2 py-2 text-dark"></i>
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>
