@@ -23,6 +23,21 @@
                     <a href="/add_products" class="bg-yellow text-dark py-2 px-3 text-decoration-none rounded-3">Add
                         Products</a>
                 </div>
+                @if (session('success'))
+                    <script>
+                        swal("Good job!", "{{session('success')}}", "success");
+                    </script>
+                @endif
+                @if (session('Delete'))
+                    <script>
+                        swal("Good job!", "{{session('Delete')}}", "success");
+                    </script>
+                @endif
+                @if (session('update'))
+                    <script>
+                        swal("Good job!", "{{session('update')}}", "success");
+                    </script>
+                @endif
                 <div class="tbl-main mt-3 table-responsive">
                     <table class="table">
                         <thead>
@@ -35,16 +50,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                          @foreach ($catagories as $catagory)
                           <tr>
-                            <td>product name</td>
-                            <td>USD</td>
-                            <td>category</td>
-                            <td><img src="" alt="" ></td>
+                            <td>{{$catagory['name']}}</td>
+                            <td>{{$catagory['price']}}</td>
+                            <td>{{$catagory['catg']}}</td>
+                            <td><img src="<?php echo asset('uploads/' . $catagory['img'])?>" alt="" ></td>
                             <td>
-                                <a href="edit_products" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>
-                                <a href="" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
+                                <a href="{{"edit_products/" .$catagory['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>
+                                <a href="{{"deleteproduct/" .$catagory['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                     </table>
                 </div>

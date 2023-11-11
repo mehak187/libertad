@@ -15,6 +15,8 @@ use App\Models\categories;
 use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
 use App\Models\Contact;
+use App\Models\product;
+
 use File;
 
 class adminController extends Controller
@@ -25,6 +27,7 @@ class adminController extends Controller
     public function manage_libertad_reviews(){
         return view('admin.manage_libertad_reviews');
     }
+
     public function add_special_tours(){
         return view('admin.add_special_tours');
     }
@@ -299,7 +302,7 @@ class adminController extends Controller
         }
         return redirect('manage_city_tours')->with ('Delete','City Tour Deleted Successfully');
     }
-    
+
     public function add_musuem(){
         $data=city::all();
         return view('admin.add_musuem',['cities'=>$data]);
@@ -656,7 +659,7 @@ class adminController extends Controller
         }
         return redirect('manage_daily_activities')->with ('Delete','Daily activity deleted Successfully');
     }
-
+    
     public function add_accomodation(){
         return view('admin.add_accomodation');
     }
@@ -909,7 +912,6 @@ class adminController extends Controller
         $data['contact'] = contact::first();
         return view('admin.manage_contact',$data);
     }
-
     public function contact_save(request $request){
         $record = contact::find(1);
         $request->validate([
@@ -933,16 +935,14 @@ class adminController extends Controller
         }
         return redirect('manage_contact')->with ('success','Contact information saved successfully');
     }
-    
-    
+
     public function manage_product_categories(){
         $data=categories::all();
         return view('admin.manage_product_categories',['categories'=>$data]);
     }
     public function add_product_categories(){
         return view('admin.add_product_categories');
-    }
-    
+    }    
     public function addcategories(request $request){
         $request->validate([
         '*'=>'required',
@@ -959,8 +959,7 @@ class adminController extends Controller
     public function edit_product_categories($id){
         $data['category'] =categories::find($id);
         return view('admin.edit_product_categories',$data);
-    }
-    
+    }   
     public function updatecatg(request $request){
             $catg =$request->catg;
             categories::find($request->id)->update([
@@ -968,16 +967,41 @@ class adminController extends Controller
         ]);
         return redirect('manage_product_categories')->with ('update','Category updated Successfully');
     }
+
     public function manage_products(){
-        
-        return view('admin.manage_products');
+        $data=product::all();
+        $data = product::leftJoin('categories', 'products.p_catg', '=', 'categories.id')
+        ->select('products.*', 'categories.catg')
+        ->get();
+        return view('admin.manage_products',['catagories'=>$data]);
     }
     public function add_products(){
-        return view('admin.add_products');
+        $data=categories::all();
+        return view('admin.add_products',['catagories'=>$data]);
     }
-    public function edit_products(){
-        return view('admin.edit_products');
+    public function addproducts(request $request){
+        $request->validate([
+            '*'=>'required',
+            'img'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            ]);
+            $data =$request->all();
+            $photo = $request->file('img');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['img'] = $photo_name;
+            product::create($data);
+        return redirect('manage_products')->with ('success','Product added Successfully');
+    }
+    public function edit_products($id){
+        $data['catagories']=categories::all();
+        $data['product'] =product::find($id);
+        return view('admin.edit_products',$data);
+    }
+    public function deleteproduct($id){
+        $data =product::find($id);
+        $data->delete();
+        return redirect('manage_products')->with ('Delete','Product Deleted Successfully');
     }
 
-  
 }
