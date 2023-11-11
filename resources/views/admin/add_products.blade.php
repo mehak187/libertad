@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Add Products and Tools</h4>
-                <form action="savecity" enctype="multipart/form-data" method="POST" class="mt-2">
+                <form action="addproducts" enctype="multipart/form-data" method="POST" class="mt-2">
                     @csrf
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
@@ -40,9 +40,9 @@
                         <div class="input-field mt-4">
                             <select name="p_catg" class="w-100" id="">
                                 <option selected disabled hidden>Category name</option>
-                                <option value="Category name">Category name</option>
-                                <option value="Category name">Category name</option>
-                                <option value="Category name">Category name</option>
+                                @foreach ($catagories as $catagory)
+                                <option value="{{$catagory['id']}}">{{$catagory['catg']}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
