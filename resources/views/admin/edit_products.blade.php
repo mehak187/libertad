@@ -28,31 +28,32 @@
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Update products</h4>
                 <form action="/updatecity" method="POST" enctype="multipart/form-data" class="mt-2">
                     @csrf
-                    <input type="text" class="w-100 d-none" name="id" value="">
+                    <input type="text" class="w-100 d-none" name="id" value="{{$product->id}}">
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="name" class="text-dark fw-bold">Product name</label>
-                            <input type="text" class="w-100" id="name" value="name" name="name">
+                            <input type="text" class="w-100" id="name" value="{{$product['name']}}" name="name">
                         </div>
                         <div class="input-field mt-4">
                             <label for="price" class="text-dark fw-bold">Product price (in USD)</label>
-                            <input type="number" class="w-100" id="price" value="22" name="price">
+                            <input type="number" class="w-100" id="price" value="{{$product['price']}}" name="price">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <select name="p_catg" class="w-100" id="">
-                                <option selected disabled hidden>Category name</option>
-                                <option value="Category name">Category name</option>
-                                <option value="Category name">Category name</option>
-                                <option value="Category name">Category name</option>
+                                @foreach ($catagories as $catagory)
+                                <option value="{{ $catagory['id'] }}" {{ (old('p_catg') == $catagory['id'] || (old('p_catg') == null && $catagory['id'] == $product->p_catg)) ? 'selected' : '' }}>
+                                    {{$catagory['catg']}}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fw-bold">Product image<br>
-                            <img id="image-preview-single" src="img source" alt="" class="w-300 mt-2">
+                            <img id="image-preview-single" src="<?php echo asset('uploads/' . $product['img']); ?>" alt="" class="w-300 mt-2">
                             </label>
                             <input type="file" id="tour-img" name="tourimg" class="d-none" onchange="updateImagePreview(this)">
                         </div>
