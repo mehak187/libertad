@@ -129,9 +129,7 @@ class userController extends Controller
     public function pakages(){
         return view('packages-1');
     }
-    public function productsandtools(){
-        return view('productsandtools');
-    }
+
     public function accommodation(){
         $data=accomodation::all();
         if($data->count()>5){

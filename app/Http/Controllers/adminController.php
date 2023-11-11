@@ -980,29 +980,9 @@ class adminController extends Controller
         $data=categories::all();
         return view('admin.add_products',['catagories'=>$data]);
     }
-    public function addproducts(request $request){
-        $request->validate([
-            '*'=>'required',
-            'img'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
-            ]);
-            $data =$request->all();
-            $photo = $request->file('img');
-            $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('uploads');
-            $photo->move($photo_destination,$photo_name);
-            $data['img'] = $photo_name;
-            product::create($data);
-        return redirect('manage_products')->with ('success','Product added Successfully');
-    }
-    public function edit_products($id){
-        $data['catagories']=categories::all();
-        $data['product'] =product::find($id);
-        return view('admin.edit_products',$data);
-    }
-    public function deleteproduct($id){
-        $data =product::find($id);
-        $data->delete();
-        return redirect('manage_products')->with ('Delete','Product Deleted Successfully');
+    public function edit_products(){
+        return view('admin.edit_products');
     }
 
+  
 }
