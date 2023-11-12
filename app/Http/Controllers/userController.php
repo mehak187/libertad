@@ -241,7 +241,11 @@ class userController extends Controller
         return view('daily_activities_det',$data);
     }
     public function productsandtools(){
-        $data=categories::all();
+        // $data=categories::all();
+        $data = categories::join('products', 'categories.id', '=', 'products.p_catg')
+        ->select('categories.*')
+        ->distinct()
+        ->get();
         $data2 = product::leftJoin('categories', 'products.p_catg', '=', 'categories.id')
         ->select('products.*', 'categories.catg')
         ->get();
