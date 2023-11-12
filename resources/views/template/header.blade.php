@@ -424,7 +424,9 @@
 $contact = \App\Models\Contact::first();
 @endphp
 <div class="icon">
+    @if ($contact)
     <a href="https://api.whatsapp.com/send?phone={{$contact->google_link}}" target="_blank">
         <img src="{{asset('imgs/whatsapp.png')}}" alt="Sticky" class="whatsapp-img">
     </a>
+    @endif
 </div>
