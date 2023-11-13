@@ -84,7 +84,6 @@
                                             </a>
                                         </div>
                                     @endforeach
-                                    
                                 </div>
                                 <div class="next_arrow3">
                                     <i class="fa-solid fa-arrow-right rounded-circle golden-bg px-2 py-2 text-dark"></i>
@@ -93,6 +92,7 @@
                         </div>
                     </div>
                 @endif
+                @if (count($sites) > 0)
                 <div class="row">
                     <div class="col-sm-11 col-10 mx-auto">
                         <div class=" mt-5 position-relative sites">
@@ -101,132 +101,22 @@
                                 <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>
                             </div>
                             <div class="row site-map3">
+                            @foreach ($sites as $site)
                                 <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
+                                    <a href="/{{"sitesandmonoments/" .$site['id'] }}" class="text-decoration-none text-dark">
                                         <div>
-                                            <img src="./imgs/egypt-1.png" alt="" class="minor-img">
+                                            <img src="<?php echo asset('uploads/' . $site['img'])?>" alt="" class="minor-img">
                                         </div>
                                         <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
+                                            <h5 class="font-14">{{ $site['name'] }}</h5>
                                             <div class="d-flex align-items-center gap-2">
                                                 <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
+                                                <p class="m-0 font-13">{{ $site['location'] }}</p>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-2.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-3.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-4.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-1.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-1.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-1.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-1.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 mx-2">
-                                    <a href="{{asset('sitesandmonoments')}}" class="text-decoration-none text-dark">
-                                        <div>
-                                            <img src="./imgs/egypt-1.png" alt="" class="minor-img">
-                                        </div>
-                                        <div class="sky-bg p-2 round-site px-2 py-3">
-                                            <h5 class="font-14">Sites</h5>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                <p class="m-0 font-13">Location of the sites will be here.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                            @endforeach
                             </div>
                             <div class="next_arrow4">
                                 <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
@@ -234,6 +124,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>

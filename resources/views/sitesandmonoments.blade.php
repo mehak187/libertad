@@ -26,10 +26,10 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="./imgs/egypt-1.png" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $sites['img'])?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
-                        <p class="golden-clr">Name here</p>
+                        <p class="golden-clr">{{$sites->name}}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
                                 <a href="#" class="d-flex align-items-center text text-decoration-none gap-2">
@@ -52,126 +52,55 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <p class="text-white">In publishing and graphic design, Lorem ipsum is a placeholder text
-                                commonly used to demonstrate the visual form of a document or a typeface without relying
-                                on meaningful content. Lorem ipsum may be used as a placeholder before final copy is
-                                available.<br><br>
-
-                                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                                demonstrate the visual form of a document or a typeface without relying on meaningful
-                                content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+                            <p class="text-white">{{$sites->des}}</p>
                         </div>
                         <div class="d-flex gap-2">
                             <p class="golden-clr">No. of nights:</p>
-                            <span class="text-white">04</span>
+                            <span class="text-white">{{$sites->nights}}</span>
                         </div>
 
                     </div>
 
                 </div>
-                <div class="mt-5">
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <div class="sky-bg py-1 px-3 rounded-3">1</div>
-                            <div class="d-flex align-items-center mt-2">
-                                <h5 class="golden-clr mx-2 fw-normal">Day 1 : </h5>
-                                <h5 class="sky-clr  fw-normal"> Caira</h5>
+                @php
+                    $day_nmbr = 1;
+                @endphp
+                @foreach ($galleryImages as $galleryImage)
+                    <div class="mt-5">
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <div class="sky-bg py-1 px-3 rounded-3">{{$day_nmbr}}</div>
+                                <div class="d-flex align-items-center mt-2">
+                                    <h5 class="golden-clr mx-2 fw-normal">Day {{$day_nmbr}} : </h5>
+                                    <h5 class="sky-clr  fw-normal"> Caira</h5>
 
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-white fw-light fs-small">
+                                    In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
+                                    demonstrate the
+                                    visual form of a document or a typeface without relying on meaningful content. Lorem
+                                    ipsum may be used as
+                                    a placeholder before final copy is available. In publishing and graphic design, Lorem
+                                    ipsum is a placeholder
+                                    text commonly used to demonstrate the visual form of a document or a typeface without
+                                    relying on meaningful
+                                    content. Lorem ipsum may be used as a placeholder before final copy is available.
+                                </p>
                             </div>
                         </div>
-                        <div>
-                            <p class="text-white fw-light fs-small">
-                                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                                demonstrate the
-                                visual form of a document or a typeface without relying on meaningful content. Lorem
-                                ipsum may be used as
-                                a placeholder before final copy is available. In publishing and graphic design, Lorem
-                                ipsum is a placeholder
-                                text commonly used to demonstrate the visual form of a document or a typeface without
-                                relying on meaningful
-                                content. Lorem ipsum may be used as a placeholder before final copy is available.
-                            </p>
-                        </div>
                     </div>
-                </div>
-                <div class="mt-5">
-
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <div class="sky-bg py-1 px-3 rounded-3">2</div>
-                            <div class="d-flex align-items-center mt-2">
-                                <h5 class="golden-clr mx-2 fw-normal">Day 2 : </h5>
-                                <h5 class="sky-clr  fw-normal"> Caira</h5>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-white fw-light fs-small">
-                                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                                demonstrate the
-                                visual form of a document or a typeface without relying on meaningful content. Lorem
-                                ipsum may be used as
-                                a placeholder before final copy is available. In publishing and graphic design, Lorem
-                                ipsum is a placeholder
-                                text commonly used to demonstrate the visual form of a document or a typeface without
-                                relying on meaningful
-                                content. Lorem ipsum may be used as a placeholder before final copy is available.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5">
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <div class="sky-bg py-1 px-3 rounded-3">3</div>
-                            <div class="d-flex align-items-center mt-2">
-                                <h5 class="golden-clr mx-2 fw-normal">Day 3 : </h5>
-                                <h5 class="sky-clr  fw-normal"> Caira</h5>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-white fw-light fs-small">
-                                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                                demonstrate the
-                                visual form of a document or a typeface without relying on meaningful content. Lorem
-                                ipsum may be used as
-                                a placeholder before final copy is available. In publishing and graphic design, Lorem
-                                ipsum is a placeholder
-                                text commonly used to demonstrate the visual form of a document or a typeface without
-                                relying on meaningful
-                                content. Lorem ipsum may be used as a placeholder before final copy is available.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5">
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <div class="sky-bg py-1 px-3 rounded-3">4</div>
-                            <div class="d-flex align-items-center mt-2">
-                                <h5 class="golden-clr mx-2 fw-normal">Day 4 : </h5>
-                                <h5 class="sky-clr  fw-normal"> Caira</h5>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-white fw-light fs-small">
-                                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                                demonstrate the
-                                visual form of a document or a typeface without relying on meaningful content. Lorem
-                                ipsum may be used as
-                                a placeholder before final copy is available. In publishing and graphic design, Lorem
-                                ipsum is a placeholder
-                                text commonly used to demonstrate the visual form of a document or a typeface without
-                                relying on meaningful
-                                content. Lorem ipsum may be used as a placeholder before final copy is available.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    @php
+                        $day_nmbr=$day_nmbr+1;
+                    @endphp
+                @endforeach
+            
                 <div class="row">
 
                 </div>
 
-
+                @if (count($galleryImages) > 0)
                 <div class="row mt-5 position-relative">
                     <h5 class="text-white">Photos and gallery</h5>
                     <div class="col site-bg rounded-4 px-4 py-2 my-4">
@@ -179,33 +108,18 @@
                             <i class="fa-solid fa-arrow-left rounded-circle site-bg px-2 py-2 text-dark"></i>
                         </div>
                         <div class="row site-mapt1 ">
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_2.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_1.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_4.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_5.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_6.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_2.png" alt="" class="img-fluid rounded-4">
-                            </div>
-                            <div class="col-12 mx-2 my-2">
-                                <img src="./imgs/slider_img_1.png" alt="" class="img-fluid rounded-4">
-                            </div>
+                            @foreach ($galleryImages as $galleryImage)
+                                <div class="col-12 mx-2 my-2">
+                                    <img src="<?php echo asset('uploads/' . $galleryImage['image_path'])?>" alt="" class="img-fluid rounded-4">
+                                </div>
+                            @endforeach
                         </div>
                         <div class="next_arrow2t1">
                             <i class="fa-solid fa-arrow-right rounded-circle site-bg px-2 py-2 text-dark"></i>
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>

@@ -51,7 +51,7 @@ Route::controller(userController::class)->group(function(){
     Route::get('productsandtools','productsandtools');
     Route::get('accommodation',  'accommodation');
     Route::get('sites','sites');
-    Route::get('sitesandmonoments','sitesandmonoments');
+    Route::get('sitesandmonoments/{id}','sitesandmonoments');
     Route::get('siwaoasis','siwaoasis');
     Route::get('siwatour','siwatour');
     Route::get('testimonial','testimonial');
@@ -108,9 +108,11 @@ Route::controller(adminController::class)->group(function(){
     Route::get('delete_musuem/{id}','delete_musuem');
 
     Route::get('add_special_tours','add_special_tours');
+    Route::post('addstours','addstours');
     Route::get('manage_special_tours','manage_special_tours');
-    Route::get('special_tour_details','special_tour_details');
-    Route::get('edit_special_tours','edit_special_tours');
+    Route::get('special_tour_details/{id}','special_tour_details');
+    Route::get('edit_special_tours/{id}','edit_special_tours');
+    Route::post('updatestour','updatestour');
 
     Route::get('manage_accomodation','manage_accomodation');
     Route::get('add_accomodation','add_accomodation');
