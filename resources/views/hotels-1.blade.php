@@ -169,7 +169,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                @endforeach
+                                    @endforeach
                                 </div>
                               </div>
                             </div>
@@ -201,8 +201,7 @@
                                 </div>
                               </div>
                             </div>
-                            @else
-                            
+                            @else    
                             <div class="row ">
                                 <div class="col-xl-10 col-md-12 col-11">
                                     <div class="autoplay_2 mb-3">
@@ -230,6 +229,7 @@
                                         @endforeach
                                     </div>
                                 </div>
+                            </div>
                             @endif
                         </div>
                         <div>    

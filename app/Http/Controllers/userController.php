@@ -15,13 +15,25 @@ use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
 use App\Models\contact;
 use App\Models\product;
+use App\Models\shuttle;
 
 use Illuminate\Http\Request;
 class userController extends Controller
 {
 
     public function airport(){
-        return view('airport-shuttle');
+        $data=shuttle::all();
+        if($data->count()>5){
+            $upper=$data->take($data->count()/2);
+            $lower=$data->skip($data->count()/2);
+            return view('airport-shuttle',[
+                'vehicles1'=>$upper,
+                'vehicles2'=>$lower
+            ]);
+        }
+        else{
+            return view('airport-shuttle',['vehicles'=>$data]);
+        }
     }
     public function alexandriatour(){
         return view('alexandria-tour');
