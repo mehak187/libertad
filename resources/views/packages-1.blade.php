@@ -76,7 +76,7 @@
             </div>
 
             <div class="autoplay_1 second_slider my-3 pb-3">
-              <a href="{{asset('pakagebeharya')}}" class="text-decoration-none text-dark">
+              <a href="{{asset('pakage')}}" class="text-decoration-none text-dark">
                 <div class="card mx-3 first_card_slider border-0">
                   <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
                   <div class="card-body card_bottom" style="background-color: #E2BE4E;">
@@ -85,93 +85,6 @@
                       <p class="mb-0 fs-12">USD 65</p>
                     </div>
                     <p class="mb-0 fs-12">No. of Nights : 0</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{{asset('pakagegiza')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">60 USD per adult</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{{asset('pakagefullday')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">USD 500</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{{asset('pakagefayoum')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">USD 500</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="autoplay_1 second_slider my-3 pb-3">
-              <a href="{{asset('pakagecatacombs')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">USD 500</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{{asset('pakagebeharya')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">USD 500</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{{asset('pakagebeharya')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">USD 500</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{{asset('pakagebeharya')}}" class="text-decoration-none text-dark">
-                <div class="card mx-3 first_card_slider border-0">
-                  <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
-                  <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-0 fs-12">Packages #01</p>
-                      <p class="mb-0 fs-12">USD 500</p>
-                    </div>
-                    <p class="mb-0 fs-12">No. of Nights : 4</p>
                   </div>
                 </div>
               </a>

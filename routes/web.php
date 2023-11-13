@@ -26,7 +26,7 @@ Route::controller(userController::class)->group(function(){
     Route::get('/','index');
     Route::get('museum1','museum1');
     Route::get('notification','notification');
-    Route::get('pakagefullday','pakagefullday');
+    Route::get('pakage','pakage');
     Route::get('pakages','pakages');
     Route::get('productsandtools','productsandtools');
     Route::get('accommodation',  'accommodation');
