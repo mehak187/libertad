@@ -112,6 +112,7 @@ Route::controller(adminController::class)->group(function(){
     Route::get('manage_special_tours','manage_special_tours');
     Route::get('special_tour_details/{id}','special_tour_details');
     Route::get('edit_special_tours/{id}','edit_special_tours');
+    Route::get('deletestour/{id}','deletestour');
     Route::post('updatestour','updatestour');
 
     Route::get('manage_accomodation','manage_accomodation');
