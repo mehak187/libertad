@@ -38,52 +38,30 @@ class userController extends Controller
             return view('airport-shuttle',['vehicles'=>$data]);
         }
     }
-    public function alexandriatour(){
-        return view('alexandria-tour');
-    }
-    public function luxortour(){
-        return view('aswan-to-luxor-tour');
-    }
-    // public function bahariya(){
-    //     return view('bahariya-oasis');
-    // }
-    public function behariyatour(){
-        return view('behariya-tour');
-    }   
-    public function cairo(){
-        return view('caire-city');
+    public function book(){
+        $data=book::all();
+        return view('book',['books'=>$data]);
     }
     public function cart(){
         return view('cart');
-    }
-    public function alexandria(){
-        return view('classic-tour-of-alexendria');
     }
     public function contact(){
         $data['contact'] = contact::first();
         return view('contact-us',$data);
     }
-   
-    // public function dailytours(){
-    //     return view('daily-tours');
-    // }
-    public function fayoum(){
-        return view('fayoum-oasis');
+    public function dailyactivites(){
+        $data =DailyActivities::all();
+        return view('daily-activities',['activities'=>$data]);
     }
-    public function fayoumtour(){
-        return view('fayoum-tour');
-    }
-    public function gizafullday(){
-        return view('giza-full-day-tour');
-    }
-    public function egyptianmeuseum(){
-        return view('giza-pyramid-egyptian-museum');
-    }
-    public function gizatours(){
-        return view('giza-tours');
-    }
-    public function meuseum(){
-        return view('giza-tours2');
+    public function daily_activities_det($id){
+        $data['citytour'] =DailyActivities::find($id);
+        $cityTourId = $data['citytour']->id;
+
+        $data['galleryImages'] = GalleryImageActivities::leftJoin('daily_activities', 'gallery_image_activities.activities_id', '=', 'daily_activities.id')
+        ->where('gallery_image_activities.activities_id', $cityTourId)
+        ->select('gallery_image_activities.*')
+        ->get();
+        return view('daily_activities_det',$data);
     }
     public function home(){
         $data=specialtours::all();
@@ -109,43 +87,18 @@ class userController extends Controller
     public function libertad(){
         return view('libert-ad');
     }
-    public function aswan(){
-        return view('luxor-to-aswan-tour');
-    }
     public function museum1(){
         return view('museum1');
-    }
-    public function luxorcruise(){
-        return view('nile-cruise-from-aswan-to-luxor');
-    }
-    public function aswancruise(){
-        return view('nile-cruise-from-luxor-to-aswan');
     }
     public function notification(){
         return view('notification-page');
     }
-    public function pakagebeharya(){
-        return view('package-beharya-oasis');
-    }
-    public function pakagecatacombs(){
-        return view('package-catacombs');
-    }
-    public function pakagefayoum(){
-        return view('package-fayoum-osis-lake-qarun');
-    }
-    public function pakagefullday(){
-        return view('package-full-day-giza-museum-oldcairo');
-    }
-    public function pakagegiza(){
-        return view('package-giza-pyramid.blade');
-    }
-    public function pakagesiwa(){
-        return view('package-siwa-oasis-to-cairo');
-    }
     public function pakages(){
         return view('packages-1');
     }
-
+    public function pakagefullday(){
+        return view('package');
+    }
     public function accommodation(){
         $data=accomodation::all();
         if($data->count()>5){
@@ -166,13 +119,6 @@ class userController extends Controller
     }
     public function sites(){
         return view('sites');
-    }
- 
-    public function siwaoasis(){
-        return view('siwa-oasis');
-    }
-    public function siwatour(){
-        return view('siwa-tour');
     }
     public function testimonial(){
         return view('testimonial');
@@ -237,10 +183,6 @@ class userController extends Controller
         ->get();
         return view('sitesandmonoments',$data);
     }
-    public function book(){
-        $data=book::all();
-        return view('book',['books'=>$data]);
-    }
     public function tours(){
         return view('tours');
     }
@@ -253,21 +195,6 @@ class userController extends Controller
     }
     public function vehicle(){
         return view('vehicle-destination');
-    }
-
-    public function dailyactivites(){
-        $data =DailyActivities::all();
-        return view('daily-activities',['activities'=>$data]);
-    }
-    public function daily_activities_det($id){
-        $data['citytour'] =DailyActivities::find($id);
-        $cityTourId = $data['citytour']->id;
-
-        $data['galleryImages'] = GalleryImageActivities::leftJoin('daily_activities', 'gallery_image_activities.activities_id', '=', 'daily_activities.id')
-        ->where('gallery_image_activities.activities_id', $cityTourId)
-        ->select('gallery_image_activities.*')
-        ->get();
-        return view('daily_activities_det',$data);
     }
     public function productsandtools(){
         // $data=categories::all();
