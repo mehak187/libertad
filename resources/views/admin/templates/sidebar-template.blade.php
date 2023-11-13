@@ -38,6 +38,11 @@
                         </a>
                     </li>
                     <li class="mt-3">
+                        <a href="/manage_sites_and_monuments" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage sites & monuments</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
                         <a href="/manage_accomodation" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage Accomodation</h3>
                         </a>

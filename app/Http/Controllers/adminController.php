@@ -246,6 +246,7 @@ class adminController extends Controller
             $sight_seeing = $request->sight_seeing;
             $include = $request->include;
             $des = $request->des;
+            $city = $request->city;
     
             $cityTour->update([
                 'name' => $name,
@@ -544,59 +545,63 @@ class adminController extends Controller
         return redirect('/manage_sites_and_monuments')->with('savectour', 'Sites and monuments added Successfully');
     }
     public function manage_sites_and_monuments(){
-        $data =citytour::all();
-        $data = CityTour::leftJoin('cities', 'citytours.city', '=', 'cities.id')
-        ->select('citytours.*', 'cities.Cityname')
+        $data =site::all();
+        $data = site::leftJoin('cities', 'sites.city', '=', 'cities.id')
+        ->select('sites.*', 'cities.Cityname')
         ->get();
-        return view('admin.manage_city_tours',['citytours'=>$data]);
+        return view('admin.manage_sites_and_monuments',['citytours'=>$data]);
     }
     public function sites_and_monuments_details($id){
-        $data['citytour'] =citytour::find($id);
+        $data['citytour'] =site::find($id);
         $cityTourId = $data['citytour']->id;
 
-        $data['galleryImages'] = GalleryImage::leftJoin('citytours', 'gallery_images.city_tour_id', '=', 'citytours.id')
-        ->where('gallery_images.city_tour_id', $cityTourId)
-        ->select('gallery_images.*')
+        $data['galleryImages'] = GalleryImageSite::leftJoin('sites', 'gallery_image_sites.site_id', '=', 'sites.id')
+        ->where('gallery_image_sites.site_id', $cityTourId)
+        ->select('gallery_image_sites.*')
         ->get();
-        return view('admin.city_tour_details',$data);
+
+        $data['days'] =SiteDay::leftJoin('sites', 'site_days.site_id', '=', 'sites.id')
+            ->where('site_days.site_id', $cityTourId)
+            ->select('site_days.*') // Include columns from site_days
+            ->get();
+        return view('admin.sites_and_monuments_details',$data);
     }
     public function edit_sites_and_monuments($id){
         $data['cities']=city::all();
-        $data['citytour'] =citytour::find($id);
+        $data['citytour'] =site::find($id);
         $cityTourId = $data['citytour']->id;
 
-        $data['galleryImages'] = GalleryImage::leftJoin('citytours', 'gallery_images.city_tour_id', '=', 'citytours.id')
-        ->where('gallery_images.city_tour_id', $cityTourId)
-        ->select('gallery_images.*')
+        $data['galleryImages'] = GalleryImageSite::leftJoin('sites', 'gallery_image_sites.site_id', '=', 'sites.id')
+        ->where('gallery_image_sites.site_id', $cityTourId)
+        ->select('gallery_image_sites.*')
         ->get();
-        return view('admin.edit_city_tours',$data);
+
+        $data['days'] =SiteDay::leftJoin('sites', 'site_days.site_id', '=', 'sites.id')
+            ->where('site_days.site_id', $cityTourId)
+            ->select('site_days.*') // Include columns from site_days
+            ->get();
+        return view('admin.edit_sites_and_monuments',$data);
     }
     public function update_sites_and_monuments(Request $request) {
         $request->validate([
         ]);
     
-        $cityTour = CityTour::find($request->id);
+        $cityTour = site::find($request->id);
     
         if (!$cityTour) {
-            return redirect('/manage_city_tours')->with('error', 'City tour not found');
+            return redirect('/manage_manage_sites_and_monuments')->with('error', 'Site and monuments not found');
         }
     
         if ($request->file('img') == NULL) {
             $name = $request->name;
             $location = $request->location;
-            $price = $request->price;
             $night = $request->night;
-            $sight_seeing = $request->sight_seeing;
-            $include = $request->include;
             $des = $request->des;
             $city = $request->city;
             $cityTour->update([
                 'name' => $name,
                 'location' => $location,
-                'price' => $price,
                 'night' => $night,
-                'sight_seeing' => $sight_seeing,
-                'include' => $include,
                 'des' => $des,
                 'city' => $city,
             ]);
@@ -606,7 +611,7 @@ class adminController extends Controller
 
             if ($imagePaths) {
                 foreach ($galleryIds as $key => $galleryId) {
-                    $gimg = GalleryImage::find($galleryId);
+                    $gimg = GalleryImageSite::find($galleryId);
                     if (!$gimg) {
                         return redirect('/manage_city_tours')->with('error', 'Gallery image not found');
                     }
@@ -621,6 +626,28 @@ class adminController extends Controller
                     }
                 }
             }
+            
+            $dayTitles = $request->day_title;
+            $dayDescriptions = $request->day_des;
+            $daysIds = $request->input('days_id', []);
+
+            if (count($dayTitles) === count($dayDescriptions) && count($dayTitles) === count($daysIds)) {
+                foreach ($daysIds as $key => $daysId) {
+                    $gday = SiteDay::find($daysId);
+
+                    if (!$gday) {
+                        return redirect('/manage_city_tours')->with('error', 'Site day not found');
+                    }
+
+                    $dayTitle = $dayTitles[$key];
+                    $dayDescription = $dayDescriptions[$key];
+
+                    $gday->update([
+                        'day_title' => $dayTitle,
+                        'day_des' => $dayDescription,
+                    ]);
+                }
+            } 
         } else {
             // Handle update with a new image
             $photo = $request->file('img');
@@ -630,19 +657,14 @@ class adminController extends Controller
     
             $name = $request->name;
             $location = $request->location;
-            $price = $request->price;
             $night = $request->night;
-            $sight_seeing = $request->sight_seeing;
-            $include = $request->include;
             $des = $request->des;
+            $city = $request->city;
     
             $cityTour->update([
                 'name' => $name,
                 'location' => $location,
-                'price' => $price,
                 'night' => $night,
-                'sight_seeing' => $sight_seeing,
-                'include' => $include,
                 'des' => $des,
                 'img' => $photo_name,
                 'city' => $city
@@ -655,7 +677,7 @@ class adminController extends Controller
 
             if ($imagePaths) {
                 foreach ($galleryIds as $key => $galleryId) {
-                    $gimg = GalleryImage::find($galleryId);
+                    $gimg = GalleryImageSite::find($galleryId);
                     if (!$gimg) {
                         return redirect('/manage_city_tours')->with('error', 'Gallery image not found');
                     }
@@ -670,18 +692,39 @@ class adminController extends Controller
                     }
                 }
             }
+            $dayTitles = $request->day_title;
+            $dayDescriptions = $request->day_des;
+            $daysIds = $request->input('days_id', []);
+
+            if (count($dayTitles) === count($dayDescriptions) && count($dayTitles) === count($daysIds)) {
+                foreach ($daysIds as $key => $daysId) {
+                    $gday = SiteDay::find($daysId);
+
+                    if (!$gday) {
+                        return redirect('/manage_city_tours')->with('error', 'Site day not found');
+                    }
+
+                    $dayTitle = $dayTitles[$key];
+                    $dayDescription = $dayDescriptions[$key];
+
+                    $gday->update([
+                        'day_title' => $dayTitle,
+                        'day_des' => $dayDescription,
+                    ]);
+                }
+            } 
         }
     
-        return redirect('/manage_city_tours')->with('savectour', 'City tour updated successfully');
+        return redirect('/manage_sites_and_monuments')->with('savectour', 'Sites and monuments updated successfully');
     }
     public function delete_sites_and_monuments($id){
-        $cityTour = citytour::find($id);
+        $cityTour = site::find($id);
         $cityTour->delete();
         $imagePath = public_path('uploads/' . $cityTour->img);
         if (file_exists($imagePath)) {
             unlink($imagePath);
         }
-        $galleryImages = GalleryImage::where('city_tour_id', $cityTour->id)->get();
+        $galleryImages = GalleryImageSite::where('site_id', $cityTour->id)->get();
         if ($galleryImages) {
             foreach ($galleryImages as $image) {
                 $imagePath = public_path('uploads/' . $image->image_path);
@@ -691,7 +734,11 @@ class adminController extends Controller
                 $image->delete();
             }
         }
-        return redirect('manage_city_tours')->with ('Delete','City Tour Deleted Successfully');
+        $days = SiteDay::where('site_id', $cityTour->id)->get();
+            foreach ($days as $day) {
+                $day->delete();
+            }
+        return redirect('manage_sites_and_monuments')->with ('Delete','Sites and Monuments Deleted Successfully');
     }
 
     public function add_daily_activities(){
@@ -1108,6 +1155,9 @@ class adminController extends Controller
         ->delete();
         musuem::leftJoin('cities', 'musuems.city', '=', 'cities.id')
         ->where('musuems.city', $id)
+        ->delete();
+        site::leftJoin('cities', 'sites.city', '=', 'cities.id')
+        ->where('sites.city', $id)
         ->delete();
         return redirect('manage_cities')->with ('Delete','City Deleted Successfully');
     }
