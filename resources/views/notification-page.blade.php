@@ -20,7 +20,7 @@
                         <a href="#" id="goBackButton" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-1 pt-1 px-2 rounded-2"></i>
                         </a>
-                    </div>                    
+                    </div>
                     <div class="">
                         <p class="text-white m-0 font-22">Notification</p>
                     </div>
@@ -31,7 +31,8 @@
                             <i class="bi bi-bell blue-dark-bg p-2 rounded-2 text-white fs-4"></i>
                         </div>
                         <div class="ps-3">
-                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi cum
+                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi
+                                cum
                                 provident veniam autem doloribus debitis recusandae nihil magni eaque illum asperiores,
                                 est voluptate aut quis vel laboriosam, qui consequuntur?</p>
                             <span class="font-12 mb-0">10 min ago</span>
@@ -42,7 +43,8 @@
                             <i class="bi bi-bell blue-dark-bg p-2 rounded-2 text-white fs-4"></i>
                         </div>
                         <div class="ps-3">
-                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi cum
+                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi
+                                cum
                                 provident veniam autem doloribus debitis recusandae nihil magni eaque illum asperiores,
                                 est voluptate aut quis vel laboriosam, qui consequuntur?</p>
                             <span class="font-12 mb-0">10 min ago</span>
@@ -53,7 +55,8 @@
                             <i class="bi bi-bell blue-dark-bg p-2 rounded-2 text-white fs-4"></i>
                         </div>
                         <div class="ps-3">
-                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi cum
+                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi
+                                cum
                                 provident veniam autem doloribus debitis recusandae nihil magni eaque illum asperiores,
                                 est voluptate aut quis vel laboriosam, qui consequuntur?</p>
                             <span class="font-12 mb-0">10 min ago</span>
@@ -64,7 +67,8 @@
                             <i class="bi bi-bell blue-dark-bg p-2 rounded-2 text-white fs-4"></i>
                         </div>
                         <div class="ps-3">
-                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi cum
+                            <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis modi
+                                cum
                                 provident veniam autem doloribus debitis recusandae nihil magni eaque illum asperiores,
                                 est voluptate aut quis vel laboriosam, qui consequuntur?</p>
                             <span class="font-12 mb-0">10 min ago</span>
@@ -111,4 +115,5 @@
     </div>
     @include('template.jslinks')
 </body>
+
 </html>

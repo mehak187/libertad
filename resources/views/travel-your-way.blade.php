@@ -17,7 +17,7 @@
             <div class="container-fluid px-md-5 px-3 mb-lg-5 pb-lg-5">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{asset('/')}}">
+                        <a href="{{ asset('/') }}">
                             <img src="./imgs/home.png" alt="" class="img-fluid">
                         </a>
                     </div>
@@ -65,81 +65,88 @@
                     <div class="col-xl-10">
                         <div class="row mt-4" id="content">
                             @foreach ($events as $event)
-                            <div class="col-lg-4 col-md-6 mt-3 position-relative">
-                                <div class="bg-white rounded-4 p-3 shadow">
-                                    <div class="d-flex align-items-center gap-2 border-bottom pb-4">
-                                        <div class="sky-bg rounded-3 p-3 crdate">
-                                            <h4 class="m-0 fs-6 fw-normal">{{ \Carbon\Carbon::parse($event['st_date'])->format('d/m') }}</h4>
-                                        </div>
-                                        <div>
+                                <div class="col-lg-4 col-md-6 mt-3 position-relative">
+                                    <div class="bg-white rounded-4 p-3 shadow">
+                                        <div class="d-flex align-items-center gap-2 border-bottom pb-4">
+                                            <div class="sky-bg rounded-3 p-3 crdate">
+                                                <h4 class="m-0 fs-6 fw-normal">
+                                                    {{ \Carbon\Carbon::parse($event['st_date'])->format('d/m') }}</h4>
+                                            </div>
                                             <div>
-                                                <i class="bi bi-geo-alt"></i>
-                                                <span class="font-12">{{$event['event_name']}}- {{$event['city_name']}}</span>
-                                            </div>
-                                            <div class="d-flex align-items-center gap-2">
                                                 <div>
-                                                    <i class="bi bi-clock-history"></i>
+                                                    <i class="bi bi-geo-alt"></i>
+                                                    <span class="font-12">{{ $event['event_name'] }}-
+                                                        {{ $event['city_name'] }}</span>
                                                 </div>
-                                                <div class="d-flex flex-column">
-                                                    <span class="font-12">
-                                                        {{\Carbon\Carbon::parse( $event['st_date'])->format('d/m/Y')}}, {{ $event['st_time'] }}
-                                                    </span>
-                                                    <span class="font-12">{{\Carbon\Carbon::parse($event['end_date'])->format('d/m/Y')}}, {{$event['end_time']}}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-3">
-                                        <h5>{{$event['heading']}}</h5>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <button
-                                                class="read-more bg-transparent border-0 brown-clr p-0 m-0 text-decoration-underline">Read
-                                                More</button>
-                                            <button
-                                                class="read-less bg-transparent border-0 brown-clr p-0 m-0 text-decoration-underline">Read
-                                                Less</button>
-                                            <div class="">
-                                                <p class="mb-0 sky-clr bk-1" style="cursor: pointer;">Book</p>
-                                                <div class="position-form bg-white rounded-3 p-3">
-                                                    <form action="">
-                                                        <div>
-                                                            <label for="">First Name</label>
-                                                            <input type="text" class="form-control shadow-none"
-                                                                placeholder="First name">
-                                                        </div>
-                                                        <div>
-                                                            <label for="">Last Name</label>
-                                                            <input type="text" class="form-control shadow-none"
-                                                                placeholder="Last name">
-                                                        </div>
-                                                        <div>
-                                                            <label for="">Email Address</label>
-                                                            <input type="email" class="form-control shadow-none"
-                                                                placeholder="Email address">
-                                                        </div>
-                                                        <div>
-                                                            <label for="">Phone Number</label>
-                                                            <input type="number" class="form-control shadow-none"
-                                                                placeholder="Phone number">
-                                                        </div>
-                                                        <div>
-                                                            <label for="">Qty.</label>
-                                                            <input type="number" class="form-control shadow-none"
-                                                                placeholder="Qty.">
-                                                        </div>
-                                                        <div>
-                                                            <input type="button" class=" btn shadow-none golden-bg mt-2"
-                                                                value="Confirm" data-bs-target="#exampleModalToggle3"
-                                                                data-bs-toggle="modal">
-                                                        </div>
-                                                    </form>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div>
+                                                        <i class="bi bi-clock-history"></i>
+                                                    </div>
+                                                    <div class="d-flex flex-column">
+                                                        <span class="font-12">
+                                                            {{ \Carbon\Carbon::parse($event['st_date'])->format('d/m/Y') }},
+                                                            {{ $event['st_time'] }}
+                                                        </span>
+                                                        <span
+                                                            class="font-12">{{ \Carbon\Carbon::parse($event['end_date'])->format('d/m/Y') }},
+                                                            {{ $event['end_time'] }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="brown-clr mb-0 read-text">{{$event['des']}}</p>
+                                        <div class="mt-3">
+                                            <h5>{{ $event['heading'] }}</h5>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <button
+                                                    class="read-more bg-transparent border-0 brown-clr p-0 m-0 text-decoration-underline">Read
+                                                    More</button>
+                                                <button
+                                                    class="read-less bg-transparent border-0 brown-clr p-0 m-0 text-decoration-underline">Read
+                                                    Less</button>
+                                                <div class="">
+                                                    <p class="mb-0 sky-clr bk-1" style="cursor: pointer;">Book</p>
+                                                    <div class="position-form bg-white rounded-3 p-3">
+                                                        <form action="">
+                                                            <div>
+                                                                <label for="">First Name</label>
+                                                                <input type="text" class="form-control shadow-none"
+                                                                    placeholder="First name">
+                                                            </div>
+                                                            <div>
+                                                                <label for="">Last Name</label>
+                                                                <input type="text" class="form-control shadow-none"
+                                                                    placeholder="Last name">
+                                                            </div>
+                                                            <div>
+                                                                <label for="">Email Address</label>
+                                                                <input type="email" class="form-control shadow-none"
+                                                                    placeholder="Email address">
+                                                            </div>
+                                                            <div>
+                                                                <label for="">Phone Number</label>
+                                                                <input type="number" class="form-control shadow-none"
+                                                                    placeholder="Phone number">
+                                                            </div>
+                                                            <div>
+                                                                <label for="">Qty.</label>
+                                                                <input type="number" class="form-control shadow-none"
+                                                                    placeholder="Qty.">
+                                                            </div>
+                                                            <div>
+                                                                <input type="button"
+                                                                    class=" btn shadow-none golden-bg mt-2"
+                                                                    value="Confirm"
+                                                                    data-bs-target="#exampleModalToggle3"
+                                                                    data-bs-toggle="modal">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="brown-clr mb-0 read-text">{{ $event['des'] }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -148,13 +155,16 @@
                     <nav id="pagination" class="mt-3 main-paging">
                         <ul class="pagination d-flex gap-3">
                             <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr" href="#">1</a>
+                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
+                                    href="#">1</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr" href="#">2</a>
+                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
+                                    href="#">2</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr" href="#">3</a>
+                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
+                                    href="#">3</a>
                             </li>
                         </ul>
                     </nav>
@@ -199,7 +209,8 @@
                         <h6>Terms & Conditions/Cancellation policy</h6>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Est
                                 deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
                                 laboriosam.label>
                         </div>
@@ -244,8 +255,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -272,7 +283,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -280,7 +292,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

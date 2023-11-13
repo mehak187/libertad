@@ -26,10 +26,10 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('uploads/' . $sites['img'])?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $sites['img']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
-                        <p class="golden-clr">{{$sites->name}}</p>
+                        <p class="golden-clr">{{ $sites->name }}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
                                 <a href="#" class="d-flex align-items-center text text-decoration-none gap-2">
@@ -43,8 +43,9 @@
                             </div>
                             <div class="col-sm-6 col-lg-12 col-xl-6 mt-sm-0">
                                 <div class="text-sm-end text-lg-start text-xl-end">
-                                    <button type="button" class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button" data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
+                                    <button type="button"
+                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
+                                        data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
@@ -52,16 +53,17 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <p class="text-white">{{$sites->des}}</p>
+                            <p class="text-white">{{ $sites->des }}</p>
                         </div>
                         <div class="d-flex gap-2">
                             <p class="golden-clr">No. of nights:</p>
-                            <span class="text-white">{{$sites->nights}}</span>
+                            <span class="text-white">{{ $sites->nights }}</span>
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             <div class="">
                                 <div class="button_border rounded-pill">
-                                    <button type="button" class="button_leniar_style px-3 px-sm-5 rounded-pill " data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Book</button>
+                                    <button type="button" class="button_leniar_style px-3 px-sm-5 rounded-pill "
+                                        data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Book</button>
                                 </div>
                             </div>
                             <div>
@@ -81,48 +83,48 @@
                     <div class="mt-5">
                         <div>
                             <div class="d-flex align-items-center">
-                                <div class="sky-bg py-1 px-3 rounded-3">{{$day_nmbr}}</div>
+                                <div class="sky-bg py-1 px-3 rounded-3">{{ $day_nmbr }}</div>
                                 <div class="d-flex align-items-center mt-2">
-                                    <h5 class="golden-clr mx-2 fw-normal">Day {{$day_nmbr}} : </h5>
-                                    <h5 class="sky-clr  fw-normal"> {{$day['day_title']}}</h5>
+                                    <h5 class="golden-clr mx-2 fw-normal">Day {{ $day_nmbr }} : </h5>
+                                    <h5 class="sky-clr  fw-normal"> {{ $day['day_title'] }}</h5>
 
                                 </div>
                             </div>
                             <div>
                                 <p class="text-white fw-light fs-small">
-                                    {{$day['day_des']}}
+                                    {{ $day['day_des'] }}
                                 </p>
                             </div>
                         </div>
                     </div>
                     @php
-                        $day_nmbr=$day_nmbr+1;
+                        $day_nmbr = $day_nmbr + 1;
                     @endphp
                 @endforeach
-            
+
                 <div class="row">
 
                 </div>
 
                 @if (count($galleryImages) > 0)
-                <div class="row mt-5 position-relative">
-                    <h5 class="text-white">Photos and gallery</h5>
-                    <div class="col site-bg rounded-4 px-4 py-2 my-4">
-                        <div class="prev_arrow2t1">
-                            <i class="fa-solid fa-arrow-left rounded-circle site-bg px-2 py-2 text-dark"></i>
-                        </div>
-                        <div class="row site-mapt1 ">
-                            @foreach ($galleryImages as $galleryImage)
-                                <div class="col-12 mx-2 my-2">
-                                    <img src="<?php echo asset('uploads/' . $galleryImage['image_path'])?>" alt="" class="img-fluid rounded-4">
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="next_arrow2t1">
-                            <i class="fa-solid fa-arrow-right rounded-circle site-bg px-2 py-2 text-dark"></i>
+                    <div class="row mt-5 position-relative">
+                        <h5 class="text-white">Photos and gallery</h5>
+                        <div class="col site-bg rounded-4 px-4 py-2 my-4">
+                            <div class="prev_arrow2t1">
+                                <i class="fa-solid fa-arrow-left rounded-circle site-bg px-2 py-2 text-dark"></i>
+                            </div>
+                            <div class="row site-mapt1 ">
+                                @foreach ($galleryImages as $galleryImage)
+                                    <div class="col-12 mx-2 my-2">
+                                        <img src="<?php echo asset('uploads/' . $galleryImage['image_path']); ?>" alt="" class="img-fluid rounded-4">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="next_arrow2t1">
+                                <i class="fa-solid fa-arrow-right rounded-circle site-bg px-2 py-2 text-dark"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -225,11 +227,13 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Confirm Email">
+                            <input type="email" class="form-control shadow-none font-12"
+                                placeholder="Confirm Email">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12" placeholder="Phone Number">
+                            <input type="tel" class="form-control shadow-none font-12"
+                                placeholder="Phone Number">
                         </div>
                         <div class="mt-2">
                             <div class="d-flex flex-column">
@@ -237,9 +241,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6 class="fw-bold mt-3">Travelers Detail</h6>
@@ -262,9 +268,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6>Traveller 2</h6>
@@ -286,9 +294,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                     </form>
@@ -336,7 +346,8 @@
                         <h6>Terms $ Conditions/Cancellation policy</h6>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Est
                                 deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
                                 laboriosam.label>
                         </div>
@@ -381,8 +392,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -409,7 +420,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -417,7 +429,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

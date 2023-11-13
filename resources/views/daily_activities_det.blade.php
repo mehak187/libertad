@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{asset('dailyactivites')}}" class="text-decoration-none">
+                        <a href="{{ asset('dailyactivites') }}" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                         </a>
                     </div>
@@ -27,12 +27,12 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('uploads/' . $citytour['img'])?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $citytour['img']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
                         <div class="d-flex align-items-center gap-2">
                             <i class="bi bi-geo-alt text-white m-0"></i>
-                            <p class="text-white m-0">{{$citytour->location}}</p>
+                            <p class="text-white m-0">{{ $citytour->location }}</p>
                         </div>
                         <div class="row align-items-center mt-3">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
@@ -47,8 +47,9 @@
                             </div>
                             <div class="col-sm-6 col-lg-12 col-xl-6 mt-sm-0">
                                 <div class="text-sm-end text-lg-start text-xl-end">
-                                    <button type="button" class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button" data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
+                                    <button type="button"
+                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
+                                        data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
@@ -57,13 +58,13 @@
                         </div>
                         <div class="row mt-3">
                             <p class="text-white">
-                                {{$citytour->des}}
+                                {{ $citytour->des }}
                             </p>
                             <div>
                                 <h6 class="golden-clr">Sightseeing</h6>
                                 @php
-                                $inputString = $citytour['sight_seeing'];
-                                $dataArray = explode(',', $inputString);
+                                    $inputString = $citytour['sight_seeing'];
+                                    $dataArray = explode(',', $inputString);
                                 @endphp
                                 <ul class="text-white">
                                     @foreach ($dataArray as $item)
@@ -74,8 +75,8 @@
                             <div>
                                 <h6 class="golden-clr">Includes</h6>
                                 @php
-                                $inputString = $citytour['include'];
-                                $dataArray = explode(',', $inputString);
+                                    $inputString = $citytour['include'];
+                                    $dataArray = explode(',', $inputString);
                                 @endphp
                                 <ul class="text-white">
                                     @foreach ($dataArray as $item)
@@ -102,24 +103,24 @@
                     </div>
                 </div>
                 @if (count($galleryImages) > 0)
-                <div class="row mt-5 position-relative">
-                    <h5 class="text-white">Photos and gallery</h5>
-                    <div class="col-10 col-sm-11 golden-bg golden-bg-remove rounded-4 py-2 px-4 mt-4 mx-auto">
-                        <div class="prev_arrow2t1">
-                            <i class="fa-solid fa-arrow-left rounded-circle golden-bg px-2 py-2 text-dark"></i>
-                        </div>
-                        <div class="row site-mapt1">
-                            @foreach ($galleryImages as $galleryImage)
-                                <div class="col-12 mx-2 my-2">
-                                    <img src="<?php echo asset('uploads/' . $galleryImage['image_path'])?>" alt="" class="img-fluid rounded-4">
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="next_arrow2t1">
-                            <i class="fa-solid fa-arrow-right rounded-circle golden-bg px-2 py-2 text-dark"></i>
+                    <div class="row mt-5 position-relative">
+                        <h5 class="text-white">Photos and gallery</h5>
+                        <div class="col-10 col-sm-11 golden-bg golden-bg-remove rounded-4 py-2 px-4 mt-4 mx-auto">
+                            <div class="prev_arrow2t1">
+                                <i class="fa-solid fa-arrow-left rounded-circle golden-bg px-2 py-2 text-dark"></i>
+                            </div>
+                            <div class="row site-mapt1">
+                                @foreach ($galleryImages as $galleryImage)
+                                    <div class="col-12 mx-2 my-2">
+                                        <img src="<?php echo asset('uploads/' . $galleryImage['image_path']); ?>" alt="" class="img-fluid rounded-4">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="next_arrow2t1">
+                                <i class="fa-solid fa-arrow-right rounded-circle golden-bg px-2 py-2 text-dark"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -219,11 +220,13 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Confirm Email">
+                            <input type="email" class="form-control shadow-none font-12"
+                                placeholder="Confirm Email">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12" placeholder="Phone Number">
+                            <input type="tel" class="form-control shadow-none font-12"
+                                placeholder="Phone Number">
                         </div>
                         <div class="mt-2">
                             <div class="d-flex flex-column">
@@ -231,9 +234,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6 class="fw-bold mt-3">Travellers Detail</h6>
@@ -256,9 +261,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6>Traveller 2</h6>
@@ -280,9 +287,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                     </form>
@@ -330,7 +339,8 @@
                         <h6>Terms $ Conditions/Cancellation policy</h6>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Est
                                 deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
                                 laboriosam.label>
                         </div>
@@ -375,8 +385,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -403,7 +413,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -411,7 +422,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

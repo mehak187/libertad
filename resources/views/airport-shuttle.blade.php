@@ -22,43 +22,43 @@
                             <div class="sidebar_tab gap-3 home">
                                 <span class="step_circle">01.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('home')}}" class="mb-0 fs-6">Home</a>
+                                    <a href="{{ asset('home') }}" class="mb-0 fs-6">Home</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 tour-1">
                                 <span class="step_circle">02.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('tour1')}}" class="mb-0 fs-6">Tours</a>
+                                    <a href="{{ asset('tour1') }}" class="mb-0 fs-6">Tours</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 packages-1">
                                 <span class="step_circle">03.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('pakages')}}" class="mb-0 fs-6">Packages</a>
+                                    <a href="{{ asset('pakages') }}" class="mb-0 fs-6">Packages</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 hotel-1">
                                 <span class="step_circle">04.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('hotels')}}" class="mb-0 fs-6">Accommodation</a>
+                                    <a href="{{ asset('hotels') }}" class="mb-0 fs-6">Accommodation</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 daily-tours-1">
                                 <span class="step_circle">05.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('dailyactivites')}}" class="mb-0 fs-6">Daily Activites</a>
+                                    <a href="{{ asset('dailyactivites') }}" class="mb-0 fs-6">Daily Activites</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 airport">
                                 <span class="step_circle active">06.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('airport')}}" class="mb-0 fs-6 active">Airport Shuttle</a>
+                                    <a href="{{ asset('airport') }}" class="mb-0 fs-6 active">Airport Shuttle</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 p-tool">
                                 <span class="step_circle">07.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('productsandtools')}}" class="mb-0 fs-6">Product & Tools</a>
+                                    <a href="{{ asset('productsandtools') }}" class="mb-0 fs-6">Product & Tools</a>
                                 </span>
                             </div>
                         </div>
@@ -109,17 +109,19 @@
                                             </div>
                                             <div class="">
                                                 <label for="" class="fs-12 text-white">Number of people</label>
-                                                <input type="number" value="1" class="form-control text-white" name=""
-                                                    id="" style="background-color: transparent;">
+                                                <input type="number" value="1" class="form-control text-white"
+                                                    name="" id=""
+                                                    style="background-color: transparent;">
                                             </div>
                                             <div class="">
                                                 <label for="" class="fs-12 text-white">Check in Date</label>
-                                                <input type="date" name="" class="form-control" id=""
+                                                <input type="date" name="" class="form-control"
+                                                    id=""
                                                     style="background-color: transparent; color: white;">
                                             </div>
                                             <div class=" d-flex align-items-end">
                                                 <div class="">
-                                                    <a href="{{asset('vehicle')}}">
+                                                    <a href="{{ asset('vehicle') }}">
                                                         <button class="btn p-0 mt-3" style="width: 1.5rem;">
                                                             <img src="./imgs/review_button.png" class=""
                                                                 style="width: 2.6rem;" alt="">
@@ -146,122 +148,140 @@
                                     <button class="border-0 bg-transparent"><i
                                             class="bi bi-search golden-clr"></i></button>
                                 </div>
-                                @if (@isset($vehicles1)&& @isset($vehicles2))
-                                <div class="row me-md-0 me-sm-2">
-                                    <div class="col-xl-11">
-                                        <div class="first_slider">
-                                            <div class="autoplay_2 mb-3">
-                                                @foreach ($vehicles1 as $vehicle1)
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="<?php echo asset('uploads/' . $vehicle1['img'])?>" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">{{$vehicle1['from']}} to
-                                                                        {{$vehicle1['to']}}</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: {{$vehicle1['vehicle']}}
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: {{$vehicle1['passengers']}}</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD {{$vehicle1['price']}}</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
+                                @if (@isset($vehicles1) && @isset($vehicles2))
+                                    <div class="row me-md-0 me-sm-2">
+                                        <div class="col-xl-11">
+                                            <div class="first_slider">
+                                                <div class="autoplay_2 mb-3">
+                                                    @foreach ($vehicles1 as $vehicle1)
+                                                        <div class="slide mx-2">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $vehicle1['img']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-end">
+                                                                        <div>
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                {{ $vehicle1['from'] }} to
+                                                                                {{ $vehicle1['to'] }}</p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                {{ $vehicle1['vehicle'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">No. of
+                                                                                people: {{ $vehicle1['passengers'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Price: USD
+                                                                                {{ $vehicle1['price'] }}</p>
+                                                                        </div>
+                                                                        <div class="button_border rounded-pill">
+                                                                            <div>
+                                                                                <button
+                                                                                    class="button_leniar_style px-4 rounded-pill fs-12"
+                                                                                    style="height: 25px;"
+                                                                                    data-bs-target="#exampleModalToggle1"
+                                                                                    data-bs-toggle="modal">Book</button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
-                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row me-md-0 me-sm-2">
-                                    <div class="col-xl-11">
-                                        <div class="first_slider">
-                                            <div class="autoplay_2 mb-3">
-                                                @foreach ($vehicles2 as $vehicle2)
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="<?php echo asset('uploads/' . $vehicle2['img'])?>" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">{{$vehicle2['from']}} to
-                                                                        {{$vehicle2['to']}}</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: {{$vehicle2['vehicle']}}
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: {{$vehicle2['passengers']}}</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD {{$vehicle2['price']}}</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
+                                    <div class="row me-md-0 me-sm-2">
+                                        <div class="col-xl-11">
+                                            <div class="first_slider">
+                                                <div class="autoplay_2 mb-3">
+                                                    @foreach ($vehicles2 as $vehicle2)
+                                                        <div class="slide mx-2">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $vehicle2['img']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-end">
+                                                                        <div>
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                {{ $vehicle2['from'] }} to
+                                                                                {{ $vehicle2['to'] }}</p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                {{ $vehicle2['vehicle'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">No. of
+                                                                                people: {{ $vehicle2['passengers'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Price: USD
+                                                                                {{ $vehicle2['price'] }}</p>
+                                                                        </div>
+                                                                        <div class="button_border rounded-pill">
+                                                                            <div>
+                                                                                <button
+                                                                                    class="button_leniar_style px-4 rounded-pill fs-12"
+                                                                                    style="height: 25px;"
+                                                                                    data-bs-target="#exampleModalToggle1"
+                                                                                    data-bs-toggle="modal">Book</button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
-                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                @else 
-                                <div class="row me-md-0 me-sm-2">
-                                    <div class="col-xl-11">
-                                        <div class="first_slider">
-                                            <div class="autoplay_2 mb-3">
-                                                @foreach ($vehicles as $vehicle)
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="<?php echo asset('uploads/' . $vehicle['img'])?>" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">{{$vehicle['from']}} to
-                                                                        {{$vehicle['to']}}</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: {{$vehicle['vehicle']}}
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: {{$vehicle['passengers']}}</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD {{$vehicle['price']}}</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
+                                @else
+                                    <div class="row me-md-0 me-sm-2">
+                                        <div class="col-xl-11">
+                                            <div class="first_slider">
+                                                <div class="autoplay_2 mb-3">
+                                                    @foreach ($vehicles as $vehicle)
+                                                        <div class="slide mx-2">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $vehicle['img']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-end">
+                                                                        <div>
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                {{ $vehicle['from'] }} to
+                                                                                {{ $vehicle['to'] }}</p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                {{ $vehicle['vehicle'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">No. of
+                                                                                people: {{ $vehicle['passengers'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Price: USD
+                                                                                {{ $vehicle['price'] }}</p>
+                                                                        </div>
+                                                                        <div class="button_border rounded-pill">
+                                                                            <div>
+                                                                                <button
+                                                                                    class="button_leniar_style px-4 rounded-pill fs-12"
+                                                                                    style="height: 25px;"
+                                                                                    data-bs-target="#exampleModalToggle1"
+                                                                                    data-bs-toggle="modal">Book</button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
-                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endif
                             </div>
                         </div>
@@ -334,7 +354,8 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Confirm Email">
+                            <input type="email" class="form-control shadow-none font-12"
+                                placeholder="Confirm Email">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Phone Number</label>
@@ -397,7 +418,8 @@
                         </div>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="form-check shadow-none" id="chk">
-                            <label for="chk" class="font-12 ps-2 bg-white">Lorem ipsum dolor sit amet, consectetur
+                            <label for="chk" class="font-12 ps-2 bg-white">Lorem ipsum dolor sit amet,
+                                consectetur
                                 adipiscing elit. Vivamus ac odio ac justo facilisis fringilla ac eu justo. I have read
                                 and agree to the Terms and Conditions / Cancellation Policy. I am Agree on terms and
                                 conditions.</label>
@@ -443,8 +465,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -471,7 +493,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -479,7 +502,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

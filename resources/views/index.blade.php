@@ -22,43 +22,43 @@
                             <div class="sidebar_tab gap-3 home">
                                 <span class="step_circle">01.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('home')}}" class="mb-0 fs-6">Home</a>
+                                    <a href="{{ asset('home') }}" class="mb-0 fs-6">Home</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 tour-1">
                                 <span class="step_circle">02.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('tour1')}}" class="mb-0 fs-6">Tours</a>
+                                    <a href="{{ asset('tour1') }}" class="mb-0 fs-6">Tours</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 packages-1">
                                 <span class="step_circle">03.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('pakages')}}" class="mb-0 fs-6">Packages</a>
+                                    <a href="{{ asset('pakages') }}" class="mb-0 fs-6">Packages</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 hotel-1">
                                 <span class="step_circle">04.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('hotels')}}" class="mb-0 fs-6">Accommodation</a>
+                                    <a href="{{ asset('hotels') }}" class="mb-0 fs-6">Accommodation</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 daily-tours-1">
                                 <span class="step_circle">05.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('dailyactivites')}}" class="mb-0 fs-6">Daily Activites</a>
+                                    <a href="{{ asset('dailyactivites') }}" class="mb-0 fs-6">Daily Activites</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 airport">
                                 <span class="step_circle">06.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('airport')}}" class="mb-0 fs-6">Airport Shuttle</a>
+                                    <a href="{{ asset('airport') }}" class="mb-0 fs-6">Airport Shuttle</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 p-tool">
                                 <span class="step_circle">07.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('productsandtools')}}" class="mb-0 fs-6">Product & Tools</a>
+                                    <a href="{{ asset('productsandtools') }}" class="mb-0 fs-6">Product & Tools</a>
                                 </span>
                             </div>
                         </div>
@@ -95,11 +95,11 @@
                                             to discover our
                                             land in his/her way: “Libertad- Travel your way”
                                         </p>
-                                        <a href="{{asset('home')}}">
+                                        <a href="{{ asset('home') }}">
                                             <div class="button_border rounded-pill">
                                                 <button class="button_leniar_style px-4 rounded-pill">Explore Egypt
-                                                    <img src="./imgs/button_errow.png" style="width: 30px;" class="ps-2"
-                                                        alt="">
+                                                    <img src="./imgs/button_errow.png" style="width: 30px;"
+                                                        class="ps-2" alt="">
                                                 </button>
                                             </div>
                                     </div>
