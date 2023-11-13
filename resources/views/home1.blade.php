@@ -282,6 +282,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (count($stours) > 0)
                             <div class="row pt-2">
                                 <h2 class="golden-clr">Libertad Special Tours</h2>
                                 @foreach ($stours as $stour)
@@ -296,6 +297,7 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @endif
                         </div>
                     </div>
                     @includeif('template.social_mbl')
