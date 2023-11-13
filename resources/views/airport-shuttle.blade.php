@@ -146,24 +146,26 @@
                                     <button class="border-0 bg-transparent"><i
                                             class="bi bi-search golden-clr"></i></button>
                                 </div>
+                                @if (@isset($vehicles1)&& @isset($vehicles2))
                                 <div class="row me-md-0 me-sm-2">
                                     <div class="col-xl-11">
                                         <div class="first_slider">
                                             <div class="autoplay_2 mb-3">
+                                                @foreach ($vehicles1 as $vehicle1)
                                                 <div class="slide mx-2">
                                                     <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_2.png" alt="Avatar"
+                                                        <img src="<?php echo asset('uploads/' . $vehicle1['img'])?>" alt="Avatar"
                                                             class="image1_2_duplicate rounded_top">
                                                         <div class="card-body card_bottom"
                                                             style="background-color: #E2BE4E;">
                                                             <div class="d-flex justify-content-between align-items-end">
                                                                 <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
+                                                                    <p class="mb-0 fs-12 fw-bold">{{$vehicle1['from']}} to
+                                                                        {{$vehicle1['to']}}</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: {{$vehicle1['vehicle']}}
                                                                     </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: {{$vehicle1['passengers']}}</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD {{$vehicle1['price']}}</p>
                                                                 </div>
                                                                 <div class="button_border rounded-pill">
                                                                     <div>
@@ -178,264 +180,89 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_1.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_4.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_5.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            data-bs-target="#exampleModalToggle2"
-                                                                            data-bs-toggle="modal"
-                                                                            style="height: 25px;">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_6.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="autoplay_2 mb-3">
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_2.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_1.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_4.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_5.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slide mx-2">
-                                                    <div class="card first_card_slider border-0">
-                                                        <img src="./imgs/slider_img_6.png" alt="Avatar"
-                                                            class="image1_2_duplicate rounded_top">
-                                                        <div class="card-body card_bottom"
-                                                            style="background-color: #E2BE4E;">
-                                                            <div class="d-flex justify-content-between align-items-end">
-                                                                <div>
-                                                                    <p class="mb-0 fs-12 fw-bold">From Cairo to
-                                                                        Alexandria</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: Minivan
-                                                                    </p>
-                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: 3</p>
-                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                                </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div>
-                                                                        <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
-                                                                            style="height: 25px;"
-                                                                            data-bs-target="#exampleModalToggle1"
-                                                                            data-bs-toggle="modal">Book</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row me-md-0 me-sm-2">
+                                    <div class="col-xl-11">
+                                        <div class="first_slider">
+                                            <div class="autoplay_2 mb-3">
+                                                @foreach ($vehicles2 as $vehicle2)
+                                                <div class="slide mx-2">
+                                                    <div class="card first_card_slider border-0">
+                                                        <img src="<?php echo asset('uploads/' . $vehicle2['img'])?>" alt="Avatar"
+                                                            class="image1_2_duplicate rounded_top">
+                                                        <div class="card-body card_bottom"
+                                                            style="background-color: #E2BE4E;">
+                                                            <div class="d-flex justify-content-between align-items-end">
+                                                                <div>
+                                                                    <p class="mb-0 fs-12 fw-bold">{{$vehicle2['from']}} to
+                                                                        {{$vehicle2['to']}}</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: {{$vehicle2['vehicle']}}
+                                                                    </p>
+                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: {{$vehicle2['passengers']}}</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD {{$vehicle2['price']}}</p>
+                                                                </div>
+                                                                <div class="button_border rounded-pill">
+                                                                    <div>
+                                                                        <button
+                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
+                                                                            style="height: 25px;"
+                                                                            data-bs-target="#exampleModalToggle1"
+                                                                            data-bs-toggle="modal">Book</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else 
+                                <div class="row me-md-0 me-sm-2">
+                                    <div class="col-xl-11">
+                                        <div class="first_slider">
+                                            <div class="autoplay_2 mb-3">
+                                                @foreach ($vehicles as $vehicle)
+                                                <div class="slide mx-2">
+                                                    <div class="card first_card_slider border-0">
+                                                        <img src="<?php echo asset('uploads/' . $vehicle['img'])?>" alt="Avatar"
+                                                            class="image1_2_duplicate rounded_top">
+                                                        <div class="card-body card_bottom"
+                                                            style="background-color: #E2BE4E;">
+                                                            <div class="d-flex justify-content-between align-items-end">
+                                                                <div>
+                                                                    <p class="mb-0 fs-12 fw-bold">{{$vehicle['from']}} to
+                                                                        {{$vehicle['to']}}</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">Vehicle type: {{$vehicle['vehicle']}}
+                                                                    </p>
+                                                                    <p class="mb-0 fs-12 fw-bold">No. of people: {{$vehicle['passengers']}}</p>
+                                                                    <p class="mb-0 fs-12 fw-bold">Price: USD {{$vehicle['price']}}</p>
+                                                                </div>
+                                                                <div class="button_border rounded-pill">
+                                                                    <div>
+                                                                        <button
+                                                                            class="button_leniar_style px-4 rounded-pill fs-12"
+                                                                            style="height: 25px;"
+                                                                            data-bs-target="#exampleModalToggle1"
+                                                                            data-bs-toggle="modal">Book</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
