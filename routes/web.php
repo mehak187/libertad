@@ -91,6 +91,14 @@ Route::controller(adminController::class)->group(function(){
     Route::get('delete_daily_activities/{id}','delete_daily_activities');
     Route::post('update_daily_activities','update_daily_activities');
 
+    Route::get('manage_sites_and_monuments','manage_sites_and_monuments');
+    Route::post('save_sites_and_monuments','save_sites_and_monuments');
+    Route::get('add_sites_and_monuments','add_sites_and_monuments');
+    Route::get('edit_sites_and_monuments/{id}','edit_sites_and_monuments');
+    Route::get('sites_and_monuments_details/{id}','sites_and_monuments_details');
+    Route::get('delete_sites_and_monuments/{id}','delete_sites_and_monuments');
+    Route::post('update_sites_and_monuments','update_sites_and_monuments');
+
     Route::get('manage_musuem','manage_musuem');
     Route::post('save_musuem','save_musuem');
     Route::get('add_musuem','add_musuem');

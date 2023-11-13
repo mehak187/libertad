@@ -96,3 +96,23 @@ $(document).ready(function () {
         newInput.click();
     });
 });
+
+$(document).ready(function () {
+    $("#add-days").on("click", function () {
+        // Clone the first day content and update the necessary elements
+        var newDayContent = $(".day-content:first").clone();
+        var dayNumber = $(".day-content").length + 1;
+
+        // Update the day number in the cloned content
+        newDayContent.find("p").text("Day " + dayNumber + ":");
+
+        // Update the placeholders in the cloned content
+        newDayContent.find("input").attr("placeholder", "Day " + dayNumber + " title");
+        newDayContent.find("textarea").attr("placeholder", "Day " + dayNumber + " Description");
+
+        // Append the cloned content after the last day content
+        $(".day-content:last").after(newDayContent);
+
+        // You can add additional logic or customization here if needed
+    });
+});

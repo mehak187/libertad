@@ -38,6 +38,7 @@
                         swal("Good job!", "{{session('update')}}", "success");
                     </script>
                 @endif
+                 @if (count($catagories) > 0)
                 <div class="tbl-main mt-3 table-responsive">
                     <table class="table">
                         <thead>
@@ -65,6 +66,11 @@
                         </tbody>
                     </table>
                 </div>
+                @else
+                <div class="d-flex align-items-center mt-3 ">
+                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5">No record to show</p>
+                </div>
+                 @endif
             </div>
         </div>
     </section>
