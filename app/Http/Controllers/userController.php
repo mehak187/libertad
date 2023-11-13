@@ -15,6 +15,9 @@ use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
 use App\Models\contact;
 use App\Models\product;
+use App\Models\GalleryImageSite;
+use App\Models\site;
+use App\Models\SiteDay;
 use App\Models\shuttle;
 
 use Illuminate\Http\Request;
@@ -164,9 +167,7 @@ class userController extends Controller
     public function sites(){
         return view('sites');
     }
-    public function sitesandmonoments(){
-        return view('sitesandmonuments');
-    }
+ 
     public function siwaoasis(){
         return view('siwa-oasis');
     }
@@ -198,7 +199,8 @@ class userController extends Controller
         $cityId = $id;
         $data = citytour::where('city', $cityId)->get();
         $data2 = musuem::where('city', $cityId)->get();
-        return view('tours', ['cityTours' => $data, 'museums' => $data2]);
+        $data3 = site::where('city', $cityId)->get();
+        return view('tours', ['cityTours' => $data, 'museums' => $data2, 'sites' => $data3]);
     }
     public function city_tour_det($id){
         $data['citytour'] =citytour::find($id);
@@ -219,6 +221,21 @@ class userController extends Controller
         ->select('gallery_image_musuems.*')
         ->get();
         return view('museum_det',$data);
+    }
+    public function sitesandmonoments($id){
+        $data['sites'] =site::find($id);
+        $cityTourId = $data['sites']->id;
+
+        $data['galleryImages'] = GalleryImageSite::leftJoin('sites', 'gallery_image_sites.site_id', '=', 'sites.id')
+        ->where('gallery_image_sites.site_id', $cityTourId)
+        ->select('gallery_image_sites.*')
+        ->get();
+
+        $data['days'] = SiteDay::leftJoin('sites', 'site_days.site_id', '=', 'sites.id')
+        ->where('site_days.site_id', $cityTourId)
+        ->select('site_days.*')
+        ->get();
+        return view('sitesandmonoments',$data);
     }
     public function book(){
         $data=book::all();

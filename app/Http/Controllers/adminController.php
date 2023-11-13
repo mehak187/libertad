@@ -49,7 +49,7 @@ class adminController extends Controller
             return redirect('manage_special_tours')->with ('success','Special tour added Successfully');
     }
     public function manage_special_tours(){
-        $data =specialtours::all();
+        $data = specialtours::orderBy('id', 'desc')->get();
         return view('admin.manage_special_tours',['stours'=>$data]);
     }
     public function special_tour_details($id){
@@ -159,7 +159,7 @@ class adminController extends Controller
         $data =citytour::all();
         $data = CityTour::leftJoin('cities', 'citytours.city', '=', 'cities.id')
         ->select('citytours.*', 'cities.Cityname')
-        ->get();
+       ->orderBy('id', 'desc')->get();
         return view('admin.manage_city_tours',['citytours'=>$data]);
     }
     public function city_tour_details($id){
@@ -351,7 +351,7 @@ class adminController extends Controller
         $data =musuem::all();
         $data = musuem::leftJoin('cities', 'musuems.city', '=', 'cities.id')
         ->select('musuems.*', 'cities.Cityname')
-        ->get();
+        ->orderBy('id', 'desc')->get();
         return view('admin.manage_musuem',['musuems'=>$data]);
     }
     public function edit_musuem($id){
@@ -549,7 +549,7 @@ class adminController extends Controller
         $data =site::all();
         $data = site::leftJoin('cities', 'sites.city', '=', 'cities.id')
         ->select('sites.*', 'cities.Cityname')
-        ->get();
+        ->orderBy('id', 'desc')->get();
         return view('admin.manage_sites_and_monuments',['citytours'=>$data]);
     }
     public function sites_and_monuments_details($id){
@@ -780,7 +780,7 @@ class adminController extends Controller
         return redirect('/manage_daily_activities')->with('savectour', 'Daily Activities added Successfully');
     }
     public function manage_daily_activities(){
-        $data =DailyActivities::all();
+        $data =DailyActivities::orderBy('id', 'desc')->get();
         return view('admin.manage_daily_activities',['citytours'=>$data]);
     }
     public function daily_activities_details($id){
@@ -931,7 +931,7 @@ class adminController extends Controller
 
     }
     public function manage_accomodation(){
-        $data =accomodation::all();
+        $data =accomodation::orderBy('id', 'desc')->get();
         return view('admin.manage_accomodation',['hotels'=>$data]);
     }
     public function edit_accomodation($id){
@@ -1017,7 +1017,7 @@ class adminController extends Controller
         return redirect('manage_books')->with ('success','Book added Successfully');
     }
     public function manage_books(){
-        $data=book::all();
+        $data=book::orderBy('id', 'desc')->get();
         return view('admin.manage_books',['books'=>$data]);    
     }
     public function deletebook($id){
@@ -1077,7 +1077,7 @@ class adminController extends Controller
         return redirect('manage_events')->with ('success','Event added Successfully');
     }
     public function manage_events(){
-        $data=event::all();
+        $data=event::orderBy('id', 'desc')->get();
         return view('admin.manage_events',['events'=>$data]);
     }
     public function edit_event($id){
@@ -1137,7 +1137,7 @@ class adminController extends Controller
 
     }
     public function manage_cities(){
-        $data=city::all();
+        $data = city::orderBy('id', 'desc')->get();
         return view('admin.manage_cities',['cities'=>$data]);
     }
     public function edit_city($id){
@@ -1193,7 +1193,7 @@ class adminController extends Controller
         return redirect('manage_contact')->with ('success','Contact information saved successfully');
     }
     public function manage_product_categories(){
-        $data=categories::all();
+        $data=categories::orderBy('id', 'desc')->get();
         return view('admin.manage_product_categories',['categories'=>$data]);
     }
     public function add_product_categories(){
@@ -1231,7 +1231,7 @@ class adminController extends Controller
         $data=product::all();
         $data = product::leftJoin('categories', 'products.p_catg', '=', 'categories.id')
         ->select('products.*', 'categories.catg')
-        ->get();
+        ->orderBy('id', 'desc')->get();
         return view('admin.manage_products',['catagories'=>$data]);
     }
     public function add_products(){
