@@ -44,7 +44,7 @@ class adminController extends Controller
             $data =$request->all();
             $photo = $request->file('img');
             $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('special');
+            $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $data['img'] = $photo_name;
             specialtours::create($data);
@@ -84,7 +84,7 @@ class adminController extends Controller
         }else{
             $photo = $request->file('img');
             $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('special');
+            $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $name =$request->name;
             $location =$request->location;
@@ -108,7 +108,7 @@ class adminController extends Controller
     }
     public function deletestour($id){
         $data =specialtours::find($id);
-        $imagePath = public_path('special/' . $data->img);
+        $imagePath = public_path('uploads/' . $data->img);
         $data->delete();
         if (file_exists($imagePath)) {
             unlink($imagePath);
@@ -925,7 +925,7 @@ class adminController extends Controller
             $data =$request->all();
             $photo = $request->file('tourimg');
             $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('accomodation');
+            $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $data['tourimg'] = $photo_name;
             accomodation::create($data);
@@ -963,7 +963,7 @@ class adminController extends Controller
         }else{
             $photo = $request->file('tourimg');
             $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('accomodation');
+            $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $name =$request->name;
             $location =$request->location;
@@ -993,7 +993,7 @@ class adminController extends Controller
     }  
     public function deletehotel($id){
         $data =accomodation::find($id);
-        $imagePath = public_path('accomodation/' . $data->tourimg);
+        $imagePath = public_path('uploads/' . $data->tourimg);
         $data->delete();
         if (file_exists($imagePath)) {
             unlink($imagePath);
@@ -1012,7 +1012,7 @@ class adminController extends Controller
         $data =$request->all();
         $photo = $request->file('image');
         $photo_name =time()."-".$photo->getClientOriginalName();
-        $photo_destination=public_path('books');
+        $photo_destination=public_path('uploads');
         $photo->move($photo_destination,$photo_name);
         $data['image'] = $photo_name;
         book::create($data);
@@ -1024,7 +1024,7 @@ class adminController extends Controller
     }
     public function deletebook($id){
         $data =book::find($id);
-        $imagePath = public_path('books/' . $data->image);
+        $imagePath = public_path('uploads/' . $data->image);
         $data->delete();
         if (file_exists($imagePath)) {
             unlink($imagePath);
@@ -1050,7 +1050,7 @@ class adminController extends Controller
         }else{
             $photo = $request->file('image');
             $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('books');
+            $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $book_name =$request->book_name;
             $author_name =$request->author_name;

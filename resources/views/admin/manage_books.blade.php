@@ -62,7 +62,7 @@
                                         <p>{{$book['description']}}</p>
                                     </td>
                                     <td><a href="/{{$book['link']}}">Link</a></td>
-                                    <td><img src="<?php echo asset('books/' . $book['image'])?>" alt=""></td>
+                                    <td><img src="<?php echo asset('uploads/' . $book['image'])?>" alt=""></td>
                                     <td>
                                         <a href="{{"edit_book/" .$book['id'] }}" 
                                             class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>

@@ -28,7 +28,7 @@
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Accomodation details</h4>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('accomodation/' . $hotel['tourimg'])?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $hotel['tourimg'])?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
                         <p class="text-dark small">{{$hotel['name']}}</p>
