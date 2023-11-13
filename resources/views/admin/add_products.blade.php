@@ -26,6 +26,7 @@
                     </div>
                 </div>
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Add Products and Tools</h4>
+                @if (count($catagories) > 0)
                 <form action="addproducts" enctype="multipart/form-data" method="POST" class="mt-2">
                     @csrf
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -81,6 +82,16 @@
                         </div>
                     </div>
                 </form>
+                @else
+                <div class="d-flex align-items-center mt-3 ">
+                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                    <p class="text-danger fs-5">No category exist. Add a category first</p>
+                </div>
+                    <div class="d-flex mt-3">
+                        <a href="/add_product_categories" class="bg-yellow text-dark py-2 px-3 text-decoration-none rounded-3">Add
+                            Category</a>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

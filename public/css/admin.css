@@ -1011,3 +1011,6 @@ tbody {
     object-fit: cover;
     margin: 10px 10px 10px 0;
 }
+.pointer {
+    cursor: pointer;
+}
