@@ -58,7 +58,19 @@
                             <p class="golden-clr">No. of nights:</p>
                             <span class="text-white">{{$sites->nights}}</span>
                         </div>
-
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="">
+                                <div class="button_border rounded-pill">
+                                    <button type="button" class="button_leniar_style px-3 px-sm-5 rounded-pill " data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Book</button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="button_border rounded-pill">
+                                    <button type="button" class="button_leniar_style px-2 px-sm-5 rounded-pill ">Add to
+                                        Cart</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

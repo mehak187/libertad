@@ -79,7 +79,12 @@
                     </li>
                     <li class="mt-3">
                         <a href="/manage_daily_activities" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Daily Activities</h3>
+                            <h3 class="nav-text m-0 ms-2">Manage Daily Activities</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
+                        <a href="/manage_why_libertad" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Why Libertad</h3>
                         </a>
                     </li>
                 </ul>
