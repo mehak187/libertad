@@ -16,44 +16,23 @@ use App\http\Controllers\adminController;
 */
 Route::controller(userController::class)->group(function(){
     Route::get('airport','airport');
-    Route::get('alexandriatour','alexandriatour');
-    Route::get('luxortour','luxortour');
-    // Route::get('bahariya','bahariya');
-    Route::get('behariyatour','behariyatour');
     Route::get('book','book');
-    Route::get('cairo','cairo');
     Route::get('cart','cart');
-    Route::get('alexandria','alexandria');
     Route::get('contact','contact');
-    Route::get('dailytours','dailytours');
-    Route::get('fayoum','fayoum');
-    Route::get('fayoumtour','fayoumtour');
-    Route::get('gizafullday','gizafullday');
-    Route::get('egyptianmeuseum','egyptianmeuseum');
-    Route::get('gizatours','gizatours');
-    // Route::get('meuseum','meuseum');
+    Route::get('dailyactivites','dailyactivites');
+    Route::get('daily_activities_det/{id}','daily_activities_det');
     Route::get('home','home');
     Route::get('hotels','hotels');
     Route::get('/','index');
     Route::get('libertad','libertad');
-    Route::get('aswan','aswan');
     Route::get('museum1','museum1');
-    Route::get('luxorcruise','luxorcruise');
-    Route::get('aswancruise','aswancruise');
     Route::get('notification','notification');
-    Route::get('pakagebeharya','pakagebeharya');
-    Route::get('pakagecatacombs','pakagecatacombs');
-    Route::get('pakagefayoum','pakagefayoum');
     Route::get('pakagefullday','pakagefullday');
-    Route::get('pakagegiza','pakagegiza');
-    Route::get('pakagesiwa','pakagesiwa');
     Route::get('pakages','pakages');
     Route::get('productsandtools','productsandtools');
     Route::get('accommodation',  'accommodation');
     Route::get('sites','sites');
     Route::get('sitesandmonoments/{id}','sitesandmonoments');
-    Route::get('siwaoasis','siwaoasis');
-    Route::get('siwatour','siwatour');
     Route::get('testimonial','testimonial');
     Route::get('tourdetail/{id}','tourdetail');
     Route::get('tour1','tour1');
@@ -66,8 +45,7 @@ Route::controller(userController::class)->group(function(){
     Route::get('city_tour_det/{id}','city_tour_det');
     Route::get('musuem_det/{id}','musuem_det');
 
-    Route::get('dailyactivites','dailyactivites');
-    Route::get('daily_activities_det/{id}','daily_activities_det');
+
     Route::get('social','social');
 });
 
