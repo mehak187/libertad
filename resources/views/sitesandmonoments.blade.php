@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="#" id="goBackButton" class="text-decoration-none"><i
+                        <a href="{{ URL::previous() }}" id="goBackButton" class="text-decoration-none"><i
                                 class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i></a>
                     </div>
                     <div class="d-flex align-items-center gap-2">
@@ -65,28 +65,20 @@
                 @php
                     $day_nmbr = 1;
                 @endphp
-                @foreach ($galleryImages as $galleryImage)
+                @foreach ($days as $day)
                     <div class="mt-5">
                         <div>
                             <div class="d-flex align-items-center">
                                 <div class="sky-bg py-1 px-3 rounded-3">{{$day_nmbr}}</div>
                                 <div class="d-flex align-items-center mt-2">
                                     <h5 class="golden-clr mx-2 fw-normal">Day {{$day_nmbr}} : </h5>
-                                    <h5 class="sky-clr  fw-normal"> Caira</h5>
+                                    <h5 class="sky-clr  fw-normal"> {{$day['day_title']}}</h5>
 
                                 </div>
                             </div>
                             <div>
                                 <p class="text-white fw-light fs-small">
-                                    In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-                                    demonstrate the
-                                    visual form of a document or a typeface without relying on meaningful content. Lorem
-                                    ipsum may be used as
-                                    a placeholder before final copy is available. In publishing and graphic design, Lorem
-                                    ipsum is a placeholder
-                                    text commonly used to demonstrate the visual form of a document or a typeface without
-                                    relying on meaningful
-                                    content. Lorem ipsum may be used as a placeholder before final copy is available.
+                                    {{$day['day_des']}}
                                 </p>
                             </div>
                         </div>

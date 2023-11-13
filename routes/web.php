@@ -55,7 +55,7 @@ Route::controller(userController::class)->group(function(){
     Route::get('siwaoasis','siwaoasis');
     Route::get('siwatour','siwatour');
     Route::get('testimonial','testimonial');
-    Route::get('tourdetail','tourdetail');
+    Route::get('tourdetail/{id}','tourdetail');
     Route::get('tour1','tour1');
     Route::get('tours','tours');
     Route::get('travelyourway','travelyourway');
