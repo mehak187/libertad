@@ -19,6 +19,7 @@ use App\Models\product;
 use App\Models\GalleryImageSite;
 use App\Models\site;
 use App\Models\SiteDay;
+use App\Models\shuttle;
 
 use File;
 
@@ -1260,5 +1261,66 @@ class adminController extends Controller
         $data =product::find($id);
         $data->delete();
         return redirect('manage_products')->with ('Delete','Product Deleted Successfully');
+    }
+    public function updateproduct(request $request){
+        if($request->file('img')==NULL){
+            $data = $request->except('img');
+            product::find($request->id)->update($data);
+        }else{
+            $data =$request->all();
+            $photo = $request->file('img');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['img'] = $photo_name;
+            product::find($request->id)->update($data);
+        }
+        return redirect('manage_products')->with ('update','Product updated Successfully');
+    }
+
+    public function add_shuttle(){
+        return view('admin.add_shuttle');
+    }
+    public function addshuttle(request $request){
+        $request->validate([
+            '*'=>'required',
+            'img'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            ]);
+            $data =$request->all();
+            $photo = $request->file('img');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['img'] = $photo_name;
+            shuttle::create($data);
+        return redirect('manage_shuttle')->with ('success','Airport Shuttle added Successfully');
+    }
+    public function manage_shuttle(){
+        $data=shuttle::all();
+        return view('admin.manage_shuttle',['vehicles'=>$data]);
+    }
+    public function edit_shuttle($id){
+        $data['vehicle']=shuttle::find($id);
+        return view('admin.edit_shuttle',$data);
+    }
+    public function deleteshuttle($id){
+        $data =shuttle::find($id);
+        $data->delete();
+        return redirect('manage_shuttle')->with ('Delete','Airport Shuttle Deleted Successfully');
+    } 
+    public function updateshuttle(request $request){
+        if($request->file('img')==NULL){
+            $data = $request->except('img');
+            shuttle::find($request->id)->update($data);
+        }else{
+            $data =$request->all();
+            $photo = $request->file('img');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['img'] = $photo_name;
+            shuttle::find($request->id)->update($data);
+        }
+        return redirect('manage_shuttle')->with ('update','Airport Shuttle updated Successfully');
     }
 }

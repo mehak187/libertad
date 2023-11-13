@@ -19,8 +19,8 @@
             <div class="px-4 py-4 m-content px-lg-5">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="dark-btn">
-                        <a href="/manage_special_tours" class="d-flex align-items-center rounded-3">
-                            <img src="{{ URL::previous() }}" alt="back-arrow" class="me-3">
+                        <a href="{{ URL::previous() }}" class="d-flex align-items-center rounded-3">
+                            <img src="{{ asset('imgs/back.png') }}" alt="back-arrow" class="me-3">
                             <span>Back</span>
                         </a>
                     </div>

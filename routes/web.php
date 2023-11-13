@@ -159,4 +159,12 @@ Route::controller(adminController::class)->group(function(){
     Route::get('add_products','add_products');
     Route::get('edit_products/{id}','edit_products');
     Route::get('deleteproduct/{id}','deleteproduct');
+    Route::post('updateproduct',  'updateproduct');
+    
+    Route::get('manage_shuttle','manage_shuttle'); 
+    Route::post('addshuttle','addshuttle');
+    Route::get('add_shuttle','add_shuttle');
+    Route::get('edit_shuttle/{id}','edit_shuttle');
+    Route::get('deleteshuttle/{id}','deleteshuttle');
+    Route::post('updateshuttle',  'updateshuttle');
 });
