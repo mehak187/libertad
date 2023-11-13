@@ -43,10 +43,7 @@ Route::controller(userController::class)->group(function(){
     Route::get('cities_detail/{id}','cities_detail');
     Route::get('city_tour_det/{id}','city_tour_det');
     Route::get('musuem_det/{id}','musuem_det');
-
-
     Route::get('social','social');
-
     Route::get('libertad','libertad');
 });
 
