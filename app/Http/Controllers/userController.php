@@ -96,7 +96,7 @@ class userController extends Controller
     public function pakages(){
         return view('packages-1');
     }
-    public function pakagefullday(){
+    public function pakage(){
         return view('package');
     }
     public function accommodation(){
