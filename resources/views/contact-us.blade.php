@@ -21,8 +21,8 @@
                         <div class="rounded-5 mt-3 position-32">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6732.85505351798!2d74.50312502295535!3d32.46125483593828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1689419926554!5m2!1sen!2s"
-                                width="100%" height="350" style="border-radius:20px;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                width="100%" height="350" style="border-radius:20px;" allowfullscreen=""
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <div class="col-lg-8 ">
@@ -39,7 +39,7 @@
                                                     </div>
                                                     <div>
                                                         <h5>Office</h5>
-                                                        <p class="m-0 font-12">{{ $contact->office_location}}</p>
+                                                        <p class="m-0 font-12">{{ $contact->office_location }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -50,8 +50,8 @@
                                                     </div>
                                                     <div>
                                                         <h5>Call Center</h5>
-                                                        <p class="m-0 font-12">{{ $contact->phone1}}</p>
-                                                        <p class="m-0 font-12">{{ $contact->phone2}}</p>
+                                                        <p class="m-0 font-12">{{ $contact->phone1 }}</p>
+                                                        <p class="m-0 font-12">{{ $contact->phone2 }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,8 +62,8 @@
                                                     </div>
                                                     <div>
                                                         <h5>Email</h5>
-                                                        <p class="m-0 font-12">{{ $contact->email1}}</p>
-                                                        <p class="m-0 font-12">{{ $contact->email2}}</p>
+                                                        <p class="m-0 font-12">{{ $contact->email1 }}</p>
+                                                        <p class="m-0 font-12">{{ $contact->email2 }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,26 +72,26 @@
                                         <div class="row border-golden rounded-5 mt-3 p-3">
                                             <h3>Follow Us</h3>
                                             <div class="col-12">
-                                                <a
-                                                    href="{{ $contact->tripadvisor}}" target="_blank"><img
+                                                <a href="{{ $contact->tripadvisor }}" target="_blank"><img
                                                         src="./imgs/owl.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
-                                                <a href="{{ $contact->fb_link}}" target="_blank"><img
+                                                <a href="{{ $contact->fb_link }}" target="_blank"><img
                                                         src="./imgs/fb.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
-                                                <a href="mailto:{{ $contact->google}}" target="_blank"><img
+                                                <a href="mailto:{{ $contact->google }}" target="_blank"><img
                                                         src="./imgs/google-plus.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
-                                                <a href="{{ $contact->yt_link}}" target="_blank"><img src="./imgs/youtube.png"
-                                                        style="height: 40px; width: 40px;" alt=""></a>
-                                                <a href="{{ $contact->insta_link}}" target="_blank"><img
+                                                <a href="{{ $contact->yt_link }}" target="_blank"><img
+                                                        src="./imgs/youtube.png" style="height: 40px; width: 40px;"
+                                                        alt=""></a>
+                                                <a href="{{ $contact->insta_link }}" target="_blank"><img
                                                         src="./imgs/insta.png" style="height: 40px; width: 40px;"
                                                         alt=""></a>
                                             </div>
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-12">
-                                                <p>{{ $contact->des}}</p>
+                                                <p>{{ $contact->des }}</p>
                                             </div>
                                         </div>
                                     </div>

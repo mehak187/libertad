@@ -17,7 +17,7 @@
             <div class="container-fluid px-md-5 px-3">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{asset('/')}}">
+                        <a href="{{ asset('/') }}">
                             <img src="./imgs/home.png" alt="" class="img-fluid">
                         </a>
                     </div>
@@ -51,33 +51,33 @@
                 <div class="row">
                     <div class="col-xl-10">
                         <div class="row mt-4" id="content">
-                           @foreach ($books as $book)
-                           <div class="col-lg-4 col-sm-6 mt-3">
-                            <div class="sky-bg rounded-4 p-3 shadow">
-                                <div>
-                                    <img src="<?php echo asset('books/' . $book['image'])?>" alt="" class="img-fluid rounded-3">
-                                </div>
-                                <div class="d-flex justify-content-between  mt-3">
-                                    <div class="d-flex align-items-center flex-wrap gap-2">
-                                        <h6 class="text-nowrap m-0">Book name:</h6>
-                                        <p class="font-15 m-0">{{$book['book_name']}}</p>
+                            @foreach ($books as $book)
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <div class="sky-bg rounded-4 p-3 shadow">
+                                        <div>
+                                            <img src="<?php echo asset('books/' . $book['image']); ?>" alt="" class="img-fluid rounded-3">
+                                        </div>
+                                        <div class="d-flex justify-content-between  mt-3">
+                                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                                <h6 class="text-nowrap m-0">Book name:</h6>
+                                                <p class="font-15 m-0">{{ $book['book_name'] }}</p>
+                                            </div>
+                                            <a href="{{ $book['link'] }}" class="text-decoration-none text-dark fs-5"><i
+                                                    class="fas fa-download"></i></a>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h6 class="m-0">Author:</h6>
+                                            <p class="m-0">{{ $book['author_name'] }}</p>
+                                        </div>
+                                        <div>
+                                            <h6 class="m-0">Description:</h6>
+                                            <p class="m-0">
+                                                {{ $book['description'] }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <a href="{{$book['link']}}" class="text-decoration-none text-dark fs-5"><i
-                                            class="fas fa-download"></i></a>
                                 </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <h6 class="m-0">Author:</h6>
-                                    <p class="m-0">{{$book['author_name']}}</p>
-                                </div>
-                                <div>
-                                    <h6 class="m-0">Description:</h6>
-                                    <p class="m-0">
-                                        {{$book['description']}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                           @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -85,13 +85,16 @@
                     <nav id="pagination" class="mt-3 main-paging">
                         <ul class="pagination d-flex gap-3">
                             <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr" href="#">1</a>
+                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
+                                    href="#">1</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr" href="#">2</a>
+                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
+                                    href="#">2</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr" href="#">3</a>
+                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
+                                    href="#">3</a>
                             </li>
                         </ul>
                     </nav>

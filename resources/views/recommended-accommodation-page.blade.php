@@ -26,10 +26,10 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('accomodation/' . $hotel['tourimg'])?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('accomodation/' . $hotel['tourimg']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
-                        <p class="text-white">{{$hotel['name']}}</p>
+                        <p class="text-white">{{ $hotel['name'] }}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
                                 <a href="#" class="d-flex align-items-center text text-decoration-none gap-2">
@@ -43,8 +43,9 @@
                             </div>
                             <div class="col-sm-6 col-lg-12 col-xl-6 mt-sm-0">
                                 <div class="text-sm-end text-lg-start text-xl-end">
-                                    <button type="button" class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button" data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
+                                    <button type="button"
+                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
+                                        data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
@@ -52,38 +53,39 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <p class="text-white">{{$hotel['card_des']}}</div>
+                            <p class="text-white">{{ $hotel['card_des'] }}
+                        </div>
                         <div class="d-flex gap-2">
                             <p class="golden-clr mb-0">No. of nights:</p>
-                            <span class="text-white mb-0">{{$hotel['nights_nmbr']}}</span>
+                            <span class="text-white mb-0">{{ $hotel['nights_nmbr'] }}</span>
                         </div>
                         <div class="d-flex gap-2">
                             <p class="golden-clr mb-0">Tour Price:</p>
-                            <span class="text-white mb-0">{{$hotel['tour_price']}} USD per adult</span>
+                            <span class="text-white mb-0">{{ $hotel['tour_price'] }} USD per adult</span>
                         </div>
                         <div>
                             <h6 class="golden-clr">Sightseeing</h6>
                             @php
                                 $inputString = $hotel['sight_seeing'];
                                 $dataArray = explode(',', $inputString);
-                                @endphp
-                                <ul class="text-dark">
-                                    @foreach ($dataArray as $item)
-                                        <li class="text-dark">{{ $item }}</li>
-                                    @endforeach
-                                </ul>
+                            @endphp
+                            <ul class="text-dark">
+                                @foreach ($dataArray as $item)
+                                    <li class="text-dark">{{ $item }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                         <div>
                             <h6 class="golden-clr">Include</h6>
                             @php
                                 $inputString = $hotel['include'];
                                 $dataArray = explode(',', $inputString);
-                                @endphp
-                                <ul class="text-dark">
-                                    @foreach ($dataArray as $item)
-                                        <li class="text-dark">{{ $item }}</li>
-                                    @endforeach
-                                </ul>
+                            @endphp
+                            <ul class="text-dark">
+                                @foreach ($dataArray as $item)
+                                    <li class="text-dark">{{ $item }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                         <div class="">
                             <div class="button_border rounded-pill">
@@ -166,9 +168,11 @@
                             <div class="col-12">
                                 <span for="" class="font-12 d-block">Passport Copy/ID for Egyptians</span>
                                 <label for="myImg1">
-                                    <img id="blah1" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah1" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg1" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg1"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                     </form>
@@ -216,7 +220,8 @@
                         <h6>Terms $ Conditions/Cancellation policy</h6>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Est
                                 deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
                                 laboriosam.label>
                         </div>
@@ -261,8 +266,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -289,7 +294,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -297,7 +303,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

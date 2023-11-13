@@ -22,43 +22,43 @@
                             <div class="sidebar_tab gap-3 home">
                                 <span class="step_circle">01.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('home')}}" class="mb-0 fs-6">Home</a>
+                                    <a href="{{ asset('home') }}" class="mb-0 fs-6">Home</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 tour-1">
                                 <span class="step_circle">02.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('tour1')}}" class="mb-0 fs-6">Tours</a>
+                                    <a href="{{ asset('tour1') }}" class="mb-0 fs-6">Tours</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 packages-1">
                                 <span class="step_circle">03.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('pakages')}}" class="mb-0 fs-6">Packages</a>
+                                    <a href="{{ asset('pakages') }}" class="mb-0 fs-6">Packages</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 hotel-1">
                                 <span class="step_circle">04.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('hotels')}}" class="mb-0 fs-6">Accommodation</a>
+                                    <a href="{{ asset('hotels') }}" class="mb-0 fs-6">Accommodation</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 daily-tours-1">
                                 <span class="step_circle">05.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('dailyactivites')}}" class="mb-0 fs-6">Daily Activites</a>
+                                    <a href="{{ asset('dailyactivites') }}" class="mb-0 fs-6">Daily Activites</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 airport">
                                 <span class="step_circle">06.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('airport')}}" class="mb-0 fs-6">Airport Shuttle</a>
+                                    <a href="{{ asset('airport') }}" class="mb-0 fs-6">Airport Shuttle</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 p-tool">
                                 <span class="step_circle">07.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('productsandtools')}}" class="mb-0 fs-6">Product & Tools</a>
+                                    <a href="{{ asset('productsandtools') }}" class="mb-0 fs-6">Product & Tools</a>
                                 </span>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <div class="row mt-md-0 mt-4">
                                 <div class="main-border py-2 d-flex align-items-center gap-2">
                                     <div>
-                                        <a href="{{asset('airport')}}" class="text-decoration-none">
+                                        <a href="{{ asset('airport') }}" class="text-decoration-none">
                                             <i
                                                 class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                                         </a>
@@ -105,7 +105,8 @@
                                 </div>
                                 <div class="col-xl-4 col-sm-6 mt-3">
                                     <div class="card first_card_slider border-0">
-                                        <img src="./imgs/car3.jpg" alt="Avatar" class="image1_2_duplicate rounded_top">
+                                        <img src="./imgs/car3.jpg" alt="Avatar"
+                                            class="image1_2_duplicate rounded_top">
                                         <div class="card-body card_bottom" style="background-color: #E2BE4E;">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div>
@@ -126,7 +127,8 @@
                                 </div>
                                 <div class="col-xl-4 col-sm-6 mt-3">
                                     <div class="card first_card_slider border-0">
-                                        <img src="./imgs/car2.jpg" alt="Avatar" class="image1_2_duplicate rounded_top">
+                                        <img src="./imgs/car2.jpg" alt="Avatar"
+                                            class="image1_2_duplicate rounded_top">
                                         <div class="card-body card_bottom" style="background-color: #E2BE4E;">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div>
@@ -137,7 +139,8 @@
                                                 <div class="button_border rounded-pill dropdown">
                                                     <div>
                                                         <button class="button_leniar_style px-4 rounded-pill fs-12"
-                                                            style="height: 25px;" data-bs-target="#exampleModalToggle2"
+                                                            style="height: 25px;"
+                                                            data-bs-target="#exampleModalToggle2"
                                                             data-bs-toggle="modal">Book</button>
                                                     </div>
                                                 </div>
@@ -178,7 +181,8 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Confirm Email">
+                            <input type="email" class="form-control shadow-none font-12"
+                                placeholder="Confirm Email">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Phone Number</label>
@@ -191,11 +195,13 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Arrival time</label>
-                            <input type="time" class="form-control shadow-none font-12" placeholder="Arrival time">
+                            <input type="time" class="form-control shadow-none font-12"
+                                placeholder="Arrival time">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Departure time</label>
-                            <input type="time" class="form-control shadow-none font-12" placeholder="Departure time">
+                            <input type="time" class="form-control shadow-none font-12"
+                                placeholder="Departure time">
                         </div>
                     </form>
                 </div>
@@ -246,7 +252,8 @@
                         </div>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="form-check shadow-none" id="chk">
-                            <label for="chk" class="font-12 ps-2 bg-white">Lorem ipsum dolor sit amet, consectetur
+                            <label for="chk" class="font-12 ps-2 bg-white">Lorem ipsum dolor sit amet,
+                                consectetur
                                 adipiscing elit. Vivamus ac odio ac justo facilisis fringilla ac eu justo. I have read
                                 and agree to the Terms and Conditions / Cancellation Policy. I am Agree on terms and
                                 conditions.</label>
@@ -292,8 +299,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -320,7 +327,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -328,7 +336,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

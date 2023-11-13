@@ -22,43 +22,43 @@
                             <div class="sidebar_tab gap-3 home">
                                 <span class="step_circle ">01.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('home')}}" class="mb-0 fs-6 ">Home</a>
+                                    <a href="{{ asset('home') }}" class="mb-0 fs-6 ">Home</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 tour-1">
                                 <span class="step_circle">02.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('tour1')}}" class="mb-0 fs-6">Tours</a>
+                                    <a href="{{ asset('tour1') }}" class="mb-0 fs-6">Tours</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 packages-1">
                                 <span class="step_circle">03.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('pakages')}}" class="mb-0 fs-6">Packages</a>
+                                    <a href="{{ asset('pakages') }}" class="mb-0 fs-6">Packages</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 hotel-1">
                                 <span class="step_circle active">04.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('hotels')}}" class="mb-0 fs-6 active">Accommodation</a>
+                                    <a href="{{ asset('hotels') }}" class="mb-0 fs-6 active">Accommodation</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 daily-tours-1">
                                 <span class="step_circle">05.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('dailyactivites')}}" class="mb-0 fs-6">Daily Activites</a>
+                                    <a href="{{ asset('dailyactivites') }}" class="mb-0 fs-6">Daily Activites</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 airport">
                                 <span class="step_circle">06.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('airport')}}" class="mb-0 fs-6">Airport Shuttle</a>
+                                    <a href="{{ asset('airport') }}" class="mb-0 fs-6">Airport Shuttle</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 p-tool">
                                 <span class="step_circle">07.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('productsandtools')}}" class="mb-0 fs-6">Product & Tools</a>
+                                    <a href="{{ asset('productsandtools') }}" class="mb-0 fs-6">Product & Tools</a>
                                 </span>
                             </div>
                         </div>
@@ -85,7 +85,8 @@
                                             <div class="input-flex d-flex align-items-center flex-wrap">
                                                 <div class="hotel-input">
                                                     <label for="" class="fs-12 text-white">Select City</label>
-                                                    <select name="" id="" class="form-select bg_map1 text-white py-2">
+                                                    <select name="" id=""
+                                                        class="form-select bg_map1 text-white py-2">
                                                         <option value="">Sialkot</option>
                                                         <option value="">Lahore</option>
                                                         <option value="">Gujrat</option>
@@ -97,7 +98,8 @@
                                                         class="form-control bg_map1 text-white py-2" id="">
                                                 </div>
                                                 <div class="hotel-input">
-                                                    <label for="" class="fs-12 text-white">Check out Date</label>
+                                                    <label for="" class="fs-12 text-white">Check out
+                                                        Date</label>
                                                     <input type="date" name=""
                                                         class="form-control bg_map1 text-white py-2" id="">
                                                 </div>
@@ -130,8 +132,8 @@
                                         <div class="myHotel d-flex align-items-end">
                                             <div class="">
                                                 <button class="btn p-0" style="width: 2.5rem;">
-                                                    <img src="./imgs/review_button.png" class="" style="width: 2.6rem;"
-                                                        alt="">
+                                                    <img src="./imgs/review_button.png" class=""
+                                                        style="width: 2.6rem;" alt="">
                                                 </button>
                                             </div>
                                         </div>
@@ -144,95 +146,98 @@
                                     <span class="way_color text-uppercase">Accommodation</span>
                                 </p>
                             </div>
-                            @if (@isset($hotels1)&& @isset($hotels2))
-                            <div class="row me-3">
-                              <div class="col-11">
-                                <div class="autoplay mb-3 px-1">
-                                    @foreach ($hotels1 as $hotel1)
-                                    <div class="slide mx-2">
-                                        <a href="{{"accomodation_detail1/" .$hotel1['id'] }}"
-                                            class="text-decoration-none text-dark">
-                                            <div class="card first_card_slider border-0">
-                                                <img src="<?php echo asset('accomodation/' . $hotel1['tourimg'])?>" alt="Avatar"
-                                                    class="image1_2_duplicate rounded_top">
-                                                <div class="card-body card_bottom"
-                                                    style="background-color: #E2BE4E;">
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="mb-0 fs-12">{{$hotel1['name']}}</p>
-                                                        <p class="mb-0 fs-12 text-white"># of rooms: {{$hotel1['rooms']}}</p>
-                                                    </div>
-                                                    <p class="mb-0 fs-12">
-                                                        <i class="bi bi-geo-alt-fill me-2"></i>
-                                                        {{$hotel1['location']}}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    @endforeach
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row me-3">
-                              <div class="col-11">
-                                <div class="autoplay mb-3 px-1">
-                                @foreach ($hotels2 as $hotel2)
-                                    <div class="slide mx-2">
-                                        <a href="{{"accomodation_detail1/" .$hotel2['id'] }}"
-                                            class="text-decoration-none text-dark">
-                                            <div class="card first_card_slider border-0">
-                                                <img src="<?php echo asset('accomodation/' . $hotel2['tourimg'])?>" alt="Avatar"
-                                                    class="image1_2_duplicate rounded_top">
-                                                <div class="card-body card_bottom"
-                                                    style="background-color: #E2BE4E;">
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="mb-0 fs-12">{{$hotel2['name']}}</p>
-                                                        <p class="mb-0 fs-12 text-white"># of rooms: {{$hotel2['rooms']}}</p>
-                                                    </div>
-                                                    <p class="mb-0 fs-12">
-                                                        <i class="bi bi-geo-alt-fill me-2"></i>
-                                                        {{$hotel2['location']}}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                                </div>
-                              </div>
-                            </div>
-                            @else    
-                            <div class="row ">
-                                <div class="col-xl-10 col-md-12 col-11">
-                                    <div class="autoplay_2 mb-3">
-                                        @foreach ($hotels as $hotel)
-                                        <div class="slide mx-2">
-                                            <a href="{{"accomodation_detail1/" .$hotel['id'] }}"
-                                                class="text-decoration-none text-dark">
-                                                <div class="card first_card_slider border-0">
-                                                    <img src="<?php echo asset('accomodation/' . $hotel['tourimg'])?>" alt="Avatar"
-                                                        class="image1_2_duplicate rounded_top">
-                                                    <div class="card-body card_bottom"
-                                                        style="background-color: #E2BE4E;">
-                                                        <div class="d-flex justify-content-between">
-                                                            <p class="mb-0 fs-12">{{$hotel['name']}}</p>
-                                                            <p class="mb-0 fs-12 text-white"># of rooms: {{$hotel['rooms']}}</p>
+                            @if (@isset($hotels1) && @isset($hotels2))
+                                <div class="row me-3">
+                                    <div class="col-11">
+                                        <div class="autoplay mb-3 px-1">
+                                            @foreach ($hotels1 as $hotel1)
+                                                <div class="slide mx-2">
+                                                    <a href="{{ 'accomodation_detail1/' . $hotel1['id'] }}"
+                                                        class="text-decoration-none text-dark">
+                                                        <div class="card first_card_slider border-0">
+                                                            <img src="<?php echo asset('accomodation/' . $hotel1['tourimg']); ?>" alt="Avatar"
+                                                                class="image1_2_duplicate rounded_top">
+                                                            <div class="card-body card_bottom"
+                                                                style="background-color: #E2BE4E;">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <p class="mb-0 fs-12">{{ $hotel1['name'] }}</p>
+                                                                    <p class="mb-0 fs-12 text-white"># of rooms:
+                                                                        {{ $hotel1['rooms'] }}</p>
+                                                                </div>
+                                                                <p class="mb-0 fs-12">
+                                                                    <i class="bi bi-geo-alt-fill me-2"></i>
+                                                                    {{ $hotel1['location'] }}
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                        <p class="mb-0 fs-12">
-                                                            <i class="bi bi-geo-alt-fill me-2"></i>
-                                                            {{$hotel['location']}}
-                                                        </p>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+                                            @endforeach
                                         </div>
-                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row me-3">
+                                    <div class="col-11">
+                                        <div class="autoplay mb-3 px-1">
+                                            @foreach ($hotels2 as $hotel2)
+                                                <div class="slide mx-2">
+                                                    <a href="{{ 'accomodation_detail1/' . $hotel2['id'] }}"
+                                                        class="text-decoration-none text-dark">
+                                                        <div class="card first_card_slider border-0">
+                                                            <img src="<?php echo asset('accomodation/' . $hotel2['tourimg']); ?>" alt="Avatar"
+                                                                class="image1_2_duplicate rounded_top">
+                                                            <div class="card-body card_bottom"
+                                                                style="background-color: #E2BE4E;">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <p class="mb-0 fs-12">{{ $hotel2['name'] }}</p>
+                                                                    <p class="mb-0 fs-12 text-white"># of rooms:
+                                                                        {{ $hotel2['rooms'] }}</p>
+                                                                </div>
+                                                                <p class="mb-0 fs-12">
+                                                                    <i class="bi bi-geo-alt-fill me-2"></i>
+                                                                    {{ $hotel2['location'] }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="row ">
+                                    <div class="col-xl-10 col-md-12 col-11">
+                                        <div class="autoplay_2 mb-3">
+                                            @foreach ($hotels as $hotel)
+                                                <div class="slide mx-2">
+                                                    <a href="{{ 'accomodation_detail1/' . $hotel['id'] }}"
+                                                        class="text-decoration-none text-dark">
+                                                        <div class="card first_card_slider border-0">
+                                                            <img src="<?php echo asset('accomodation/' . $hotel['tourimg']); ?>" alt="Avatar"
+                                                                class="image1_2_duplicate rounded_top">
+                                                            <div class="card-body card_bottom"
+                                                                style="background-color: #E2BE4E;">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <p class="mb-0 fs-12">{{ $hotel['name'] }}</p>
+                                                                    <p class="mb-0 fs-12 text-white"># of rooms:
+                                                                        {{ $hotel['rooms'] }}</p>
+                                                                </div>
+                                                                <p class="mb-0 fs-12">
+                                                                    <i class="bi bi-geo-alt-fill me-2"></i>
+                                                                    {{ $hotel['location'] }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
                             @endif
                         </div>
-                        <div>    
+                        <div>
                             @includeif('template.social_mbl')
                         </div>
                     </div>
@@ -240,7 +245,8 @@
             </div>
         </div>
     </section>
-    <div class="modal" id="propertylisting" tabindex="-1" aria-labelledby="propertylistingLabel" aria-hidden="true">
+    <div class="modal" id="propertylisting" tabindex="-1" aria-labelledby="propertylistingLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form action="">
@@ -251,8 +257,8 @@
                                     <h5 class="mb-0">List your property:</h5>
                                 </div>
                                 <div>
-                                    <button type="button" data-bs-dismiss="modal" class="bg-transparent border-0 p-0"><i
-                                            class="bi bi-x fs-1"></i></button>
+                                    <button type="button" data-bs-dismiss="modal"
+                                        class="bg-transparent border-0 p-0"><i class="bi bi-x fs-1"></i></button>
                                 </div>
                             </div>
                             <div class="row p-4">
@@ -296,17 +302,19 @@
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Description:</label>
                                     <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Description" cols="40"
-                                        rows="6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, eos esse. Laudantium explicabo minus temporibus sed nam corporis blanditiis veniam sapiente eligendi, ad ipsa repellat incidunt qui animi maxime labore.</textarea>
+                                        placeholder="Description" cols="40" rows="6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, eos esse. Laudantium explicabo minus temporibus sed nam corporis blanditiis veniam sapiente eligendi, ad ipsa repellat incidunt qui animi maxime labore.</textarea>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="myImg">
-                                        <img id="blah" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                        <img id="blah" src="./imgs/add_profile.png" alt=""
+                                            class="profile-img">
                                     </label>
-                                    <input type="file" name="img" class="d-none" id="myImg" onchange="readURL(this);">
+                                    <input type="file" name="img" class="d-none" id="myImg"
+                                        onchange="readURL(this);">
                                 </div>
                                 <div class="d-flex gap-2 mt-5">
-                                    <input type="checkbox" class="form-check-input shadow-none" id="myCheck" checked>
+                                    <input type="checkbox" class="form-check-input shadow-none" id="myCheck"
+                                        checked>
                                     <label for="myCheck">Our Terms and Conditions</label>
                                 </div>
                                 <div class="mt-3">

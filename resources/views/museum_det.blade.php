@@ -24,15 +24,15 @@
                     <div class="d-flex align-items-center gap-2">
                         <p class="text-white m-0 font-22">Tours</p>
                         <i class="bi bi-chevron-right text-white"></i>
-                        <p class="text-white m-0 font-22">{{$citytour->name}}</p>
+                        <p class="text-white m-0 font-22">{{ $citytour->name }}</p>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('uploads/' . $citytour['img'])?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $citytour['img']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
-                        <p class="text-white">{{$citytour->name}}</p>
+                        <p class="text-white">{{ $citytour->name }}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
                                 <a href="#" class="d-flex align-items-center text text-decoration-none gap-2">
@@ -46,8 +46,9 @@
                             </div>
                             <div class="col-sm-6 col-lg-12 col-xl-6 mt-sm-0">
                                 <div class="text-sm-end text-lg-start text-xl-end">
-                                    <button type="button" class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button" data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
+                                    <button type="button"
+                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
+                                        data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
@@ -56,17 +57,17 @@
                         </div>
                         <div class="row mt-3">
                             <p class="text-white">
-                                {{$citytour->des}}
+                                {{ $citytour->des }}
                             </p>
                             <div class="d-flex gap-2">
                                 <h6 class="golden-clr">Tour Price:</h6>
-                                <span class=" mb-0 text-white">{{$citytour->price}} USD per adult</span>
+                                <span class=" mb-0 text-white">{{ $citytour->price }} USD per adult</span>
                             </div>
                             <div>
                                 <h6 class="golden-clr">Sightseeing</h6>
                                 @php
-                                $inputString = $citytour['sight_seeing'];
-                                $dataArray = explode(',', $inputString);
+                                    $inputString = $citytour['sight_seeing'];
+                                    $dataArray = explode(',', $inputString);
                                 @endphp
                                 <ul class="text-white">
                                     @foreach ($dataArray as $item)
@@ -76,9 +77,9 @@
                             </div>
                             <div>
                                 <h6 class="golden-clr">Include</h6>
-                                  @php
-                                $inputString = $citytour['include'];
-                                $dataArray = explode(',', $inputString);
+                                @php
+                                    $inputString = $citytour['include'];
+                                    $dataArray = explode(',', $inputString);
                                 @endphp
                                 <ul class="text-white">
                                     @foreach ($dataArray as $item)
@@ -95,20 +96,21 @@
                         </div>
                     </div>
                 </div>
-            @if (count($galleryImages) > 0)
-                <div class="row mt-5 mx-sm-0 mx-2">
-                    <h5 class="text-white">Photos and gallery</h5>
-                    <div class="col site-bg rounded-4 px-4 py-3 mt-4">
-                        <div class="row">
-                            @foreach ($galleryImages as $galleryImage)
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-6 my-3">
-                                    <img src="<?php echo asset('uploads/' . $galleryImage['image_path'])?>" alt="" class="img-fluid h-100 cover rounded-4">
-                                </div>
-                            @endforeach
+                @if (count($galleryImages) > 0)
+                    <div class="row mt-5 mx-sm-0 mx-2">
+                        <h5 class="text-white">Photos and gallery</h5>
+                        <div class="col site-bg rounded-4 px-4 py-3 mt-4">
+                            <div class="row">
+                                @foreach ($galleryImages as $galleryImage)
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-6 my-3">
+                                        <img src="<?php echo asset('uploads/' . $galleryImage['image_path']); ?>" alt=""
+                                            class="img-fluid h-100 cover rounded-4">
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endif
+                @endif
             </div>
         </div>
     </section>
@@ -207,11 +209,13 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Confirm Email">
+                            <input type="email" class="form-control shadow-none font-12"
+                                placeholder="Confirm Email">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12" placeholder="Phone Number">
+                            <input type="tel" class="form-control shadow-none font-12"
+                                placeholder="Phone Number">
                         </div>
                         <div class="mt-2">
                             <div class="d-flex flex-column">
@@ -219,9 +223,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6 class="fw-bold mt-3">Travellers Detail</h6>
@@ -244,9 +250,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6>Traveller 2</h6>
@@ -268,9 +276,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                     </form>
@@ -318,7 +328,8 @@
                         <h6>Terms $ Conditions/Cancellation policy</h6>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Est
                                 deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
                                 laboriosam.label>
                         </div>
@@ -363,8 +374,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -391,7 +402,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -399,7 +411,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

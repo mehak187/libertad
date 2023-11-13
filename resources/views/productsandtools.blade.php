@@ -94,8 +94,7 @@
                                                 @foreach ($products as $product)
                                                     @if ($product->p_catg == $catagory->id)
                                                         <div class="col mx-1">
-                                                            <img class="img-fluid w-100"
-                                                                src="<?php echo asset('uploads/' . $product['img'])?>"
+                                                            <img class="img-fluid w-100" src="<?php echo asset('uploads/' . $product['img']); ?>"
                                                                 alt="">
                                                             <div
                                                                 class="dis1 d-flex p-3 sky-bg justify-content-between align-items-center">

@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{asset('home')}}" class="text-decoration-none">
+                        <a href="{{ asset('home') }}" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                         </a>
                     </div>
@@ -43,8 +43,9 @@
                             </div>
                             <div class="col-sm-6 col-lg-12 col-xl-6 mt-sm-0">
                                 <div class="text-sm-end text-lg-start text-xl-end">
-                                    <button type="button" class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button" data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
+                                    <button type="button"
+                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
+                                        data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
@@ -161,15 +162,18 @@
                                     <a href="https://www.tripadvisor.com/Attraction_Review-g294201-d26208912-Reviews-Libertad_Del_Mundo-Cairo_Cairo_Governorate.html"
                                         class="p-0"><img src="./imgs/owl-2.png" style="height: 40px; width: 40px;"
                                             alt=""></a>
-                                    <a href="https://www.facebook.com/profile.php?id=100090555392220" class="p-0"><img
-                                            src="./imgs/fb-2.png" style="height: 40px; width: 40px;" alt=""></a>
-                                    <a href="mailto:info@libertadelmundo.com" class="p-0"><img
-                                            src="./imgs/google-plus2.png" style="height: 40px; width: 40px;" alt=""></a>
-                                    <a href="mailto:info@libertadelmundo.com" class="p-0"><img src="./imgs/youtube2.png"
-                                            style="height: 40px; width: 40px;" alt=""></a>
-                                    <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"
-                                        class="p-0"><img src="./imgs/insta2.png" style="height: 40px; width: 40px;"
+                                    <a href="https://www.facebook.com/profile.php?id=100090555392220"
+                                        class="p-0"><img src="./imgs/fb-2.png" style="height: 40px; width: 40px;"
                                             alt=""></a>
+                                    <a href="mailto:info@libertadelmundo.com" class="p-0"><img
+                                            src="./imgs/google-plus2.png" style="height: 40px; width: 40px;"
+                                            alt=""></a>
+                                    <a href="mailto:info@libertadelmundo.com" class="p-0"><img
+                                            src="./imgs/youtube2.png" style="height: 40px; width: 40px;"
+                                            alt=""></a>
+                                    <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"
+                                        class="p-0"><img src="./imgs/insta2.png"
+                                            style="height: 40px; width: 40px;" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -271,11 +275,13 @@
                         </div>
                         <div class="">
                             <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Confirm Email">
+                            <input type="email" class="form-control shadow-none font-12"
+                                placeholder="Confirm Email">
                         </div>
                         <div class="">
                             <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12" placeholder="Phone Number">
+                            <input type="tel" class="form-control shadow-none font-12"
+                                placeholder="Phone Number">
                         </div>
                         <div class="mt-2">
                             <div class="d-flex flex-column">
@@ -283,9 +289,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6 class="fw-bold mt-3">Travellers Detail</h6>
@@ -308,9 +316,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                         <h6>Traveller 2</h6>
@@ -332,9 +342,11 @@
                                     Passport Copy/ID for Egyptians
                                 </span>
                                 <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt="" class="profile-img">
+                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
+                                        class="profile-img">
                                 </label>
-                                <input type="file" name="img" class="d-none" id="myImg2" onchange="readURL(this);">
+                                <input type="file" name="img" class="d-none" id="myImg2"
+                                    onchange="readURL(this);">
                             </div>
                         </div>
                     </form>
@@ -382,7 +394,8 @@
                         <h6>Terms $ Conditions/Cancellation policy</h6>
                         <div class="d-flex align-items-start">
                             <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Est
                                 deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
                                 laboriosam.label>
                         </div>
@@ -427,8 +440,8 @@
                                 <input type="number" class="form-control shadow-none" placeholder="Card number">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                                    placeholder="Cardholder name">
+                                <input type="text" name="" id="flexRadioDefault1"
+                                    class="form-control shadow-none" placeholder="Cardholder name">
                             </div>
                             <div class="mt-3">
                                 <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -455,7 +468,8 @@
                         <div id="asd" style="display: none;">
                             <div class="mt-3">
                                 <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none" placeholder="Email">
+                                <input type="text" name="" id="" class="form-control shadow-none"
+                                    placeholder="Email">
                             </div>
                             <div class="mt-3">
                                 <label for="">Password</label>
@@ -463,7 +477,8 @@
                                     placeholder="Password">
                             </div>
                             <div class="text-center mt-3">
-                                <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                                <input type="submit" value="Login"
+                                    class="golden-bg border-0 rounded-pill px-3 py-2">
                             </div>
                         </div>
                     </form>

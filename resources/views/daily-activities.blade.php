@@ -22,43 +22,43 @@
                             <div class="sidebar_tab gap-3 home">
                                 <span class="step_circle">01.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('home')}}" class="mb-0 fs-6">Home</a>
+                                    <a href="{{ asset('home') }}" class="mb-0 fs-6">Home</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 tour-1">
                                 <span class="step_circle">02.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('tour1')}}" class="mb-0 fs-6">Tours</a>
+                                    <a href="{{ asset('tour1') }}" class="mb-0 fs-6">Tours</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 packages-1">
                                 <span class="step_circle">03.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('pakages')}}" class="mb-0 fs-6">Packages</a>
+                                    <a href="{{ asset('pakages') }}" class="mb-0 fs-6">Packages</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 hotel-1">
                                 <span class="step_circle">04.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('hotels')}}" class="mb-0 fs-6">Accommodation</a>
+                                    <a href="{{ asset('hotels') }}" class="mb-0 fs-6">Accommodation</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 hotel-1">
                                 <span class="step_circle active">05.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('dailyactivites')}}" class="mb-0 fs-6 active">Daily Activites</a>
+                                    <a href="{{ asset('dailyactivites') }}" class="mb-0 fs-6 active">Daily Activites</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 airport">
                                 <span class="step_circle">06.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('airport')}}" class="mb-0 fs-6">Airport Shuttle</a>
+                                    <a href="{{ asset('airport') }}" class="mb-0 fs-6">Airport Shuttle</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab sidebar_line_hide gap-3 p-tool">
                                 <span class="step_circle">07.</span>
                                 <span class="step_label">
-                                    <a href="{{asset('productsandtools')}}" class="mb-0 fs-6">Product & Tools</a>
+                                    <a href="{{ asset('productsandtools') }}" class="mb-0 fs-6">Product & Tools</a>
                                 </span>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 </button>
                             </div>
                         </div>
-                       @includeif('template.social_desktop')
+                        @includeif('template.social_desktop')
                     </div>
                 </div>
                 <div class="sidebar_content ms-md-4">
@@ -89,30 +89,33 @@
                                 </p>
                             </div>
                             @if (count($activities) > 0)
-                            <div class="row pt-2">
-                                @foreach ($activities as $activity)
-                                    <div class="col-lg-4 col-md-6 col-sm-4 col-6 mt-3">
-                                        <a href="{{"daily_activities_det/" .$activity['id'] }}" class="container1_2_3">
-                                            <div  class=""><img src="<?php echo asset('uploads/' . $activity['img']); ?>" alt="Avatar"
-                                                    class="image1_2_3"></div>
-                                            <div href="#" class="overlay text-decoration-none">
-                                                <div class="text1 d-flex align-items-center justify-content-between">
-                                                    <span>{{$activity['name']}}</span>
-                                                    <i data-bs-toggle="modal" data-bs-target="#thankyouModal"
-                                                        class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
+                                <div class="row pt-2">
+                                    @foreach ($activities as $activity)
+                                        <div class="col-lg-4 col-md-6 col-sm-4 col-6 mt-3">
+                                            <a href="{{ 'daily_activities_det/' . $activity['id'] }}"
+                                                class="container1_2_3">
+                                                <div class=""><img src="<?php echo asset('uploads/' . $activity['img']); ?>" alt="Avatar"
+                                                        class="image1_2_3"></div>
+                                                <div href="#" class="overlay text-decoration-none">
+                                                    <div
+                                                        class="text1 d-flex align-items-center justify-content-between">
+                                                        <span>{{ $activity['name'] }}</span>
+                                                        <i data-bs-toggle="modal" data-bs-target="#thankyouModal"
+                                                            class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
+                                                    </div>
+                                                    <p class="text3 mt-3">{{ $activity['des'] }}</p>
                                                 </div>
-                                                <p class="text3 mt-3">{{$activity['des']}}</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
                             @else
                                 <div class="d-flex align-items-center mt-3 ">
-                                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5">No record to show</p>
+                                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                                    <p class="text-danger fs-5">No record to show</p>
                                 </div>
                             @endif
-                           @includeif('template.social_mbl')
+                            @includeif('template.social_mbl')
                         </div>
                     </div>
                 </div>
