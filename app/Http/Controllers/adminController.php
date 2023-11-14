@@ -1262,7 +1262,11 @@ class adminController extends Controller
     }
     public function deleteproduct($id){
         $data =product::find($id);
+        $imagePath = public_path('uploads/' . $data->img);
         $data->delete();
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
         return redirect('manage_products')->with ('Delete','Product Deleted Successfully');
     }
     public function updateproduct(request $request){
@@ -1308,7 +1312,11 @@ class adminController extends Controller
     }
     public function deleteshuttle($id){
         $data =shuttle::find($id);
+        $imagePath = public_path('uploads/' . $data->img);
         $data->delete();
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
         return redirect('manage_shuttle')->with ('Delete','Airport Shuttle Deleted Successfully');
     } 
     public function updateshuttle(request $request){

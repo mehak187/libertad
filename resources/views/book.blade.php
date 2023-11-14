@@ -55,7 +55,7 @@
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <div class="sky-bg rounded-4 p-3 shadow">
                                         <div>
-                                            <img src="<?php echo asset('books/' . $book['image']); ?>" alt="" class="img-fluid rounded-3">
+                                            <img src="<?php echo asset('uploads/' . $book['image']); ?>" alt="" class="img-fluid rounded-3">
                                         </div>
                                         <div class="d-flex justify-content-between  mt-3">
                                             <div class="d-flex align-items-center flex-wrap gap-2">

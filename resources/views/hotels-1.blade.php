@@ -155,7 +155,7 @@
                                                     <a href="{{ 'accomodation_detail1/' . $hotel1['id'] }}"
                                                         class="text-decoration-none text-dark">
                                                         <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('accomodation/' . $hotel1['tourimg']); ?>" alt="Avatar"
+                                                            <img src="<?php echo asset('uploads/' . $hotel1['tourimg']); ?>" alt="Avatar"
                                                                 class="image1_2_duplicate rounded_top">
                                                             <div class="card-body card_bottom"
                                                                 style="background-color: #E2BE4E;">
@@ -184,7 +184,7 @@
                                                     <a href="{{ 'accomodation_detail1/' . $hotel2['id'] }}"
                                                         class="text-decoration-none text-dark">
                                                         <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('accomodation/' . $hotel2['tourimg']); ?>" alt="Avatar"
+                                                            <img src="<?php echo asset('uploads/' . $hotel2['tourimg']); ?>" alt="Avatar"
                                                                 class="image1_2_duplicate rounded_top">
                                                             <div class="card-body card_bottom"
                                                                 style="background-color: #E2BE4E;">
@@ -214,7 +214,7 @@
                                                     <a href="{{ 'accomodation_detail1/' . $hotel['id'] }}"
                                                         class="text-decoration-none text-dark">
                                                         <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('accomodation/' . $hotel['tourimg']); ?>" alt="Avatar"
+                                                            <img src="<?php echo asset('uploads/' . $hotel['tourimg']); ?>" alt="Avatar"
                                                                 class="image1_2_duplicate rounded_top">
                                                             <div class="card-body card_bottom"
                                                                 style="background-color: #E2BE4E;">
