@@ -1039,8 +1039,11 @@ label.position-relative:after {
     top: 50%;
     transform: translatey(-50px);
 }
+
 .s-field {
     position: relative;
+    margin-left: 10px;
+    cursor: pointer;
 }
 .s-field:before {
     position: absolute;

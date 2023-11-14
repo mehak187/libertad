@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     @if (count($galleryImages) > 0)
-                        <h4 class="fs-6 mt-4 mb-2 fw-bold">Gallery images</h4>
+                        <h4 class="fs-6 mt-4 mb-2 fw-bold ms-2">Gallery images</h4>
                         <div id="preview-container">
                             <?php $num = 1; ?>
                             @foreach ($galleryImages as $galleryImage)
@@ -104,7 +104,7 @@
                                         value="{{ $galleryImage->id }}">
                                     <img id="preview-img-<?php echo $num; ?>" src="<?php echo asset('uploads/' . $galleryImage['image_path']); ?>"
                                         alt="">
-                                    <input type="file" name="images[]"
+                                    <input type="file" name="imagesold[]"
                                         class="position-absolute top-0 start-0 w-100 h-100 d-none"
                                         id="gallery-img-<?php echo $num; ?>"
                                         onchange="updateImageSrc(this, 'preview-img-<?php echo $num; ?>')">
@@ -113,9 +113,15 @@
                             @endforeach
                         </div>
                     @endif
+                    <h4 class="fs-6 mt-4 ms-2">Add more Images</h4>
+                    <div class="d-flex flex-wrap align-items-center ms-2">
+                        <div class=" my-2 img-m me-2 d-flex flex-wrap">
+                        </div>
+                        <i class="fas fa-plus my-2 text-white bg-yellow px-2 py-2" id="addInput"></i>
+                    </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
-                            <input type="submit" value="update city tour" class="w-100">
+                            <input type="submit" value="update musuem" class="w-100">
                         </div>
                     </div>
                 </form>
