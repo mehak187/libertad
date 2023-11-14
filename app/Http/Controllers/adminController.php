@@ -1350,6 +1350,8 @@ class adminController extends Controller
 
     public function save_libertad(request $request){
         $record = libertad::find(1);
+        // $record = libertad::first();
+
         $request->validate([
             'des' => 'required',
         ]);
@@ -1357,21 +1359,41 @@ class adminController extends Controller
             $record->update([
                 'des' => $request->des,
             ]);
-    
-            // Update or add images
+            $libertadId = 1;
             $imagePaths = $request->file('images');
+            // $updatedCityTourId = $record->id;
+            $imagePathsold = $request->file('images_old');
+            $galleryIds = $request->input('gallery_id', []);
+        //    -------update old imgs------
+            if ($imagePathsold) {
+                foreach ($galleryIds as $key => $galleryId) {
+                    $gimg = GalleryLibertad::find($galleryId);
+                    if (!$gimg) {
+                        return redirect('/manage_musuem')->with('error', 'Gallery image not found');
+                    }
+                    if (isset($imagePathsold[$key])) {
+                        $image = $imagePathsold[$key];
+                        $originalName = time() . "-" . $image->getClientOriginalName();
+                        $imagePathDestination = public_path('uploads');
+                        $image->move($imagePathDestination, $originalName);
+                        $gimg->update([
+                            'image_path' => $originalName,
+                        ]);
+                    }
+                }
+            }
+            // -------save new imgs-----
             if ($imagePaths) {
                 foreach ($imagePaths as $image) {
                     $originalName = time() . "-" . $image->getClientOriginalName();
                     $imagePathDestination = public_path('uploads');
                     $image->move($imagePathDestination, $originalName);
-    
-                    GalleryLibertad::update([
-                        'libertad_id' => $record->id, 
-                        'image_path' => $originalName
+                    GalleryLibertad::create([
+                        'libertad_id' => $libertadId,
+                        'image_path' => $originalName,
                     ]);
                 }
-            } 
+            }
         }
         else {
             $libertad = libertad::create([

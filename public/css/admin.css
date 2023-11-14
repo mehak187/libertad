@@ -1014,3 +1014,53 @@ tbody {
 .pointer {
     cursor: pointer;
 }
+label.position-relative {
+    cursor: pointer;
+}
+label.position-relative:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 50%);
+    top: 0;
+    left: 0;
+}
+label.position-relative:after {
+     position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-image: url('../imgs/camera.png'); 
+    background-size: 30px; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    top: 50%;
+    transform: translatey(-50px);
+}
+.s-field {
+    position: relative;
+}
+.s-field:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 50%);
+    top: 0;
+    left: 0;
+}
+.s-field:after {
+     position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-image: url('../imgs/camera.png'); 
+    background-size: 30px; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    top: 50%;
+    transform: translatey(-50px);
+}
