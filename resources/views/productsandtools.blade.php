@@ -76,6 +76,7 @@
                             <div>
                                 <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Products and </span>Tools
                                 </h2>
+                            @if (count($products) > 0)
                                 @foreach ($catagories as $catagory)
                                     <div class="px-3">
                                         <h5 class="text-white">{{ $catagory->catg }}</h5>
@@ -109,7 +110,11 @@
                                         </div>
                                     </div>
                                 @endforeach
-
+                            @else
+                                <div class="d-flex align-items-center mt-3 ">
+                                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger mb-0 fs-5">No record to show</p>
+                                </div>
+                            @endif
                             </div>
 
                         </div>
