@@ -77,16 +77,18 @@
                         <div class="container-fluid">
                             <div class="row my-2">
                                 <div class="col-xl-7">
-                                    <div class="row align-items-center px-sm-2">
-                                        <div class="col-xl-10 col-md-9 col-sm-7">
+                                    <div class="row d-flex flex-wrap  flex-wrap align-items-center px-sm-2">
+                                        <div class="col-xl-10 col-md-8 col-sm-7">
                                             <input type="search"
                                                 class="form-control shadow-none rounded-pill bg-transparent border text-white"
                                                 placeholder="Where do you want to go?">
                                         </div>
                                         <div class="col-xl-2 col-md-3 col-sm-5 mt-sm-0 mt-3">
-                                            <div class="button_border rounded-pill"><button
-                                                    class="button_leniar_style px-4 rounded-pill py-1 d-flex align-items-center justify-content-between"><i
-                                                        class="bi bi-search me-3"></i>Search </button></div>
+                                            <div class="button_border rounded-pill">
+                                                <button class="button_leniar_style px-4 rounded-pill py-1 d-flex align-items-center justify-content-between">
+                                                    <i class="bi bi-search me-3"></i>Search 
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
