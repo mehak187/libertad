@@ -70,34 +70,24 @@
                 <div class="sidebar_content ms-md-4">
                     <!-- main page content start -->
                     <div class="sidebar_tab_content">
+                        @if(isset($libertad))
                         <div class="container-fluid ">
                             <h3 class="text-white">Why Libertad?</h3>
+                            @if($galleryImages->count() > 0)
                             <div class="position-relative p-4  mt-3">
                                 <div class="prev_arrows">
                                 </div>
                                 <div class=" ps-3  autoplay_2">
-                                    <div class="mx-3">
-                                        <img src="./imgs/camel.png" alt="" class="img-camel">
-                                    </div>
-                                    <div class="mx-3">
-                                        <img src="./imgs/camel.png" alt="" class="img-camel">
-                                    </div>
-                                    <div class="mx-3">
-                                        <img src="./imgs/camel.png" alt="" class="img-camel">
-                                    </div>
-                                    <div class="mx-3">
-                                        <img src="./imgs/camel.png" alt="" class="img-camel">
-                                    </div>
-                                    <div class="mx-3">
-                                        <img src="./imgs/camel.png" alt="" class="img-camel">
-                                    </div>
-                                    <div class="mx-3">
-                                        <img src="./imgs/camel.png" alt="" class="img-camel">
-                                    </div>
+                                    @foreach($galleryImages as $image)
+                                        <div class="mx-3">
+                                            <img src="<?php echo asset('uploads/' . $image['image_path']); ?>" alt="" class="img-camel">
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="next_arrows">
                                 </div>
                             </div>
+                            @endif
                             <div class="row mt-4">
                                 <div class="col-12">
                                     <div class="p-3 px-4 light-bground rounded-5 shadow ">
@@ -105,31 +95,7 @@
                                             <h5 class="m-0">Why Libertad?</h5>
                                             <div class="row mt-3">
                                                 <div class="col-12">
-                                                    <p>This period covers all of ancient Egyptian prehistory,
-                                                        from the Paleolithic (Old Stone Age), down to the end of the
-                                                        Neolithic
-                                                        (New Stone Age). Strictly speaking, “prehistory” refers to the
-                                                        phase of a
-                                                        culture before it had writing. In Egypt’s case, writing appears
-                                                        at around
-                                                        the same time as the end of its Stone Age, around 3100 BC. This
-                                                        is also when
-                                                        Egypt as a unified political entity came into being, making it
-                                                        the world’s
-                                                        oldest nation state. Before the formation of the first Egyptian
-                                                        state,
-                                                        during the Neolithic Period, an increasing homogenization of the
-                                                        different
-                                                        cultures that had emerged along the Nile Valley can be seen.
-                                                        Cultures are
-                                                        named after their sites of origin. Some of the most important of
-                                                        these are
-                                                        the Maadi Cultural Complex (c.4000–3100 BC) in Lower Egypt, near
-                                                        Cairo;
-                                                        Badarian culture (c.5500–4000 BC) near modern Asyut in Middle
-                                                        Egypt; and,
-                                                        most importantly Naqada I (c.4000–3500 BC) in Upper Egypt, near
-                                                        Luxor.
+                                                    <p>{{ $libertad->des }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -138,6 +104,11 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                        <div class="d-flex align-items-center mt-3 ">
+                            <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5 mb-0">No content to show</p>
+                        </div>
+                        @endif
                     </div>
                     @includeif('template.social_mbl')
 
