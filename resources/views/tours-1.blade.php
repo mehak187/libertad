@@ -74,91 +74,97 @@
                         <div class="mt-md-0 mt-3">
                             <p class="content_1_heading mb-0"><span class=" travel_text">TOURS</span></p>
                         </div>
-                        <div class="container-fluid">
-                            <div class="row my-2">
-                                <div class="col-xl-7">
-                                    <div class="row d-flex flex-wrap  flex-wrap align-items-center px-sm-2">
-                                        <div class="col-xl-10 col-md-8 col-sm-7">
-                                            <input type="search"
-                                                class="form-control shadow-none rounded-pill bg-transparent border text-white"
-                                                placeholder="Where do you want to go?">
-                                        </div>
-                                        <div class="col-xl-2 col-md-3 col-sm-5 mt-sm-0 mt-3">
-                                            <div class="button_border rounded-pill">
-                                                <button class="button_leniar_style px-4 rounded-pill py-1 d-flex align-items-center justify-content-between">
-                                                    <i class="bi bi-search me-3"></i>Search 
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @if (@isset($cities1) && @isset($cities2))
-                            <div class="row me-3">
-                                <div class="col-11">
-                                    <div class="autoplay mb-3 px-1">
-                                        @foreach ($cities1 as $city1)
-                                            <div class="slide mx-2">
-                                                <div class="container1 container1_2">
-                                                    <img src="<?php echo asset('uploads/' . $city1['tourimg']); ?>" alt="Avatar"
-                                                        class="image1 image1_2">
-                                                    <a href="{{ 'cities_detail/' . $city1['id'] }}" class="overlay">
-                                                        <div
-                                                            class="text1 d-flex align-items-center justify-content-between">
-                                                            <span class="text-white">{{ $city1['Cityname'] }}</span>
-                                                            <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row me-3">
-                                <div class="col-11">
-                                    <div class="autoplay mb-3 px-1">
-                                        @foreach ($cities2 as $city2)
-                                            <div class="slide mx-2">
-                                                <div class="container1 container1_2">
-                                                    <img src="<?php echo asset('uploads/' . $city2['tourimg']); ?>" alt="Avatar"
-                                                        class="image1 image1_2">
-                                                    <a href="{{ 'cities_detail/' . $city2['id'] }}" class="overlay">
-                                                        <div
-                                                            class="text1 d-flex align-items-center justify-content-between">
-                                                            <span class="text-white">{{ $city2['Cityname'] }}</span>
-                                                            <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
+                        @if (isset($error))
+                            <div class="d-flex align-items-center mt-3 ">
+                                <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5 mb-0">No content to show</p>
                             </div>
                         @else
-                            <div class="row me-3">
-                                <div class="col-11">
-                                    <div class="autoplay mb-3 px-1">
-                                        @foreach ($cities as $city)
-                                            <div class="slide mx-2">
-                                                <div class="container1 container1_2">
-                                                    <img src="<?php echo asset('uploads/' . $city['tourimg']); ?>" alt="Avatar"
-                                                        class="image1 image1_2">
-                                                    <a href="{{ 'cities_detail/' . $city['id'] }}" class="overlay">
-                                                        <div
-                                                            class="text1 d-flex align-items-center justify-content-between">
-                                                            <span class="text-white">{{ $city['Cityname'] }}</span>
-                                                            <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
-                                                        </div>
-                                                    </a>
+                            <div class="container-fluid">
+                                <div class="row my-2">
+                                    <div class="col-xl-7">
+                                        <div class="row d-flex flex-wrap  flex-wrap align-items-center px-sm-2">
+                                            <div class="col-xl-10 col-md-8 col-sm-7">
+                                                <input type="search"
+                                                    class="form-control shadow-none rounded-pill bg-transparent border text-white"
+                                                    placeholder="Where do you want to go?">
+                                            </div>
+                                            <div class="col-xl-2 col-md-3 col-sm-5 mt-sm-0 mt-3">
+                                                <div class="button_border rounded-pill">
+                                                    <button class="button_leniar_style px-4 rounded-pill py-1 d-flex align-items-center justify-content-between">
+                                                        <i class="bi bi-search me-3"></i>Search 
+                                                    </button>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @if (@isset($cities1) && @isset($cities2))
+                                <div class="row me-3">
+                                    <div class="col-11">
+                                        <div class="autoplay mb-3 px-1">
+                                            @foreach ($cities1 as $city1)
+                                                <div class="slide mx-2">
+                                                    <div class="container1 container1_2">
+                                                        <img src="<?php echo asset('uploads/' . $city1['tourimg']); ?>" alt="Avatar"
+                                                            class="image1 image1_2">
+                                                        <a href="{{ 'cities_detail/' . $city1['id'] }}" class="overlay">
+                                                            <div
+                                                                class="text1 d-flex align-items-center justify-content-between">
+                                                                <span class="text-white">{{ $city1['Cityname'] }}</span>
+                                                                <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row me-3">
+                                    <div class="col-11">
+                                        <div class="autoplay mb-3 px-1">
+                                            @foreach ($cities2 as $city2)
+                                                <div class="slide mx-2">
+                                                    <div class="container1 container1_2">
+                                                        <img src="<?php echo asset('uploads/' . $city2['tourimg']); ?>" alt="Avatar"
+                                                            class="image1 image1_2">
+                                                        <a href="{{ 'cities_detail/' . $city2['id'] }}" class="overlay">
+                                                            <div
+                                                                class="text1 d-flex align-items-center justify-content-between">
+                                                                <span class="text-white">{{ $city2['Cityname'] }}</span>
+                                                                <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="row me-3">
+                                    <div class="col-11">
+                                        <div class="autoplay mb-3 px-1">
+                                            @foreach ($cities as $city)
+                                                <div class="slide mx-2">
+                                                    <div class="container1 container1_2">
+                                                        <img src="<?php echo asset('uploads/' . $city['tourimg']); ?>" alt="Avatar"
+                                                            class="image1 image1_2">
+                                                        <a href="{{ 'cities_detail/' . $city['id'] }}" class="overlay">
+                                                            <div
+                                                                class="text1 d-flex align-items-center justify-content-between">
+                                                                <span class="text-white">{{ $city['Cityname'] }}</span>
+                                                                <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         @endif
                     </div>
                     @includeif('template.social_mbl')
