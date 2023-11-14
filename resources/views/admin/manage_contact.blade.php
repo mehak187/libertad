@@ -109,9 +109,9 @@
                         </div>
                         <div class="input-field mt-4">
                             <label for="tripadvisor" class="text-dark fw-bold">Trip Advisor Link</label>
-                            <input type="text" id="tripadvisor" class="w-100"
+                            <input type="url" id="tripadvisor" class="w-100"
                                 value="{{ old('tripadvisor', $contact->tripadvisor ?? '') }}"
-                                placeholder="https://www.tripadvisor.com" name="tripadvisor">
+                                name="tripadvisor">
                             {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
                             @error('tripadvisor')
                                 <span class="error text-danger">
@@ -123,7 +123,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="fb_link" class="text-dark fw-bold">Facebook Link</label>
-                            <input type="text" id="fb_link" class="w-100"
+                            <input type="url" id="fb_link" class="w-100"
                                 value="{{ old('fb_link', $contact->fb_link ?? '') }}" name="fb_link">
                             {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
                             @error('fb_link')
@@ -134,7 +134,7 @@
                         </div>
                         <div class="input-field dark-btn mt-4">
                             <label for="yt_link" class="text-dark fw-bold">Youtube Link</label>
-                            <input type="text" id="yt_link" class="w-100"
+                            <input type="url" id="yt_link" class="w-100"
                                 value="{{ old('yt_link', $contact->yt_link ?? '') }}" name="yt_link">
                             {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
                             @error('yt_link')
@@ -147,7 +147,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="insta_link" class="text-dark fw-bold">Instagram Link</label>
-                            <input type="text" id="insta_link" class="w-100"
+                            <input type="url" id="insta_link" class="w-100"
                                 value="{{ old('insta_link', $contact->insta_link ?? '') }}" name="insta_link">
                             {{-- <p class="note mb-0"><b>Note:</b> Use # if there is no link</p> --}}
                             @error('insta_link')
@@ -160,7 +160,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>
-                            <textarea class="w-100" id="des" placeholder="description" name="des">{{ old('des', $contact->des ?? '') }}</textarea>
+                            <textarea class="w-100" id="des"  name="des">{{ old('des', $contact->des ?? '') }}</textarea>
                             @error('des')
                                 <span class="error text-danger">
                                     {{ $message }}
