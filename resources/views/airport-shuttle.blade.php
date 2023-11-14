@@ -64,17 +64,6 @@
                         </div>
                     </div>
                     <div>
-                        <div class="d-md-block d-none">
-                            <u style="color: #E4C14F;">Leave your Review</u>
-                            <div class="d-flex gap-2">
-                                <textarea class="rounded-3 bg_review border-0 px-3" name="" id="" cols="25" rows="3"
-                                    placeholder="Please leave your Review"></textarea>
-                                <button class="p-0 mt-auto btn_submit_rivew">
-                                    <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
-                                        alt="">
-                                </button>
-                            </div>
-                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>
@@ -93,23 +82,20 @@
                                     </div>
                                     <div class="container-fluid">
                                         <div class="d-flex align-items-end">
-                                            <div class="input-des d-flex align-items-center p-0">
-                                                <div class="">
-
-                                                    <div class="input-container">
-                                                        <div>
-                                                            <label for="" class="font-12 text-white">From</label>
-                                                            <input type="text" id="input1" value="Airport"
-                                                                class="form-control shadow-none bg-transparent text-white">
-                                                        </div>
-                                                        <div class="mt-3">
-                                                            <span id="swap-icon" onclick="swapFields()">🔄</span>
-                                                        </div>
-                                                        <div>
-                                                            <label for="" class="font-12 text-white">To</label>
-                                                            <input type="text" id="input2" value="Hotel name"
-                                                                class="form-control shadow-none bg-transparent text-white">
-                                                        </div>
+                                            <div class="input-des d-flex align-items-center p-0 w-100">
+                                                <div class="input-container">
+                                                    <div>
+                                                        <label for="" class="font-12 text-white">From</label>
+                                                        <input type="text" id="input1" value="Airport"
+                                                            class="form-control shadow-none bg-transparent text-white">
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <span id="swap-icon" onclick="swapFields()">🔄</span>
+                                                    </div>
+                                                    <div>
+                                                        <label for="" class="font-12 text-white">To</label>
+                                                        <input type="text" id="input2" value="Hotel name"
+                                                            class="form-control shadow-none bg-transparent text-white">
                                                     </div>
                                                 </div>
                                                 <div class="">
