@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
-                            <label for="tour-img" class="text-dark fw-bold">Accomodation image<br>
+                            <label for="tour-img" class="text-dark fw-bold s-field">Accomodation image<br>
                             <img id="image-preview-single" src="<?php echo asset('uploads/' . $accomodation['tourimg'])?>" alt="" class="w-300 mt-2">
                             </label>
                             <input type="file" id="tour-img" name="tourimg" class="d-none" onchange="updateImagePreview(this)">

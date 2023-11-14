@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
-                            <label for="tour-img" class="text-dark fw-bold">Daily activities image<br>
+                            <label for="tour-img" class="text-dark fw-bold s-field">Daily activities image<br>
                                 <img id="image-preview-single" src="<?php echo asset('uploads/' . $citytour['img']); ?>" alt=""
                                     class="w-300 mt-2">
                             </label>
@@ -80,7 +80,7 @@
                         <div id="preview-container">
                             <?php $num = 1; ?>
                             @foreach ($galleryImages as $galleryImage)
-                                <label for="gallery-img-<?php echo $num; ?>" class="position-relative w-300">
+                                <label for="gallery-img-<?php echo $num; ?>" class="position-relative w-300 my-2 mx-2">
                                     <input type="text" class="w-100 d-none" name="gallery_id[]"
                                         value="{{ $galleryImage->id }}">
                                     <img id="preview-img-<?php echo $num; ?>" src="<?php echo asset('uploads/' . $galleryImage['image_path']); ?>"
