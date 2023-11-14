@@ -311,7 +311,7 @@
                                     @foreach ($stours as $stour)
                                         <div class="col-xl-3 col-md-6 col-sm-4 col-6 mt-3">
                                             <div class="container1 ">
-                                                <img src="<?php echo asset('special/' . $stour['img']); ?>" alt="Avatar" class="image1">
+                                                <img src="<?php echo asset('uploads/' . $stour['img']); ?>" alt="Avatar" class="image1">
                                                 <a href="{{ 'tourdetail/' . $stour['id'] }}"
                                                     class="overlay text-decoration-none">
                                                     <div class="text1">{{ $stour['name'] }}</div>
