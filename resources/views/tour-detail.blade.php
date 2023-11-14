@@ -13,7 +13,7 @@
     <section class="main-tem">
         @include('template.sidepanel')
         <!-- main content -->
-        <div class="right-content fix_div back_img py-5">
+        <div class="right-content ftr fix_div back_img py-5">
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div class="d-flex align-items-center gap-3">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('special/' . $stour['img']); ?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $stour['img']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
                         <div class="d-flex align-items-center gap-2">
