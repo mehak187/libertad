@@ -1358,10 +1358,10 @@ class adminController extends Controller
                     $imagePathDestination = public_path('uploads');
                     $image->move($imagePathDestination, $originalName);
     
-                    GalleryLibertad::updateOrCreate(
-                        ['libertad_id' => $record->id, 'image_path' => $originalName],
-                        ['libertad_id' => $record->id, 'image_path' => $originalName]
-                    );
+                    GalleryLibertad::update([
+                        'libertad_id' => $record->id, 
+                        'image_path' => $originalName
+                    ]);
                 }
             } 
         }
