@@ -568,7 +568,6 @@ class adminController extends Controller
     }
     public function update_sites_and_monuments(Request $request){
         $request->validate([
-            // Add your validation rules here
         ]);
     
         $cityTour = Site::find($request->id);
@@ -654,7 +653,6 @@ class adminController extends Controller
     
         return redirect('/manage_sites_and_monuments')->with('savectour', 'Sites and monuments updated successfully');
     }
-    
     public function delete_sites_and_monuments($id){
         $cityTour = site::find($id);
         $cityTour->delete();
@@ -741,69 +739,69 @@ class adminController extends Controller
         return view('admin.edit_daily_activities',$data);
     }
     public function update_daily_activities(Request $request){
-    $request->validate([
-    ]);
+        $request->validate([
+        ]);
 
-    $cityTour = DailyActivities::find($request->id);
+        $cityTour = DailyActivities::find($request->id);
 
-    if (!$cityTour) {
-        return redirect('/manage_daily_activities')->with('error', 'Daily Activities not found');
-    }
+        if (!$cityTour) {
+            return redirect('/manage_daily_activities')->with('error', 'Daily Activities not found');
+        }
 
-    $dataToUpdate = [
-        'name' => $request->name,
-        'location' => $request->location,
-        'sight_seeing' => $request->sight_seeing,
-        'include' => $request->include,
-        'des' => $request->des,
-    ];
+        $dataToUpdate = [
+            'name' => $request->name,
+            'location' => $request->location,
+            'sight_seeing' => $request->sight_seeing,
+            'include' => $request->include,
+            'des' => $request->des,
+        ];
 
-    if ($request->file('img') !== null) {
-        $photo = $request->file('img');
-        $photo_name = time() . "-" . $photo->getClientOriginalName();
-        $photo_destination = public_path('uploads');
-        $photo->move($photo_destination, $photo_name);
+        if ($request->file('img') !== null) {
+            $photo = $request->file('img');
+            $photo_name = time() . "-" . $photo->getClientOriginalName();
+            $photo_destination = public_path('uploads');
+            $photo->move($photo_destination, $photo_name);
 
-        $dataToUpdate['img'] = $photo_name;
-    }
+            $dataToUpdate['img'] = $photo_name;
+        }
 
-    $cityTour->update($dataToUpdate);
-    $updatedCityTourId = $cityTour->id;
+        $cityTour->update($dataToUpdate);
+        $updatedCityTourId = $cityTour->id;
 
-    $imagePathsold = $request->file('imagesold');
-    $galleryIds = $request->input('gallery_id', []);
+        $imagePathsold = $request->file('imagesold');
+        $galleryIds = $request->input('gallery_id', []);
 
-    if ($imagePathsold) {
-        foreach ($galleryIds as $key => $galleryId) {
-            $gimg = GalleryImageActivities::find($galleryId);
-            if (!$gimg) {
-                return redirect('/manage_daily_activities')->with('error', 'Gallery image not found');
+        if ($imagePathsold) {
+            foreach ($galleryIds as $key => $galleryId) {
+                $gimg = GalleryImageActivities::find($galleryId);
+                if (!$gimg) {
+                    return redirect('/manage_daily_activities')->with('error', 'Gallery image not found');
+                }
+                if (isset($imagePathsold[$key])) {
+                    $image = $imagePathsold[$key];
+                    $originalName = time() . "-" . $image->getClientOriginalName();
+                    $imagePathDestination = public_path('uploads');
+                    $image->move($imagePathDestination, $originalName);
+                    $gimg->update([
+                        'image_path' => $originalName,
+                    ]);
+                }
             }
-            if (isset($imagePathsold[$key])) {
-                $image = $imagePathsold[$key];
+        }
+        //add new imgs
+        $imagePaths = $request->file('images');
+        if ($imagePaths) {
+            foreach ($imagePaths as $image) {
                 $originalName = time() . "-" . $image->getClientOriginalName();
                 $imagePathDestination = public_path('uploads');
                 $image->move($imagePathDestination, $originalName);
-                $gimg->update([
+                GalleryImageActivities::create([
+                    'activities_id' => $cityTour->id,
                     'image_path' => $originalName,
                 ]);
             }
         }
-    }
-     //add new imgs
-     $imagePaths = $request->file('images');
-     if ($imagePaths) {
-         foreach ($imagePaths as $image) {
-             $originalName = time() . "-" . $image->getClientOriginalName();
-             $imagePathDestination = public_path('uploads');
-             $image->move($imagePathDestination, $originalName);
-             GalleryImageActivities::create([
-                 'activities_id' => $cityTour->id,
-                 'image_path' => $originalName,
-             ]);
-         }
-     }
-    return redirect('/manage_daily_activities')->with('savectour', 'Daily Activities updated successfully');
+        return redirect('/manage_daily_activities')->with('savectour', 'Daily Activities updated successfully');
     }
     public function delete_daily_activities($id){
         $cityTour = DailyActivities::find($id);
@@ -1258,24 +1256,21 @@ class adminController extends Controller
         }
         return view('admin.manage_why_libertad',$data);
     }
-
     public function save_libertad(request $request){
         $record = libertad::find(1);
-        // $record = libertad::first();
 
         $request->validate([
             'des' => 'required',
         ]);
-        if ($record) {// Update existing record
+        if ($record) {
             $record->update([
                 'des' => $request->des,
             ]);
             $libertadId = 1;
             $imagePaths = $request->file('images');
-            // $updatedCityTourId = $record->id;
             $imagePathsold = $request->file('images_old');
             $galleryIds = $request->input('gallery_id', []);
-        //    -------update old imgs------
+            //-------update old imgs------
             if ($imagePathsold) {
                 foreach ($galleryIds as $key => $galleryId) {
                     $gimg = GalleryLibertad::find($galleryId);

@@ -19,6 +19,8 @@ use App\Models\GalleryImageSite;
 use App\Models\site;
 use App\Models\SiteDay;
 use App\Models\shuttle;
+use App\Models\libertad;
+use App\Models\GalleryLibertad;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -83,9 +85,6 @@ class userController extends Controller
     }
     public function index(){
         return view('index');
-    }
-    public function libertad(){
-        return view('libert-ad');
     }
     public function museum1(){
         return view('museum1');
@@ -206,5 +205,15 @@ class userController extends Controller
         ->select('products.*', 'categories.catg')
         ->get();
         return view('productsandtools',['catagories'=>$data,'products'=>$data2]);
+    }
+    public function libertad(){
+        $data['libertad'] =libertad::first();
+        $cityTourId = 1;
+
+        $data['galleryImages'] = GalleryLibertad::leftJoin('libertads', 'gallery_libertads.libertad_id', '=', 'libertads.id')
+        ->where('gallery_libertads.libertad_id', $cityTourId)
+        ->select('gallery_libertads.*')
+        ->get();
+        return view('libert-ad',$data);
     }
 }
