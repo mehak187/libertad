@@ -26,7 +26,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('accomodation/' . $hotel['tourimg']); ?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $hotel['tourimg']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
                         <p class="text-white">{{ $hotel['name'] }}</p>

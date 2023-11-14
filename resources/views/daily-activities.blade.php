@@ -91,7 +91,7 @@
                             @if (count($activities) > 0)
                                 <div class="row pt-2">
                                     @foreach ($activities as $activity)
-                                        <div class="col-lg-4 col-md-6 col-sm-4 col-6 mt-3">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mt-3">
                                             <a href="{{ 'daily_activities_det/' . $activity['id'] }}"
                                                 class="container1_2_3">
                                                 <div class=""><img src="<?php echo asset('uploads/' . $activity['img']); ?>" alt="Avatar"
@@ -105,7 +105,7 @@
                                                     </div>
                                                     <p class="text3 mt-3">{{ $activity['des'] }}</p>
                                                 </div>
-                                            </a>
+                                                </a>
                                         </div>
                                     @endforeach
                                 </div>
