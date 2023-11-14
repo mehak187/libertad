@@ -14,6 +14,7 @@
         @include('template.sidepanel')
         <!-- main content -->
         <div class="right-content fix_div back_img py-5">
+            @if(isset($contact))
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 py-3 position-relative">
@@ -101,6 +102,11 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="d-flex align-items-center mt-3 mx-3">
+                <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5 mb-0">No content to show</p>
+            </div>
+            @endif
         </div>
     </section>
     <!-- ======= footer ======= -->
