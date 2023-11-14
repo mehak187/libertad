@@ -13,7 +13,7 @@
     <section class="main-tem">
         @include('template.sidepanel')
         <!-- main content -->
-        <div class="right-content fix_div back_img py-5">
+        <div class="right-content ftr fix_div back_img py-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 py-3 position-relative">

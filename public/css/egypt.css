@@ -2953,3 +2953,11 @@ color: #000;
   .right-content {
       min-height: calc(100vh - 105px);}
 }
+.right-content.ftr{
+  min-height: calc(100vh - 199px);
+  padding-bottom: 0px !important;
+}
+@media screen and (max-width: 768px){
+  .right-content.ftr{
+      min-height: calc(100vh - 251px);}
+}

@@ -13,7 +13,7 @@
     <section class="main-tem">
         @include('template.sidepanel')
         <!-- main content -->
-        <div class="right-content fix_div back_img py-5">
+        <div class="right-content ftr fix_div back_img py-5">
             <div class="container">
                 <h1 class="m-0 text-white">Testimonial</h1>
                 <p class="m-0 text-white">Reviews from our clients are listed as:</p>

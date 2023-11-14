@@ -13,7 +13,7 @@
     <section class="main-tem">
         @include('template.sidepanel')
         <!-- main content -->
-        <div class="right-content back_img py-3">
+        <div class="right-content ftr back_img py-3">
             <div class="outer_sidebar px-md-4">
                 <div class="sidebar_tabs d-flex flex-column area-height justify-content-between">
                     <div class="position-relative ms-3 ms-md-0">
