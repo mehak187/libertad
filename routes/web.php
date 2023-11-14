@@ -35,7 +35,6 @@ Route::controller(userController::class)->group(function(){
     Route::get('home','home');
     Route::get('hotels','hotels');
     Route::get('/','index');
-    Route::get('libertad','libertad');
     Route::get('aswan','aswan');
     Route::get('museum1','museum1');
     Route::get('luxorcruise','luxorcruise');
@@ -69,6 +68,8 @@ Route::controller(userController::class)->group(function(){
     Route::get('dailyactivites','dailyactivites');
     Route::get('daily_activities_det/{id}','daily_activities_det');
     Route::get('social','social');
+
+    Route::get('libertad','libertad');
 });
 
 Route::controller(adminController::class)->group(function(){
@@ -168,4 +169,16 @@ Route::controller(adminController::class)->group(function(){
     Route::get('edit_shuttle/{id}','edit_shuttle');
     Route::get('deleteshuttle/{id}','deleteshuttle');
     Route::post('updateshuttle',  'updateshuttle');
+
+    Route::get('manage_city_tours','manage_city_tours');
+    Route::post('save_citytour','save_citytour');
+    Route::get('add_city_tours','add_city_tours');
+    Route::get('edit_city_tours/{id}','edit_city_tours');
+    Route::get('city_tour_details/{id}','city_tour_details');
+    Route::get('delete_city_tour/{id}','delete_city_tour');
+    Route::post('update_city_tour','update_city_tour');
+
+    Route::get('manage_why_libertad','manage_why_libertad');
+    Route::post('save_libertad','save_libertad');
+
 });

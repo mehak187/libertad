@@ -42,11 +42,11 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="price" class="text-dark fw-bold">Price in USD</label>
-                            <input type="number" class="w-100" id="price" value="{{$accomodation['price']}}" name="price">
+                            <input type="number" class="w-100" id="price" value="{{$accomodation['tour_price']}}" name="price">
                         </div>
                         <div class="input-field mt-4">
                             <label for="night" class="text-dark fw-bold">No. of nights</label>
-                            <input type="text" class="w-100" id="nights" value="{{$accomodation['night']}}" name="night">
+                            <input type="text" class="w-100" id="nights" value="{{$accomodation['nights_nmbr']}}" name="night">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -72,15 +72,15 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>
-                            <textarea class="w-100" id="des" name="des">{{$accomodation['des']}}</textarea>
+                            <textarea class="w-100" id="des" name="des">{{$accomodation['card_des']}}</textarea>
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fw-bold">Accomodation image<br>
-                            <img id="image-preview-single" src="<?php echo asset('accomodation/' . $accomodation['img'])?>" alt="" class="w-300 mt-2">
+                            <img id="image-preview-single" src="<?php echo asset('accomodation/' . $accomodation['tourimg'])?>" alt="" class="w-300 mt-2">
                             </label>
-                            <input type="file" id="tour-img" name="img" class="d-none" onchange="updateImagePreview(this)">
+                            <input type="file" id="tour-img" name="tourimg" class="d-none" onchange="updateImagePreview(this)">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">

@@ -20,6 +20,8 @@ use App\Models\GalleryImageSite;
 use App\Models\site;
 use App\Models\SiteDay;
 use App\Models\shuttle;
+use App\Models\libertad;
+use App\Models\GalleryLibertad;
 
 use File;
 
@@ -939,7 +941,7 @@ class adminController extends Controller
         return view('admin.edit_accomodation',$data);
     }
     public function updateaccomodation(request $request){
-        if($request->file('img')==NULL){
+        if($request->file('tourimg')==NULL){
             $name =$request->name;
             $location =$request->location;
             $price =$request->price;
@@ -959,7 +961,7 @@ class adminController extends Controller
                 'des' => $des,
             ]);
         }else{
-            $photo = $request->file('img');
+            $photo = $request->file('tourimg');
             $photo_name =time()."-".$photo->getClientOriginalName();
             $photo_destination=public_path('accomodation');
             $photo->move($photo_destination,$photo_name);
@@ -980,7 +982,7 @@ class adminController extends Controller
                 'sight_seeing' => $sight_seeing,
                 'include' => $include,
                 'des' => $des,
-                'img'=>$photo_name
+                'tourimg'=>$photo_name
             ]);
         }
         return redirect('manage_accomodation')->with ('update','Accomodation updated Successfully');
@@ -1192,6 +1194,7 @@ class adminController extends Controller
         }
         return redirect('manage_contact')->with ('success','Contact information saved successfully');
     }
+
     public function manage_product_categories(){
         $data=categories::orderBy('id', 'desc')->get();
         return view('admin.manage_product_categories',['categories'=>$data]);
@@ -1323,4 +1326,65 @@ class adminController extends Controller
         }
         return redirect('manage_shuttle')->with ('update','Airport Shuttle updated Successfully');
     }
+
+    public function manage_why_libertad(){
+        $data['libertad'] = libertad::first();
+        if ($data['libertad']) {
+        $LbId = $data['libertad']->id;
+       
+        $data['galleryImages'] = GalleryLibertad::leftJoin('libertads', 'gallery_libertads.libertad_id', '=', 'libertads.id')
+        ->where('gallery_libertads.libertad_id', $LbId)
+        ->select('gallery_libertads.*')
+        ->get();
+        }
+        return view('admin.manage_why_libertad',$data);
+    }
+
+    public function save_libertad(request $request){
+        $record = libertad::find(1);
+        $request->validate([
+            'des' => 'required',
+        ]);
+        if ($record) {// Update existing record
+            $record->update([
+                'des' => $request->des,
+            ]);
+    
+            // Update or add images
+            $imagePaths = $request->file('images');
+            if ($imagePaths) {
+                foreach ($imagePaths as $image) {
+                    $originalName = time() . "-" . $image->getClientOriginalName();
+                    $imagePathDestination = public_path('uploads');
+                    $image->move($imagePathDestination, $originalName);
+    
+                    GalleryLibertad::updateOrCreate(
+                        ['libertad_id' => $record->id, 'image_path' => $originalName],
+                        ['libertad_id' => $record->id, 'image_path' => $originalName]
+                    );
+                }
+            } 
+        }
+        else {
+            $libertad = libertad::create([
+                'des' => $request->des,
+            ]);
+            // --------get latest store id------
+            $libertadId = $libertad->id;
+            $imagePaths = $request->file('images');
+            if ($imagePaths) {
+                foreach ($imagePaths as $image) {
+                    $originalName = time() . "-" . $image->getClientOriginalName();
+                    $imagePathDestination = public_path('uploads');
+                    $image->move($imagePathDestination, $originalName);
+                    GalleryLibertad::create([
+                        'libertad_id' => $libertad->id,
+                        'image_path' => $originalName,
+                    ]);
+                }
+            }
+        }
+        return redirect('/manage_why_libertad')->with('savectour', 'City tour added Successfully');
+    }
+    
 }
