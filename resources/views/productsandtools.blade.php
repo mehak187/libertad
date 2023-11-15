@@ -83,7 +83,7 @@
                                             <div class="row autoplay_2">
                                                 @foreach ($products as $product)
                                                     @if ($product->p_catg == $catagory->id)
-                                                        <div class="col mx-1">
+                                                        <div class="col mx-1 padimg ">
                                                             <img class="img-fluid w-100" src="<?php echo asset('uploads/' . $product['img']); ?>"
                                                                 alt="">
                                                             <div
