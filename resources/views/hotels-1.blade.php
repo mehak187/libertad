@@ -69,174 +69,180 @@
                 </div>
                 <div class="sidebar_content ms-md-4">
                     <div class="container-fluid">
-                        <div class="sidebar_tab_content first_slider  position-relative mt-md-0 mt-3">
-                            <div class="slider_popup pb-4 px-sm-3 px-2 pt-3">
-                                <div class="d-flex flex-wrap align-items-center gap-2 ">
-                                    <h5 class="my-auto" style="color: #E2BE4E;">Search Accommodation:</h5>
-                                    <div class="button_border rounded-pill ms-auto mt-3">
-                                        <button class="button_leniar_style px-4 rounded-pill fs-12"
-                                            data-bs-toggle="modal" data-bs-target="#propertylisting">List your
-                                            property</button>
+                        @if (isset($error))
+                            <div class="d-flex align-items-center mt-3 ">
+                                <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5 mb-0">No content to show</p>
+                            </div>
+                        @else
+                            <div class="sidebar_tab_content first_slider  position-relative mt-md-0 mt-3">
+                                <div class="slider_popup pb-4 px-sm-3 px-2 pt-3">
+                                    <div class="d-flex flex-wrap align-items-center gap-2 ">
+                                        <h5 class="my-auto" style="color: #E2BE4E;">Search Accommodation:</h5>
+                                        <div class="button_border rounded-pill ms-auto mt-3">
+                                            <button class="button_leniar_style px-4 rounded-pill fs-12"
+                                                data-bs-toggle="modal" data-bs-target="#propertylisting">List your
+                                                property</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="container-fluid">
-                                    <div class="d-flex align-items-end">
-                                        <div class="search-flex d-flex align-items-end flex-wrap">
-                                            <div class="input-flex d-flex align-items-center flex-wrap">
-                                                <div class="hotel-input">
-                                                    <label for="" class="fs-12 text-white">Select City</label>
-                                                    <select name="" id=""
-                                                        class="form-select bg_map1 text-white py-2">
-                                                        <option value="">Sialkot</option>
-                                                        <option value="">Lahore</option>
-                                                        <option value="">Gujrat</option>
-                                                    </select>
-                                                </div>
-                                                <div class="hotel-input">
-                                                    <label for="" class="fs-12 text-white">Check in Date</label>
-                                                    <input type="date" name=""
-                                                        class="form-control bg_map1 text-white py-2" id="">
-                                                </div>
-                                                <div class="hotel-input">
-                                                    <label for="" class="fs-12 text-white">Check out
-                                                        Date</label>
-                                                    <input type="date" name=""
-                                                        class="form-control bg_map1 text-white py-2" id="">
-                                                </div>
-                                            </div>
-                                            <div class="hotel-input2 d-flex flex-column">
-                                                <label for="" class="fs-12 text-white">No. of People</label>
-                                                <div class="d-flex flex-wrapm">
-                                                    <div style="width: 20%;" class="w1">
-                                                        <input type="number" value="1"
-                                                            class="form-control bg_map1 text-white py-2 right_border_r"
-                                                            name="" id="">
-                                                    </div>
-                                                    <div style="width: 40%;" class="w2">
+                                    <div class="container-fluid">
+                                        <div class="d-flex align-items-end">
+                                            <div class="search-flex d-flex align-items-end flex-wrap">
+                                                <div class="input-flex d-flex align-items-center flex-wrap">
+                                                    <div class="hotel-input">
+                                                        <label for="" class="fs-12 text-white">Select City</label>
                                                         <select name="" id=""
-                                                            class="form-select bg_map1 text-white py-2 rounded-0">
-                                                            <option value="">Adults</option>
-                                                            <option value="">Adults 1</option>
+                                                            class="form-select bg_map1 text-white py-2">
+                                                            <option value="">Sialkot</option>
+                                                            <option value="">Lahore</option>
+                                                            <option value="">Gujrat</option>
                                                         </select>
                                                     </div>
-                                                    <div style="width: 40%;" class="w3">
-                                                        <select name="" id=""
-                                                            class="form-select bg_map1 text-white py-2 left_border_r">
-                                                            <option value="">Children</option>
-                                                            <option value="">Children 1</option>
-                                                        </select>
+                                                    <div class="hotel-input">
+                                                        <label for="" class="fs-12 text-white">Check in Date</label>
+                                                        <input type="date" name=""
+                                                            class="form-control bg_map1 text-white py-2" id="">
+                                                    </div>
+                                                    <div class="hotel-input">
+                                                        <label for="" class="fs-12 text-white">Check out
+                                                            Date</label>
+                                                        <input type="date" name=""
+                                                            class="form-control bg_map1 text-white py-2" id="">
+                                                    </div>
+                                                </div>
+                                                <div class="hotel-input2 d-flex flex-column">
+                                                    <label for="" class="fs-12 text-white">No. of People</label>
+                                                    <div class="d-flex flex-wrapm">
+                                                        <div style="width: 20%;" class="w1">
+                                                            <input type="number" value="1"
+                                                                class="form-control bg_map1 text-white py-2 right_border_r"
+                                                                name="" id="">
+                                                        </div>
+                                                        <div style="width: 40%;" class="w2">
+                                                            <select name="" id=""
+                                                                class="form-select bg_map1 text-white py-2 rounded-0">
+                                                                <option value="">Adults</option>
+                                                                <option value="">Adults 1</option>
+                                                            </select>
+                                                        </div>
+                                                        <div style="width: 40%;" class="w3">
+                                                            <select name="" id=""
+                                                                class="form-select bg_map1 text-white py-2 left_border_r">
+                                                                <option value="">Children</option>
+                                                                <option value="">Children 1</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="myHotel d-flex align-items-end">
-                                            <div class="">
-                                                <button class="btn p-0" style="width: 2.5rem;">
-                                                    <img src="./imgs/review_button.png" class=""
-                                                        style="width: 2.6rem;" alt="">
-                                                </button>
+                                            <div class="myHotel d-flex align-items-end">
+                                                <div class="">
+                                                    <button class="btn p-0" style="width: 2.5rem;">
+                                                        <img src="./imgs/review_button.png" class=""
+                                                            style="width: 2.6rem;" alt="">
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="pt-2 mt-md-0 mt-3">
+                                    <p class="mb-3">
+                                        <span class=" travel_text text-uppercase">Recommended</span>
+                                        <span class="way_color text-uppercase">Accommodation</span>
+                                    </p>
+                                </div>
+                                @if (@isset($hotels1) && @isset($hotels2))
+                                    <div class="row me-3">
+                                        <div class="col-11">
+                                            <div class="autoplay mb-3 px-1">
+                                                @foreach ($hotels1 as $hotel1)
+                                                    <div class="slide mx-2">
+                                                        <a href="{{ 'accomodation_detail1/' . $hotel1['id'] }}"
+                                                            class="text-decoration-none text-dark">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $hotel1['tourimg']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <p class="mb-0 fs-12">{{ $hotel1['name'] }}</p>
+                                                                        <p class="mb-0 fs-12 text-white"># of rooms:
+                                                                            {{ $hotel1['rooms'] }}</p>
+                                                                    </div>
+                                                                    <p class="mb-0 fs-12">
+                                                                        <i class="bi bi-geo-alt-fill me-2"></i>
+                                                                        {{ $hotel1['location'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row me-3">
+                                        <div class="col-11">
+                                            <div class="autoplay mb-3 px-1">
+                                                @foreach ($hotels2 as $hotel2)
+                                                    <div class="slide mx-2">
+                                                        <a href="{{ 'accomodation_detail1/' . $hotel2['id'] }}"
+                                                            class="text-decoration-none text-dark">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $hotel2['tourimg']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <p class="mb-0 fs-12">{{ $hotel2['name'] }}</p>
+                                                                        <p class="mb-0 fs-12 text-white"># of rooms:
+                                                                            {{ $hotel2['rooms'] }}</p>
+                                                                    </div>
+                                                                    <p class="mb-0 fs-12">
+                                                                        <i class="bi bi-geo-alt-fill me-2"></i>
+                                                                        {{ $hotel2['location'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="row ">
+                                        <div class="col-xl-10 col-md-12 col-11">
+                                            <div class="autoplay_2 mb-3">
+                                                @foreach ($hotels as $hotel)
+                                                    <div class="slide mx-2">
+                                                        <a href="{{ 'accomodation_detail1/' . $hotel['id'] }}"
+                                                            class="text-decoration-none text-dark">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $hotel['tourimg']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <p class="mb-0 fs-12">{{ $hotel['name'] }}</p>
+                                                                        <p class="mb-0 fs-12 text-white"># of rooms:
+                                                                            {{ $hotel['rooms'] }}</p>
+                                                                    </div>
+                                                                    <p class="mb-0 fs-12">
+                                                                        <i class="bi bi-geo-alt-fill me-2"></i>
+                                                                        {{ $hotel['location'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
-                            <div class="pt-2 mt-md-0 mt-3">
-                                <p class="mb-0">
-                                    <span class=" travel_text text-uppercase">Recommended</span>
-                                    <span class="way_color text-uppercase">Accommodation</span>
-                                </p>
-                            </div>
-                            @if (@isset($hotels1) && @isset($hotels2))
-                                <div class="row me-3">
-                                    <div class="col-11">
-                                        <div class="autoplay mb-3 px-1">
-                                            @foreach ($hotels1 as $hotel1)
-                                                <div class="slide mx-2">
-                                                    <a href="{{ 'accomodation_detail1/' . $hotel1['id'] }}"
-                                                        class="text-decoration-none text-dark">
-                                                        <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('uploads/' . $hotel1['tourimg']); ?>" alt="Avatar"
-                                                                class="image1_2_duplicate rounded_top">
-                                                            <div class="card-body card_bottom"
-                                                                style="background-color: #E2BE4E;">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <p class="mb-0 fs-12">{{ $hotel1['name'] }}</p>
-                                                                    <p class="mb-0 fs-12 text-white"># of rooms:
-                                                                        {{ $hotel1['rooms'] }}</p>
-                                                                </div>
-                                                                <p class="mb-0 fs-12">
-                                                                    <i class="bi bi-geo-alt-fill me-2"></i>
-                                                                    {{ $hotel1['location'] }}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row me-3">
-                                    <div class="col-11">
-                                        <div class="autoplay mb-3 px-1">
-                                            @foreach ($hotels2 as $hotel2)
-                                                <div class="slide mx-2">
-                                                    <a href="{{ 'accomodation_detail1/' . $hotel2['id'] }}"
-                                                        class="text-decoration-none text-dark">
-                                                        <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('uploads/' . $hotel2['tourimg']); ?>" alt="Avatar"
-                                                                class="image1_2_duplicate rounded_top">
-                                                            <div class="card-body card_bottom"
-                                                                style="background-color: #E2BE4E;">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <p class="mb-0 fs-12">{{ $hotel2['name'] }}</p>
-                                                                    <p class="mb-0 fs-12 text-white"># of rooms:
-                                                                        {{ $hotel2['rooms'] }}</p>
-                                                                </div>
-                                                                <p class="mb-0 fs-12">
-                                                                    <i class="bi bi-geo-alt-fill me-2"></i>
-                                                                    {{ $hotel2['location'] }}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            @else
-                                <div class="row ">
-                                    <div class="col-xl-10 col-md-12 col-11">
-                                        <div class="autoplay_2 mb-3">
-                                            @foreach ($hotels as $hotel)
-                                                <div class="slide mx-2">
-                                                    <a href="{{ 'accomodation_detail1/' . $hotel['id'] }}"
-                                                        class="text-decoration-none text-dark">
-                                                        <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('uploads/' . $hotel['tourimg']); ?>" alt="Avatar"
-                                                                class="image1_2_duplicate rounded_top">
-                                                            <div class="card-body card_bottom"
-                                                                style="background-color: #E2BE4E;">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <p class="mb-0 fs-12">{{ $hotel['name'] }}</p>
-                                                                    <p class="mb-0 fs-12 text-white"># of rooms:
-                                                                        {{ $hotel['rooms'] }}</p>
-                                                                </div>
-                                                                <p class="mb-0 fs-12">
-                                                                    <i class="bi bi-geo-alt-fill me-2"></i>
-                                                                    {{ $hotel['location'] }}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
+                        @endif
                         <div>
                             @includeif('template.social_mbl')
                         </div>

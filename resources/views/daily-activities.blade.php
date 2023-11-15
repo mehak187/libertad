@@ -112,7 +112,7 @@
                             @else
                                 <div class="d-flex align-items-center mt-3 ">
                                     <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
-                                    <p class="text-danger fs-5">No record to show</p>
+                                    <p class="text-danger fs-5 mb-0">No record to show</p>
                                 </div>
                             @endif
                             @includeif('template.social_mbl')

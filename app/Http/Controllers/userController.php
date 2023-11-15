@@ -74,6 +74,9 @@ class userController extends Controller
     }
     public function hotels(){
         $data=accomodation::all();
+        if ($data->isEmpty()) {
+            return view('hotels-1')->with ('error','No record to show');
+        }
         if($data->count()>5){
             $upper=$data->take($data->count()/2);
             $lower=$data->skip($data->count()/2);
@@ -103,7 +106,10 @@ class userController extends Controller
     }
     public function accommodation(){
         $data=accomodation::all();
-        if($data->count()>5){
+        if ($data->isEmpty()) {
+            return view('hotels-1')->with ('error','No record to show');
+        }
+        elseif($data->count()>5){
             $upper=$data->take($data->count()/2);
             $lower=$data->skip($data->count()/2);
             return view('hotels-1',[
@@ -131,6 +137,9 @@ class userController extends Controller
     }
     public function tour1(){
         $data=city::all();
+        if ($data->isEmpty()) {
+            return view('tours-1')->with ('error','No record to show');
+        }
         if($data->count()>5){
             $upper=$data->take($data->count()/2);
             $lower=$data->skip($data->count()/2);
