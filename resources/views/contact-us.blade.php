@@ -103,6 +103,11 @@
                 </div>
             </div>
             @else
+            <div class="mt-md-0 mt-3">
+                <p class="content_1_heading mb-0">
+                    <span class=" travel_text">Contact</span>
+                </p>
+            </div>
             <div class="d-flex align-items-center mt-3 mx-3">
                 <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5 mb-0">No content to show</p>
             </div>
