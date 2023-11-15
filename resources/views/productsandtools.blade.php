@@ -75,7 +75,7 @@
                         <div class="container-fluid">
                             <div>
                                 <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Products and </span>Tools
-                                </h2>
+                                </h2> 
                             @if (count($products) > 0)
                                 @foreach ($catagories as $catagory)
                                     <div class="px-3">
