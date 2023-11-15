@@ -65,7 +65,6 @@
                         </div>
                     </div>
                     <div>
-                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>
