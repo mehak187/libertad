@@ -64,17 +64,6 @@
                         </div>
                     </div>
                     <div>
-                        <div class="d-md-block d-none">
-                            <u style="color: #E4C14F;">Leave your Review</u>
-                            <div class="d-flex gap-2">
-                                <textarea class="rounded-3 bg_review border-0 px-3" name="" id="" cols="25" rows="3"
-                                    placeholder="Please leave your Review"></textarea>
-                                <button class="p-0 mt-auto btn_submit_rivew">
-                                    <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
-                                        alt="">
-                                </button>
-                            </div>
-                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>
@@ -91,7 +80,7 @@
                             @if (count($activities) > 0)
                                 <div class="row pt-2">
                                     @foreach ($activities as $activity)
-                                        <div class="col-lg-4 col-md-6 col-sm-4 col-6 mt-3">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mt-3">
                                             <a href="{{ 'daily_activities_det/' . $activity['id'] }}"
                                                 class="container1_2_3">
                                                 <div class=""><img src="<?php echo asset('uploads/' . $activity['img']); ?>" alt="Avatar"
@@ -105,7 +94,7 @@
                                                     </div>
                                                     <p class="text3 mt-3">{{ $activity['des'] }}</p>
                                                 </div>
-                                            </a>
+                                                </a>
                                         </div>
                                     @endforeach
                                 </div>

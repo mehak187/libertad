@@ -74,7 +74,7 @@
                                         <div class="col-12 mx-2">
                                             <a href="/{{ 'musuem_det/' . $musuem['id'] }}"
                                                 class="text-dark text-decoration-none">
-                                                <div>
+                                                <div class="ct-img">>
                                                     <img src="<?php echo asset('uploads/' . $musuem['img']); ?>" alt="" class="minor-img">
                                                 </div>
                                                 <div class="golden-bg p-2 round-site px-2 py-3">
@@ -108,7 +108,7 @@
                                         <div class="col-12 mx-2">
                                             <a href="/{{ 'sitesandmonoments/' . $site['id'] }}"
                                                 class="text-decoration-none text-dark">
-                                                <div>
+                                                <div class="ct-img">>
                                                     <img src="<?php echo asset('uploads/' . $site['img']); ?>" alt="" class="minor-img">
                                                 </div>
                                                 <div class="sky-bg p-2 round-site px-2 py-3">

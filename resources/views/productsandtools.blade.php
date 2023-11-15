@@ -65,16 +65,6 @@
                         </div>
                     </div>
                     <div>
-                        <div class="d-md-block d-none">
-                            <u style="color: #E4C14F;">Leave your Review</u>
-                            <div class="d-flex gap-2">
-                                <textarea class="rounded-3 bg_review border-0 px-3" name="" id="" cols="25" rows="3"
-                                    placeholder="Please leave your Review"></textarea>
-                                <button class="p-0 mt-auto btn_submit_rivew">
-                                    <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
-                                        alt="">
-                                </button>
-                            </div>
                         </div>
                         @includeif('template.social_desktop')
                     </div>
