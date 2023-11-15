@@ -28,6 +28,9 @@ class userController extends Controller
 
     public function airport(){
         $data=shuttle::all();
+        if ($data->isEmpty()) {
+            return view('airport-shuttle')->with ('error','No record to show');
+        }
         if($data->count()>5){
             $upper=$data->take($data->count()/2);
             $lower=$data->skip($data->count()/2);
