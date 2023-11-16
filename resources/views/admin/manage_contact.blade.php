@@ -15,14 +15,7 @@
     <section class="main-tem">
         @include('admin.templates.sidebar-template')
         <div class="right-content p-0" style="background: #FAFBFE;">
-            <div class="top-nav d-flex justify-content-between align-items-center px-3 position-relative">
-                <img class="position-absolute togg-btn" src="{{ asset('imgs/white-ham.png') }}" alt=""
-                    style="left: 15px;">
-                <div class="search-box d-flex align-items-center">
-                    <h1>Contact information</h1>
-                </div>
-                <img src="{{ asset('imgs/profile.png') }}" alt="">
-            </div>
+            @include('admin.templates.adminheader')
             <div class="px-4 py-4 m-content px-lg-5">
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Manage Contact Information</h4>
                 <form action="contact_save" method="post" class="mt-2">
