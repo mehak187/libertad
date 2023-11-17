@@ -77,7 +77,7 @@
                         </div>
                         @includeif('template.social_desktop')
                     </div>
-                </div>
+                </div>   
                 <div class="sidebar_content ms-md-4">
                     <!-- main page content start -->
                     <div class="sidebar_tab_content is-active">

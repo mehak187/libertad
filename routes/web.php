@@ -14,38 +14,41 @@ use App\http\Controllers\adminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::controller(userController::class)->group(function(){
-    Route::get('airport','airport');
-    Route::get('book','book');
-    Route::get('cart','cart');
-    Route::get('contact','contact');
-    Route::get('dailyactivites','dailyactivites');
-    Route::get('daily_activities_det/{id}','daily_activities_det');
-    Route::get('home','home');
-    Route::get('hotels','hotels');
-    Route::get('/','index');
-    Route::get('museum1','museum1');
-    Route::get('notification','notification');
-    Route::get('pakage','pakage');
-    Route::get('pakages','pakages');
-    Route::get('productsandtools','productsandtools');
-    Route::get('accommodation',  'accommodation');
-    Route::get('sites','sites');
-    Route::get('sitesandmonoments/{id}','sitesandmonoments');
-    Route::get('testimonial','testimonial');
-    Route::get('tourdetail/{id}','tourdetail');
-    Route::get('tour1','tour1');
-    Route::get('tours','tours');
-    Route::get('travelyourway','travelyourway');
-    Route::get('travelyourway2','travelyourway2');
-    Route::get('vehicle','vehicle');
-    Route::get('accomodation_detail1/{id}','accomodation_detail1');
-    Route::get('cities_detail/{id}','cities_detail');
-    Route::get('city_tour_det/{id}','city_tour_det');
-    Route::get('musuem_det/{id}','musuem_det');
-    Route::get('social','social');
-    Route::get('libertad','libertad');
-});
+// Route::group(['middleware' => ['UserMiddleware']], function () {
+    Route::controller(userController::class)->group(function(){
+        Route::get('airport','airport');
+        Route::get('book','book');
+        Route::get('cart','cart');
+        Route::get('contact','contact');
+        Route::get('dailyactivites','dailyactivites');
+        Route::get('daily_activities_det/{id}','daily_activities_det');
+        Route::get('home','home');
+        Route::get('hotels','hotels');
+        Route::get('/','index');
+        Route::get('museum1','museum1');
+        Route::get('notification','notification');
+        Route::get('pakage','pakage');
+        Route::get('pakages','pakages');
+        Route::get('productsandtools','productsandtools');
+        Route::get('accommodation',  'accommodation');
+        Route::get('sites','sites');
+        Route::get('sitesandmonoments/{id}','sitesandmonoments');
+        Route::get('testimonial','testimonial');
+        Route::get('tourdetail/{id}','tourdetail');
+        Route::get('tour1','tour1');
+        Route::get('tours','tours');
+        Route::get('travelyourway','travelyourway');
+        Route::get('travelyourway2','travelyourway2');
+        Route::get('vehicle','vehicle');
+        Route::get('accomodation_detail1/{id}','accomodation_detail1');
+        Route::get('cities_detail/{id}','cities_detail');
+        Route::get('city_tour_det/{id}','city_tour_det');
+        Route::get('musuem_det/{id}','musuem_det');
+        Route::get('social','social');
+        Route::get('libertad','libertad');
+    });
+// });
+
 Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::controller(adminController::class)->group(function(){
         Route::get('adminhome','adminhome');
