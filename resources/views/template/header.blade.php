@@ -4,33 +4,67 @@
         <div class="container-fluid px-md-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-1 d-md-none d-block ">
+                    @if (auth()->check())
+                        <div class="my-auto d-md-none d-block position-relative">
+                                <a class="text-white text-decoration-none ms-2" style="background-color: transparent; border-style: none;" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+            
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    @else
                     <div class="my-auto d-md-none d-block position-relative">
                         <div class="dropdown">
                             <button type="button" class="way_color" id="login-mbl"
                                 style="background-color: transparent; border-style: none;">LOGIN</button>
                             <div class="dropdown-menu px-3 pt-4 pb-2 sign_in_dropdown parent-class"
                                 id="login-mbl-show">
-                                <form action="">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="d-flex justify-content-between">
                                         <h5 class="mb-3" style="color: #B38029;">Login NOW</h5>
                                         <a class="cursor" id="close-login-mbl">
-                                            <i class=" fa-solid fa-xmark cursor" id="x-mark-m"
+                                            <i class=" fa-solid fa-xmark cursor"
                                                 style="color: #000;"></i>
                                         </a>
                                     </div>
                                     <div>
-                                        <input type="email" class="form-control mb-2" placeholder="Email">
+                                        <input type="email" class="mb-2 form-control @error('email') is-invalid @enderror"
+                                            placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
                                     <div>
-                                        <input type="password" class="form-control mb-4" placeholder="password">
+                                        <input type="password" class="form-control mb-4 @error('password') is-invalid @enderror"
+                                            placeholder="password" name="password" required autocomplete="current-password">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    
+                                        <label class="form-check-label" for="remember">
+                                            {{ __('Remember Me') }}
+                                        </label>
                                     </div>
                                     <div>
-                                        <input type="button" class="form-control input sign_in_button mb-2"
-                                            value="Sign In">
+                                        <button type="submit" name="ss" class="form-control input sign_in_button mb-2">
+                                            {{ __('Login') }}
+                                        </button>
                                     </div>
                                     <div>
-                                        <p class="mb-0 text-end fs-14 text-white cursor" id="reset-mbl">Forget
-                                            password</p>
+                                        <p class="mb-0 text-end fs-14 text-white" id="reset-mbl"
+                                            style="cursor: pointer;">Forget password</p>
                                     </div>
                                 </form>
                             </div>
@@ -90,40 +124,77 @@
                             <button type="button" class="text-white " id="register-mbl"
                                 style="background-color: transparent; border-style: none;">REGISTER</button>
                             <div class="dropdown-menu px-3 pt-4 pb-2 sign_in_dropdown px-4 " id="register-mbl-show">
-                                <form action="">
+                                <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <input type="number" class="form-control mb-2 d-none"
+                                        name="role" value="1" readonly>
                                     <div class="d-flex justify-content-between">
                                         <h5 class="mb-3" style="color: #B38029;">Register NOW</h5>
-                                        <a id="close-register-mbl">
-                                            <i class=" fa-solid fa-xmark cursor" style="color: #000;"></i>
+                                        <a class="cursor" id="close-register-mbl">
+                                            <i class=" fa-solid fa-xmark cursor"
+                                                style="color: #000;"></i>
                                         </a>
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control mb-2" placeholder="First name">
+                                        <input type="text" class="form-control mb-2 @error('name') is-invalid @enderror"
+                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="First name">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div>
-                                        <input type="text" class="form-control mb-2" placeholder="Last name">
+                                        <input type="text" class="form-control mb-2 @error('lastname') is-invalid @enderror"
+                                            placeholder="Last name" name="lastname" value="{{ old('lastname') }}">
+                                            @error('lastname')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
                                     <div>
-                                        <input type="tel" class="form-control mb-2" placeholder="Phone">
+                                        <input type="tel" class="form-control mb-2 @error('phone') is-invalid @enderror"
+                                            placeholder="Phone" name="phone" value="{{ old('phone') }}">
+                                            @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
                                     <div>
-                                        <input type="email" class="form-control mb-2" placeholder="Email">
+                                        <input type="email" class="form-control mb-2 @error('email') is-invalid @enderror"
+                                            placeholder="Email"  name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
+                                        
                                     <div>
-                                        <input type="password" class="form-control mb-2" placeholder="password">
+                                        <input type="password" class="form-control mb-2 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"
+                                            placeholder="password">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div>
                                         <input type="password" class="form-control mb-2"
-                                            placeholder="Confirm password">
+                                            placeholder="Confirm password" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                     <div>
-                                        <input type="button" class="form-control input sign_in_button mb-2"
-                                            value="Register">
+                                                <button type="submit" class="input w-100 border-0 py-2 form-control sign_in_button mb-2">
+                                                    {{ __('Register') }}
+                                                </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <div class="d-md-none d-block">
@@ -185,14 +256,28 @@
                             </div>
                             <div>
                                 <ul class="nav_ul_style mb-0 position-relative">
+                                @if (auth()->check())
                                     <li class="my-auto d-md-block d-none">
+                                        <a class="text-white text-decoration-none ms-2" style="background-color: transparent; border-style: none;" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                       
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </li>
+                                @else
+                                   <li class="my-auto d-md-block d-none">
                                         <div class="dropdown">
                                             <button type="button" class="way_color"
                                                 style="background-color: transparent; border-style: none;"
                                                 id="login-desktop">LOGIN</button>
                                             <div class="dropdown-menu px-3 pt-4 pb-2 sign_in_dropdown parent"
                                                 id="login-desktop-show">
-                                                <form action="">
+                                                <form method="POST" action="{{ route('login') }}">
+                                                    @csrf
                                                     <div class="d-flex justify-content-between">
                                                         <h5 class="mb-3" style="color: #B38029;">Login NOW</h5>
                                                         <a class="cursor" id="close-login">
@@ -201,21 +286,44 @@
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <input type="email" class="form-control mb-2"
-                                                            placeholder="Email">
+                                                        <input type="email" class="mb-2 form-control @error('email') is-invalid @enderror"
+                                                            placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                            @error('email')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                     </div>
                                                     <div>
-                                                        <input type="password" class="form-control mb-4"
-                                                            placeholder="password">
+                                                        <input type="password" class="form-control mb-4 @error('password') is-invalid @enderror"
+                                                            placeholder="password" name="password" required autocomplete="current-password">
+                                                            @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    
+                                                        <label class="form-check-label" for="remember">
+                                                            {{ __('Remember Me') }}
+                                                        </label>
                                                     </div>
                                                     <div>
-                                                        <input type="button"
-                                                            class="form-control input sign_in_button mb-2"
-                                                            value="Sign In">
+                                                        <button type="submit" class="form-control input sign_in_button mb-2">
+                                                            {{ __('Login') }}
+                                                        </button>
+                                                       
                                                     </div>
                                                     <div>
                                                         <p class="mb-0 text-end fs-14 text-white" id="reset-desktop"
                                                             style="cursor: pointer;">Forget password</p>
+                                                            @if (Route::has('password.request'))
+                                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                                    {{ __('Forgot Your Password?') }}
+                                                                </a>
+                                                            @endif
                                                     </div>
                                                 </form>
                                             </div>
@@ -281,7 +389,10 @@
                                                 style="background-color: transparent; border-style: none;">REGISTER</button>
                                             <div class="dropdown-menu px-3 pt-4 pb-2 sign_in_dropdown px-4"
                                                 id="register-desktop-show">
-                                                <form action="">
+                                                <form method="POST" action="{{ route('register') }}">
+                                                    @csrf
+                                                    <input type="number" class="form-control mb-2 d-none"
+                                                        name="role" value="1" readonly>
                                                     <div class="d-flex justify-content-between">
                                                         <h5 class="mb-3" style="color: #B38029;">Register NOW</h5>
                                                         <a class="cursor" id="close-register">
@@ -290,38 +401,65 @@
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <input type="text" class="form-control mb-2"
-                                                            placeholder="First name">
+                                                        <input type="text" class="form-control mb-2 @error('name') is-invalid @enderror"
+                                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="First name">
+                                                        @error('name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                     <div>
-                                                        <input type="text" class="form-control mb-2"
-                                                            placeholder="Last name">
+                                                        <input type="text" class="form-control mb-2 @error('lastname') is-invalid @enderror"
+                                                            placeholder="Last name" name="lastname" value="{{ old('lastname') }}">
+                                                            @error('lastname')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                     </div>
                                                     <div>
-                                                        <input type="tel" class="form-control mb-2"
-                                                            placeholder="Phone">
+                                                        <input type="tel" class="form-control mb-2 @error('phone') is-invalid @enderror"
+                                                            placeholder="Phone" name="phone" value="{{ old('phone') }}">
+                                                            @error('phone')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                     </div>
                                                     <div>
-                                                        <input type="email" class="form-control mb-2"
-                                                            placeholder="Email">
+                                                        <input type="email" class="form-control mb-2 @error('email') is-invalid @enderror"
+                                                            placeholder="Email"  name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                            @error('email')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                     </div>
+                                                        
                                                     <div>
-                                                        <input type="password" class="form-control mb-2"
+                                                        <input type="password" class="form-control mb-2 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"
                                                             placeholder="password">
+                                                            @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                     <div>
                                                         <input type="password" class="form-control mb-2"
-                                                            placeholder="Confirm password">
+                                                            placeholder="Confirm password" name="password_confirmation" required autocomplete="new-password">
                                                     </div>
                                                     <div>
-                                                        <input type="button"
-                                                            class="form-control input sign_in_button mb-2"
-                                                            value="Register">
+                                                                <button type="submit" class="input w-100 border-0 py-2 form-control sign_in_button mb-2">
+                                                                    {{ __('Register') }}
+                                                                </button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </li>
+                                @endif
                                     <li class="my-auto  way_color d-md-block d-none">
                                         <a href="{{asset('cart')}}">
                                             <i class="fa-sharp fa-solid fa-cart-shopping"></i>

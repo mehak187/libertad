@@ -21,12 +21,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    // public function index()
+    // {
+    //     // return view('home');
+    //     if(auth()->user()){
+    //         // ---route-name----
+    //         return view('admin.index');
+    //     }
+    // }
     public function index()
     {
-        // return view('home');
-        if(auth()->user()){
-            // ---route-name----
-            return view('admin.index');
+        if(auth()->check()) {
+            $role = auth()->user()->role;
+
+            if($role == 0) {
+                return redirect('adminhome');
+            } else {
+                return redirect('/');
+            }
         }
+        return redirect()->route('/');
     }
 }
