@@ -46,6 +46,7 @@ use App\http\Controllers\adminController;
         Route::get('musuem_det/{id}','musuem_det');
         Route::get('social','social');
         Route::get('libertad','libertad');
+        Route::post('save_trip','save_trip');
     });
 // });
 
