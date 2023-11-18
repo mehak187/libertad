@@ -21,6 +21,8 @@ use App\Models\SiteDay;
 use App\Models\shuttle;
 use App\Models\libertad;
 use App\Models\GalleryLibertad;
+use App\Models\indexreview;
+
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -92,6 +94,16 @@ class userController extends Controller
     }
     public function index(){
         return view('index');
+    }
+    public function savereview(request $request){
+        $name=auth()->user()->name;
+        $request->validate([
+            '*'=>'required',
+            ]);
+            $data = $request->all();
+            $data['name'] = $name;
+            indexreview::create($data);
+            return redirect('/')->with ('success','Review sent Successfully');
     }
     public function museum1(){
         return view('museum1');
