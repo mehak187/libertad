@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(isset(auth()->user()->email) && auth()->user()->email == "admin@gmail.com"){
+        if(isset(auth()->user()->role) && auth()->user()->role == 0){
             return $next($request);
         }
         return redirect('/')->with('loginerror',"Access Denied! You don't have permission to access this panel.");

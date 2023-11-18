@@ -235,70 +235,100 @@
                                                 </button>
                                             </div>
                                             <div class="p-3 dropdown_bg_color max-w" id="content">
-                                                <form action="">
-                                                    <div>
-                                                        <label for="" class="fs-12 dropdown_label_color">What
-                                                            are the
-                                                            cities do you want to visit?</label>
-                                                        <select name="city" id="city"
-                                                            class=" mb-1 text-white py-1" multiple>
-                                                            <option value="Cairo">Cairo</option>
-                                                            <option value="Alexandria">Alexandria</option>
-                                                            <option value="Luxor">Luxor</option>
-                                                            <option value="Aswan">Aswan</option>
-                                                            <option value="Hurghada">Hurghada</option>
-                                                            <option value="Sharm El sheikh">Sharm El sheikh</option>
-                                                            <option value="Baharyeh">Baharyeh</option>
-                                                            <option value="Fayoum">Fayoum</option>
-                                                            <option value="Giza">Giza</option>
-                                                            <option value="El Gouna">El Gouna</option>
-                                                            <option value="Marsa Alam">Marsa Alam</option>
-                                                            <option value="Al Alamein">Al Alamein</option>
-                                                            <option value="Sinai">Sinai</option>
-                                                        </select>
-                                                    </div>
-                                                    <div>
-                                                        <label for=""
-                                                            class="mb-1 fs-12 dropdown_label_color">How many
-                                                            Person would join the trip?</label>
-                                                        <input type="number"
-                                                            class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
-                                                    </div>
-                                                    <div>
-                                                        <label for=""
-                                                            class="mb-1 fs-12 dropdown_label_color">How many
-                                                            days do you want to spend in Egypt?</label>
-                                                        <input type="number"
-                                                            class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
-                                                    </div>
-                                                    <div>
-                                                        <label for="" class="fs-12 dropdown_label_color">What
-                                                            transportation do you prefer between cities?</label>
-                                                        <p class="mb-0 font-12 text-white">Note: Flight tickets are not
-                                                            included in the price</p>
-                                                        <select name="transport-whecle" id="transport-whecle"
-                                                            class=" mb-1 text-white py-1" multiple>
-                                                            <option value="Car">Car</option>
-                                                            <option value="Train">Train</option>
-                                                            <option value="Airplane">Airplane</option>
-                                                        </select>
-                                                    </div>
-                                                    <div>
-                                                        <label for=""
-                                                            class="mb-1 fs-12 dropdown_label_color">Trip Start
-                                                            Date</label>
-                                                        <input type="date"
-                                                            class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
-                                                    </div>
-                                                    <div class="button_border rounded-4 rounded-pill mt-3">
-                                                        <a href="{{ asset('travelyourway2') }}"><button type="button"
-                                                                class="button_leniar_style py-1 px-4 rounded-pill fs-12 text-decoration-none text-dark">
-                                                                Plan the Trip
-                                                                <img src="./imgs/button_errow.png"
-                                                                    style="width: 30px;" class="ps-2"
-                                                                    alt="">
-                                                            </button></a>
-                                                    </div>
+                                                <form action="save_trip" method="POST" enctype="multipart/form-data" >
+                                                    @csrf
+                                                    @if(auth()->user())
+                                                        @if (count($cities) > 0)
+                                                            <div>
+                                                                <label for="" class="fs-12 dropdown_label_color">What
+                                                                    are the
+                                                                    cities do you want to visit?</label>
+                                                                <select id="city"
+                                                                    class=" mb-1 text-white py-1" name="cities" multiple>
+                                                                    @foreach ($cities as $city)
+                                                                        <option value="{{$city['Cityname']}}">{{$city['Cityname']}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('cities')
+                                                                <span class="error text-danger">
+                                                                    {{$message}}
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div>
+                                                                <label for=""
+                                                                    class="mb-1 fs-12 dropdown_label_color">How many
+                                                                    Person would join the trip?</label>
+                                                                <input type="number"
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="persons">
+                                                                    @error('persons')
+                                                                    <span class="error text-danger">
+                                                                        {{$message}}
+                                                                    </span>
+                                                                    @enderror
+                                                            </div>
+                                                            <div>
+                                                                <label for=""
+                                                                    class="mb-1 fs-12 dropdown_label_color">How many
+                                                                    days do you want to spend in Egypt?</label>
+                                                                <input type="number"
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="days">
+                                                                    @error('days')
+                                                                    <span class="error text-danger">
+                                                                        {{$message}}
+                                                                    </span>
+                                                                    @enderror
+                                                            </div>
+                                                            <div>
+                                                                <label for="" class="fs-12 dropdown_label_color">What
+                                                                    transportation do you prefer between cities?</label>
+                                                                <p class="mb-0 font-12 text-white">Note: Flight tickets are not
+                                                                    included in the price</p>
+                                                                <select name="transportation" id="transport-whecle"
+                                                                    class=" mb-1 text-white py-1" multiple>
+                                                                    <option value="Car">Car</option>
+                                                                    <option value="Train">Train</option>
+                                                                    <option value="Airplane">Airplane</option>
+                                                                </select>
+                                                                @error('transportation')
+                                                                <span class="error text-danger">
+                                                                    {{$message}}
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div>
+                                                                <label for=""
+                                                                    class="mb-1 fs-12 dropdown_label_color">Trip Start
+                                                                    Date</label>
+                                                                <input name="date" type="date"
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
+                                                                    @error('date')
+                                                                    <span class="error text-danger">
+                                                                        {{$message}}
+                                                                    </span>
+                                                                    @enderror
+                                                            </div>
+                                                            <div class="button_border rounded-4 rounded-pill mt-3">
+                                                                <button type="submit"
+                                                                        class="button_leniar_style py-1 px-4 rounded-pill fs-12 text-decoration-none text-dark">
+                                                                        Plan the Trip
+                                                                        <img src="./imgs/button_errow.png"
+                                                                            style="width: 30px;" class="ps-2"
+                                                                            alt="">
+                                                                    </button>
+                                                            </div>
+                                                        @else
+                                                            <div class="d-flex align-items-center">
+                                                               <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                                                                <p class="text-danger fs-5 mb-0">No city exist</p>
+                                                            </div>
+                                                        @endif
+                                                    @else
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                                                            <p class="text-danger fs-6 mb-0">In order to plan a trip you need to login first</p>
+                                                        </div>
+                                                    @endif
                                                 </form>
                                             </div>
                                         </div>

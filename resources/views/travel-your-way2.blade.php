@@ -56,58 +56,25 @@
                             <div>
                                 <h6 class="fw-bold golden-clr fs-5">Tour trail</h6>
                                 <div class="d-flex align-items-center position-city-p">
-                                    <p class="text-white">Cairo</p>
-                                    <p class="text-white">Alexandria</p>
-                                    <p class="text-white">Sharm Al Sheik</p>
+                                    <p class="text-white">{{ session('trip')->city }}</p>
                                 </div>
                                 <h6 class="fw-bold golden-clr fs-5">Tours Information</h6>
                                 <div>
-                                    <h6 class="golden-clr">Start Date</h6>
-                                    <p class="text-white">12/03/2023</p>
-                                </div>
-                                <div>
-                                    <h6 class="golden-clr">End Date</h6>
-                                    <p class="text-white">24/03/2023</p>
+                                    <h6 class="golden-clr">Date</h6>
+                                    <p class="text-white">{{ session('trip')->date }}</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">Tour Duration</h6>
-                                    <p class="text-white">5 days / 4 nights</p>
+                                    <p class="text-white">{{ session('trip')->days }}</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">No. of Travellers</h6>
-                                    <p class="text-white">12</p>
+                                    <p class="text-white">{{ session('trip')->persons }}</p>
                                 </div>
-                                <div>
-                                    <h6 class="golden-clr">No. of days in each city</h6>
-                                    <p class="text-white">Cairo 2days/1night </p>
-                                </div>
+
                                 <div>
                                     <h6 class="golden-clr">Transportation between cities</h6>
-                                    <p class="text-white">Cairo to Alexandria by car, Alexandria to Sharm by car</p>
-                                </div>
-                                <h6 class="golden-clr">Tours included</h6>
-                                <div>
-                                    <ul class="text-white">
-                                        <li>Airport pickup and drop-off.</li>
-                                        <li>5 Star hotel accommodation.</li>
-                                        <li>Enterance fees to all the mentioned sites.</li>
-                                        <li>Professional Egyptologist Multi Lingual tour guide.</li>
-                                        <li class="d-flex align-items-center gap-3 flex-wrap">
-                                            <p>Meals:</p>
-                                            <p>Breakfast</p>
-                                            <p>Lunch</p>
-                                            <p>Dinner</p>
-                                        </li>
-                                        <li>Domestic flight ticket</li>
-                                        <li>Mineral water on board the vehicle during the tours.</li>
-                                        <li>Private vehicles, Modern, Air conditioned.</li>
-                                    </ul>
-                                </div>
-                                <div class="d-flex align-items-start">
-                                    <input type="checkbox" class="mt-1 me-2">
-                                    <label for="" class="text text-white">Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Sed animi obcaecati neque quos error aliquid, nulla dolore vel
-                                        harum perferendis illo pariatur commodi laboriosam.</label>
+                                    <p class="text-white">{{ session('trip')->transportation }}</p>
                                 </div>
                             </div>
                         </div>
