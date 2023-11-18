@@ -902,7 +902,12 @@ ul.accordion-list li .acc-head .acc-icon {
     background: var(--blue-dark);
     color: #fff
 }
-
+.reset-cr {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    z-index: 2;
+}
 /* ===========================================
 |             Media Queries                  |
 ============================================ */

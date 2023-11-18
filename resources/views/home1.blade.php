@@ -22,7 +22,7 @@
                             <div class="sidebar_tab gap-3 home">
                                 <span class="step_circle active">01.</span>
                                 <span class="step_label">
-                                    <a href="{{ asset('home') }}" class="mb-0 fs-6 active">Home</a>
+                                    <a href="home-libertad" class="mb-0 fs-6 active">Home</a>
                                 </span>
                             </div>
                             <div class="sidebar_tab gap-3 tour-1">

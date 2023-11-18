@@ -286,7 +286,7 @@
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <input type="email" class="mb-2 form-control @error('email') is-invalid @enderror"
+                                                        <input type="email" class="mb-2 form-control bg-white @error('email') is-invalid @enderror"
                                                             placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                                             @error('email')
                                                                 <span class="invalid-feedback" role="alert">
@@ -295,7 +295,7 @@
                                                             @enderror
                                                     </div>
                                                     <div>
-                                                        <input type="password" class="form-control mb-4 @error('password') is-invalid @enderror"
+                                                        <input type="password" class="form-control bg-white mb-4 @error('password') is-invalid @enderror"
                                                             placeholder="password" name="password" required autocomplete="current-password">
                                                             @error('password')
                                                             <span class="invalid-feedback" role="alert">
@@ -317,12 +317,13 @@
                                                        
                                                     </div>
                                                     <div>
-                                                        <p class="mb-0 text-end fs-14 text-white" id="reset-desktop"
-                                                            style="cursor: pointer;">Forget password</p>
+                                                      
                                                             @if (Route::has('password.request'))
-                                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                                {{-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                                                     {{ __('Forgot Your Password?') }}
-                                                                </a>
+                                                                </a> --}}
+                                                                <p class="mb-0 text-end fs-14 text-white" id="reset-desktop"
+                                                                style="cursor: pointer;">Forget password</p>
                                                             @endif
                                                     </div>
                                                 </form>
@@ -331,7 +332,8 @@
                                     </li>
                                     <div class="new-div position-forget position-forgetn sign_in_dropdown2"
                                         id="reset-desktop-show">
-                                        <form action="">
+                                        <form method="POST" action="{{ route('password.email') }}">
+                                            @csrf
                                             <div class="row px-3 pt-4 pb-2">
                                                 <div class="d-flex justify-content-between">
                                                     <h4 class="brown-clr">Reset Password</h4>
@@ -341,14 +343,24 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div>
-                                                        <input type="email" class="form-control shadow-none"
+                                                        <input type="email" class="form-control shadow-none @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
                                                             placeholder="Email">
+                                                            @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                     <div class="mt-3">
-                                                        <input type="button"
+                                                        <button type="submit" class="form-control input sign_in_button mb-2"
+                                                        value="Reset" onclick="resetForm()"
+                                                        data-bs-toggle="modal" data-bs-target="#myModal3">
+                                                            {{ __('Send Password Reset Link') }}
+                                                        </button>
+                                                        {{-- <input type="button"
                                                             class="form-control input sign_in_button mb-2"
                                                             value="Reset" onclick="resetForm()"
-                                                            data-bs-toggle="modal" data-bs-target="#myModal3">
+                                                            data-bs-toggle="modal" data-bs-target="#myModal3"> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -356,7 +368,7 @@
                                     </div>
                                     <div class="new-div2 position-forget2 sign_in_dropdown2 sign_in_dropdown2h"
                                         id="reset-desktop-show2">
-                                        <form action="">
+                                        {{-- <form action="">
                                             <div class="row px-3 pt-4 pb-2">
                                                 <div class="d-flex justify-content-between">
                                                     <h4 class="brown-clr">Reset Password</h4>
@@ -381,7 +393,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                     <li class="my-auto d-md-block d-none">
                                         <div class="dropdown my-drop">
@@ -534,7 +546,9 @@
         </div>
     </div>
 </div>
-<div class="modal" id="myModal3">
+<div class="modal" 
+id="myModal3"
+>
     <div class="modal-dialog">
         <div class="modal-content px-2 light-bground">
             <div class="py-3 border_golden">
