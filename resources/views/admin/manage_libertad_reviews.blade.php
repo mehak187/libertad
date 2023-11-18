@@ -17,7 +17,6 @@
         <div class="right-content p-0" style="background: #FAFBFE;">
           @include('admin.templates.adminheader')
             <div class="px-4 py-4 m-content px-lg-5">
-
                 <div class="tbl-main mt-3 table-responsive">
                     <table class="table">
                         <thead>
@@ -40,6 +39,7 @@
                         </tbody>
                       </table>
                 </div>
+
             </div>
         </div>
     </section>
