@@ -47,6 +47,7 @@ use App\http\Controllers\adminController;
         Route::get('social','social');
         Route::get('libertad','libertad');
         Route::post('savereview','savereview');
+        Route::post('save_trip','save_trip');
     });
 // });
 

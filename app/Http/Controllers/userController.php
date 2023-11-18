@@ -22,7 +22,7 @@ use App\Models\shuttle;
 use App\Models\libertad;
 use App\Models\GalleryLibertad;
 use App\Models\indexreview;
-
+use App\Models\trip;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -73,7 +73,17 @@ class userController extends Controller
     public function home(){
         $data = specialtours::all();
         $data2 = city::orderBy('id', 'desc')->get();
-        return view('home1',['stours'=>$data]);
+        return view('home1',['stours'=>$data,'cities'=>$data2]);
+    }
+    public function save_trip(request $request){
+        $request->validate([
+        '*'=>'required',
+        ]);
+        $user_id = auth()->user()->id;
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        $trip = Trip::create($data);
+        return redirect('travelyourway2')->with('success', 'Trip added successfully')->with('trip', $trip);
     }
     public function hotels(){
         $data=accomodation::all();
