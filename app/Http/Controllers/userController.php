@@ -69,7 +69,8 @@ class userController extends Controller
         return view('daily_activities_det',$data);
     }
     public function home(){
-        $data=specialtours::all();
+        $data = specialtours::all();
+        $data2 = city::orderBy('id', 'desc')->get();
         return view('home1',['stours'=>$data]);
     }
     public function hotels(){
