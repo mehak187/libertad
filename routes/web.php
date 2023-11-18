@@ -22,7 +22,7 @@ use App\http\Controllers\adminController;
         Route::get('contact','contact');
         Route::get('dailyactivites','dailyactivites');
         Route::get('daily_activities_det/{id}','daily_activities_det');
-        Route::get('home','home');
+        Route::get('home-libertad','home');
         Route::get('hotels','hotels');
         Route::get('/','index');
         Route::get('museum1','museum1');
@@ -162,6 +162,9 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     });
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
+Auth::routes(['verify' => true]);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
