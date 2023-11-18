@@ -22,6 +22,8 @@ use App\Models\SiteDay;
 use App\Models\shuttle;
 use App\Models\libertad;
 use App\Models\GalleryLibertad;
+use App\Models\indexreview;
+
 
 use File;
 
@@ -31,7 +33,13 @@ class adminController extends Controller
         return view('admin.index');
     }
     public function manage_libertad_reviews(){
-        return view('admin.manage_libertad_reviews');
+        $data = indexreview::all();
+        return view('admin.manage_libertad_reviews',['reviews'=>$data]);
+    }
+    public function delete_reviews($id){
+        $data =indexreview::find($id);
+        $data->delete();
+        return redirect('manage_libertad_reviews')->with ('Delete','review Deleted Successfully');
     }
     public function add_special_tours(){
         return view('admin.add_special_tours');

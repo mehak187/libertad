@@ -64,20 +64,33 @@
                         </div>
                     </div>
                     <div>
+                    @if (session('success'))
+                    <script>
+                        swal("Good job!", "{{session('success')}}", "success");
+                    </script>
+                    @endif
                         <div class="d-md-block d-none">
                             <u style="color: #E4C14F;">Leave your Review</u>
+                        <form action="/savereview" method="POST">
+                                @csrf
                             <div class="d-flex gap-2">
-                                <textarea class="rounded-3 bg_review border-0 px-3" name="" id="" cols="25" rows="3"
+                                <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
                                     placeholder="Please leave your Review"></textarea>
                                 <button class="p-0 mt-auto btn_submit_rivew">
                                     <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
                                         alt="">
                                 </button>
+                                @error('review')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                                @enderror
                             </div>
+                        </form>
                         </div>
                         @includeif('template.social_desktop')
                     </div>
-                </div>   
+                </div>
                 <div class="sidebar_content ms-md-4">
                     <!-- main page content start -->
                     <div class="sidebar_tab_content is-active">
@@ -121,12 +134,15 @@
                                 <div class="d-md-none d-block ps-3 mt-4">
                                     <u style="color: #E4C14F;">Leave your Review</u>
                                     <div class="d-flex gap-2 bg_review mt-2 p-3 rounded-3 width-text">
-                                        <textarea class="bg-transparent border-0 w-100" name="" id="" rows="3"
-                                            placeholder="Please leave your Review" style="resize: none;"></textarea>
-                                        <button class="p-0 mt-auto btn_submit_rivew">
-                                            <img src="./imgs/review_button.png" class="img-fluid" width="40px"
-                                                height="40px" alt="">
-                                        </button>
+                                        <form action="/savereview" method="POST">
+                                            @csrf
+                                            <textarea class="bg-transparent border-0 w-100" name="review" id="" rows="3"
+                                                placeholder="Please leave your Review" style="resize: none;"></textarea>
+                                            <button type="submit" class="p-0 mt-auto btn_submit_rivew">
+                                                <img src="./imgs/review_button.png" class="img-fluid" width="40px"
+                                                    height="40px" alt="">
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

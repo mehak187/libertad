@@ -7,6 +7,11 @@
 </head>
 
 <body>
+                @if (session('Delete'))
+                    <script>
+                        swal("Good job!", "{{session('Delete')}}", "success");
+                    </script>
+                @endif
     <section class="main-tem">
         @include('admin.templates.sidebar-template')
         <div class="right-content p-0" style="background: #FAFBFE;">
@@ -17,29 +22,21 @@
                     <table class="table">
                         <thead>
                           <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
+                            <th>name</th>
                             <th>Review</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($reviews as $review)
                           <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur quam reprehenderit reiciendis, dolor nisi inventore at temporibus. Quaerat illum, saepe iste ex, officiis vitae doloribus aliquid minus aliquam, expedita repellat!</p></td>
+                            <td>{{$review['name']}}</td>
+                            <td class="text-wrap"><p>{{$review['review']}}</p></td>
                             <td>
-                            <a href="#" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
+                            <a href="{{"delete_reviews/" .$review['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
                             </td>
                           </tr>
-                          <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur quam reprehenderit reiciendis, dolor nisi inventore at temporibus. Quaerat illum, saepe iste ex, officiis vitae doloribus aliquid minus aliquam, expedita repellat!</p></td>
-                            <td>
-                              <a href="#" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
-                            </td>
-                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
                 </div>

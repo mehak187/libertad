@@ -46,6 +46,7 @@ use App\http\Controllers\adminController;
         Route::get('musuem_det/{id}','musuem_det');
         Route::get('social','social');
         Route::get('libertad','libertad');
+        Route::post('savereview','savereview');
         Route::post('save_trip','save_trip');
     });
 // });
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::controller(adminController::class)->group(function(){
         Route::get('adminhome','adminhome');
         Route::get('manage_libertad_reviews','manage_libertad_reviews');
+        Route::get('delete_reviews/{id}','delete_reviews');
         
         Route::get('manage_city_tours','manage_city_tours');
         Route::post('save_citytour','save_citytour');
