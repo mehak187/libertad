@@ -13,8 +13,8 @@
     <section class="main-tem">
         @include('template.sidepanel')
         <!-- main content -->
-        <div class="right-content back_img py-3">
-            <div class="outer_sidebar px-md-4">
+        <div class="right-content back_img pt-3 pb-5">
+            <div class="outer_sidebar px-md-4 mb-5 pb-5">
                 <div class="sidebar_tabs d-flex flex-column area-height justify-content-between">
                     <div class="position-relative ms-3 ms-md-0">
                         <img src="./imgs/exclamate.png" alt="" class="exclamate-img d-md-none" id="tab-side">
