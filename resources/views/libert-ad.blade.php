@@ -80,7 +80,7 @@
                                 <div class=" ps-3  autoplay_2">
                                     @foreach($galleryImages as $image)
                                         <div class="mx-3">
-                                            <img src="<?php echo asset('uploads/' . $image['image_path']); ?>" alt="" class="img-camel">
+                                            <img src="<?php echo asset('uploads/' . $image['image_path']); ?>" alt="" class="w-100">
                                         </div>
                                     @endforeach
                                 </div>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             @endif
-                            <div class="row mt-4">
+                            <div class="row mt-4 mb-4">
                                 <div class="col-12">
                                     <div class="p-3 px-4 light-bground rounded-5 shadow ">
                                         <div class="">

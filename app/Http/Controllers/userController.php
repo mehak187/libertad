@@ -159,22 +159,32 @@ class userController extends Controller
         return view('tour-detail',$data);
     }
     public function tour1(){
-        $data=city::all();
-        if ($data->isEmpty()) {
-            return view('tours-1')->with ('error','No record to show');
+        $cities = City::select('cities.*')
+        ->leftJoin('musuems', 'cities.id', '=', 'musuems.city')
+        ->leftJoin('citytours', 'cities.id', '=', 'citytours.city')
+        ->leftJoin('sites', 'cities.id', '=', 'sites.city')
+        ->whereNotNull('musuems.city')
+        ->orWhereNotNull('citytours.city')
+        ->orWhereNotNull('sites.city')
+        ->distinct()
+        ->get();
+    
+        if ($cities->isEmpty()) {
+            return view('tours-1')->with('error', 'No record to show');
         }
-        if($data->count()>5){
-            $upper=$data->take($data->count()/2);
-            $lower=$data->skip($data->count()/2);
-            return view('tours-1',[
-                'cities1'=>$upper,
-                'cities2'=>$lower
+    
+        if ($cities->count() > 5) {
+            $upper = $cities->take($cities->count() / 2);
+            $lower = $cities->skip($cities->count() / 2);
+            return view('tours-1', [
+                'cities1' => $upper,
+                'cities2' => $lower
             ]);
-        }
-        else{
-            return view('tours-1',['cities'=>$data]);
+        } else {
+            return view('tours-1', ['cities' => $cities]);
         }
     }
+    
     public function cities_detail($id){
         $cityId = $id;
         $data = citytour::where('city', $cityId)->get();

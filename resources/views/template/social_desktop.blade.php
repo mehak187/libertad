@@ -1,6 +1,6 @@
 <div class="d-md-block d-none">
     @php
-    $contact = \App\Models\Contact::first();
+    $contact = \App\Models\contact::first();
     @endphp
 
 <!-- Now you can use $socialData in your view -->
