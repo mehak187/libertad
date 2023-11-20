@@ -23,6 +23,7 @@ use App\Models\libertad;
 use App\Models\GalleryLibertad;
 use App\Models\indexreview;
 use App\Models\trip;
+use App\Models\StourRating;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -260,5 +261,19 @@ class userController extends Controller
         ->select('gallery_libertads.*')
         ->get();
         return view('libert-ad',$data);
+    }
+    public function stourreview(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        if (StourRating::where('user_id', $user_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+            
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        StourRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
     }
 }

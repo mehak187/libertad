@@ -25,20 +25,38 @@
                         <div class="col-12 m-3">
                             <div class="border-golden sky-bg rounded-3 p-3">
                                 <div class="blue-light-bg rounded-3 p-3">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
+                                    <div class="d-flex align-items-center ">
+                                        <div class="">
                                             <i class="fa-solid fa-user fs-1"></i>
                                         </div>
                                         <div>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
+                                            <div>
+                                                <input type="hidden" value="4" name="star" class="d-none">
+                                                <div class="rating rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
+                                                  <label class="py-0" for="star5"></label>
+                                                  <label class="py-0" for="star4"></label>
+                                                  <label class="py-0" for="star3"></label>
+                                                  <label class="py-0" for="star2"></label>
+                                                  <label class="py-0" for="star1"></label>
+                                                </div>
+                                                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                                <script>
+                                                  $(document).ready(function(){
+                                                    var starValue = $('input[name="star"]').val();
+                                                    $('.rating label').removeClass('active');
+                                                    for (var i = 1; i <= starValue; i++) {
+                                                      $('.rating label:nth-child(' + i + ')').addClass('active');
+                                                    }
+                                                  });
+                                                </script>
+                                                <style>
+                                                  .rating label.active:before {
+                                                    color: #E4C14F; 
+                                                  }
+                                                </style>
                                             </div>
                                             <div>
-                                                <h5 class="m-0">Thomas Jhon</h5>
+                                                <h5 class="m-0 ms-2">Thomas Jhon</h5>
                                             </div>
                                         </div>
                                     </div>
