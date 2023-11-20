@@ -110,7 +110,7 @@
                                             to discover our
                                             land in his/her way: “Libertad- Travel your way”
                                         </p>
-                                        <a href="{{ asset('home') }}">
+                                        <a href="home-libertad">
                                             <div class="button_border rounded-pill">
                                                 <button class="button_leniar_style px-4 rounded-pill">Explore Egypt
                                                     <img src="./imgs/button_errow.png" style="width: 30px;"
