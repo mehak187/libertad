@@ -2954,6 +2954,17 @@ color: #000;
   min-height: calc(100vh - 53px);
   padding-bottom: 20px !important;
 }
+.rating.rating-show {
+  direction: ltr;
+  cursor: default;
+}
+.rating.rating-show label:hover, 
+.rating.rating-show label:hover~label {
+  color: #E4C14F;
+}
+.rating label.active:before {
+  color: #E4C14F; 
+}
 @media screen and (max-width: 768px){
   .right-content {
       min-height: calc(100vh - 105px);}

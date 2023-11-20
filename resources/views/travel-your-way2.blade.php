@@ -56,7 +56,7 @@
                             <div>
                                 <h6 class="fw-bold golden-clr fs-5">Tour trail</h6>
                                 <div class="d-flex align-items-center position-city-p">
-                                    <p class="text-white">{{ session('trip')->city }}</p>
+                                    <p class="text-white">{{ session('trip')->cities }}</p>
                                 </div>
                                 <h6 class="fw-bold golden-clr fs-5">Tours Information</h6>
                                 <div>
