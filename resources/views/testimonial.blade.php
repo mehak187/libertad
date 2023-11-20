@@ -22,6 +22,7 @@
                         <i class="bi bi-chevron-right"></i>
                     </div>
                     <div class="row mt-3 testimonial">
+                        @foreach ($StourRatings as $StourRating)
                         <div class="col-12 m-3">
                             <div class="border-golden sky-bg rounded-3 p-3">
                                 <div class="blue-light-bg rounded-3 p-3">
@@ -31,8 +32,8 @@
                                         </div>
                                         <div>
                                             <div>
-                                                <input type="hidden" value="4" name="star" class="d-none">
-                                                <div class="rating rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
+                                                <input type="hidden" value="{{$StourRating['star']}}" name="star" class="d-none">
+                                                <div class="rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
                                                   <label class="py-0" for="star5"></label>
                                                   <label class="py-0" for="star4"></label>
                                                   <label class="py-0" for="star3"></label>
@@ -43,28 +44,25 @@
                                                 <script>
                                                   $(document).ready(function(){
                                                     var starValue = $('input[name="star"]').val();
-                                                    $('.rating label').removeClass('active');
+                                                    $('.rating-show label').removeClass('active');
                                                     for (var i = 1; i <= starValue; i++) {
-                                                      $('.rating label:nth-child(' + i + ')').addClass('active');
+                                                      $('.rating-show label:nth-child(' + i + ')').addClass('active');
                                                     }
                                                   });
                                                 </script>
-                                                
                                             </div>
                                             <div>
-                                                <h5 class="m-0 ms-2">Thomas Jhon</h5>
+                                                <h5 class="m-0 ms-2">{{$StourRating['name']}} {{$StourRating['lastname']}}</h5>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="mt-3">Fabtechsol is a web and mobile app development Company that
-                                            believes in making tomorrow’s world a better place. We focus on emerging
-                                            technologies
-                                            to create digital experiences that outshine expectations.</p>
+                                        <p class="mt-3">{{$StourRating['review']}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="next_arrow6">
                         <i class="bi bi-chevron-left"></i>
