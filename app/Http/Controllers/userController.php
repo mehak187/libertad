@@ -24,7 +24,11 @@ use App\Models\GalleryLibertad;
 use App\Models\indexreview;
 use App\Models\trip;
 use App\Models\StourRating;
-
+use App\Models\citytourRating;
+use App\Models\accRating;
+use App\Models\activitiesRating;
+use App\Models\musuemRating;
+use App\Models\siteRating;
 use Illuminate\Http\Request;
 class userController extends Controller
 {
@@ -156,7 +160,23 @@ class userController extends Controller
         $data=StourRating::leftJoin('users', 'stour_ratings.user_id', '=', 'users.id')
         ->select('stour_ratings.*', 'users.*')
        ->orderBy('stour_ratings.id', 'desc')->get();
-        return view('testimonial',['StourRatings'=>$data]);
+        $data2=citytourRating::leftJoin('users', 'citytour_ratings.user_id', '=', 'users.id')
+        ->select('citytour_ratings.*', 'users.*')
+        ->orderBy('citytour_ratings.id', 'desc')->get();
+        $data3=musuemRating::leftJoin('users', 'musuem_ratings.user_id', '=', 'users.id')
+        ->select('musuem_ratings.*', 'users.*')
+        ->orderBy('musuem_ratings.id', 'desc')->get();
+        $data4=siteRating::leftJoin('users', 'site_ratings.user_id', '=', 'users.id')
+        ->select('site_ratings.*', 'users.*')
+        ->orderBy('site_ratings.id', 'desc')->get();
+        $data5=activitiesRating::leftJoin('users', 'activities_ratings.user_id', '=', 'users.id')
+        ->select('activities_ratings.*', 'users.*')
+        ->orderBy('activities_ratings.id', 'desc')->get();
+        $data6=accRating::leftJoin('users', 'acc_ratings.user_id', '=', 'users.id')
+        ->select('acc_ratings.*', 'users.*')
+        ->orderBy('acc_ratings.id', 'desc')->get();
+
+        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6]);
     }
     public function tourdetail($id){
         $data['stour'] =specialtours::find($id);
@@ -275,6 +295,71 @@ class userController extends Controller
         $data = $request->all();
         $data['user_id'] = $user_id;
         StourRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    public function citytourreview(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        if (citytourRating::where('user_id', $user_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        citytourRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    public function musuem_review(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        if (musuemRating::where('user_id', $user_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        musuemRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    public function site_review(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        if (siteRating::where('user_id', $user_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        siteRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    public function activities_review(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        if (activitiesRating::where('user_id', $user_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        activitiesRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    public function acc_review(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        if (accRating::where('user_id', $user_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        accRating::create($data);
         return redirect()->back()->with('success', 'Thanks for your review');
     }
 }

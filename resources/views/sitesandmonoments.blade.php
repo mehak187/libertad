@@ -9,6 +9,16 @@
 </head>
 
 <body class="">
+    @if (session('success'))
+    <script>
+        swal("Good job!", "{{session('success')}}", "success");
+    </script>
+    @endif
+    @if (session('error'))
+        <script>
+            swal("Ooops!", "{{session('error')}}", "error");
+        </script>
+    @endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -137,23 +147,31 @@
                     <h1 class="modal-title fs-5 brown-clr">Rate & Review</h1>
                 </div>
                 <div class="modal-body pt-0 px-5">
-                    <form action="">
+                    <form action="/site_review" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <input type="number" class="d-none" name="stour_id" value="{{ $sites->id }}">
                         <div>
                             <div class="rating">
                                 <input type="radio" id="star5" name="rating" value="5">
-                                <label for="star5"></label>
+                                <label for="star5" onclick="updateStarValue(5)"></label>
                                 <input type="radio" id="star4" name="rating" value="4">
-                                <label for="star4"></label>
+                                <label for="star4" onclick="updateStarValue(4)"></label>
                                 <input type="radio" id="star3" name="rating" value="3">
-                                <label for="star3"></label>
+                                <label for="star3" onclick="updateStarValue(3)"></label>
                                 <input type="radio" id="star2" name="rating" value="2">
-                                <label for="star2"></label>
+                                <label for="star2" onclick="updateStarValue(2)"></label>
                                 <input type="radio" id="star1" name="rating" value="1">
-                                <label for="star1"></label>
+                                <label for="star1" onclick="updateStarValue(1)"></label>
                             </div>
+                            <input type="number" id="star" name="star" class="d-none" value="" required>
+                            <script>
+                                function updateStarValue(value) {
+                                    document.getElementById('star').value = value;
+                                }
+                            </script>
                         </div>
                         <div class="mt-3">
-                            <textarea class="myInput" placeholder="Write" rows="3"></textarea>
+                            <textarea class="myInput" placeholder="Write" name="review" rows="3" required></textarea>
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
