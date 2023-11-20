@@ -14,7 +14,7 @@ use App\Models\GalleryImageMusuem;
 use App\Models\categories;
 use App\Models\DailyActivities;
 use App\Models\GalleryImageActivities;
-use App\Models\Contact;
+use App\Models\contact;
 use App\Models\product;
 use App\Models\GalleryImageSite;
 use App\Models\site;

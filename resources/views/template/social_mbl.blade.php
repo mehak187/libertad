@@ -1,5 +1,5 @@
 @php
-$contact = \App\Models\Contact::first();
+$contact = \App\Models\contact::first();
 @endphp
 <div class="d-md-none d-block ps-3 mt-3 ms-1">
     <p class="mb-0 fs-12" style="color: #E4C14F;">Social Media:</p>
