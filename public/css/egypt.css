@@ -2965,6 +2965,12 @@ color: #000;
 .rating label.active:before {
   color: #E4C14F; 
 }
+.rating label.active:hover {
+  color: #E4C14F; 
+}
+.rating label.active:hover ~label {
+  color: #E4C14F; 
+}
 @media screen and (max-width: 768px){
   .right-content {
       min-height: calc(100vh - 105px);}
