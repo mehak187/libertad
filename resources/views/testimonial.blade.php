@@ -49,11 +49,7 @@
                                                     }
                                                   });
                                                 </script>
-                                                <style>
-                                                  .rating label.active:before {
-                                                    color: #E4C14F; 
-                                                  }
-                                                </style>
+                                                
                                             </div>
                                             <div>
                                                 <h5 class="m-0 ms-2">Thomas Jhon</h5>
