@@ -76,7 +76,7 @@
                                     @csrf
                                 <div class="d-flex gap-2">
                                     <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
-                                        placeholder="Please leave your Review"></textarea>
+                                        placeholder="Please leave your Review" maxlength="400"></textarea>
                                     <button class="p-0 mt-auto btn_submit_rivew">
                                         <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
                                             alt="">
