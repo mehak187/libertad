@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\adminController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
