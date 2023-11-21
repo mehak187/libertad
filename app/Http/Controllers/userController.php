@@ -153,7 +153,10 @@ class userController extends Controller
         return view('sites');
     }
     public function testimonial(){
-        return view('testimonial');
+        $data=StourRating::leftJoin('users', 'stour_ratings.user_id', '=', 'users.id')
+        ->select('stour_ratings.*', 'users.*')
+       ->orderBy('stour_ratings.id', 'desc')->get();
+        return view('testimonial',['StourRatings'=>$data]);
     }
     public function tourdetail($id){
         $data['stour'] =specialtours::find($id);
@@ -242,7 +245,6 @@ class userController extends Controller
         return view('vehicle-destination');
     }
     public function productsandtools(){
-        // $data=categories::all();
         $data = categories::join('products', 'categories.id', '=', 'products.p_catg')
         ->select('categories.*')
         ->distinct()
@@ -270,7 +272,6 @@ class userController extends Controller
         if (StourRating::where('user_id', $user_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
-            
         $data = $request->all();
         $data['user_id'] = $user_id;
         StourRating::create($data);
