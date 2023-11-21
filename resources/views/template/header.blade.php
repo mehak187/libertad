@@ -216,12 +216,12 @@
                             </div>
                         </form>
                     </div>
+                    @if (auth()->check())
                     <div>
                         <p class="my-auto  way_color">
                             <a href="{{asset('cart')}}">
                                 <i class="fa-sharp fa-solid fa-cart-shopping"></i>
                             </a>
-                            </i>
                         </p>
                     </div>
                     <div>
@@ -229,9 +229,9 @@
                             <a href="{{asset('notification')}}">
                                 <i class="fa-sharp fa-solid fa-bell"></i>
                             </a>
-                            </i>
                         </p>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -357,10 +357,6 @@
                                                         data-bs-toggle="modal" data-bs-target="#myModal3">
                                                             {{ __('Send Password Reset Link') }}
                                                         </button>
-                                                        {{-- <input type="button"
-                                                            class="form-control input sign_in_button mb-2"
-                                                            value="Reset" onclick="resetForm()"
-                                                            data-bs-toggle="modal" data-bs-target="#myModal3"> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -472,6 +468,7 @@
                                         </div>
                                     </li>
                                 @endif
+                                @if (auth()->check())
                                     <li class="my-auto  way_color d-md-block d-none">
                                         <a href="{{asset('cart')}}">
                                             <i class="fa-sharp fa-solid fa-cart-shopping"></i>
@@ -482,6 +479,7 @@
                                             <i class="fa-sharp fa-solid fa-bell"></i>
                                         </a>
                                     </li>
+                                @endif                                     
                                     <div class="dropdown py-2">
                                         <button type="button"
                                             class="btn dropdown-toggle rounded-pill px-sm-4 px-2 py-1"
