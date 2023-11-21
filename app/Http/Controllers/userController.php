@@ -51,7 +51,7 @@ class userController extends Controller
         }
     }
     public function book(){
-        $data=book::all();
+        $data=book::paginate(9);
         return view('book',['books'=>$data]);
     }
     public function cart(){
@@ -255,7 +255,7 @@ class userController extends Controller
         return view('tours');
     }
     public function travelyourway(){
-        $data=event::all();
+        $data=event::paginate(9);
         return view('travel-your-way',['events'=>$data]);
     }
     public function travelyourway2(){

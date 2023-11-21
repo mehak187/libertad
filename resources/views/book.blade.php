@@ -33,9 +33,9 @@
                                 <h3 class="text-white m-0 f-search">Search:</h3>
                             </div>
                             <div class="w-100">
-                                <input type="text"  id="myinput"
+                                <input type="text" id="myinput"
                                     class="form-control sky-bg shadow-none text-dark border border-dark py-2"
-                                    placeholder="Keyword"  onkeyup="searchFunction()">
+                                    placeholder="Keyword" onkeyup="searchFunction()">
                             </div>
                             <div class="">
                                 <div class="d-sm-block d-none">
@@ -81,23 +81,10 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <nav id="pagination" class="mt-3 main-paging">
-                        <ul class="pagination d-flex gap-3">
-                            <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
-                                    href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
-                                    href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
-                                    href="#">3</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="mt-3">
+                    <div>
+                        {{ $books->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,7 +97,7 @@
             input = document.getElementById('myinput');
             filter = input.value.toUpperCase();
             li = document.getElementsByClassName('city-result');
-    
+
             cusall = document.getElementsByClassName('customer-all-main');
             var resultsFound = false;
             for (i = 0; i < li.length; i++) {
