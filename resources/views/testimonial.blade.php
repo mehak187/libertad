@@ -21,7 +21,7 @@
                     @if (count($StourRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Special </span>Tours
                         </h2>
-                        <div class="position-relative mt-5">
+                        <div class="position-relative mt-5 h-100">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
@@ -76,7 +76,7 @@
 
                     @if (count($citytourRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">City </span>Tours</h2>
-                        <div class="position-relative mt-5">
+                        <div class="position-relative mt-5 h-100">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
@@ -131,7 +131,7 @@
 
                     @if (count($musuemRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Musuems </span></h2>
-                        <div class="position-relative mt-5">
+                        <div class="position-relative mt-5 h-100">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
@@ -186,7 +186,7 @@
 
                     @if (count($siteRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Sites </span>and <span class="golden-clr">Monuments </span></h2>
-                        <div class="position-relative mt-5">
+                        <div class="position-relative mt-5 h-100">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
@@ -241,7 +241,7 @@
 
                     @if (count($activitiesRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Daily </span>Activities</h2>
-                        <div class="position-relative mt-5">
+                        <div class="position-relative mt-5 h-100">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
@@ -296,7 +296,7 @@
 
                     @if (count($accRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Accomodations </span></h2>
-                        <div class="position-relative mt-5">
+                        <div class="position-relative mt-5 h-100">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
@@ -311,7 +311,7 @@
                                                 </div>
                                                 <div>
                                                     <div>
-                                                        <input type="hidden" value="{{$activitiesRating['star']}}" name="star" class="d-none">
+                                                        <input type="hidden" value="{{$accRating['star']}}" name="star" class="d-none">
                                                         <div class="rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
                                                         <label class="py-0" for="star5"></label>
                                                         <label class="py-0" for="star4"></label>
@@ -331,12 +331,12 @@
                                                         </script>
                                                     </div>
                                                     <div>
-                                                        <h5 class="m-0 ms-2">{{$activitiesRating['name']}} {{$activitiesRating['lastname']}}</h5>
+                                                        <h5 class="m-0 ms-2">{{$accRating['name']}} {{$accRating['lastname']}}</h5>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p class="mt-3">{{$activitiesRating['review']}}</p>
+                                                <p class="mt-3">{{$accRating['review']}}</p>
                                             </div>
                                         </div>
                                     </div>
