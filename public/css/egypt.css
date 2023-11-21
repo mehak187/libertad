@@ -2966,9 +2966,14 @@ color: #000;
   color: #E4C14F; 
 }
 .rating label.active:hover {
-  color: #E4C14F; 
+  color: #fff; 
 }
 .rating label.active:hover ~label {
+  color: #fff; 
+}
+
+
+.rating label.active:before {
   color: #E4C14F; 
 }
 @media screen and (max-width: 768px){
