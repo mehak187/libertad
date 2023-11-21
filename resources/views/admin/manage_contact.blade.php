@@ -153,7 +153,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>
-                            <textarea class="w-100" id="des"  name="des">{{ old('des', $contact->des ?? '') }}</textarea>
+                            <textarea class="w-100" id="des" maxlength="250" name="des">{{ old('des', $contact->des ?? '') }}</textarea>
                             @error('des')
                                 <span class="error text-danger">
                                     {{ $message }}

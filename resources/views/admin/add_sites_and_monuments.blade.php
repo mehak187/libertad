@@ -70,7 +70,7 @@
                         
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field w-100 dark-btn mt-4">
-                                <textarea class="w-100" placeholder="Description" name="des">{{old('des')}}</textarea>
+                                <textarea class="w-100" placeholder="Description" maxlength="250" name="des">{{old('des')}}</textarea>
                                 @error('des')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="form-field d-sm-flex justify-content-between flex-wrap">
                                     <div class="input-field w-100 dark-btn mt-4">
-                                        <textarea class="w-100" placeholder="Day 1 Description" name="day_des[]"></textarea>
+                                        <textarea class="w-100" placeholder="Day 1 Description" maxlength="250" name="day_des[]"></textarea>
                                     </div>
                                 </div>
                             </div>

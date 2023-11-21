@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
-                            <textarea class="w-100" placeholder="Book description" name="description"></textarea>
+                            <textarea class="w-100" placeholder="Book description" maxlength="250" name="description"></textarea>
                             @error('description')
                             <span class="error text-danger">
                                 {{$message}}

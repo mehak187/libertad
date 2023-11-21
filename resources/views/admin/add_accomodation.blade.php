@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
-                            <textarea class="w-100" placeholder="Card description" name="card_des"></textarea>
+                            <textarea class="w-100" placeholder="Card description" maxlength="250" name="card_des"></textarea>
                             @error('card_des')
                             <span class="error text-danger">
                                 {{$message}}
