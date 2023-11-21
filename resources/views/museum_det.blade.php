@@ -148,7 +148,7 @@
                                 <input type="radio" id="star1" name="rating" value="1">
                                 <label for="star1" onclick="updateStarValue(1)"></label>
                             </div>
-                            <input type="number" id="star" name="star" class="d-none" value="" required>
+                            <input type="number" id="star" name="star" class="d-none" value="" maxlength="200" required>
                             <script>
                                 function updateStarValue(value) {
                                     document.getElementById('star').value = value;

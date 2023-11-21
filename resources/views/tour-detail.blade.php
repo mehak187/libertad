@@ -152,7 +152,7 @@
                             </script>
                         </div>
                         <div class="mt-3">
-                            <textarea class="myInput" placeholder="Write" name="review" rows="3" required></textarea>
+                            <textarea class="myInput" placeholder="Write" name="review" rows="3" maxlength="200" required></textarea>
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
