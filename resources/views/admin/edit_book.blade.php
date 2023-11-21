@@ -42,7 +42,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>
-                            <textarea class="w-100" id="des" name="description" >{{$book['description']}} </textarea>
+                            <textarea class="w-100" id="des" name="description" maxlength="250">{{$book['description']}} </textarea>
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">

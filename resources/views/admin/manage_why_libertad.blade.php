@@ -27,7 +27,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark">Why Libertad Description</label>
-                            <textarea id="des" class="w-100" placeholder="Description" name="des">{{ old('des', $libertad->des ?? '') }}</textarea>
+                            <textarea id="des" class="w-100" maxlength="250" placeholder="Description" name="des">{{ old('des', $libertad->des ?? '') }}</textarea>
                             @error('des')
                                 <span class="error text-danger">
                                     {{ $message }}

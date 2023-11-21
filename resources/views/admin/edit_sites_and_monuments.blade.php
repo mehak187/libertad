@@ -57,7 +57,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>
-                            <textarea class="w-100" name="des"> {{ $citytour->des }}
+                            <textarea class="w-100" maxlength="250" name="des"> {{ $citytour->des }}
                             </textarea>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="form-field d-sm-flex justify-content-between flex-wrap">
                                 <div class="input-field w-100 dark-btn mt-4">
-                                    <textarea class="w-100" placeholder="Day 1 Description" name="day_des[]">{{$day->day_des}}</textarea>
+                                    <textarea class="w-100" maxlength="250" placeholder="Day 1 Description" name="day_des[]">{{$day->day_des}}</textarea>
                                 </div>
                             </div>
                         </div>

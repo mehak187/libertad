@@ -96,7 +96,7 @@
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Event Description</label>
-                            <textarea class="w-100" id="des" placeholder="Event description" name="des"></textarea>
+                            <textarea class="w-100" id="des" placeholder="Event description" maxlength="250" name="des"></textarea>
                             @error('des')
                             <span class="error text-danger">
                                 {{$message}}
