@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                       @endforeach
                     </div>
                     <div class="next_arrow6">
                         <i class="bi bi-chevron-left"></i>
