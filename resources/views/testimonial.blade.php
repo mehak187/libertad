@@ -32,7 +32,7 @@
                                         <div>
                                             <div>
                                                 <input type="hidden" value="4" name="star" class="d-none">
-                                                <div class="rating rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
+                                                <div class="rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
                                                   <label class="py-0" for="star5"></label>
                                                   <label class="py-0" for="star4"></label>
                                                   <label class="py-0" for="star3"></label>
@@ -43,9 +43,9 @@
                                                 <script>
                                                   $(document).ready(function(){
                                                     var starValue = $('input[name="star"]').val();
-                                                    $('.rating label').removeClass('active');
+                                                    $('.rating-show label').removeClass('active');
                                                     for (var i = 1; i <= starValue; i++) {
-                                                      $('.rating label:nth-child(' + i + ')').addClass('active');
+                                                      $('.rating-show label:nth-child(' + i + ')').addClass('active');
                                                     }
                                                   });
                                                 </script>

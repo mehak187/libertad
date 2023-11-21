@@ -2954,26 +2954,40 @@ color: #000;
   min-height: calc(100vh - 53px);
   padding-bottom: 20px !important;
 }
-.rating.rating-show {
+.rating-show {
+  unicode-bidi: bidi-override;
   direction: ltr;
   cursor: default;
+  text-align: end;
+  border: 1px solid #8080804f;
+  border-radius: 7px;
+  max-width: 60%;
 }
-.rating.rating-show label:hover, 
-.rating.rating-show label:hover~label {
-  color: #E4C14F;
-}
-.rating label.active:before {
+.rating-show label.active:before {
   color: #E4C14F; 
 }
-.rating label.active:hover {
-  color: #fff; 
-}
-.rating label.active:hover ~label {
-  color: #fff; 
+
+.rating-show input {
+  display: none;
 }
 
+.rating-show label {
+  display: inline-block;
+  padding: 5px;
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
 
-.rating label.active:before {
+.rating-show label:before {
+  content: '\2605';
+}
+
+.rating-show input:checked~label {
+  color: #E4C14F;
+}
+
+.rating-show label.active:before {
   color: #E4C14F; 
 }
 @media screen and (max-width: 768px){
