@@ -49,6 +49,11 @@ use App\Http\Controllers\adminController;
         Route::post('savereview','savereview');
         Route::post('save_trip','save_trip');
         Route::post('stourreview','stourreview');
+        Route::post('citytourreview','citytourreview');
+        Route::post('musuem_review','musuem_review');
+        Route::post('site_review','site_review');
+        Route::post('activities_review','activities_review');
+        Route::post('acc_review','acc_review');
     });
 // });
 
