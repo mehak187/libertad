@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('stour_id');
             $table->integer('user_id');
             $table->integer('star');
-            $table->string('review');
+            $table->text('review');
             $table->timestamps();
         });
     }
