@@ -80,38 +80,39 @@
                             </div>
                         @else
                             <div class="container-fluid">
-                                <div class="row my-2">
-                                    <div class="col-xl-7">
-                                        <div class="row d-flex flex-wrap  flex-wrap align-items-center px-sm-2">
-                                            <div class="col-xl-10 col-md-8 col-sm-7">
-                                                <input type="search"
-                                                    class="form-control shadow-none rounded-pill bg-transparent border text-white"
-                                                    placeholder="Where do you want to go?">
-                                            </div>
-                                            <div class="col-xl-2 col-md-3 col-sm-5 mt-sm-0 mt-3">
-                                                <div class="button_border rounded-pill">
-                                                    <button class="button_leniar_style px-4 rounded-pill py-1 d-flex align-items-center justify-content-between">
-                                                        <i class="bi bi-search me-3"></i>Search 
-                                                    </button>
+                                {{-- <form action="{{ route('searchCity') }}" method="GET" id="searchForm"> --}}
+                                    <div class="row my-2">
+                                        <div class="col-xl-7">
+                                            <div class="row d-flex flex-wrap flex-wrap align-items-center px-sm-2">
+                                                <div class="col-xl-10 col-md-8 col-sm-7">
+                                                    <input type="search"  id="myinput" name="city_search" class="form-control shadow-none rounded-pill bg-transparent border text-white" placeholder="Where do you want to go?" onkeyup="searchFunction()">
+                                                </div>
+                                                <div class="col-xl-2 col-md-3 col-sm-5 mt-sm-0 mt-3">
+                                                    <div class="button_border rounded-pill">
+                                                        <button type="submit" class="button_leniar_style px-4 rounded-pill py-1 d-flex align-items-center justify-content-between">
+                                                            <i class="bi bi-search me-3"></i>Search 
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                {{-- </form> --}}
+                                
                             </div>
                             @if (@isset($cities1) && @isset($cities2))
                                 <div class="row me-3">
                                     <div class="col-11">
                                         <div class="autoplay mb-3 px-1">
                                             @foreach ($cities1 as $city1)
-                                                <div class="slide mx-2">
+                                                <div class="slide mx-2 city-result">
                                                     <div class="container1 container1_2">
                                                         <img src="<?php echo asset('uploads/' . $city1['tourimg']); ?>" alt="Avatar"
                                                             class="image1 image1_2">
                                                         <a href="{{ 'cities_detail/' . $city1['id'] }}" class="overlay">
                                                             <div
                                                                 class="text1 d-flex align-items-center justify-content-between">
-                                                                <span class="text-white">{{ $city1['Cityname'] }}</span>
+                                                                <span class="text-white searchable">{{ $city1['Cityname'] }}</span>
                                                                 <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                                             </div>
                                                         </a>
@@ -125,14 +126,14 @@
                                     <div class="col-11">
                                         <div class="autoplay mb-3 px-1">
                                             @foreach ($cities2 as $city2)
-                                                <div class="slide mx-2">
+                                                <div class="slide mx-2 city-result">
                                                     <div class="container1 container1_2">
                                                         <img src="<?php echo asset('uploads/' . $city2['tourimg']); ?>" alt="Avatar"
                                                             class="image1 image1_2">
                                                         <a href="{{ 'cities_detail/' . $city2['id'] }}" class="overlay">
                                                             <div
                                                                 class="text1 d-flex align-items-center justify-content-between">
-                                                                <span class="text-white">{{ $city2['Cityname'] }}</span>
+                                                                <span class="text-white searchable">{{ $city2['Cityname'] }}</span>
                                                                 <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                                             </div>
                                                         </a>
@@ -147,14 +148,12 @@
                                     <div class="col-11">
                                         <div class="autoplay mb-3 px-1">
                                             @foreach ($cities as $city)
-                                                <div class="slide mx-2">
+                                                <div class="slide mx-2 city-result">
                                                     <div class="container1 container1_2">
-                                                        <img src="<?php echo asset('uploads/' . $city['tourimg']); ?>" alt="Avatar"
-                                                            class="image1 image1_2">
-                                                        <a href="{{ 'cities_detail/' . $city['id'] }}" class="overlay">
-                                                            <div
-                                                                class="text1 d-flex align-items-center justify-content-between">
-                                                                <span class="text-white">{{ $city['Cityname'] }}</span>
+                                                        <img src="<?php echo asset('uploads/' . $city['tourimg']); ?>" alt="Avatar" class="image1 image1_2">
+                                                        <a href="{{ 'cities_detail/' . $city['id'] }}" class="overlay ">
+                                                            <div class="text1 d-flex align-items-center justify-content-between">
+                                                                <span class="text-white searchable">{{ $city['Cityname'] }}</span>
                                                                 <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                                             </div>
                                                         </a>
@@ -168,12 +167,47 @@
                         @endif
                     </div>
                     @includeif('template.social_mbl')
-
+                   
+                    
                 </div>
             </div>
         </div>
     </section>
     @include('template.jslinks')
+    <script>
+        function searchFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById('myinput');
+            filter = input.value.toUpperCase();
+            li=document.getElementsByClassName('city-result');
+
+            cusall=document.getElementsByClassName('customer-all-main');
+            var resultsFound = false; // initialize the flag to false
+        
+            for(i=0 ; i< li.length; i++){
+                a = li[i].getElementsByClassName('searchable')[0];
+                if(a.innerHTML.toUpperCase().startsWith(filter)){
+                    li[i].style.display = "";
+                    resultsFound = true; // set flag to true if a result is found
+                } else {
+                    li[i].style.display = 'none';
+                }
+            }
+            
+            document.getElementById('filter-heading').style.display = 'none';
+            for(var j=0; j<cusall.length; j++){
+                    cusall[j].style.display = 'none';
+                }
+
+            if(!resultsFound){ // if no result is found, display the error message
+                document.getElementById('searcherror').style.display = 'block';
+                document.getElementById('error_msg').style.display = 'none';
+
+            } else {
+                document.getElementById('searcherror').style.display = 'none'; // hide error message if result is found
+            }
+        }
+    </script>
 </body>
 
 </html>
