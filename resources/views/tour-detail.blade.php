@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div class="d-flex align-items-center gap-3">
-                        <a href='/home' class="text-decoration-none">
+                        <a href='/home-libertad' class="text-decoration-none">
                             <h4 class="text-white m-0">Home</h4>
                         </a>
                         <i class="bi bi-play-fill text-white"></i>
