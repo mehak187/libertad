@@ -20,6 +20,7 @@
                     </div>
                 </div>
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Add accomodation</h4>
+                @if (count($cities) > 0)
                 <form action="addhotel" method="POST" enctype="multipart/form-data" class="mt-2">
                     @csrf
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -65,6 +66,19 @@
                             <span class="error text-danger">
                                 {{$message}}
                             </span>
+                            @enderror
+                        </div>
+                        <div class="input-field mt-4">
+                            <select name="city" class="w-100" >
+                                <option value="" selected disabled hidden>Choose city</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
+                                @endforeach
+                            </select>
+                            @error('city')
+                                <span class="error text-danger">
+                                    {{ $message }}
+                                </span>
                             @enderror
                         </div>
                     </div>
@@ -120,6 +134,16 @@
                         </div>
                     </div>
                 </form>
+                @else
+                <div class="d-flex align-items-center mt-3 ">
+                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                    <p class="text-danger fs-5">No city exist. Add cities first</p>
+                </div>
+                    <div class="d-flex mt-3">
+                        <a href="/add_cities" class="bg-yellow text-dark py-2 px-3 text-decoration-none rounded-3">Add
+                            City</a>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

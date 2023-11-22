@@ -832,7 +832,8 @@ class adminController extends Controller
     }
     
     public function add_accomodation(){
-        return view('admin.add_accomodation');
+        $data=city::all();
+        return view('admin.add_accomodation',['cities'=>$data]);
     }
     public function addhotel(request $request){
         $request->validate([
@@ -847,65 +848,56 @@ class adminController extends Controller
             $data['tourimg'] = $photo_name;
             accomodation::create($data);
             return redirect('manage_accomodation')->with ('success','Accomodation added Successfully');
-
     }
     public function manage_accomodation(){
         $data =accomodation::orderBy('id', 'desc')->get();
         return view('admin.manage_accomodation',['hotels'=>$data]);
     }
     public function edit_accomodation($id){
+        $data['cities']=city::all();
         $data['accomodation'] =accomodation::find($id);
         return view('admin.edit_accomodation',$data);
     }
     public function updateaccomodation(request $request){
         if($request->file('tourimg')==NULL){
-            $name =$request->name;
-            $location =$request->location;
-            $price =$request->price;
-            $night =$request->night;
-            $rooms =$request->rooms;
-            $sight_seeing =$request->sight_seeing;
-            $include =$request->include;
-            $des =$request->des;
             accomodation::find($request->id)->update([
-                'name' => $name,
-                'location' => $location,
-                'price' => $price,
-                'night' => $night,
-                'rooms' => $rooms,
-                'sight_seeing' => $sight_seeing,
-                'include' => $include,
-                'des' => $des,
+                'name' => $request->name,
+                'location' => $request->location,
+                'price' => $request->price,
+                'night' => $request->night,
+                'rooms' => $request->rooms,
+                'sight_seeing' => $request->sight_seeing,
+                'include' => $request->include,
+                'des' => $request->des,
+                'city' => $request->city,
             ]);
         }else{
             $photo = $request->file('tourimg');
             $photo_name =time()."-".$photo->getClientOriginalName();
             $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
-            $name =$request->name;
-            $location =$request->location;
-            $price =$request->price;
-            $night =$request->night;
-            $rooms =$request->rooms;
-            $sight_seeing =$request->sight_seeing;
-            $include =$request->include;
-            $des =$request->des;
             accomodation::find($request->id)->update([
-                'name' => $name,
-                'location' => $location,
-                'price' => $price,
-                'night' => $night,
-                'rooms' => $rooms,
-                'sight_seeing' => $sight_seeing,
-                'include' => $include,
-                'des' => $des,
+                'name' => $request->name,
+                'location' => $request->location,
+                'price' => $request->price,
+                'night' => $request->night,
+                'rooms' => $request->rooms,
+                'sight_seeing' => $request->sight_seeing,
+                'include' => $request->include,
+                'des' => $request->des,
+                'city' => $request->city,
                 'tourimg'=>$photo_name
             ]);
         }
         return redirect('manage_accomodation')->with ('update','Accomodation updated Successfully');
     }
     public function accomodation_detail($id){
-        $data['hotel'] =accomodation::find($id);
+        $data['hotel_old'] =accomodation::find($id);
+        $city = $data['hotel_old']->city;
+        $data['hotel'] = accomodation::join('cities', 'accomodations.city', '=', 'cities.id')
+        ->select('accomodations.*', 'cities.Cityname')
+        ->where('accomodations.id', $id)
+        ->first();
         return view('admin.accomodation_detail',$data);
     }  
     public function deletehotel($id){

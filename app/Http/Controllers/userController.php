@@ -289,9 +289,11 @@ class userController extends Controller
             '*'=>'required',
             ]);
         $user_id = auth()->user()->id;
-        if (StourRating::where('user_id', $user_id)->exists()) {
+        $stour_id = $request->input('stour_id');
+        if (StourRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
+       
         $data = $request->all();
         $data['user_id'] = $user_id;
         StourRating::create($data);

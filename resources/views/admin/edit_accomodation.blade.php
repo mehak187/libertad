@@ -5,6 +5,7 @@
     @include('admin.templates.links')
     <title>Edit Accomodation </title>
 </head>
+
 <body>
     <section class="main-tem">
         @include('admin.templates.sidebar-template')
@@ -23,58 +24,77 @@
                 <form action="/updateaccomodation" method="POST" enctype="multipart/form-data" class="mt-2">
                     @csrf
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
-                        <input type="text" class="w-100 d-none" name="id" value="{{$accomodation->id}}">
+                        <input type="text" class="w-100 d-none" name="id" value="{{ $accomodation->id }}">
                         <div class="input-field mt-4">
                             <label for="name" class="text-dark fw-bold">Name</label>
-                            <input type="text" class="w-100" id="name" name="name" value="{{$accomodation['name']}}">
+                            <input type="text" class="w-100" id="name" name="name"
+                                value="{{ $accomodation['name'] }}">
                         </div>
                         <div class="input-field mt-4">
                             <label for="location" class="text-dark fw-bold">Location</label>
-                            <input type="text" class="w-100" id="location" value="{{$accomodation['location']}}" name="location">
+                            <input type="text" class="w-100" id="location" value="{{ $accomodation['location'] }}"
+                                name="location">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="price" class="text-dark fw-bold">Price in USD</label>
-                            <input type="number" class="w-100" id="price" value="{{$accomodation['tour_price']}}" name="price">
+                            <input type="number" class="w-100" id="price"
+                                value="{{ $accomodation['tour_price'] }}" name="price">
                         </div>
                         <div class="input-field mt-4">
                             <label for="night" class="text-dark fw-bold">No. of nights</label>
-                            <input type="text" class="w-100" id="nights" value="{{$accomodation['nights_nmbr']}}" name="night">
+                            <input type="text" class="w-100" id="nights"
+                                value="{{ $accomodation['nights_nmbr'] }}" name="night">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="rooms" class="text-dark fw-bold">No. of rooms</label>
-                            <input type="number" class="w-100" id="rooms" value="{{$accomodation['rooms']}}" name="rooms">
+                            <input type="number" class="w-100" id="rooms" value="{{ $accomodation['rooms'] }}"
+                                name="rooms">
+                        </div>
+                        <div class="input-field mt-4">
+                            <label for="city" class="text-dark fw-bold">City</label>
+                            <select name="city" class="w-100">
+                                <option value="" selected disabled hidden>Choose city</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city['id'] }}"
+                                        {{ old('city') == $city['id'] || (old('city') == null && $city['id'] == $accomodation->city) ? 'selected' : '' }}>
+                                        {{ $city['Cityname'] }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="sight_seeing" class="text-dark fw-bold">Sight Seeing</label>
-                            <textarea  class="w-100" name="sight_seeing" id="sight_seeing">{{$accomodation['sight_seeing']}}</textarea>
+                            <textarea class="w-100" name="sight_seeing" id="sight_seeing">{{ $accomodation['sight_seeing'] }}</textarea>
                             <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="include" class="text-dark fw-bold">Include</label>
-                            <textarea  class="w-100" id="include" name="include">{{$accomodation['include']}}</textarea>
+                            <textarea class="w-100" id="include" name="include">{{ $accomodation['include'] }}</textarea>
                             <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
-                        </div> 
+                        </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>
-                            <textarea class="w-100" id="des" maxlength="250" name="des">{{$accomodation['card_des']}}</textarea>
+                            <textarea class="w-100" id="des" maxlength="250" name="des">{{ $accomodation['card_des'] }}</textarea>
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fw-bold s-field">Accomodation image<br>
-                            <img id="image-preview-single" src="<?php echo asset('uploads/' . $accomodation['tourimg'])?>" alt="" class="w-300 mt-2">
+                                <img id="image-preview-single" src="<?php echo asset('uploads/' . $accomodation['tourimg']); ?>" alt=""
+                                    class="w-300 mt-2">
                             </label>
-                            <input type="file" id="tour-img" name="tourimg" class="d-none" onchange="updateImagePreview(this)">
+                            <input type="file" id="tour-img" name="tourimg" class="d-none"
+                                onchange="updateImagePreview(this)">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -88,4 +108,5 @@
     </section>
     @include('admin.templates.scripts')
 </body>
+
 </html>
