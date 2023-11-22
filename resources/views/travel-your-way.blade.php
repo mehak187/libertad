@@ -151,23 +151,10 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <nav id="pagination" class="mt-3 main-paging">
-                        <ul class="pagination d-flex gap-3">
-                            <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
-                                    href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
-                                    href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link bg-transparent border-golden rounded-3 golden-clr"
-                                    href="#">3</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="mt-3">
+                        <div>
+                            {{ $events->links() }}
+                        </div>
                 </div>
             </div>
         </div>

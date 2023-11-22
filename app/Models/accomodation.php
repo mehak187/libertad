@@ -14,6 +14,7 @@ class accomodation extends Model
         'tour_price',
         'nights_nmbr',
         'rooms',
+        'city',
         'sight_seeing',
         'include',
         'card_des',

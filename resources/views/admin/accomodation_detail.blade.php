@@ -29,18 +29,21 @@
                         <div class="row mt-3">
                             <p class="text-dark small">{{$hotel['card_des']}}</p>
                             <div class="d-flex gap-2 mt-4">
+                                <h6 class="golden-clr">City:</h6>
+                                <span class="text-dark">{{$hotel['Cityname']}}</span>
+                            </div>
+                            <div class="d-flex gap-2 mt-4">
                                 <h6 class="golden-clr">No. of nights:</h6>
-                                <span class="text-dark mb-0">{{$hotel['nights_nmbr']}}</span>
+                                <span class="text-dark">{{$hotel['nights_nmbr']}}</span>
                             </div>
                             <div class="d-flex gap-2 mt-4">
                                 <h6 class="golden-clr">No. of rooms:</h6>
-                                <span class="text-dark mb-0">{{$hotel['rooms']}}</span>
+                                <span class="text-dark">{{$hotel['rooms']}}</span>
                             </div>
                             <div class="d-flex gap-2">
                                 <h6 class="golden-clr">Tour Price:</h6>
-                                <span class="text-dark mb-0">{{$hotel['tour_price']}} USD per adult</span>
+                                <span class="text-dark">{{$hotel['tour_price']}} USD per adult</span>
                             </div>
-
                             <div>
                                 <h6 class="golden-clr mt-3">Sightseeing</h6>
                                 @php

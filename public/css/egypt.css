@@ -70,7 +70,45 @@ body {
   max-width: 85px;
   object-fit: cover;
 }
-
+.pagination a.page-link {
+  background-color: transparent;
+  color: #FCC54E;
+  border: solid #FCC54E 1px;
+  border-radius: 10px !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+ }
+ .active>.page-link,
+ .page-link.active {
+  background-color: #0D6EF8;
+  color: #FCC54E;
+  border: solid #FCC54E 1px;
+  border-radius: 10px !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  }
+ .pagination{
+     --bs-pagination-padding-x: 0.75rem;
+     --bs-pagination-padding-y: 0.375rem;
+     --bs-pagination-font-size: 1rem;
+     --bs-pagination-bg: transparent;
+     --bs-pagination-hover-color: var(--bs-link-hover-color);
+     --bs-pagination-hover-bg: transparent;
+     --bs-pagination-hover-border-color: #FCC54E;
+     --bs-pagination-focus-color: var(--bs-link-hover-color);
+     --bs-pagination-focus-bg: transparent;
+     --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+     --bs-pagination-active-color: #FCC54E;
+     --bs-pagination-active-bg: #0D6EF8;
+     --bs-pagination-active-border-color: #0D6EF8;
+     --bs-pagination-disabled-bg: transparent !important;
+     --bs-pagination-disabled-color: #FCC54E !important;
+     --bs-pagination-disabled-border-color: #FCC54E !important;
+     --bs-pagination-disabled-border: 10px !important;
+     display: flex;
+     padding-left: 0;
+     list-style: none;
+ }
 .nav_ul_style {
   display: flex;
   gap: 20px;

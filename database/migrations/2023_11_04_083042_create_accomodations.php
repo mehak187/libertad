@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tour_price');
             $table->string('nights_nmbr');
             $table->string('rooms');
+            $table->string('city');
             $table->text('sight_seeing');
             $table->text('include');
             $table->text('card_des');
