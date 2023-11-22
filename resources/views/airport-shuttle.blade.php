@@ -141,7 +141,7 @@
                                         class="search-width mt-3 border-golden bg-transparent rounded-pill d-flex align-items-center">
                                         <input type="search"
                                             class="form-control text-white shadow-none border-0 shadow-none bg-transparent"
-                                            placeholder="Search here....">
+                                            placeholder="Search here...." id="myinput" onkeyup="searchFunction()">
                                         <button class="border-0 bg-transparent"><i
                                                 class="bi bi-search golden-clr"></i></button>
                                     </div>
@@ -151,7 +151,7 @@
                                                 <div class="first_slider">
                                                     <div class="autoplay_2 mb-3">
                                                         @foreach ($vehicles1 as $vehicle1)
-                                                            <div class="slide mx-2">
+                                                            <div class="slide mx-2 city-result">
                                                                 <div class="card first_card_slider border-0">
                                                                     <img src="<?php echo asset('uploads/' . $vehicle1['img']); ?>" alt="Avatar"
                                                                         class="image1_2_duplicate rounded_top">
@@ -163,7 +163,7 @@
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle1['from'] }} to
                                                                                     {{ $vehicle1['to'] }}</p>
-                                                                                <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                <p class="mb-0 fs-12 fw-bold searchable">Vehicle type:
                                                                                     {{ $vehicle1['vehicle'] }}
                                                                                 </p>
                                                                                 <p class="mb-0 fs-12 fw-bold">No. of
@@ -195,7 +195,7 @@
                                                 <div class="first_slider">
                                                     <div class="autoplay_2 mb-3">
                                                         @foreach ($vehicles2 as $vehicle2)
-                                                            <div class="slide mx-2">
+                                                            <div class="slide mx-2 city-result">
                                                                 <div class="card first_card_slider border-0">
                                                                     <img src="<?php echo asset('uploads/' . $vehicle2['img']); ?>" alt="Avatar"
                                                                         class="image1_2_duplicate rounded_top">
@@ -207,7 +207,7 @@
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle2['from'] }} to
                                                                                     {{ $vehicle2['to'] }}</p>
-                                                                                <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                <p class="mb-0 fs-12 fw-bold searchable">Vehicle type:
                                                                                     {{ $vehicle2['vehicle'] }}
                                                                                 </p>
                                                                                 <p class="mb-0 fs-12 fw-bold">No. of
@@ -241,7 +241,7 @@
                                                     <div class="autoplay_2 mb-3">
                                                     {{-- @if (@isset($vehicles)) --}}
                                                         @foreach ($vehicles as $vehicle)
-                                                            <div class="slide mx-2">
+                                                            <div class="slide mx-2 city-result">
                                                                 <div class="card first_card_slider border-0">
                                                                     <img src="<?php echo asset('uploads/' . $vehicle['img']); ?>" alt="Avatar"
                                                                         class="image1_2_duplicate rounded_top">
@@ -253,7 +253,7 @@
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle['from'] }} to
                                                                                     {{ $vehicle['to'] }}</p>
-                                                                                <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                <p class="mb-0 fs-12 fw-bold searchable">Vehicle type:
                                                                                     {{ $vehicle['vehicle'] }}
                                                                                 </p>
                                                                                 <p class="mb-0 fs-12 fw-bold">No. of
@@ -565,6 +565,38 @@
         </div>
     </div>
     @include('template.jslinks')
+    <script>
+        function searchFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById('myinput');
+            filter = input.value.toUpperCase();
+            li = document.getElementsByClassName('city-result');
+        
+            cusall = document.getElementsByClassName('customer-all-main');
+            var resultsFound = false; // initialize the flag to false
+        
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByClassName('searchable')[0];
+                if (a.innerHTML.toUpperCase().startsWith(filter)) {
+                    li[i].style.display = "";
+                    resultsFound = true;
+                } else {
+                    li[i].style.display = 'none';
+                }
+            }
+            document.getElementById('filter-heading').style.display = 'none';
+            for (var j = 0; j < cusall.length; j++) {
+                cusall[j].style.display = 'none';
+            }
+            if (!resultsFound) { 
+                document.getElementById('searcherror').style.display = 'block';
+                document.getElementById('error_msg').style.display = 'none';
+        
+            } else {
+                document.getElementById('searcherror').style.display = 'none';
+            }
+        }
+        </script>
 </body>
 
 </html>
