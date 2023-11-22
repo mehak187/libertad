@@ -21,14 +21,14 @@
                     @if (count($StourRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Special </span>Tours
                         </h2>
-                        <div class="position-relative mt-5 h-100">
+                        <div class="position-relative mt-5">
                             <div class="prev_arrow6">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
                             <div class="row mt-3 testimonial">
                                 @foreach ($StourRatings as $StourRating)
                                 <div class="col-12 m-3">
-                                    <div class="border-golden sky-bg rounded-3 p-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
                                         <div class="blue-light-bg rounded-3 p-3">
                                             <div class="d-flex align-items-center ">
                                                 <div class="">
@@ -83,7 +83,7 @@
                             <div class="row mt-3 testimonial">
                                 @foreach ($citytourRatings as $citytourRating)
                                 <div class="col-12 m-3">
-                                    <div class="border-golden sky-bg rounded-3 p-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
                                         <div class="blue-light-bg rounded-3 p-3">
                                             <div class="d-flex align-items-center ">
                                                 <div class="">
@@ -138,7 +138,7 @@
                             <div class="row mt-3 testimonial">
                                 @foreach ($musuemRatings as $musuemRating)
                                 <div class="col-12 m-3">
-                                    <div class="border-golden sky-bg rounded-3 p-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
                                         <div class="blue-light-bg rounded-3 p-3">
                                             <div class="d-flex align-items-center ">
                                                 <div class="">
@@ -193,7 +193,7 @@
                             <div class="row mt-3 testimonial">
                                 @foreach ($siteRatings as $siteRating)
                                 <div class="col-12 m-3">
-                                    <div class="border-golden sky-bg rounded-3 p-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
                                         <div class="blue-light-bg rounded-3 p-3">
                                             <div class="d-flex align-items-center ">
                                                 <div class="">
@@ -248,7 +248,7 @@
                             <div class="row mt-3 testimonial">
                                 @foreach ($activitiesRatings as $activitiesRating)
                                 <div class="col-12 m-3">
-                                    <div class="border-golden sky-bg rounded-3 p-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
                                         <div class="blue-light-bg rounded-3 p-3">
                                             <div class="d-flex align-items-center ">
                                                 <div class="">
@@ -303,7 +303,7 @@
                             <div class="row mt-3 testimonial">
                                 @foreach ($accRatings as $accRating)
                                 <div class="col-12 m-3">
-                                    <div class="border-golden sky-bg rounded-3 p-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
                                         <div class="blue-light-bg rounded-3 p-3">
                                             <div class="d-flex align-items-center ">
                                                 <div class="">

@@ -87,6 +87,12 @@ body {
   margin-left: 5px !important;
   margin-right: 5px !important;
   }
+  .sld{
+    min-height: 350px;
+}
+.sld .blue-light-bg {
+    min-height: 320px
+}
  .pagination{
      --bs-pagination-padding-x: 0.75rem;
      --bs-pagination-padding-y: 0.375rem;

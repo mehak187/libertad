@@ -42,24 +42,18 @@
                         <p class="text-white">{{ $hotel['name'] }}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
-                                <a href="#" class="d-flex align-items-center text text-decoration-none gap-2">
+                                <a href="#"
+                                    class=" view-modal d-flex align-items-center text text-decoration-none gap-2">
                                     <i class="bi bi-share border-golden rounded-circle px-2 py-1 golden-clr"></i>
-                                    <p class="m-0 text-white">Share</p>
+                                    <p class="m-0 text-white ">Share</p>
                                 </a>
-                                <a href="#" class="d-flex align-items-center text text-decoration-none gap-2">
-                                    <i class="bi bi-plus border-golden rounded-circle px-2 py-1 golden-clr"></i>
-                                    <p class="m-0 text-white">Add Story</p>
-                                </a>
-                            </div>
-                            <div class="col-sm-6 col-lg-12 col-xl-6 mt-sm-0">
-                                <div class="text-sm-end text-lg-start text-xl-end">
-                                    <button type="button"
+                                @include('template.popup')
+                                <button type="button"
                                         class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
                                         data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
-                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
