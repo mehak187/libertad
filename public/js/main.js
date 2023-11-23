@@ -812,3 +812,18 @@ switchButton.addEventListener('change', function () {
     noInput.style.display = 'block';
   }
 });
+function updateTotalPrice() {
+  var peopleInput = document.getElementById('peopleInput');
+  var priceInput = document.getElementById('priceInput');
+  var tpriceInput = document.getElementById('tpriceInput');
+
+  var people = parseInt(peopleInput.value) || 0;
+  var price = parseInt(priceInput.value) || 0;
+
+  var totalPrice = people * price;
+  tpriceInput.value = totalPrice;
+
+  var people = parseInt(peopleInput.value) || 0;
+  var totalPrice = people;
+  tpriceInputn.value = totalPrice;
+}
