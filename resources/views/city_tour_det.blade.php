@@ -213,7 +213,7 @@
                     </div>
                     <div class="modal-body">
                         <h6 class="fw-bold mt-3">Travellers Detail</h6>
-                        <input type="number" name="peoplenew" id="tpriceInputn" class="form-control shadow-none font-12" value="1">
+                        <input type="number" name="peoplenew" id="tpriceInputn" class="form-control shadow-none font-12" value="4" readonly>
                         <div class="tbody" id="tbodyContainer">
                             <div class="t-data">
                                 <h6>Traveller 1</h6>
@@ -256,89 +256,57 @@
                 </div>
             </div>
         </div>
-        <script>
-            function appendRows() {
-                var inputValue = document.getElementById("tpriceInputn").value;
-                var tbodyContainer = document.getElementById("tbodyContainer");
-        
-                // Clear existing rows
-                tbodyContainer.innerHTML = "";
-        
-                // Append rows based on the input value
-                for (var i = 1; i <= inputValue; i++) {
-                    var newRow = createRow(i);
-                    tbodyContainer.appendChild(newRow);
-                }
+     
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function updateTable() {
+            // Get the fixed value from the "tpriceInputn" input
+            var numberOfPeople = document.getElementById("tpriceInputn").value;
+
+            // Get the tbody container
+            var tbodyContainer = document.getElementById("tbodyContainer");
+
+            // Clear existing rows
+            tbodyContainer.innerHTML = '';
+
+            // Add rows based on the fixed value
+            for (var i = 1; i <= numberOfPeople; i++) {
+                var newRow = document.createElement("div");
+                newRow.className = "t-data";
+                newRow.innerHTML = `
+                    <h6>Traveller ${i}</h6>
+                    <div class="">
+                        <label for="" class="font-12">First Name</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
+                    </div>
+                    <div class="">
+                        <label for="" class="font-12">Family Name</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
+                    </div>
+                    <div class="">
+                        <label for="" class="font-12">Date of Birth</label>
+                        <input type="date" class="form-control shadow-none font-12" placeholder="Nationality">
+                    </div>
+                    <div class="mt-2">
+                        <div class="d-flex flex-column">
+                            <span for="" class="font-12">
+                                Passport Copy/ID for Egyptians
+                            </span>
+                            <label for="myImg${i}">
+                                <img id="blah${i}" src="./imgs/add_profile.png" alt="" class="profile-img">
+                            </label>
+                            <input type="file" name="img" class="d-none" id="myImg${i}" onchange="readURL(this);">
+                        </div>
+                    </div>
+                `;
+                tbodyContainer.appendChild(newRow);
             }
-        
-            function createRow(index) {
-                var row = document.createElement("div");
-                row.className = "t-data";
-        
-                var heading = document.createElement("h6");
-                heading.textContent = "Traveller " + index;
-                row.appendChild(heading);
-        
-                // Add input fields (you can customize this part based on your requirements)
-                var inputFields = ["First Name", "Family Name", "Date of Birth"];
-                inputFields.forEach(function (labelText) {
-                    var label = document.createElement("label");
-                    label.textContent = labelText;
-                    var input = document.createElement("input");
-                    input.type = "text";
-                    input.className = "form-control shadow-none font-12";
-                    input.placeholder = labelText;
-                    row.appendChild(label);
-                    row.appendChild(input);
-                });
-        
-                // Add file input
-                var fileInputContainer = document.createElement("div");
-                fileInputContainer.className = "mt-2 d-flex flex-column";
-                var spanLabel = document.createElement("span");
-                spanLabel.textContent = "Passport Copy/ID for Egyptians";
-                var fileLabel = document.createElement("label");
-                var fileInput = document.createElement("input");
-                fileInput.type = "file";
-                fileInput.name = "img";
-                fileInput.className = "d-none";
-                fileInput.id = "myImg" + index;
-                fileInput.onchange = function () {
-                    readURL(this, index);
-                };
-                fileLabel.htmlFor = "myImg" + index;
-                var img = document.createElement("img");
-                img.id = "blah" + index;
-                img.src = "./imgs/add_profile.png";
-                img.alt = "";
-                img.className = "profile-img";
-        
-                fileLabel.appendChild(img);
-                fileInputContainer.appendChild(spanLabel);
-                fileInputContainer.appendChild(fileLabel);
-                fileInputContainer.appendChild(fileInput);
-                row.appendChild(fileInputContainer);
-        
-                return row;
-            }
-        
-            function readURL(input, index) {
-                var imgId = "blah" + index;
-                var imgElement = document.getElementById(imgId);
-        
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-        
-                    reader.onload = function (e) {
-                        imgElement.src = e.target.result;
-                    };
-        
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-            document.getElementById("tpriceInputn").addEventListener("input", appendRows);
-            appendRows();
-        </script>
+        }
+
+        // Update the table initially
+        updateTable();
+    });
+</script>
         <div class="modal fade" id="exampleModalToggle4" aria-hidden="true"
             aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">

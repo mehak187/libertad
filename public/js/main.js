@@ -812,18 +812,51 @@ switchButton.addEventListener('change', function () {
     noInput.style.display = 'block';
   }
 });
-function updateTotalPrice() {
-  var peopleInput = document.getElementById('peopleInput');
-  var priceInput = document.getElementById('priceInput');
-  var tpriceInput = document.getElementById('tpriceInput');
 
-  var people = parseInt(peopleInput.value) || 0;
-  var price = parseInt(priceInput.value) || 0;
+// -----------Booking----------
+    function updateTotalPrice() {
+        var peopleInput = document.getElementById('peopleInput');
+        var tpriceInputn = document.getElementById('tpriceInputn');
+        var people = parseInt(peopleInput.value) || 0;
+        var totalPrice = people;
+        tpriceInputn.value = totalPrice;
+        updateTable();
+    }
 
-  var totalPrice = people * price;
-  tpriceInput.value = totalPrice;
-
-  var people = parseInt(peopleInput.value) || 0;
-  var totalPrice = people;
-  tpriceInputn.value = totalPrice;
-}
+    function updateTable() {
+        var numberOfPeople = document.getElementById("tpriceInputn").value;
+        var tbodyContainer = document.getElementById("tbodyContainer");
+        tbodyContainer.innerHTML = '';
+        for (var i = 1; i <= numberOfPeople; i++) {
+            var newRow = document.createElement("div");
+            newRow.className = "t-data";
+            newRow.innerHTML = `
+                <h6>Traveller ${i}</h6>
+                <div class="">
+                    <label for="" class="font-12">First Name</label>
+                    <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
+                </div>
+                <div class="">
+                    <label for="" class="font-12">Family Name</label>
+                    <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
+                </div>
+                <div class="">
+                    <label for="" class="font-12">Date of Birth</label>
+                    <input type="date" class="form-control shadow-none font-12" placeholder="Nationality">
+                </div>
+                <div class="mt-2">
+                    <div class="d-flex flex-column">
+                        <span for="" class="font-12">
+                            Passport Copy/ID for Egyptians
+                        </span>
+                        <label for="myImg${i}">
+                            <img id="blah${i}" src="./imgs/add_profile.png" alt="" class="profile-img">
+                        </label>
+                        <input type="file" name="img" class="d-none" id="myImg${i}" onchange="readURL(this);">
+                    </div>
+                </div>
+            `;
+            tbodyContainer.appendChild(newRow);
+        }
+    }
+    updateTable();
