@@ -815,12 +815,17 @@ switchButton.addEventListener('change', function () {
 
 // -----------Booking----------
     function updateTotalPrice() {
-        var peopleInput = document.getElementById('peopleInput');
-        var tpriceInputn = document.getElementById('tpriceInputn');
-        var people = parseInt(peopleInput.value) || 0;
-        var totalPrice = people;
-        tpriceInputn.value = totalPrice;
-        updateTable();
+      var peopleInput = document.getElementById('peopleInput');
+      var priceInput = document.getElementById('priceInput');
+      var tpriceInput = document.getElementById('tpriceInput');
+      var people = parseInt(peopleInput.value) || 0;
+      var price = parseInt(priceInput.value) || 0;
+      var totalPrice = people * price;
+      tpriceInput.value = totalPrice;
+      var people = parseInt(peopleInput.value) || 0;
+      var totalPrice = people;
+      tpriceInputn.value = totalPrice;
+      updateTable();
     }
 
     function updateTable() {
