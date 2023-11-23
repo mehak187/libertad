@@ -150,7 +150,12 @@ class userController extends Controller
         }
     }
     public function accomodation_detail1($id){
-        $data['hotel'] =accomodation::find($id);
+        $data['hotel_old'] =accomodation::find($id);
+        $city = $data['hotel_old']->city;
+        $data['hotel'] = accomodation::join('cities', 'accomodations.city', '=', 'cities.id')
+        ->select('accomodations.*', 'cities.Cityname')
+        ->where('accomodations.id', $id)
+        ->first();
         return view('recommended-accommodation-page',$data);
     }
     public function sites(){
@@ -304,7 +309,8 @@ class userController extends Controller
             '*'=>'required',
             ]);
         $user_id = auth()->user()->id;
-        if (citytourRating::where('user_id', $user_id)->exists()) {
+        $stour_id = $request->input('stour_id');
+        if (citytourRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
         $data = $request->all();
@@ -317,7 +323,8 @@ class userController extends Controller
             '*'=>'required',
             ]);
         $user_id = auth()->user()->id;
-        if (musuemRating::where('user_id', $user_id)->exists()) {
+        $stour_id = $request->input('stour_id');
+        if (musuemRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
         $data = $request->all();
@@ -330,7 +337,8 @@ class userController extends Controller
             '*'=>'required',
             ]);
         $user_id = auth()->user()->id;
-        if (siteRating::where('user_id', $user_id)->exists()) {
+        $stour_id = $request->input('stour_id');
+        if (siteRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
         $data = $request->all();
@@ -343,7 +351,8 @@ class userController extends Controller
             '*'=>'required',
             ]);
         $user_id = auth()->user()->id;
-        if (activitiesRating::where('user_id', $user_id)->exists()) {
+        $stour_id = $request->input('stour_id');
+        if (activitiesRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
         $data = $request->all();
@@ -356,7 +365,8 @@ class userController extends Controller
             '*'=>'required',
             ]);
         $user_id = auth()->user()->id;
-        if (accRating::where('user_id', $user_id)->exists()) {
+        $stour_id = $request->input('stour_id');
+        if (accRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
         $data = $request->all();

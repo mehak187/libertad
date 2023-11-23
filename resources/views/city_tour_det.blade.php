@@ -179,14 +179,32 @@
                             <label for="" class="font-12">Select the date</label>
                             <input type="date" class="form-control shadow-none font-12" placeholder="date">
                         </div>
-                        <div class="">
-                            <label for="" class="font-12">No. of people</label>
-                            <input type="number" class="form-control shadow-none font-12" placeholder="12">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Total Price</label>
-                            <input type="number" class="form-control shadow-none font-12" placeholder="12$">
-                        </div>
+                        @php
+                            $price = $citytour->price;
+                        @endphp
+                      <div class="">
+                        <label for="" class="font-12">No. of people</label>
+                        <input type="number" name="people" id="peopleInput" class="form-control shadow-none font-12" value="1" oninput="updateTotalPrice()">
+                    </div>
+                    
+                        <input type="number" name="price" id="priceInput" class="form-control shadow-none font-12 d-none" value="{{$price}}" oninput="updateTotalPrice()">
+                    
+                    <div class="">
+                        <label for="" class="font-12">Total Price</label>
+                        <input type="number" name="tprice" id="tpriceInput" class="form-control shadow-none font-12" value="{{$price}}" readonly>
+                    </div>
+                    <script>
+                        function updateTotalPrice() {
+                            var peopleInput = document.getElementById('peopleInput');
+                            var priceInput = document.getElementById('priceInput');
+                            var tpriceInput = document.getElementById('tpriceInput');
+                            var people = parseInt(peopleInput.value) || 0;
+                            var price = parseInt(priceInput.value) || 0;
+                    
+                            var totalPrice = people * price;
+                            tpriceInput.value = totalPrice;
+                        }
+                    </script>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -205,47 +223,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <h6 class="fw-bold ">Enter your details</h6>
-                        <div class="">
-                            <label for="" class="font-12">First Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Family Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Nationality</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Nationality">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Email">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12"
-                                placeholder="Confirm Email">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12"
-                                placeholder="Phone Number">
-                        </div>
-                        <div class="mt-2">
-                            <div class="d-flex flex-column">
-                                <span for="" class="font-12">
-                                    Passport Copy/ID for Egyptians
-                                </span>
-                                <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
-                                        class="profile-img">
-                                </label>
-                                <input type="file" name="img" class="d-none" id="myImg2"
-                                    onchange="readURL(this);">
-                            </div>
-                        </div>
                         <h6 class="fw-bold mt-3">Travellers Detail</h6>
                         <h6>Traveller 1</h6>
                         <div class="">
