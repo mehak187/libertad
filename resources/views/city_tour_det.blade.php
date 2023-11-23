@@ -212,8 +212,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h6 class="fw-bold mt-3">Travellers Detail</h6>
-                        <input type="number" name="peoplenew" id="tpriceInputn" class="form-control shadow-none font-12" value="4" readonly>
+                        <input type="number" name="peoplenew" id="tpriceInputn"  class="form-control shadow-none font-12 d-none" value="1" readonly>
                         <div class="tbody" id="tbodyContainer">
                             <div class="t-data">
                                 <h6>Traveller 1</h6>
