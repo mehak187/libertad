@@ -150,7 +150,12 @@ class userController extends Controller
         }
     }
     public function accomodation_detail1($id){
-        $data['hotel'] =accomodation::find($id);
+        $data['hotel_old'] =accomodation::find($id);
+        $city = $data['hotel_old']->city;
+        $data['hotel'] = accomodation::join('cities', 'accomodations.city', '=', 'cities.id')
+        ->select('accomodations.*', 'cities.Cityname')
+        ->where('accomodations.id', $id)
+        ->first();
         return view('recommended-accommodation-page',$data);
     }
     public function sites(){

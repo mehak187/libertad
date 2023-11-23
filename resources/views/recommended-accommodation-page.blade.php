@@ -73,15 +73,19 @@
                             <p class="golden-clr mb-0">Tour Price:</p>
                             <span class="text-white mb-0">{{ $hotel['tour_price'] }} USD per adult</span>
                         </div>
+                        <div class="d-flex gap-2 mt-4">
+                            <h6 class="golden-clr">City:</h6>
+                            <span class="text-light">{{$hotel['Cityname']}}</span>
+                        </div>
                         <div>
                             <h6 class="golden-clr">Sightseeing</h6>
                             @php
                                 $inputString = $hotel['sight_seeing'];
                                 $dataArray = explode(',', $inputString);
                             @endphp
-                            <ul class="text-dark">
+                            <ul class="text-light">
                                 @foreach ($dataArray as $item)
-                                    <li class="text-dark">{{ $item }}</li>
+                                    <li class="text-light">{{ $item }}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -91,9 +95,9 @@
                                 $inputString = $hotel['include'];
                                 $dataArray = explode(',', $inputString);
                             @endphp
-                            <ul class="text-dark">
+                            <ul class="text-light">
                                 @foreach ($dataArray as $item)
-                                    <li class="text-dark">{{ $item }}</li>
+                                    <li class="text-light">{{ $item }}</li>
                                 @endforeach
                             </ul>
                         </div>
