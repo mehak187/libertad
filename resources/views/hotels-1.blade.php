@@ -168,8 +168,8 @@
                                                                 <img src="<?php echo asset('uploads/' . $hotel1['tourimg']); ?>" alt="Avatar"
                                                                     class="image1_2_duplicate rounded_top">
                                                                 <div class="card-body card_bottom"
-                                                                    style="background-color: #E2BE4E;">
-                                                                    <div class="d-flex justify-content-between">
+                                                                    style="background-color: #E2BE4E; ">
+                                                                    <div class="d-flex flex-column justify-content-between">
                                                                         <p class="mb-0 fs-12">{{ $hotel1['name'] }}</p>
                                                                         <p class="mb-0 fs-12 text-white"># of rooms:
                                                                             {{ $hotel1['rooms'] }}</p>
@@ -198,7 +198,7 @@
                                                                     class="image1_2_duplicate rounded_top">
                                                                 <div class="card-body card_bottom"
                                                                     style="background-color: #E2BE4E;">
-                                                                    <div class="d-flex justify-content-between">
+                                                                    <div class="d-flex flex-column justify-content-between">
                                                                         <p class="mb-0 fs-12">{{ $hotel2['name'] }}</p>
                                                                         <p class="mb-0 fs-12 text-white"># of rooms:
                                                                             {{ $hotel2['rooms'] }}</p>
@@ -228,7 +228,7 @@
                                                                     class="image1_2_duplicate rounded_top">
                                                                 <div class="card-body card_bottom"
                                                                     style="background-color: #E2BE4E;">
-                                                                    <div class="d-flex justify-content-between">
+                                                                    <div class="d-flex flex-column justify-content-between">
                                                                         <p class="mb-0 fs-12">{{ $hotel['name'] }}</p>
                                                                         <p class="mb-0 fs-12 text-white"># of rooms:
                                                                             {{ $hotel['rooms'] }}</p>

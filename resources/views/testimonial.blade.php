@@ -77,10 +77,10 @@
                     @if (count($citytourRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">City </span>Tours</h2>
                         <div class="position-relative mt-5 h-100">
-                            <div class="prev_arrow6">
+                            <div class="prev_arrow11">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
-                            <div class="row mt-3 testimonial">
+                            <div class="row mt-3 testimonial11">
                                 @foreach ($citytourRatings as $citytourRating)
                                 <div class="col-12 m-3">
                                     <div class="border-golden sky-bg rounded-3 p-3 sld">
@@ -123,7 +123,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                            <div class="next_arrow6">
+                            <div class="next_arrow11">
                                 <i class="bi bi-chevron-left"></i>
                             </div>
                         </div>
@@ -132,10 +132,10 @@
                     @if (count($musuemRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Musuems </span></h2>
                         <div class="position-relative mt-5 h-100">
-                            <div class="prev_arrow6">
+                            <div class="prev_arrow12">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
-                            <div class="row mt-3 testimonial">
+                            <div class="row mt-3 testimonial12">
                                 @foreach ($musuemRatings as $musuemRating)
                                 <div class="col-12 m-3">
                                     <div class="border-golden sky-bg rounded-3 p-3 sld">
@@ -178,7 +178,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                            <div class="next_arrow6">
+                            <div class="next_arrow12">
                                 <i class="bi bi-chevron-left"></i>
                             </div>
                         </div>
@@ -187,10 +187,10 @@
                     @if (count($siteRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Sites </span>and <span class="golden-clr">Monuments </span></h2>
                         <div class="position-relative mt-5 h-100">
-                            <div class="prev_arrow6">
+                            <div class="prev_arrow13">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
-                            <div class="row mt-3 testimonial">
+                            <div class="row mt-3 testimonial13">
                                 @foreach ($siteRatings as $siteRating)
                                 <div class="col-12 m-3">
                                     <div class="border-golden sky-bg rounded-3 p-3 sld">
@@ -233,7 +233,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                            <div class="next_arrow6">
+                            <div class="next_arrow13">
                                 <i class="bi bi-chevron-left"></i>
                             </div>
                         </div>
@@ -242,10 +242,10 @@
                     @if (count($activitiesRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Daily </span>Activities</h2>
                         <div class="position-relative mt-5 h-100">
-                            <div class="prev_arrow6">
+                            <div class="prev_arrow14">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
-                            <div class="row mt-3 testimonial">
+                            <div class="row mt-3 testimonial14">
                                 @foreach ($activitiesRatings as $activitiesRating)
                                 <div class="col-12 m-3">
                                     <div class="border-golden sky-bg rounded-3 p-3 sld">
@@ -288,7 +288,7 @@
                                 </div>
                             @endforeach
                             </div>
-                            <div class="next_arrow6">
+                            <div class="next_arrow14">
                                 <i class="bi bi-chevron-left"></i>
                             </div>
                         </div>
@@ -297,10 +297,10 @@
                     @if (count($accRatings) > 0)
                         <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Accomodations </span></h2>
                         <div class="position-relative mt-5 h-100">
-                            <div class="prev_arrow6">
+                            <div class="prev_arrow15">
                                 <i class="bi bi-chevron-right"></i>
                             </div>
-                            <div class="row mt-3 testimonial">
+                            <div class="row mt-3 testimonial15">
                                 @foreach ($accRatings as $accRating)
                                 <div class="col-12 m-3">
                                     <div class="border-golden sky-bg rounded-3 p-3 sld">
@@ -343,7 +343,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                            <div class="next_arrow6">
+                            <div class="next_arrow15">
                                 <i class="bi bi-chevron-left"></i>
                             </div>
                         </div>
