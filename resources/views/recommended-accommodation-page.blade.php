@@ -132,7 +132,7 @@
                                 <input type="radio" id="star1" name="rating" value="1">
                                 <label for="star1" onclick="updateStarValue(1)"></label>
                             </div>
-                            <input type="number" id="star" name="star" class="d-none" value="" maxlength="200" required>
+                            <input type="number" id="star" name="star" class="d-none" value=""  required>
                             <script>
                                 function updateStarValue(value) {
                                     document.getElementById('star').value = value;
@@ -140,7 +140,7 @@
                             </script>
                         </div>
                         <div class="mt-3">
-                            <textarea class="myInput" placeholder="Write" name="review" rows="3" required></textarea>
+                            <textarea class="myInput" placeholder="Write" name="review" maxlength="200" rows="3" required></textarea>
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
