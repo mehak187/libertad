@@ -1455,7 +1455,51 @@ display: block;
 .search1 .search1:not(:focus-within) {
   --transition-time-input: 0.2s 0s;
 }
-
+body {
+  position: relative;
+}
+.custom-model {
+  max-width: 500px;
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px 0;
+  border-radius: 10px;
+}
+.close-res,
+.close-book {
+  cursor: pointer;
+}
+.book-model {
+  max-height: 97vh;
+  overflow: auto;
+}
+.book-model form{
+  overflow: auto;
+  /* max-height: 97vh; */
+}
+.book-model::-webkit-scrollbar {
+  width: 0
+}
+.form-control-n {
+  display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 @media (prefers-reduced-motion: reduce) {
   .search1 {
     --transition-time-icon: 0s !important;

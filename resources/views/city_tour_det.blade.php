@@ -97,8 +97,8 @@
                         </div>
                         <div class="">
                             <div class="button_border rounded-pill">
-                                <button type="button" class="button_leniar_style px-5 rounded-pill "
-                                    data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Book</button>
+                                <button type="button"
+                                    class="button_leniar_style px-5 rounded-pill open-res">Book</button>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
         </div>
     </section>
     @include('template.footer')
-    <div class="modal fade" id="myModal">
+    {{-- <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-booking">
             <div class="modal-content light-bground py-3 rounded-4">
                 <div class="modal-header border-0 pt-0 px-5">
@@ -162,337 +162,232 @@
                 </div>
             </div>
         </div>
-    </div>
-    <form action="">
-        <!-- ---------booking modals---------- -->
-        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-booking">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Reservation</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="">
-                            <label for="" class="font-12">Select the date</label>
-                            <input type="date" class="form-control shadow-none font-12" placeholder="date">
-                        </div>
-                        @php
-                            $price = $citytour->price;
-                        @endphp
-                        <div class="">
-                            <label for="" class="font-12">No. of people</label>
-                            <input type="number" name="peoplenew" id="peopleInput" class="form-control shadow-none font-12" value="1" oninput="updateTotalPrice()">
-                        </div>
-                        <input type="number" name="price" id="priceInput"
-                            class="form-control shadow-none font-12 d-none" value="{{ $price }}"
-                            oninput="updateTotalPrice()">
-                        <div class="">
-                            <label for="" class="font-12">Total Price</label>
-                            <input type="number" name="tprice" id="tpriceInput"
-                                class="form-control shadow-none font-12" value="{{ $price }}" readonly>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
-                            class="btn mybutton px-4 border-0 rounded-pill">Continue with my booking</button>
-                    </div>
-                </div>
+    </div> --}}
+
+    <!-- ---------booking modals---------- -->
+    {{-- <form action="/savebooking" method="POST" enctype="multipart/form-data" class="mt-2">
+        @csrf
+        <input type="number" name="peoplenew" id="tpriceInputn" class="form-control shadow-none font-12"
+        value="1" readonly>
+        <input type="submit" value="Confirm my booking" class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 ">
+
+    </form> --}}
+  
+        
+         <div class="custom-model res-model">
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Reservation</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
             </div>
-        </div>
-        <div class="modal fade" id="exampleModalToggle3" aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Booking Data</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="number" name="peoplenew" id="tpriceInputn"  class="form-control shadow-none font-12 d-none" value="1" readonly>
-                        <div class="tbody" id="tbodyContainer">
-                            <div class="t-data">
-                                <h6>Traveller 1</h6>
-                                <div class="">
-                                    <label for="" class="font-12">First Name</label>
-                                    <input type="text" class="form-control shadow-none font-12"
-                                        placeholder="First Name">
-                                </div>
-                                <div class="">
-                                    <label for="" class="font-12">Family Name</label>
-                                    <input type="text" class="form-control shadow-none font-12"
-                                        placeholder="Family Name">
-                                </div>
-                                <div class="">
-                                    <label for="" class="font-12">Date of Birth</label>
-                                    <input type="date" class="form-control shadow-none font-12"
-                                        placeholder="Nationality">
-                                </div>
-                                <div class="mt-2">
-                                    <div class="d-flex flex-column">
-                                        <span for="" class="font-12">
-                                            Passport Copy/ID for Egyptians
-                                        </span>
-                                        <label for="myImg2">
-                                            <img id="blah2" src="./imgs/add_profile.png" alt=""
-                                                class="profile-img">
-                                        </label>
-                                        <input type="file" name="img" class="d-none" id="myImg2"
-                                            onchange="readURL(this);">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="modal-footer">
-                        <button data-bs-target="#exampleModalToggle4" data-bs-toggle="modal"
-                            class="btn mybutton px-4 border-0 rounded-pill">Confirm my Booking</button>
-                    </div>
-                </div>
+            <div class="mt-3 px-3">
+                <label for="" class="font-12">Select the date</label>
+                <input type="date" class="w-100 form-control-n border-1 shadow-none small" name="date" placeholder="date" id="date" >
             </div>
-        </div>
-     
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        function updateTable() {
-            // Get the fixed value from the "tpriceInputn" input
-            var numberOfPeople = document.getElementById("tpriceInputn").value;
-
-            // Get the tbody container
-            var tbodyContainer = document.getElementById("tbodyContainer");
-
-            // Clear existing rows
-            tbodyContainer.innerHTML = '';
-
-            // Add rows based on the fixed value
-            for (var i = 1; i <= numberOfPeople; i++) {
-                var newRow = document.createElement("div");
-                newRow.className = "t-data";
-                newRow.innerHTML = `
-                    <h6>Traveller ${i}</h6>
+            @php
+                $price = $citytour->price;
+            @endphp
+            <div class="px-3">
+                <label for="" class="font-12">No. of people</label>
+                <input type="number" name="peoplenew" id="peopleInput" class="form-control shadow-none font-12" value="1" oninput="updateTotalPrice()" >
+            </div>
+            <input type="number" name="price" id="priceInput" class="form-control shadow-none font-12 d-none" value="{{ $price }}" oninput="updateTotalPrice()">
+            <div class="px-3">
+                <label for="" class="font-12">Total Price</label>
+                <input type="number" name="tprice" id="tpriceInput" class="form-control shadow-none font-12" value="{{ $price }}" readonly >
+            </div>
+            <div class="border-1 border-top mt-3 d-flex justify-content-end">
+                <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Continue with my booking</button>
+            </div>
+        </div> 
+        <div class="custom-model book-model">
+            <form name="booking" action="/savebooking" method="POST" enctype="multipart/form-data" class="mt-2">
+            @csrf
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Booking Data</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+            <input type="number" class="d-none" name="tour_id" value="{{ $citytour->id }}">
+            <input type="number" class="d-none" name="role" value="1" readonly>
+            <input type="number" name="peoplenew" id="tpriceInputn" class="form-control shadow-none font-12 d-none" value="1" readonly>
+            <input type="number" name="t_price" id="tpricenew" class="form-control shadow-none font-12 d-none" value="{{ $price }}" readonly>
+            <input type="date" name="date" id="datenew" class="form-control shadow-none font-12 d-none" value="" readonly>
+            <div class="tbody px-3" id="tbodyContainer">
+                <div class="t-data">
+                    <h6 class="mt-3">Traveller 1</h6>
                     <div class="">
-                        <label for="" class="font-12">First Name</label>
-                        <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
+                        <label for="f_name" class="font-12">First Name</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="First Name"
+                            id="f_name" name="f_name[]">
                     </div>
                     <div class="">
-                        <label for="" class="font-12">Family Name</label>
-                        <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
+                        <label for="l_name" class="font-12">Last Name</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="Last Name"
+                            id="l_name" name="l_name[]">
                     </div>
                     <div class="">
-                        <label for="" class="font-12">Date of Birth</label>
-                        <input type="date" class="form-control shadow-none font-12" placeholder="Nationality">
+                        <label for="dob" class="font-12">Date of Birth</label>
+                        <input type="date" class="form-control shadow-none font-12" placeholder="Nationality"
+                            id="dob" name="dob[]">
                     </div>
                     <div class="mt-2">
                         <div class="d-flex flex-column">
-                            <span for="" class="font-12">
-                                Passport Copy/ID for Egyptians
-                            </span>
-                            <label for="myImg${i}">
-                                <img id="blah${i}" src="./imgs/add_profile.png" alt="" class="profile-img">
-                            </label>
-                            <input type="file" name="img" class="d-none" id="myImg${i}" onchange="readURL(this);">
+                            <span for="" class="font-12">Passport Copy/ID for Egyptians</span>
+                            <input type="file" name="passport[]" class="form-control shadow-none font-12"
+                                id="myImg2" onchange="readURL(this);">
                         </div>
                     </div>
-                `;
-                tbodyContainer.appendChild(newRow);
-            }
-        }
-
-        // Update the table initially
-        updateTable();
-    });
-</script>
-        <div class="modal fade" id="exampleModalToggle4" aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Summary</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="">
-                            <h6 class="fw-bold">Tour data</h6>
-                            <div class="">
-                                <h6>Tour Name</h6>
-                                <p>Alexandria</p>
-                            </div>
-                            <div class="">
-                                <h6>Cities</h6>
-                                <p>Alexandria, Siwa</p>
-                            </div>
-                            <div class="">
-                                <h6>Tour duration</h6>
-                                <p>2 days</p>
-                            </div>
-                            <div class="">
-                                <h6>Date</h6>
-                                <p>12/12/23</p>
-                            </div>
-                            <div class="">
-                                <h6>No. of people</h6>
-                                <p>12</p>
-                            </div>
-                            <h6 class="fw-bold">Total Price</h6>
-                            <p>120$</p>
-                            <h6>Terms $ Conditions/Cancellation policy</h6>
-                            <div class="d-flex align-items-start">
-                                <input type="checkbox" class="me-2 mt-2">
-                                <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing
-                                    elit. Est
-                                    deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
-                                    laboriosam.label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button data-bs-target="#exampleModalToggle5" data-bs-toggle="modal"
-                            class="btn mybutton px-4 border-0 rounded-pill">Continue & Pay</button>
-                    </div>
                 </div>
             </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <input type="submit" value="Confirm my booking" name="booking" class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 ">
+            </div>
+         </form>
         </div>
-        <div class="modal fade" id="exampleModalToggle5" aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel5" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Payment methods</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="">
-                            <div class="row d-flex align-items-center justify-content-between px-3">
-                                <div class="col-6 form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1" checked>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Credit Card
-                                    </label>
-                                </div>
 
-                                <div class="col-6 d-flex align-items-center justify-content-end">
-                                    <img class="payment-logos" src="./imgs/VISA-Logo-2014.png" alt="">
-                                    <img class="payment-logos" src="./imgs/Mastercard-Logo.png" alt="">
-                                    <img class="payment-logos" src="./imgs/Emex-logo.png" alt="">
-                                </div>
-                            </div>
-                            <div id="has" style="display: block;">
+    {{-- <div class="custom-model show-model">
+        <form action="">
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Summary</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+            <div class="px-3">
+                <h6 class="fw-bold">Tour data</h6>
+                <div class="">
+                    <h6>Tour Name</h6>
+                    <p>Alexandria</p>
+                </div>
+                <div class="">
+                    <h6>Cities</h6>
+                    <p>Alexandria, Siwa</p>
+                </div>
+                <div class="">
+                    <h6>Tour duration</h6>
+                    <p>2 days</p>
+                </div>
+                <div class="">
+                    <h6>Date</h6>
+                    <p>12/12/23</p>
+                </div>
+                <div class="">
+                    <h6>No. of people</h6>
+                    <p>12</p>
+                </div>
+                <h6 class="fw-bold">Total Price</h6>
+                <p>120$</p>
+                <h6>Terms $ Conditions/Cancellation policy</h6>
+            </div>
+            <div class="d-flex align-items-start px-3">
+                <input type="checkbox" class="me-2 mt-2">
+                <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur
+                    adipisicing
+                    elit. Est
+                    deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
+                    laboriosam.label>
+            </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <input type="submit" value="Continue & Pay" class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 open-payment">
+            </div>
+        </form>
+    </div>
 
+    <div class="custom-model payment-model">
+        <form action="" id="paymentForm">
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5" >Payment methods</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
 
-                                <div class="mt-3">
-                                    <input type="number" class="form-control shadow-none" placeholder="Card number">
-                                </div>
-                                <div class="mt-3">
-                                    <input type="text" name="" id="flexRadioDefault1"
-                                        class="form-control shadow-none" placeholder="Cardholder name">
-                                </div>
-                                <div class="mt-3">
-                                    <input type="text" id="monthYearInput" class="form-control shadow-none"
-                                        placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
-                                        title="Please enter a valid Month/Year (MM/YYYY)">
-                                </div>
-                                <div class="mt-3">
-                                    <input type="text" class="form-control shadow-none" placeholder="CCV">
-                                </div>
-                            </div>
-                            <div class="mt-3 form-check">
-                                <input class=" form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    <img class="w-25" src="./imgs/paypal-logo-png-16.png" alt="">
-                                </label>
-                            </div>
-
-                            <div class="mt-3 ps-4 d-flex align-items-center">
-                                <img class="payment-logoslast" src="./imgs/VISA-Logo-2014.png" alt="">
-                                <img class="payment-logoslast" src="./imgs/Mastercard-Logo.png" alt="">
-                                <img class="payment-logoslast" src="./imgs/Emex-logo.png" alt="">
-                            </div>
-                            <div id="asd" style="display: none;">
-                                <div class="mt-3">
-                                    <label for="">Email</label>
-                                    <input type="text" name="" id=""
-                                        class="form-control shadow-none" placeholder="Email">
-                                </div>
-                                <div class="mt-3">
-                                    <label for="">Password</label>
-                                    <input type="password" class="text-dark form-control shadow-none"
-                                        placeholder="Password">
-                                </div>
-                                <div class="text-center mt-3">
-                                    <input type="submit" value="Login"
-                                        class="golden-bg border-0 rounded-pill px-3 py-2">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle6 "
-                            class="btn mybutton px-4 border-0 rounded-pill">Pay Secure</button>
-                    </div>
+            <div class="row d-flex align-items-center justify-content-between px-3">
+                <div class="col-6 form-check px-3">
+                    <label class="form-check-label credit ms-3" for="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                        id="flexRadioDefault1" checked>
+                        Credit Card
+                    </label>
+                </div>
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                    <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                    <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="exampleModalToggle6" aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel6" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel5">Summary</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="">
-                            <div>
-                                <label for="" class="fw-semibold">Product description</label>
-                                <p class="shadow-none font-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Vivamus ac odio ac justo facilisis fringilla ac eu justo.</p>
-                            </div>
-                            <div class="mt-3">
-                                <label for="" class="fw-semibold">Qty</label>
-                                <p class="shadow-none font-12">4</p>
-                            </div>
-                            <div class="mt-3">
-                                <label for="" class="fw-semibold">Receipt No.</label>
-                                <p class="shadow-none font-12">200</p>
-                            </div>
-                            <div class="mt-3">
-                                <label for="" class="fw-semibold">Date Paid</label>
-                                <p class="shadow-none font-12">8/18/2023</p>
-                            </div>
-                            <div class="mt-3">
-                                <label for="" class="fw-semibold">Payment Method</label>
-                                <p class="shadow-none font-12">PayPal</p>
-                            </div>
-                            <div>
-                                <label for="" class="w-100 fw-semibold">Logo</label>
-                                <img class="w-25" src="./imgs/logo_text.png" alt="">
-                                <p class="d-flex">Liberta<span class="way_color">d</span>elmundo</p>
-                            </div>
-                            <div class="mt-3">
-                                <label for="" class="fw-semibold">Person name</label>
-                                <p class="shadow-none font-12">Ashir Ali Bhalli</p>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button data-bs-toggle="modal" aria-label="Close"
-                            class="btn mybutton px-4 border-0 rounded-pill">Send Email</button>
-                    </div>
+            <div id="has" class="px-3 credit-det">
+                <div class="mt-3">
+                    <input type="number" class="form-control shadow-none" placeholder="Card number">
+                </div>
+                <div class="mt-3">
+                    <input type="text" name="" id="flexRadioDefault1"
+                        class="form-control shadow-none" placeholder="Cardholder name">
+                </div>
+                <div class="mt-3">
+                    <input type="text" id="monthYearInput" class="form-control shadow-none"
+                        placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
+                        title="Please enter a valid Month/Year (MM/YYYY)">
+                </div>
+                <div class="mt-3">
+                    <input type="text" class="form-control shadow-none" placeholder="CCV">
                 </div>
             </div>
-        </div>
-    </form>
+            <div class="mt-3 form-check" class="px-3">
+                <label class="form-check-label paypal ms-3" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
+                </label>
+            </div>
+
+            <div class="mt-3 ps-4 d-flex align-items-center px-3">
+                <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
+            </div>
+            <div class="px-3 paypal-det">
+                <div class="mt-3">
+                    <label for="">Email</label>
+                    <input type="text" name="" id="" class="form-control shadow-none"
+                        placeholder="Email">
+                </div>
+                <div class="mt-3">
+                    <label for="">Password</label>
+                    <input type="password" class="text-dark form-control shadow-none"
+                        placeholder="Password">
+                </div>
+                <div class="text-center mt-3">
+                    <input type="submit" value="Login"
+                        class="golden-bg border-0 rounded-pill px-3 py-2">
+                </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <input type="submit" value="Pay Secure" class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
+            </div>
+        </form>
+    </div> --}}
     @include('template.jslinks')
+    <script>
+        $(".book-model").hide();
+        $(".res-model").hide();
+        $(".show-model").hide();
+        $(".payment-model").hide();
+        
+        $(".open-book").click(function(){
+            $(".book-model").show();
+        });
+        $(".open-res").click(function(){
+            $(".res-model").show();
+        });
+        $(".open-show").click(function(){
+            $(".show-mode").show();
+        });
+        $(".open-payment").click(function(){
+            $(".payment-model").show();
+        });
+
+        $(".close-m").click(function(){
+            $(".book-model").hide();
+            $(".res-model").hide();
+            $(".show-model").hide();
+            $(".payment-model").hide();
+        });
+    </script> 
 </body>
 
 </html>

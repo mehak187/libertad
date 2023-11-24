@@ -765,38 +765,38 @@ function swapFields() {
   input1.value = input2.value;
   input2.value = tempValue;
 }
-document.addEventListener("DOMContentLoaded", function () {
-  const creditCardRadio = document.getElementById("flexRadioDefault1");
-  const paypalRadio = document.getElementById("flexRadioDefault2");
-  const creditCardInputs = document.getElementById("has");
-  const paypalInputs = document.getElementById("asd");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const creditCardRadio = document.getElementById("flexRadioDefault1");
+//   const paypalRadio = document.getElementById("flexRadioDefault2");
+//   const creditCardInputs = document.getElementById("has");
+//   const paypalInputs = document.getElementById("asd");
 
-  creditCardRadio.addEventListener("change", function () {
-    creditCardInputs.style.display = this.checked ? "block" : "none";
-    paypalInputs.style.display = this.checked ? "none" : "block";
-  });
+//   creditCardRadio.addEventListener("change", function () {
+//     creditCardInputs.style.display = this.checked ? "block" : "none";
+//     paypalInputs.style.display = this.checked ? "none" : "block";
+//   });
 
-  paypalRadio.addEventListener("change", function () {
-    paypalInputs.style.display = this.checked ? "block" : "none";
-    creditCardInputs.style.display = this.checked ? "none" : "block";
-  });
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const creditCardRadio = document.getElementById("flexRadioDefault1");
-  const paypalRadio = document.getElementById("flexRadioDefault2");
-  const creditCardForm = document.getElementById("creditCardForm");
-  const paypalForm = document.getElementById("paypalForm");
+//   paypalRadio.addEventListener("change", function () {
+//     paypalInputs.style.display = this.checked ? "block" : "none";
+//     creditCardInputs.style.display = this.checked ? "none" : "block";
+//   });
+// });
+// document.addEventListener("DOMContentLoaded", function () {
+//   const creditCardRadio = document.getElementById("flexRadioDefault1");
+//   const paypalRadio = document.getElementById("flexRadioDefault2");
+//   const creditCardForm = document.getElementById("creditCardForm");
+//   const paypalForm = document.getElementById("paypalForm");
 
-  creditCardRadio.addEventListener("click", function () {
-    creditCardForm.style.display = "block";
-    paypalForm.style.display = "none";
-  });
+//   creditCardRadio.addEventListener("click", function () {
+//     creditCardForm.style.display = "block";
+//     paypalForm.style.display = "none";
+//   });
 
-  paypalRadio.addEventListener("click", function () {
-    creditCardForm.style.display = "none";
-    paypalForm.style.display = "block";
-  });
-});
+//   paypalRadio.addEventListener("click", function () {
+//     creditCardForm.style.display = "none";
+//     paypalForm.style.display = "block";
+//   });
+// });
 
 new MultiSelectTag('city');
 new MultiSelectTag('transport-whecle');
@@ -814,20 +814,42 @@ switchButton.addEventListener('change', function () {
 });
 
 // -----------Booking----------
-    function updateTotalPrice() {
-      var peopleInput = document.getElementById('peopleInput');
-      var priceInput = document.getElementById('priceInput');
-      var tpriceInput = document.getElementById('tpriceInput');
-      var people = parseInt(peopleInput.value) || 0;
-      var price = parseInt(priceInput.value) || 0;
-      var totalPrice = people * price;
-      tpriceInput.value = totalPrice;
-      var people = parseInt(peopleInput.value) || 0;
-      var totalPrice = people;
-      tpriceInputn.value = totalPrice;
-      updateTable();
-    }
+function updateTotalPrice() {
+    var peopleInput = document.getElementById('peopleInput');
+    var priceInput = document.getElementById('priceInput');
+    var tpriceInput = document.getElementById('tpriceInput');
+    var tpriceInputn = document.getElementById('tpriceInputn');
+    var tpricenew = document.getElementById('tpricenew');
+    var date = document.getElementById('date');
+    var datenew = document.getElementById('datenew');
+    
+    var people = parseInt(peopleInput.value) || 0;
+    var price = parseInt(priceInput.value) || 0;
+    var totalPrice = people * price;
+    
+    tpriceInput.value = totalPrice;
+    tpricenew.value = totalPrice;
 
+    date.addEventListener('change', function() {
+        datenew.value = date.value;
+    });
+
+    copyDate();
+
+    var people = parseInt(peopleInput.value) || 0;
+    var totalPriceN = people;
+    tpriceInputn.value = totalPriceN;
+    updateTable();
+}
+
+function copyDate() {
+    var date = document.getElementById('date');
+    var datenew = document.getElementById('datenew');
+    datenew.value = date.value;
+}
+
+// Call the updateTotalPrice function on page load
+window.onload = updateTotalPrice;
     function updateTable() {
         var numberOfPeople = document.getElementById("tpriceInputn").value;
         var tbodyContainer = document.getElementById("tbodyContainer");
@@ -836,28 +858,25 @@ switchButton.addEventListener('change', function () {
             var newRow = document.createElement("div");
             newRow.className = "t-data";
             newRow.innerHTML = `
-                <h6>Traveller ${i}</h6>
+                <h6 class="mt-3">Traveller ${i}</h6>
                 <div class="">
-                    <label for="" class="font-12">First Name</label>
-                    <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
+                    <label for="f_name-${i}" class="font-12">First Name</label>
+                    <input type="text" class="form-control shadow-none font-12" id="f_name-${i}" name="f_name[]" placeholder="First Name">
                 </div>
                 <div class="">
-                    <label for="" class="font-12">Family Name</label>
-                    <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
+                    <label for="l_name-${i}" class="font-12">Last Name</label>
+                    <input type="text" class="form-control shadow-none font-12" id="l_name-${i}" name="l_name[]" placeholder="Last Name">
                 </div>
                 <div class="">
-                    <label for="" class="font-12">Date of Birth</label>
-                    <input type="date" class="form-control shadow-none font-12" placeholder="Nationality">
+                    <label for="dob-${i}" class="font-12">Date of Birth</label>
+                    <input type="date" class="form-control shadow-none font-12" id="dob-${i}" name="dob[]" placeholder="Nationality">
                 </div>
                 <div class="mt-2">
                     <div class="d-flex flex-column">
                         <span for="" class="font-12">
                             Passport Copy/ID for Egyptians
                         </span>
-                        <label for="myImg${i}">
-                            <img id="blah${i}" src="./imgs/add_profile.png" alt="" class="profile-img">
-                        </label>
-                        <input type="file" name="img" class="d-none" id="myImg${i}" onchange="readURL(this);">
+                        <input type="file" name="img" class="form-control shadow-none font-12" id="myImg${i}" name="passport[]" onchange="readURL(this);">
                     </div>
                 </div>
             `;
