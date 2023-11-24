@@ -876,7 +876,7 @@ window.onload = updateTotalPrice;
                         <span for="" class="font-12">
                             Passport Copy/ID for Egyptians
                         </span>
-                        <input type="file" name="img" class="form-control shadow-none font-12" id="myImg${i}" name="passport[]" onchange="readURL(this);">
+                        <input type="file" class="form-control shadow-none font-12" id="myImg${i}" name="passport[]" onchange="readURL(this);">
                     </div>
                 </div>
             `;
