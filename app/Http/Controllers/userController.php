@@ -29,6 +29,9 @@ use App\Models\accRating;
 use App\Models\activitiesRating;
 use App\Models\musuemRating;
 use App\Models\siteRating;
+use App\Models\booking;
+use App\Models\traveller;
+
 use Illuminate\Http\Request;
 class userController extends Controller
 {
@@ -374,4 +377,48 @@ class userController extends Controller
         accRating::create($data);
         return redirect()->back()->with('success', 'Thanks for your review');
     }
+
+    public function savebooking(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+
+        $booking = booking::create([
+            'tour_id' => $request->tour_id,
+            'role' => $request->role,
+            'date' => $request->date,
+            'people' => $request->peoplenew,
+            't_price' => $request->t_price,
+        ]);
+
+        $imagePaths = $request->file('passport');
+        $f_names = $request->f_name;
+        $l_names = $request->l_name;
+        $dobs = $request->dob;
+        
+        if (
+            is_array($f_names) &&
+            is_array($l_names) &&
+            is_array($dobs) &&
+            count($f_names) == count($l_names) &&
+            count($l_names) == count($dobs) &&
+            count($dobs) == count($imagePaths)
+        ) {
+            foreach ($imagePaths as $index => $image) {
+                $originalName = time() . "-" . $image->getClientOriginalName();
+                $imagePathDestination = public_path('uploads');
+                $image->move($imagePathDestination, $originalName);
+        
+                Traveller::create([
+                    'book_id' => $booking->id,
+                    'image_path' => $originalName,
+                    'f_name' => $f_names[$index],
+                    'l_name' => $l_names[$index],
+                    'dob' => $dobs[$index],
+                ]);
+            }
+        }
+        // return redirect('/manage_city_tours')->with('savectour', 'City tour added Successfully');
+    }
+    
 }
