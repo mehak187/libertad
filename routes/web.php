@@ -59,6 +59,35 @@ use App\Http\Controllers\adminController;
         Route::post('book1','book1');
         Route::post('savebooking','savebooking');
         Route::post('check','check');
+        // Route::get('/charge', function () {
+        //     return view('charge');
+        // });
+        // Route::post('/charge', function (Request $request) {
+        //     // Set your Stripe API key.
+        //     \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        
+        //     // Get the payment amount and email address from the form.
+        //     $amount = $request->input('amount') * 100;
+        //     $email = $request->input('email');
+        
+        //     // Create a new Stripe customer.
+        //     $customer = \Stripe\Customer::create([
+        //         'email' => $email,
+        //         'source' => $request->input('stripeToken'),
+        //     ]);
+            
+        //     // Create a new Stripe charge.
+        //     $charge = \Stripe\Charge::create([
+        //         'customer' => $customer->id,
+        //         'amount' => $amount,
+        //         'currency' => 'usd',
+        //     ]);
+        
+        //     // Display a success message to the user.
+        //     return 'Payment successful!';
+        // });
+//         Route::get('addmoney/stripe', array('as' => 'addmoney.paystripe','uses' => 'MoneySetupController@PaymentStripe'));
+// Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'MoneySetupController@postPaymentStripe'));
     });
 // });
 
