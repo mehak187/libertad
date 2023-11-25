@@ -818,69 +818,13 @@ function updateTotalPrice() {
     var peopleInput = document.getElementById('peopleInput');
     var priceInput = document.getElementById('priceInput');
     var tpriceInput = document.getElementById('tpriceInput');
-    var tpriceInputn = document.getElementById('tpriceInputn');
+
     var tpricenew = document.getElementById('tpricenew');
-    var date = document.getElementById('date');
-    var datenew = document.getElementById('datenew');
     
     var people = parseInt(peopleInput.value) || 0;
     var price = parseInt(priceInput.value) || 0;
     var totalPrice = people * price;
     
     tpriceInput.value = totalPrice;
-    tpricenew.value = totalPrice;
-
-    date.addEventListener('change', function() {
-        datenew.value = date.value;
-    });
-
-    copyDate();
-
-    var people = parseInt(peopleInput.value) || 0;
-    var totalPriceN = people;
-    tpriceInputn.value = totalPriceN;
-    updateTable();
 }
 
-function copyDate() {
-    var date = document.getElementById('date');
-    var datenew = document.getElementById('datenew');
-    datenew.value = date.value;
-}
-
-// Call the updateTotalPrice function on page load
-window.onload = updateTotalPrice;
-    function updateTable() {
-        var numberOfPeople = document.getElementById("tpriceInputn").value;
-        var tbodyContainer = document.getElementById("tbodyContainer");
-        tbodyContainer.innerHTML = '';
-        for (var i = 1; i <= numberOfPeople; i++) {
-            var newRow = document.createElement("div");
-            newRow.className = "t-data";
-            newRow.innerHTML = `
-                <h6 class="mt-3">Traveller ${i}</h6>
-                <div class="">
-                    <label for="f_name-${i}" class="font-12">First Name</label>
-                    <input type="text" class="form-control shadow-none font-12" id="f_name-${i}" name="f_name[]" placeholder="First Name">
-                </div>
-                <div class="">
-                    <label for="l_name-${i}" class="font-12">Last Name</label>
-                    <input type="text" class="form-control shadow-none font-12" id="l_name-${i}" name="l_name[]" placeholder="Last Name">
-                </div>
-                <div class="">
-                    <label for="dob-${i}" class="font-12">Date of Birth</label>
-                    <input type="date" class="form-control shadow-none font-12" id="dob-${i}" name="dob[]" placeholder="Nationality">
-                </div>
-                <div class="mt-2">
-                    <div class="d-flex flex-column">
-                        <span for="" class="font-12">
-                            Passport Copy/ID for Egyptians
-                        </span>
-                        <input type="file" class="form-control shadow-none font-12" id="myImg${i}" name="passport[]" onchange="readURL(this);">
-                    </div>
-                </div>
-            `;
-            tbodyContainer.appendChild(newRow);
-        }
-    }
-    updateTable();

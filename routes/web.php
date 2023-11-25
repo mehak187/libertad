@@ -56,7 +56,9 @@ use App\Http\Controllers\adminController;
         Route::post('site_review','site_review');
         Route::post('activities_review','activities_review');
         Route::post('acc_review','acc_review');
+        Route::post('book1','book1');
         Route::post('savebooking','savebooking');
+        Route::post('check','check');
     });
 // });
 

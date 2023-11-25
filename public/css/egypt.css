@@ -1473,15 +1473,17 @@ body {
 .close-book {
   cursor: pointer;
 }
-.book-model {
+.custom-model {
   max-height: 97vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-.book-model form{
+.custom-model form{
   overflow: auto;
+  overflow-x: hidden;
   /* max-height: 97vh; */
 }
-.book-model::-webkit-scrollbar {
+.custom-model::-webkit-scrollbar {
   width: 0
 }
 .form-control-n {
