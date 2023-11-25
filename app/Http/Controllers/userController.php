@@ -377,76 +377,54 @@ class userController extends Controller
         accRating::create($data);
         return redirect()->back()->with('success', 'Thanks for your review');
     }
-
+    public function book1(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $requestData = $request->all();
+        return back()->with('bookingm', 'City tour added Successfully')->with('requestData', $requestData);;
+    }
     public function savebooking(request $request){
         $request->validate([
             '*' => 'required',
         ]);
 
+        $user_id = auth()->user()->id;
+        // print_r( $user_id);die();
         $booking = booking::create([
+            'user_id' => $user_id,
             'tour_id' => $request->tour_id,
             'role' => $request->role,
             'date' => $request->date,
             'people' => $request->peoplenew,
             't_price' => $request->t_price,
         ]);
-
-        // $imagePaths = $request->file('passport');
-        // $f_names = $request->f_name;
-        // $l_names = $request->l_name;
-        // $dobs = $request->dob;
-
-
-    $imagePaths = $request->file('passport');
-    // print_r($imagePaths);
-    // die();
-    if ($imagePaths) {
-       
-        foreach ($imagePaths as $index => $image) {
-            $originalName = time() . "-" . $image->getClientOriginalName();
-            $imagePathDestination = public_path('uploads');
-            $image->move($imagePathDestination, $originalName);
-         
-            // Assuming you have corresponding arrays for f_name, l_name, and date
-            $fNames = $request->input('f_name');
-            $lNames = $request->input('l_name');
-            $dates = $request->input('dob');
-
-            // Create a new GalleryImageSite record for each image
-            traveller::create([
-                'book_id' => $booking->id,
-                'passport' => $originalName,
-                'f_name' => $fNames[$index], // Use the corresponding index for each array
-                'l_name' => $lNames[$index],
-                'dob' => $dates[$index],
-            ]);
+        $imagePaths = $request->file('passport');
+        if ($imagePaths) {
+        
+            foreach ($imagePaths as $index => $image) {
+                $originalName = time() . "-" . $image->getClientOriginalName();
+                $imagePathDestination = public_path('uploads');
+                $image->move($imagePathDestination, $originalName);
+                $fNames = $request->input('f_name');
+                $lNames = $request->input('l_name');
+                $dates = $request->input('dob');
+                traveller::create([
+                    'book_id' => $booking->id,
+                    'passport' => $originalName,
+                    'f_name' => $fNames[$index], 
+                    'l_name' => $lNames[$index],
+                    'dob' => $dates[$index],
+                ]);
+            }
         }
+        return back()->with('showm', 'City tour added Successfully');
     }
-
-        
-        // if (
-        //     is_array($f_names) &&
-        //     is_array($l_names) &&
-        //     is_array($dobs) &&
-        //     count($f_names) == count($l_names) &&
-        //     count($l_names) == count($dobs) &&
-        //     count($dobs) == count($imagePaths)
-        // ) {
-        //     foreach ($imagePaths as $index => $image) {
-        //         $originalName = time() . "-" . $image->getClientOriginalName();
-        //         $imagePathDestination = public_path('uploads');
-        //         $image->move($imagePathDestination, $originalName);
-        
-        //         Traveller::create([
-        //             'book_id' => $booking->id,
-        //             'image_path' => $originalName,
-        //             'f_name' => $f_names[$index],
-        //             'l_name' => $l_names[$index],
-        //             'dob' => $dobs[$index],
-        //         ]);
-        //     }
-        // }
-        // return redirect('/manage_city_tours')->with('savectour', 'City tour added Successfully');
+    public function check(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        return back()->with('paymentm', 'City tour added Successfully');
     }
-    
+  
 }
