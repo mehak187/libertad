@@ -38,7 +38,7 @@
                             <p>{{ Session::get('success') }}</p>
                         </div>
                     @endif
-                   <form 
+                    <form 
                             role="form" 
                             action="{{ route('stripe.post') }}" 
                             method="post" 
@@ -50,7 +50,8 @@
   
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
-                                <label class='control-label'>Name on Card</label> <input
+                                <label class='control-label'>Name on Card</label> 
+                                <input
                                     class='form-control' name="name" size='4' type='text'>
                             </div>
                         </div>

@@ -234,6 +234,11 @@ class userController extends Controller
     }
     public function city_tour_det($id){
         $data['citytour'] =citytour::find($id);
+        $city = $data['citytour']->city;
+        $data['ct'] = citytour::join('cities', 'citytours.city', '=', 'cities.id')
+        ->select('citytours.*', 'cities.Cityname')
+        ->where('citytours.id', $id)
+        ->first();
         $cityTourId = $data['citytour']->id;
 
         $data['galleryImages'] = GalleryImage::leftJoin('citytours', 'gallery_images.city_tour_id', '=', 'citytours.id')
@@ -426,7 +431,7 @@ class userController extends Controller
                 ]);
             }
         }
-        return back()->with('showm', 'City tour added Successfully');
+        return back()->with('showm', 'City tour added Successfully')->with('booking', $booking);
     }
     public function check(request $request){
         $request->validate([
@@ -464,7 +469,7 @@ class userController extends Controller
     	]);
         // echo "<pre>"; print_r($data); die();
 
-    	Session::flash("success","Payment successfully!");
+    	Session::flash("success","Payment completed successfully!");
 
     	return back();
     }

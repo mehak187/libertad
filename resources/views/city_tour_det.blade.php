@@ -276,26 +276,26 @@
                     <h6 class="fw-bold">Tour data</h6>
                     <div class="">
                         <h6>Tour Name</h6>
-                        <p>Alexandria</p>
+                        <p>{{ $citytour->name }}</p>
                     </div>
                     <div class="">
                         <h6>Cities</h6>
-                        <p>Alexandria, Siwa</p>
+                        <p>{{ $ct->Cityname }}</p>
                     </div>
                     <div class="">
                         <h6>Tour duration</h6>
-                        <p>2 days</p>
+                        <p>{{ $citytour->nights }}</p>
                     </div>
                     <div class="">
                         <h6>Date</h6>
-                        <p>12/12/23</p>
+                        <p>{{ session('booking')->date }}</p>
                     </div>
                     <div class="">
                         <h6>No. of people</h6>
-                        <p>12</p>
+                        <p>{{ session('booking')->people }}</p>
                     </div>
                     <h6 class="fw-bold">Total Price</h6>
-                    <p>120$</p>
+                    <p>{{ session('booking')->t_price }}$</p>
                     <h6>Terms $ Conditions/Cancellation policy</h6>
                 </div>
                 <div class="d-flex align-items-start px-3">
@@ -315,7 +315,8 @@
     @endif
     @if (session('paymentm'))
         <div class="custom-model payment-model">
-            <form action="" id="paymentForm">
+            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+            @csrf
                 <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
                     <h1 class="modal-title fs-5">Payment methods</h1>
                     <i class="fas fa-times text-secondary fs-4 close-m"></i>
@@ -338,19 +339,32 @@
                 {{-- -----credit card---- --}}
                 <div id="has" class="px-3 credit-det">
                     <div class="mt-3">
-                        <input type="number" class="form-control shadow-none" placeholder="Card number">
+                        <input type="text" class="form-control shadow-none" name="name" placeholder="Cardholder name">
                     </div>
                     <div class="mt-3">
-                        <input type="text" name="" id="flexRadioDefault1" class="form-control shadow-none"
-                            placeholder="Cardholder name">
+                        <input type="number" name="" id="flexRadioDefault1" 
+                            autocomplete='off' placeholder="Card number" class='form-control shadow-none card-number'>
                     </div>
-                    <div class="mt-3">
+                    <input type="number" class='form-control card-number' size='20' name="amount">
+                    {{-- <div class="mt-3">
                         <input type="text" id="monthYearInput" class="form-control shadow-none"
                             placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
                             title="Please enter a valid Month/Year (MM/YYYY)">
+                    </div> --}}
+                    <div class="d-flex">
+                        <div class='col-xs-12 col-md-4 form-group expiration required'>
+                            <label class='control-label'>Expiration Month</label> <input
+                                class='form-control card-expiry-month' placeholder='MM' size='2'
+                                type='text'>
+                        </div>
+                        <div class='col-xs-12 col-md-4 form-group expiration required'>
+                            <label class='control-label'>Expiration Year</label> <input
+                                class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                type='text'>
+                        </div>
                     </div>
                     <div class="mt-3">
-                        <input type="text" class="form-control shadow-none" placeholder="CCV">
+                        <input type="text" class="form-control shadow-none card-cvc" placeholder="CCV" maxlength='4'>
                     </div>
                 </div>
                 {{-- ----paypal---- --}}
@@ -389,123 +403,6 @@
         </div>
     @endif
 
-    {{-- <div class="custom-model show-model">
-        <form action="">
-            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
-                <h1 class="modal-title fs-5 ">Summary</h1>
-                <i class="fas fa-times text-secondary fs-4 close-m"></i>
-            </div>
-            <div class="px-3">
-                <h6 class="fw-bold">Tour data</h6>
-                <div class="">
-                    <h6>Tour Name</h6>
-                    <p>Alexandria</p>
-                </div>
-                <div class="">
-                    <h6>Cities</h6>
-                    <p>Alexandria, Siwa</p>
-                </div>
-                <div class="">
-                    <h6>Tour duration</h6>
-                    <p>2 days</p>
-                </div>
-                <div class="">
-                    <h6>Date</h6>
-                    <p>12/12/23</p>
-                </div>
-                <div class="">
-                    <h6>No. of people</h6>
-                    <p>12</p>
-                </div>
-                <h6 class="fw-bold">Total Price</h6>
-                <p>120$</p>
-                <h6>Terms $ Conditions/Cancellation policy</h6>
-            </div>
-            <div class="d-flex align-items-start px-3">
-                <input type="checkbox" class="me-2 mt-2">
-                <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur
-                    adipisicing
-                    elit. Est
-                    deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
-                    laboriosam.label>
-            </div>
-            <div class="mt-3 d-flex justify-content-end">
-                <input type="submit" value="Continue & Pay" class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 open-payment">
-            </div>
-        </form>
-    </div>
-
-    <div class="custom-model payment-model">
-        <form action="" id="paymentForm">
-            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
-                <h1 class="modal-title fs-5" >Payment methods</h1>
-                <i class="fas fa-times text-secondary fs-4 close-m"></i>
-            </div>
-
-            <div class="row d-flex align-items-center justify-content-between px-3">
-                <div class="col-6 form-check px-3">
-                    <label class="form-check-label credit ms-3" for="flexRadioDefault1">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault1" checked>
-                        Credit Card
-                    </label>
-                </div>
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
-                    <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
-                    <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
-                </div>
-            </div>
-            <div id="has" class="px-3 credit-det">
-                <div class="mt-3">
-                    <input type="number" class="form-control shadow-none" placeholder="Card number">
-                </div>
-                <div class="mt-3">
-                    <input type="text" name="" id="flexRadioDefault1"
-                        class="form-control shadow-none" placeholder="Cardholder name">
-                </div>
-                <div class="mt-3">
-                    <input type="text" id="monthYearInput" class="form-control shadow-none"
-                        placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
-                        title="Please enter a valid Month/Year (MM/YYYY)">
-                </div>
-                <div class="mt-3">
-                    <input type="text" class="form-control shadow-none" placeholder="CCV">
-                </div>
-            </div>
-            <div class="mt-3 form-check" class="px-3">
-                <label class="form-check-label paypal ms-3" for="flexRadioDefault2">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
-                </label>
-            </div>
-
-            <div class="mt-3 ps-4 d-flex align-items-center px-3">
-                <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
-                <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
-                <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
-            </div>
-            <div class="px-3 paypal-det">
-                <div class="mt-3">
-                    <label for="">Email</label>
-                    <input type="text" name="" id="" class="form-control shadow-none"
-                        placeholder="Email">
-                </div>
-                <div class="mt-3">
-                    <label for="">Password</label>
-                    <input type="password" class="text-dark form-control shadow-none"
-                        placeholder="Password">
-                </div>
-                <div class="text-center mt-3">
-                    <input type="submit" value="Login"
-                        class="golden-bg border-0 rounded-pill px-3 py-2">
-                </div>
-            </div>
-            <div class="mt-3 d-flex justify-content-end">
-                <input type="submit" value="Pay Secure" class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
-            </div>
-        </form>
-    </div> --}}
     @include('template.jslinks')
     <script>
         // $(".book-model").hide();
@@ -589,5 +486,62 @@
     </div>
 </div>   --}}
 </body>
-
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  
+<script type="text/javascript">
+$(function() {
+   
+    var $form = $(".require-validation");
+   
+    $('form.require-validation').bind('submit', function(e) {
+        var $form     = $(".require-validation"),
+        inputSelector = ['input[type=email]', 'input[type=password]',
+                         'input[type=text]', 'input[type=file]',
+                         'textarea'].join(', '),
+        $inputs       = $form.find('.required').find(inputSelector),
+        $errorMessage = $form.find('div.error'),
+        valid         = true;
+        $errorMessage.addClass('hide');
+  
+        $('.has-error').removeClass('has-error');
+        $inputs.each(function(i, el) {
+          var $input = $(el);
+          if ($input.val() === '') {
+            $input.parent().addClass('has-error');
+            $errorMessage.removeClass('hide');
+            e.preventDefault();
+          }
+        });
+   
+        if (!$form.data('cc-on-file')) {
+          e.preventDefault();
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+          Stripe.createToken({
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeResponseHandler);
+        }
+  
+  });
+  
+  function stripeResponseHandler(status, response) {
+        if (response.error) {
+            $('.error')
+                .removeClass('hide')
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            /* token contains id, last4, and card type */
+            var token = response['id'];
+               
+            $form.find('input[type=text]').empty();
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            $form.get(0).submit();
+        }
+    }
+   
+});
+</script>
 </html>
