@@ -31,6 +31,9 @@ use App\Models\musuemRating;
 use App\Models\siteRating;
 use App\Models\booking;
 use App\Models\traveller;
+use App\User;
+use Stripe\Error\Card;
+use Cartalyst\Stripe\Stripe;
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -426,5 +429,5 @@ class userController extends Controller
         ]);
         return back()->with('paymentm', 'City tour added Successfully');
     }
-  
+   
 }
