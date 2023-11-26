@@ -395,7 +395,7 @@ class userController extends Controller
             '*' => 'required',
         ]);
         $requestData = $request->all();
-        return back()->with('bookingm', 'City tour added Successfully')->with('requestData', $requestData);;
+        return back()->with('bookingm', 'City tour added Successfully')->with('requestData', $requestData);
     }
     public function savebooking(request $request){
         $request->validate([
@@ -437,7 +437,8 @@ class userController extends Controller
         $request->validate([
             '*' => 'required',
         ]);
-        return back()->with('paymentm', 'City tour added Successfully');
+        $requestData = $request->all();
+        return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData);
     }
     public function showForm()
     {
@@ -446,12 +447,9 @@ class userController extends Controller
 
     public function makePayment(Request $request)
     {
-        // Set your secret key
         Stripe::setApiKey(config('services.stripe.secret'));
-
-        // Create a PaymentIntent with the order amount and currency
         $paymentIntent = PaymentIntent::create([
-            'amount' => $request->input('amount') * 100, // Stripe uses amounts in cents
+            'amount' => $request->input('amount') * 100, 
             'currency' => 'usd',
         ]);
 
@@ -459,7 +457,6 @@ class userController extends Controller
     }
     public function stripePyament(Request $req)
     {
-    	//print_r($req->all()); die();
     	Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
     	$data = Stripe\Charge::create([
     			"amount"=>$req->amount * 100,
@@ -467,10 +464,7 @@ class userController extends Controller
     			"source"=>$req->stripeToken,
     			"description"=>"Test payment from " .auth()->user()->name
     	]);
-        // echo "<pre>"; print_r($data); die();
-
     	Session::flash("success","Payment completed successfully!");
-
     	return back();
     }
 }

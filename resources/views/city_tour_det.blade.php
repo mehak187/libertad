@@ -296,6 +296,7 @@
                     </div>
                     <h6 class="fw-bold">Total Price</h6>
                     <p>{{ session('booking')->t_price }}$</p>
+                    <input type="" name="totalamount" id="" value="{{ session('booking')->t_price }}" class="d-none">
                     <h6>Terms $ Conditions/Cancellation policy</h6>
                 </div>
                 <div class="d-flex align-items-start px-3">
@@ -345,20 +346,21 @@
                         <input type="number" name="" id="flexRadioDefault1" 
                             autocomplete='off' placeholder="Card number" class='form-control shadow-none card-number'>
                     </div>
-                    <input type="number" class='form-control card-number' size='20' name="amount">
+                    <div class="mt-3">
+                    <input type="text" class='form-control card-number d-none' value="{{ session('requestData.totalamount') }}" name="amount" readonly>
                     {{-- <div class="mt-3">
                         <input type="text" id="monthYearInput" class="form-control shadow-none"
                             placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
                             title="Please enter a valid Month/Year (MM/YYYY)">
                     </div> --}}
-                    <div class="d-flex">
-                        <div class='col-xs-12 col-md-4 form-group expiration required'>
-                            <label class='control-label'>Expiration Month</label> <input
+                    <div class="row mt-3">
+                        <div class='col-md-6 form-group expiration required'>
+                            <input
                                 class='form-control card-expiry-month' placeholder='MM' size='2'
                                 type='text'>
                         </div>
-                        <div class='col-xs-12 col-md-4 form-group expiration required'>
-                            <label class='control-label'>Expiration Year</label> <input
+                        <div class='col-md-6 col-md-4 form-group expiration required'>
+                           <input
                                 class='form-control card-expiry-year' placeholder='YYYY' size='4'
                                 type='text'>
                         </div>
@@ -405,10 +407,7 @@
 
     @include('template.jslinks')
     <script>
-        // $(".book-model").hide();
         $(".res-model").hide();
-        // $(".show-model").hide();
-        // $(".payment-model").hide();
 
         $(".open-book").click(function() {
             $(".book-model").show();
@@ -416,12 +415,6 @@
         $(".open-res").click(function() {
             $(".res-model").show();
         });
-        // $(".open-show").click(function(){
-        //     $(".show-mode").show();
-        // });
-        // $(".open-payment").click(function(){
-        //     $(".payment-model").show();
-        // });
 
         $(".close-m").click(function() {
             $(".book-model").hide();
