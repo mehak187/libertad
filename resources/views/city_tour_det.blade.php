@@ -296,7 +296,8 @@
                     </div>
                     <h6 class="fw-bold">Total Price</h6>
                     <p>{{ session('booking')->t_price }}$</p>
-                    <input type="" name="totalamount" id="" value="{{ session('booking')->t_price }}" class="d-none">
+                    <input type="" name="totalamount" value="{{ session('booking')->t_price }}" class="d-none" readonly>
+                    <input type="" name="booking_id" value="{{ session('booking')->id}}"  class='d-none' readonly>
                     <h6>Terms $ Conditions/Cancellation policy</h6>
                 </div>
                 <div class="d-flex align-items-start px-3">
@@ -348,6 +349,8 @@
                     </div>
                     <div class="mt-3">
                     <input type="text" class='form-control card-number d-none' value="{{ session('requestData.totalamount') }}" name="amount" readonly>
+                    <input type="text" class='form-control card-number d-none' value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
+                    
                     {{-- <div class="mt-3">
                         <input type="text" id="monthYearInput" class="form-control shadow-none"
                             placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
@@ -366,7 +369,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <input type="text" class="form-control shadow-none card-cvc" placeholder="CCV" maxlength='4'>
+                        <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV" maxlength='4'>
                     </div>
                 </div>
                 {{-- ----paypal---- --}}
@@ -437,7 +440,7 @@
         });
     </script>
 
-    {{-- <div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal">
     <div class="modal-dialog modal-booking">
         <div class="modal-content light-bground py-3 rounded-4">
             <div class="modal-header border-0 pt-0 px-5">
@@ -477,7 +480,8 @@
             </div>
         </div>
     </div>
-</div>   --}}
+</div>
+  
 </body>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   
