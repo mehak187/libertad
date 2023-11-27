@@ -253,8 +253,8 @@
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle['from'] }} to
                                                                                     {{ $vehicle['to'] }}</p>
-                                                                                <p class="mb-0 fs-12 fw-bold searchable">Vehicle type:
-                                                                                    {{ $vehicle['vehicle'] }}
+                                                                                <p class="mb-0 fs-12 fw-bold">Vehicle type:
+                                                                                  <span class="searchable">{{ $vehicle['vehicle'] }}</span>  
                                                                                 </p>
                                                                                 <p class="mb-0 fs-12 fw-bold">No. of
                                                                                     people: {{ $vehicle['passengers'] }}

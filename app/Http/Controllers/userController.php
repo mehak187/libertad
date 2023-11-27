@@ -31,6 +31,7 @@ use App\Models\musuemRating;
 use App\Models\siteRating;
 use App\Models\booking;
 use App\Models\traveller;
+use App\Models\payment;
 // use App\User;
 // use Stripe\Error\Card;
 // use Cartalyst\Stripe\Stripe;
@@ -431,7 +432,8 @@ class userController extends Controller
                 ]);
             }
         }
-        return back()->with('showm', 'City tour added Successfully')->with('booking', $booking);
+        $latestBookingId = $booking->id;
+        return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
     }
     public function check(request $request){
         $request->validate([
@@ -464,6 +466,14 @@ class userController extends Controller
     			"source"=>$req->stripeToken,
     			"description"=>"Test payment from " .auth()->user()->name
     	]);
+
+        payment::create([
+            'book_id' => $req->booking_id,
+            'amount' => $req->amount,
+            'currency' => 'usd', // Adjust accordingly
+            'stripe_token' => $req->stripeToken,
+            'description' => "Test payment from " . auth()->user()->name,
+        ]);
     	Session::flash("success","Payment completed successfully!");
     	return back();
     }
