@@ -32,14 +32,8 @@ use App\Models\siteRating;
 use App\Models\booking;
 use App\Models\traveller;
 use App\Models\payment;
-// use App\User;
-// use Stripe\Error\Card;
-// use Cartalyst\Stripe\Stripe;
-// use Stripe\Stripe;
-// use Stripe\PaymentIntent;
 use Stripe;
 use Session;
-
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -404,10 +398,10 @@ class userController extends Controller
         ]);
 
         $user_id = auth()->user()->id;
-        // print_r( $user_id);die();
         $booking = booking::create([
             'user_id' => $user_id,
             'tour_id' => $request->tour_id,
+            'tour_name' => $request->tour_name,
             'role' => $request->role,
             'date' => $request->date,
             'people' => $request->peoplenew,

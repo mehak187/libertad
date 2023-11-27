@@ -23,7 +23,12 @@ use App\Models\shuttle;
 use App\Models\libertad;
 use App\Models\GalleryLibertad;
 use App\Models\indexreview;
-
+use App\Models\booking;
+use App\Models\traveller;
+use App\Models\User;
+use App\Models\payment;
+use Stripe;
+use Session;
 
 use File;
 
@@ -1321,6 +1326,18 @@ class adminController extends Controller
             }
         }
         return redirect('/manage_why_libertad')->with('savectour', 'City tour added Successfully');
+    }
+    public function manage_payments(){
+        $data = Booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
+        ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
+        ->select('bookings.*', 'payments.*', 'users.name as user_name','bookings.role as booking_role', 'users.*')
+        ->orderBy('bookings.id', 'desc')
+        ->get();
+        $data->transform(function ($item) {
+            $item->status = ($item->book_id) ? 'Paid' : 'Unpaid';
+            return $item;
+        });
+        return view('admin.manage_payments', ['payments' => $data]);
     }
     
 }
