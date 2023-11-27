@@ -31,9 +31,14 @@ use App\Models\musuemRating;
 use App\Models\siteRating;
 use App\Models\booking;
 use App\Models\traveller;
-use App\User;
-use Stripe\Error\Card;
-use Cartalyst\Stripe\Stripe;
+// use App\User;
+// use Stripe\Error\Card;
+// use Cartalyst\Stripe\Stripe;
+// use Stripe\Stripe;
+// use Stripe\PaymentIntent;
+use Stripe;
+use Session;
+
 
 use Illuminate\Http\Request;
 class userController extends Controller
@@ -429,5 +434,38 @@ class userController extends Controller
         ]);
         return back()->with('paymentm', 'City tour added Successfully');
     }
-   
+    public function showForm()
+    {
+        return view('stripe-payment-form');
+    }
+
+    public function makePayment(Request $request)
+    {
+        // Set your secret key
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        // Create a PaymentIntent with the order amount and currency
+        $paymentIntent = PaymentIntent::create([
+            'amount' => $request->input('amount') * 100, // Stripe uses amounts in cents
+            'currency' => 'usd',
+        ]);
+
+        return response()->json(['client_secret' => $paymentIntent->client_secret]);
+    }
+    public function stripePyament(Request $req)
+    {
+    	//print_r($req->all()); die();
+    	Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    	$data = Stripe\Charge::create([
+    			"amount"=>$req->amount * 100,
+    			"currency"=>"usd",
+    			"source"=>$req->stripeToken,
+    			"description"=>"Test payment from " .auth()->user()->name
+    	]);
+        // echo "<pre>"; print_r($data); die();
+
+    	Session::flash("success","Payment successfully!");
+
+    	return back();
+    }
 }

@@ -88,6 +88,14 @@ use App\Http\Controllers\adminController;
         // });
 //         Route::get('addmoney/stripe', array('as' => 'addmoney.paystripe','uses' => 'MoneySetupController@PaymentStripe'));
 // Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'MoneySetupController@postPaymentStripe'));
+
+// Route::get('/payment','showForm');
+// Route::post('/payment','makePayment');
+Route::get('welcome', function () {
+    return view('welcome');
+});
+
+Route::post('/stripe', [userController::class,'stripePyament'])->name("stripe.post");
     });
 // });
 
