@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('tour_id');
+            $table->string('tour_name');
             $table->integer('role');
             $table->string('date');
             $table->integer('people');

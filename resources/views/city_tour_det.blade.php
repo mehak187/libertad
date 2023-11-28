@@ -181,6 +181,7 @@
                     <i class="fas fa-times text-secondary fs-4 close-m"></i>
                 </div>
                 <input type="number" class="d-none" name="tour_id" value="{{ $citytour->id }}">
+                <input type="text" class="d-none" name="tour_name" value="{{ $citytour->name }}">
                 <input type="number" class="d-none" name="role" value="1" readonly>
                 <input type="number" id="pvalue" class="d-none" value="{{ session('requestData.people') }}" readonly>
                 <input type="number" name="peoplenew" id="tpriceInputn" class="d-none" value="" readonly>
@@ -439,49 +440,6 @@
             });
         });
     </script>
-
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-booking">
-        <div class="modal-content light-bground py-3 rounded-4">
-            <div class="modal-header border-0 pt-0 px-5">
-                <h1 class="modal-title fs-5 brown-clr">Rate & Review</h1>
-            </div>
-            <div class="modal-body pt-0 px-5">
-                <form action="/citytourreview" enctype="multipart/form-data" method="POST">
-                    @csrf
-                    <input type="number" class="d-none" name="stour_id" value="{{ $citytour->id }}">
-                    <div>
-                        <div class="rating">
-                            <input type="radio" id="star5" name="rating" value="5">
-                            <label for="star5" onclick="updateStarValue(5)"></label>
-                            <input type="radio" id="star4" name="rating" value="4">
-                            <label for="star4" onclick="updateStarValue(4)"></label>
-                            <input type="radio" id="star3" name="rating" value="3">
-                            <label for="star3" onclick="updateStarValue(3)"></label>
-                            <input type="radio" id="star2" name="rating" value="2">
-                            <label for="star2" onclick="updateStarValue(2)"></label>
-                            <input type="radio" id="star1" name="rating" value="1">
-                            <label for="star1" onclick="updateStarValue(1)"></label>
-                        </div>
-                        <input type="number" id="star" name="star" class="d-none" value=""
-                            required>
-                        <script>
-                            function updateStarValue(value) {
-                                document.getElementById('star').value = value;
-                            }
-                        </script>
-                    </div>
-                    <div class="mt-3">
-                        <textarea class="myInput" placeholder="Write" name="review" rows="3" maxlength="200" required></textarea>
-                    </div>
-                    <div class="mt-3">
-                        <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
-  
 </body>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   
@@ -530,15 +488,53 @@ $(function() {
                 .find('.alert')
                 .text(response.error.message);
         } else {
-            /* token contains id, last4, and card type */
             var token = response['id'];
-               
             $form.find('input[type=text]').empty();
             $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
             $form.get(0).submit();
         }
     }
-   
 });
 </script>
+ <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-booking">
+        <div class="modal-content light-bground py-3 rounded-4">
+            <div class="modal-header border-0 pt-0 px-5">
+                <h1 class="modal-title fs-5 brown-clr">Rate & Review</h1>
+            </div>
+            <div class="modal-body pt-0 px-5">
+                <form action="/citytourreview" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input type="number" class="d-none" name="stour_id" value="{{ $citytour->id }}">
+                    <div>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5" onclick="updateStarValue(5)"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" onclick="updateStarValue(4)"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" onclick="updateStarValue(3)"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" onclick="updateStarValue(2)"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" onclick="updateStarValue(1)"></label>
+                        </div>
+                        <input type="number" id="star" name="star" class="d-none" value=""
+                            required>
+                        <script>
+                            function updateStarValue(value) {
+                                document.getElementById('star').value = value;
+                            }
+                        </script>
+                    </div>
+                    <div class="mt-3">
+                        <textarea class="myInput" placeholder="Write" name="review" rows="3" maxlength="200" required></textarea>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div> 
 </html>
