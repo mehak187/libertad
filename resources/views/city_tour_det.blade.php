@@ -193,23 +193,23 @@
                         <div class="">
                             <label for="f_name" class="font-12">First Name</label>
                             <input type="text" class="form-control shadow-none font-12" placeholder="First Name"
-                                id="f_name" name="f_name[]">
+                                id="f_name" name="f_name[]" required>
                         </div>
                         <div class="">
                             <label for="l_name" class="font-12">Last Name</label>
                             <input type="text" class="form-control shadow-none font-12" placeholder="Last Name"
-                                id="l_name" name="l_name[]">
+                                id="l_name" name="l_name[]" required>
                         </div>
                         <div class="">
                             <label for="dob" class="font-12">Date of Birth</label>
-                            <input type="date" class="form-control shadow-none font-12" placeholder="Nationality"
-                                id="dob" name="dob[]">
+                            <input type="date" class="form-control shadow-none font-12" placeholder="Date of birth"
+                                id="dob" name="dob[]" required>
                         </div>
                         <div class="mt-2">
                             <div class="d-flex flex-column">
                                 <span for="" class="font-12">Passport Copy/ID for Egyptians</span>
                                 <input type="file" name="passport[]" class="form-control shadow-none font-12"
-                                    id="myImg2" onchange="readURL(this);">
+                                    id="myImg2" onchange="readURL(this);" required>
                             </div>
                         </div>
                     </div>
@@ -240,22 +240,22 @@
                                 <h6 class="mt-3">Traveller ${i}</h6>
                                 <div class="">
                                     <label for="f_name-${i}" class="font-12">First Name</label>
-                                    <input type="text" class="form-control shadow-none font-12" id="f_name-${i}" name="f_name[]" placeholder="First Name">
+                                    <input type="text" class="form-control shadow-none font-12" id="f_name-${i}" name="f_name[]" placeholder="First Name" required>
                                 </div>
                                 <div class="">
                                     <label for="l_name-${i}" class="font-12">Last Name</label>
-                                    <input type="text" class="form-control shadow-none font-12" id="l_name-${i}" name="l_name[]" placeholder="Last Name">
+                                    <input type="text" class="form-control shadow-none font-12" id="l_name-${i}" name="l_name[]" placeholder="Last Name" required>
                                 </div>
                                 <div class="">
                                     <label for="dob-${i}" class="font-12">Date of Birth</label>
-                                    <input type="date" class="form-control shadow-none font-12" id="dob-${i}" name="dob[]" placeholder="Nationality">
+                                    <input type="date" class="form-control shadow-none font-12" id="dob-${i}" name="dob[]" placeholder="Date of birth" required>
                                 </div>
                                 <div class="mt-2">
                                     <div class="d-flex flex-column">
                                         <span for="" class="font-12">
                                             Passport Copy/ID for Egyptians
                                         </span>
-                                        <input type="file" class="form-control shadow-none font-12" id="myImg${i}" name="passport[]" onchange="readURL(this);">
+                                        <input type="file" class="form-control shadow-none font-12" id="myImg${i}" name="passport[]" onchange="readURL(this);" required>
                                     </div>
                                 </div>
                             `;
@@ -318,8 +318,8 @@
     @endif
     @if (session('paymentm'))
         <div class="custom-model payment-model">
-            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
-            @csrf
+             <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+            @csrf 
                 <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
                     <h1 class="modal-title fs-5">Payment methods</h1>
                     <i class="fas fa-times text-secondary fs-4 close-m"></i>
@@ -327,7 +327,7 @@
 
                 <div class="row d-flex align-items-center justify-content-between px-3">
                     <div class="col-6 form-check px-3">
-                        <label class="form-check-label credit ms-3" for="flexRadioDefault1">
+                        <label class="form-check-label  ms-3" for="flexRadioDefault1" id="credit">
                             <input class="form-check-input" type="radio" name="flexRadioDefault"
                                 id="flexRadioDefault1" checked>
                             Credit Card
@@ -340,7 +340,7 @@
                     </div>
                 </div>
                 {{-- -----credit card---- --}}
-                <div id="has" class="px-3 credit-det">
+                <div id="credit-det" class="px-3 ">
                     <div class="mt-3">
                         <input type="text" class="form-control shadow-none" name="name" placeholder="Cardholder name">
                     </div>
@@ -349,9 +349,9 @@
                             autocomplete='off' placeholder="Card number" class='form-control shadow-none card-number'>
                     </div>
                     <div class="mt-3">
-                    <input type="text" class='form-control card-number d-none' value="{{ session('requestData.totalamount') }}" name="amount" readonly>
-                    <input type="text" class='form-control card-number d-none' value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
-                    
+                        <input type="text" class='form-control card-number d-none' value="{{ session('requestData.totalamount') }}" name="amount" readonly>
+                        <input type="text" class='form-control card-number d-none' value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
+                    </div>
                     {{-- <div class="mt-3">
                         <input type="text" id="monthYearInput" class="form-control shadow-none"
                             placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
@@ -374,8 +374,8 @@
                     </div>
                 </div>
                 {{-- ----paypal---- --}}
-                <div class="mt-3 form-check" class="px-3">
-                    <label class="form-check-label paypal ms-3" for="flexRadioDefault2">
+                <div class="mt-3 form-check " class="px-3">
+                    <label class="form-check-label  ms-3" for="flexRadioDefault2" id="paypal">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"
                             id="flexRadioDefault2">
                         <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
@@ -387,7 +387,7 @@
                     <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
                     <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
                 </div>
-                <div class="px-3 paypal-det">
+                <div class="px-3" id="paypal-det">
                     <div class="mt-3">
                         <label for="">Email</label>
                         <input type="text" name="" id="" class="form-control shadow-none"
@@ -428,17 +428,34 @@
         });
 
         $(document).ready(function() {
-            $(".paypal-det").hide();
+            $("#paypal-det").hide();
 
-            $(".credit").click(function() {
-                $(".credit-det").show();
-                $(".paypal-det").hide();
+            $("#credit").click(function() {
+                $("#credit-det").show();
+                $("#paypal-det").hide();
             });
-            $(".paypal").click(function() {
-                $(".credit-det").hide();
-                $(".paypal-det").show();
+            $("#paypal").click(function() {
+                $("#credit-det").hide();
+                $("#paypal-det").show();
             });
         });
+        $(document).ready(function() {
+            var currentDate = new Date();
+            var tomorrow = new Date();
+            tomorrow.setDate(currentDate.getDate() + 1);
+            var formattedDate = tomorrow.toISOString().split('T')[0];
+            $('#date').attr('min', formattedDate);
+        });
+        $(document).ready(function() {
+        // Get the current date
+        var currentDate = new Date();
+
+        // Format the date as 'YYYY-MM-DD' (required format for input type date)
+        var formattedDate = currentDate.toISOString().split('T')[0];
+
+        // Set the maximum date for the input
+        $('#dob').attr('max', formattedDate);
+    });
     </script>
 </body>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
