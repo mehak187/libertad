@@ -37,10 +37,13 @@
                             <td>{{$payment['t_price']}}</td>
                             <td>{{$payment['date']}}</td>
                             <td>{{$payment['people']}}</td>
-                            @php
+                            @php\
                             $role = $payment['booking_role'];
                                 if ($role == 1) {
                                     $role = "City Tour";
+                                }
+                                elseif($role == 2) {
+                                  $role = "Musuem";
                                 }
                             @endphp
                             <td>{{$role}} - {{$payment['tour_name']}}</td>
