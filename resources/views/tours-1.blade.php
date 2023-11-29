@@ -100,6 +100,7 @@
                                 {{-- </form> --}}
                                 
                             </div>
+                            
                             @if (@isset($cities1) && @isset($cities2))
                                 <div class="row me-3">
                                     <div class="col-11">

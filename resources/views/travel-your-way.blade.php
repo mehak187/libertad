@@ -94,6 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="mt-3">
                                             <h5>{{ $event['heading'] }}</h5>
                                             <div class="d-flex justify-content-between align-items-center">
