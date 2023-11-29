@@ -650,7 +650,7 @@
     </div>
 </div>
 @php
-    $contact = \App\Models\Contact::first();
+    $contact = \App\Models\contact::first();
 @endphp
 <div class="icon">
     @if ($contact)

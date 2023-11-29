@@ -92,7 +92,7 @@
                                                         <i data-bs-toggle="modal" data-bs-target="#thankyouModal"
                                                             class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                                     </div>
-                                                    <p class="text3 mt-3">{{ $activity['des'] }}</p>
+                                                    <p class="text3 mt-3 stext">{{ $activity['des'] }}</p>
                                                 </div>
                                                 </a>
                                         </div>
