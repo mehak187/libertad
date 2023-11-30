@@ -48,7 +48,10 @@
                                   $role = "Accomodation";
                                 }
                                 elseif($role == 4) {
-                                  $role = "Daily Activities";
+                                  $role = "Daily activities";
+                                }
+                                elseif($role == 5) {
+                                  $role = "Special tour";
                                 }
                             @endphp
                             <td>{{$role}} - {{$payment['tour_name']}}</td>

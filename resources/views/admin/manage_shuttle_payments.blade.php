@@ -23,6 +23,8 @@
                             <th>Email</th>
                             <th>Pick-up location</th>
                             <th>Drop-of location</th>
+                            <th>Pick-up time</th>
+                            <th>Drop-of time</th>
                             <th>Date</th>
                             <th>Travelers</th>
                             <th>Car type</th>
@@ -36,6 +38,8 @@
                             <td>{{$payment['email']}}</td>
                             <td>{{$payment['pick_location']}}</td>
                             <td>{{$payment['drop_location']}}</td>
+                            <td>{{$payment['pick_time']}}</td>
+                            <td>{{$payment['drop_time']}}</td>
                             <td class="text-nowrap">{{$payment['date']}}</td>
                             <td>{{$payment['people']}}</td>
                             <td>{{$payment['type']}}</td>
