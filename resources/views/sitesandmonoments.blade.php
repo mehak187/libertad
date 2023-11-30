@@ -48,12 +48,14 @@
                                     <p class="m-0 text-white ">Share</p>
                                 </a>
                                 @include('template.popup')
+                            @if (auth()->check())
                                 <button type="button"
                                         class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
                                         data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
+                            @endif
                             </div>
                         </div>
                         <div class="row mt-3">

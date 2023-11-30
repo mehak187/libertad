@@ -152,8 +152,12 @@
                 value="{{ $price }}" oninput="updateTotalPrice()">
             <div class="px-3">
                 <label for="" class="font-12">Total Price</label>
-                <input type="number" name="tprice" id="tpriceInput" class="form-control shadow-none font-12"
-                    value="{{ $price }}" readonly required>
+                <div class="d-flex align-items-center form-control justify-content-between shadow-none font-12">
+                    <input type="number" name="tprice" id="tpriceInput"
+                        class="bg-transparent text-dark border-0 shadow-none font-12" value="{{ $price }}"
+                        readonly required>
+                    <span>| USD</span>
+                </div>
             </div>
             <div class="border-1 border-top mt-3 d-flex justify-content-end">
                 <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Continue with my
@@ -172,10 +176,13 @@
                 <input type="number" class="d-none" name="tour_id" value="{{ $citytour->id }}">
                 <input type="text" class="d-none" name="tour_name" value="{{ $citytour->name }}">
                 <input type="number" class="d-none" name="role" value="1" readonly>
-                <input type="number" id="pvalue" class="d-none" value="{{ session('requestData.people') }}" readonly>
+                <input type="number" id="pvalue" class="d-none" value="{{ session('requestData.people') }}"
+                    readonly>
                 <input type="number" name="peoplenew" id="tpriceInputn" class="d-none" value="" readonly>
-                <input type="number" name="t_price" id="tpricenew" class="d-none " value="{{ session('requestData.tprice') }}" readonly>
-                <input type="date" name="date" id="datenew" class="d-none " value="{{ session('requestData.date') }}" readonly>
+                <input type="number" name="t_price" id="tpricenew" class="d-none "
+                    value="{{ session('requestData.tprice') }}" readonly>
+                <input type="date" name="date" id="datenew" class="d-none "
+                    value="{{ session('requestData.date') }}" readonly>
                 <div class="tbody px-3" id="tbodyContainer">
                     <div class="t-data">
                         <h6 class="mt-3">Traveller 1</h6>
@@ -191,8 +198,8 @@
                         </div>
                         <div class="">
                             <label for="dob" class="font-12">Date of Birth</label>
-                            <input type="date" class="form-control shadow-none font-12" placeholder="Date of birth"
-                                id="dob" name="dob[]" required>
+                            <input type="date" class="form-control shadow-none font-12"
+                                placeholder="Date of birth" id="dob" name="dob[]" required>
                         </div>
                         <div class="mt-2">
                             <div class="d-flex flex-column">
@@ -286,8 +293,10 @@
                     </div>
                     <h6 class="fw-bold">Total Price</h6>
                     <p>{{ session('booking')->t_price }}$</p>
-                    <input type="" name="totalamount" value="{{ session('booking')->t_price }}" class="d-none" readonly>
-                    <input type="" name="booking_id" value="{{ session('booking')->id}}"  class='d-none' readonly>
+                    <input type="" name="totalamount" value="{{ session('booking')->t_price }}"
+                        class="d-none" readonly>
+                    <input type="" name="booking_id" value="{{ session('booking')->id }}" class='d-none'
+                        readonly>
                     <h6>Terms $ Conditions/Cancellation policy</h6>
                 </div>
                 <div class="d-flex align-items-center px-3">
@@ -303,8 +312,9 @@
     @endif
     @if (session('paymentm'))
         <div class="custom-model payment-model">
-             <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
-            @csrf 
+            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
+                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                @csrf
                 <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
                     <h1 class="modal-title fs-5">Payment methods</h1>
                     <i class="fas fa-times text-secondary fs-4 close-m"></i>
@@ -327,15 +337,18 @@
                 {{-- -----credit card---- --}}
                 <div id="credit-det" class="px-3 ">
                     <div class="mt-3">
-                        <input type="text" class="form-control shadow-none" name="name" placeholder="Cardholder name">
+                        <input type="text" class="form-control shadow-none" name="name"
+                            placeholder="Cardholder name">
                     </div>
                     <div class="mt-3">
-                        <input type="number" name="" id="flexRadioDefault1" 
-                            autocomplete='off' placeholder="Card number" class='form-control shadow-none card-number'>
+                        <input type="number" name="" id="flexRadioDefault1" autocomplete='off'
+                            placeholder="Card number" class='form-control shadow-none card-number'>
                     </div>
                     <div class="mt-3">
-                        <input type="text" class='form-control card-number d-none' value="{{ session('requestData.totalamount') }}" name="amount" readonly>
-                        <input type="text" class='form-control card-number d-none' value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
+                        <input type="text" class='form-control card-number d-none'
+                            value="{{ session('requestData.totalamount') }}" name="amount" readonly>
+                        <input type="text" class='form-control card-number d-none'
+                            value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
                     </div>
                     {{-- <div class="mt-3">
                         <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -344,18 +357,17 @@
                     </div> --}}
                     <div class="row mt-3">
                         <div class='col-md-6 form-group expiration required'>
-                            <input
-                                class='form-control card-expiry-month' placeholder='MM' size='2'
+                            <input class='form-control card-expiry-month' placeholder='MM' size='2'
                                 type='text'>
                         </div>
                         <div class='col-md-6 col-md-4 form-group expiration required'>
-                           <input
-                                class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                            <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
                                 type='text'>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV" maxlength='4'>
+                        <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV"
+                            maxlength='4'>
                     </div>
                 </div>
                 {{-- ----paypal---- --}}
@@ -432,73 +444,74 @@
             $('#date').attr('min', formattedDate);
         });
         $(document).ready(function() {
-        // Get the current date
-        var currentDate = new Date();
+            // Get the current date
+            var currentDate = new Date();
 
-        // Format the date as 'YYYY-MM-DD' (required format for input type date)
-        var formattedDate = currentDate.toISOString().split('T')[0];
+            // Format the date as 'YYYY-MM-DD' (required format for input type date)
+            var formattedDate = currentDate.toISOString().split('T')[0];
 
-        // Set the maximum date for the input
-        $('#dob').attr('max', formattedDate);
-    });
+            // Set the maximum date for the input
+            $('#dob').attr('max', formattedDate);
+        });
     </script>
 </body>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  
+
 <script type="text/javascript">
     $(function() {
-    
+
         var $form = $(".require-validation");
-    
+
         $('form.require-validation').bind('submit', function(e) {
-            var $form     = $(".require-validation"),
-            inputSelector = ['input[type=email]', 'input[type=password]',
-                            'input[type=text]', 'input[type=file]',
-                            'textarea'].join(', '),
-            $inputs       = $form.find('.required').find(inputSelector),
-            $errorMessage = $form.find('div.error'),
-            valid         = true;
+            var $form = $(".require-validation"),
+                inputSelector = ['input[type=email]', 'input[type=password]',
+                    'input[type=text]', 'input[type=file]',
+                    'textarea'
+                ].join(', '),
+                $inputs = $form.find('.required').find(inputSelector),
+                $errorMessage = $form.find('div.error'),
+                valid = true;
             $errorMessage.addClass('hide');
-    
+
             $('.has-error').removeClass('has-error');
             $inputs.each(function(i, el) {
-            var $input = $(el);
-            if ($input.val() === '') {
-                $input.parent().addClass('has-error');
-                $errorMessage.removeClass('hide');
-                e.preventDefault();
-            }
+                var $input = $(el);
+                if ($input.val() === '') {
+                    $input.parent().addClass('has-error');
+                    $errorMessage.removeClass('hide');
+                    e.preventDefault();
+                }
             });
-    
+
             if (!$form.data('cc-on-file')) {
-            e.preventDefault();
-            Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-            Stripe.createToken({
-                number: $('.card-number').val(),
-                cvc: $('.card-cvc').val(),
-                exp_month: $('.card-expiry-month').val(),
-                exp_year: $('.card-expiry-year').val()
-            }, stripeResponseHandler);
+                e.preventDefault();
+                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val()
+                }, stripeResponseHandler);
             }
-    
-    });
-  
-  function stripeResponseHandler(status, response) {
-        if (response.error) {
-            $('.error')
-                .removeClass('hide')
-                .find('.alert')
-                .text(response.error.message);
-        } else {
-            var token = response['id'];
-            $form.find('input[type=text]').empty();
-            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-            $form.get(0).submit();
+
+        });
+
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                $('.error')
+                    .removeClass('hide')
+                    .find('.alert')
+                    .text(response.error.message);
+            } else {
+                var token = response['id'];
+                $form.find('input[type=text]').empty();
+                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                $form.get(0).submit();
+            }
         }
-    }
-});
+    });
 </script>
- <div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal">
     <div class="modal-dialog modal-booking">
         <div class="modal-content light-bground py-3 rounded-4">
             <div class="modal-header border-0 pt-0 px-5">
@@ -521,8 +534,7 @@
                             <input type="radio" id="star1" name="rating" value="1">
                             <label for="star1" onclick="updateStarValue(1)"></label>
                         </div>
-                        <input type="number" id="star" name="star" class="d-none" value=""
-                            required>
+                        <input type="number" id="star" name="star" class="d-none" value="" required>
                         <script>
                             function updateStarValue(value) {
                                 document.getElementById('star').value = value;
@@ -538,5 +550,6 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+
 </html>

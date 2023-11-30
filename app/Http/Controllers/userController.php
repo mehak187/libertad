@@ -32,6 +32,8 @@ use App\Models\siteRating;
 use App\Models\booking;
 use App\Models\traveller;
 use App\Models\payment;
+use App\Models\sbooking;
+use App\Models\spayment;
 use Stripe;
 use Session;
 
@@ -244,6 +246,11 @@ class userController extends Controller
     }
     public function musuem_det($id){
         $data['citytour'] =musuem::find($id);
+        $city = $data['citytour']->city;
+        $data['ct'] = musuem::join('cities', 'musuems.city', '=', 'cities.id')
+        ->select('musuems.*', 'cities.Cityname')
+        ->where('musuems.id', $id)
+        ->first();
         $cityTourId = $data['citytour']->id;
 
         $data['galleryImages'] = GalleryImageMusuem::leftJoin('musuems', 'gallery_image_musuems.musuem_id', '=', 'musuems.id')
@@ -254,6 +261,11 @@ class userController extends Controller
     }
     public function sitesandmonoments($id){
         $data['sites'] =site::find($id);
+        $city = $data['sites']->city;
+        $data['ct'] = site::join('cities', 'sites.city', '=', 'cities.id')
+        ->select('sites.*', 'cities.Cityname')
+        ->where('sites.id', $id)
+        ->first();
         $cityTourId = $data['sites']->id;
 
         $data['galleryImages'] = GalleryImageSite::leftJoin('sites', 'gallery_image_sites.site_id', '=', 'sites.id')
@@ -460,15 +472,58 @@ class userController extends Controller
     			"source"=>$req->stripeToken,
     			"description"=>"Test payment from " .auth()->user()->name
     	]);
+        if ($req->has('book_role')) {
+            spayment::create([
+                'book_id' => $req->booking_id,
+                'amount' => $req->amount,
+                'currency' => 'usd', // Adjust accordingly
+                'stripe_token' => $req->stripeToken,
+                'description' => "Test payment from " . auth()->user()->name,
+            ]);
+            Session::flash("success","Payment completed successfully!");
+    	    return back();
+        }
+        else{
+            payment::create([
+                'book_id' => $req->booking_id,
+                'amount' => $req->amount,
+                'currency' => 'usd', // Adjust accordingly
+                'stripe_token' => $req->stripeToken,
+                'description' => "Test payment from " . auth()->user()->name,
+            ]);
+            Session::flash("success","Payment completed successfully!");
+    	    return back();
+        }
+    	
+    }
 
-        payment::create([
-            'book_id' => $req->booking_id,
-            'amount' => $req->amount,
-            'currency' => 'usd', // Adjust accordingly
-            'stripe_token' => $req->stripeToken,
-            'description' => "Test payment from " . auth()->user()->name,
+    public function shuttlebooking(request $request){
+        $request->validate([
+            '*' => 'required',
         ]);
-    	Session::flash("success","Payment completed successfully!");
-    	return back();
+
+        $user_id = auth()->user()->id;
+        $booking = sbooking::create([
+            'user_id' => $user_id,
+            'shuttle_id' => $request->shuttle_id,
+            'price' => $request->price,
+            'people' => $request->people,
+            'type' => $request->type,
+            'date' => $request->date,
+            'pick_time' => $request->pick_time,
+            'pick_location' => $request->pick_location,
+            'drop_time' => $request->drop_time,
+            'drop_location' => $request->drop_location,
+        ]);
+       
+        $latestBookingId = $booking->id;
+        return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
+    }
+    public function shuttle_check(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $requestData = $request->all();
+        return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData);
     }
 }

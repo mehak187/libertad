@@ -21,10 +21,11 @@
                           <tr>
                             <th>User Name</th>
                             <th>Email</th>
-                            <th>Total Price</th>
+                            <th>Pick-up location</th>
+                            <th>Drop-of location</th>
                             <th>Date</th>
                             <th>Travelers</th>
-                            <th>Plan</th>
+                            <th>Car type</th>
                             <th>Status</th>
                           </tr>
                         </thead>
@@ -33,25 +34,11 @@
                           <tr>
                             <td>{{$payment['user_name']}}</td>
                             <td>{{$payment['email']}}</td>
-                            <td>{{$payment['t_price']}}</td>
-                            <td>{{$payment['date']}}</td>
+                            <td>{{$payment['pick_location']}}</td>
+                            <td>{{$payment['drop_location']}}</td>
+                            <td class="text-nowrap">{{$payment['date']}}</td>
                             <td>{{$payment['people']}}</td>
-                            @php
-                            $role = $payment['booking_role'];
-                                if ($role == 1) {
-                                    $role = "City Tour";
-                                }
-                                elseif($role == 2) {
-                                  $role = "Musuem";
-                                }
-                                elseif($role == 3) {
-                                  $role = "Accomodation";
-                                }
-                                elseif($role == 4) {
-                                  $role = "Daily Activities";
-                                }
-                            @endphp
-                            <td>{{$role}} - {{$payment['tour_name']}}</td>
+                            <td>{{$payment['type']}}</td>
                             <td>  
                               <p class="fw-bold {{ $payment->status === 'Paid' ? 'text-success' : 'text-danger' }}">
                               {{ $payment->status }}

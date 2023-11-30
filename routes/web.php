@@ -60,6 +60,8 @@ use App\Http\Controllers\adminController;
         Route::post('savebooking','savebooking');
         Route::post('check','check');
         Route::post('/stripe','stripePyament')->name("stripe.post");
+        Route::post('shuttlebooking','shuttlebooking');
+        Route::post('shuttle_check','shuttle_check');
         });
 
 Route::group(['middleware' => ['AdminMiddleware']], function () {
@@ -173,6 +175,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('manage_why_libertad','manage_why_libertad');
         Route::post('save_libertad','save_libertad');
         Route::get('manage_payments','manage_payments');
+        Route::get('manage_shuttle_payments','manage_shuttle_payments');
     });
 });
 
