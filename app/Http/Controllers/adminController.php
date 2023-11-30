@@ -27,6 +27,8 @@ use App\Models\booking;
 use App\Models\traveller;
 use App\Models\User;
 use App\Models\payment;
+use App\Models\sbooking;
+use App\Models\spayment;
 use Stripe;
 use Session;
 
@@ -1328,7 +1330,7 @@ class adminController extends Controller
         return redirect('/manage_why_libertad')->with('savectour', 'City tour added Successfully');
     }
     public function manage_payments(){
-        $data = Booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
+        $data = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
         ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
         ->select('bookings.*', 'payments.*', 'users.name as user_name','bookings.role as booking_role', 'users.*')
         ->orderBy('bookings.id', 'desc')
@@ -1338,6 +1340,18 @@ class adminController extends Controller
             return $item;
         });
         return view('admin.manage_payments', ['payments' => $data]);
+    }
+    public function manage_shuttle_payments(){
+        $data = sbooking::leftJoin('spayments', 'sbookings.id', '=', 'spayments.book_id')
+        ->leftJoin('users', 'sbookings.user_id', '=', 'users.id')
+        ->select('sbookings.*', 'spayments.*', 'users.name as user_name', 'users.*')
+        ->orderBy('sbookings.id', 'desc')
+        ->get();
+        $data->transform(function ($item) {
+            $item->status = ($item->book_id) ? 'Paid' : 'Unpaid';
+            return $item;
+        });
+        return view('admin.manage_shuttle_payments', ['payments' => $data]);
     }
     
 }

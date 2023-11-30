@@ -2082,6 +2082,18 @@ max-width: 40px;
   height: 250px;
   border-radius: 10px 10px 0px 0px;
 }
+.color-transparent  {
+  color: transparent;
+  cursor: pointer;
+}
+.color-transparent:focus {
+  border:none;
+  outline: none;
+}
+.w-0 {
+  width: 0;
+  height: 0;
+}
 @media screen and (max-width: 1200px) {
   .back_img {
     height: 100%;

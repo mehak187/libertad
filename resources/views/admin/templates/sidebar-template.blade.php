@@ -89,7 +89,12 @@
                     </li>
                     <li class="mt-3">
                         <a href="/manage_payments" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Check Payments</h3>
+                            <h3 class="nav-text m-0 ms-2">Tours Bookings</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
+                        <a href="/manage_shuttle_payments" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Airport Shuttle Bookings</h3>
                         </a>
                     </li>
                 </ul>
