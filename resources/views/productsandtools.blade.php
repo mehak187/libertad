@@ -83,6 +83,13 @@
                                             <div class="row autoplay_2">
                                                 @foreach ($products as $product)
                                                     @if ($product->p_catg == $catagory->id)
+                                                    <form action="savebooking" method="POST" enctype="multipart/form-data" class="mt-2">
+                                                        @csrf
+                                                        <input type="number" name="tour_id" value="{{ $product->id }}" class="d-none" readonly>
+                                                        <input type="text" name="tour_name" value="{{ $product->name }}" class="d-none" readonly>
+                                                        <input type="text" name="t_price" value="{{ $product->price }}" class="d-none" readonly>
+                                                        <input type="text" name="rolgit e" value="6" class="d-none" readonly>
+                                                        <input type="text" name="peoplenew" value="0" class="d-none" readonly>
                                                         <div class="col mx-1 padimg ">
                                                             <img class="img-fluid w-100" src="<?php echo asset('uploads/' . $product['img']); ?>"
                                                                 alt="">
@@ -94,24 +101,14 @@
                                                                     <p class="mb-0 fs-12 fw-bold">USD
                                                                         {{ $product->price }}</p>
                                                                 </div>
-                                                                <div class="button_border rounded-pill">
-                                                                    <div class="d-flex">
-                                                                        <button
-                                                                            class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
-                                                                            style="height: 25px;">
-                                                                            <input type="text"
-                                                                                class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
-                                                                                value="{{ $product['id'] }}">Book</button>
-                                                                            <input type="text"
-                                                                            class="vprice d-none w-0 border-0 bg-transparent"
-                                                                            value="{{ $product['price'] }}">
-                                                                        <input type="text"
-                                                                            class="vpeople d-none w-0 border-0 bg-transparent"
-                                                                            value="{{ $product['name'] }}">
-                                                                    </div>
+                                                                <div class="button_border rounded-pill mx-3">
+                                                                        <button type="submit"
+                                                                            class="button_leniar_style px-4 rounded-pill fs-12">Add
+                                                                            to Cart</button>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </form>
                                                     @endif
                                                 @endforeach
                                             </div>

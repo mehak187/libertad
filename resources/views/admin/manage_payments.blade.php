@@ -53,6 +53,9 @@
                                 elseif($role == 5) {
                                   $role = "Special tour";
                                 }
+                                elseif($role == 6) {
+                                  $role = "Special tour";
+                                }
                             @endphp
                             <td>{{$role}} - {{$payment['tour_name']}}</td>
                             <td>  

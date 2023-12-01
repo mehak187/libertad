@@ -506,7 +506,6 @@ class userController extends Controller
             Session::flash("success","Payment completed successfully!");
     	    return back();
         }
-       
     }
 
     public function shuttlebooking(request $request){

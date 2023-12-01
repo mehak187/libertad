@@ -72,26 +72,32 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr class="light-bground">
-                                                                        {{-- <td class="align-middle text-nowrap px-4 py-2">
-                                                                            <div><img src="./imgs/galal-garwan.png"
-                                                                                    alt="" class="img-galal">
-                                                                            </div>
-                                                                        </td> --}}
                                                                         <td
                                                                             class="fw-bold align-middle text-nowrap px-4 py-2">
                                                                             {{ $unpaidproduct['tour_name'] }}
                                                                         </td>
                                                                         <td class="align-middle text-nowrap px-4 py-2">
                                                                             @php
+                                                                            if($unpaidproduct['people'] > 0) {
                                                                                 $nprice = $unpaidproduct['t_price'];
                                                                                 $npeople = $unpaidproduct['people'];
                                                                                 $singleprice = $nprice / $npeople;
+                                                                                echo $singleprice;
+                                                                            }
+                                                                            else{
+                                                                                echo $unpaidproduct['t_price'];
+                                                                            }
                                                                             @endphp
-                                                                            {{ $singleprice }}</td>
+                                                                        </td>
                                                                         <td class="align-middle text-nowrap px-4 py-2">
-                                                                            {{ $unpaidproduct['people'] }}</td>
+                                                                            @if($unpaidproduct['people'] == 0)
+                                                                                    N/A
+                                                                            @else
+                                                                                {{ $unpaidproduct['people'] }}
+                                                                            @endif
+                                                                        </td>
                                                                         <td class="align-middle text-nowrap px-4 py-2">
-                                                                            {{ $unpaidproduct['t_price'] }}</td>
+                                                                            {{ $unpaidproduct['t_price'] }} USD</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
