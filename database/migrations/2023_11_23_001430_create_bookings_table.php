@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('tour_id');
             $table->string('tour_name');
             $table->integer('role');
-            $table->string('date');
+            $table->string('date')->nullable();
             $table->integer('people');
             $table->string('t_price');
             $table->timestamps();
