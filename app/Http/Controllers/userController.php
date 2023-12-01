@@ -63,7 +63,23 @@ class userController extends Controller
         return view('book',['books'=>$data]);
     }
     public function cart(){
-        return view('cart');
+        $id =  auth()->user()->id;
+        $data = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
+        ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
+        ->select('bookings.*', 'payments.*', 'users.name as user_name','bookings.role as booking_role', 'users.*')
+        ->where('bookings.user_id',$id)
+        ->whereNotNull('payments.book_id')
+        ->orderBy('bookings.id', 'desc')
+        ->get();
+
+        $data2 = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
+        ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
+        ->select('bookings.*', 'payments.*', 'users.name as user_name', 'bookings.id as bk_id', 'users.*')
+        ->where('bookings.user_id',$id)
+        ->whereNull('payments.book_id')
+        ->orderBy('bookings.id', 'desc')
+        ->get();
+        return view('cart',['products'=>$data],['unpaidproducts'=>$data2]);
     }
     public function contact(){
         $data['contact'] = contact::first();
