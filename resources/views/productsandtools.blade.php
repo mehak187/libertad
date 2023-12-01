@@ -94,12 +94,21 @@
                                                                     <p class="mb-0 fs-12 fw-bold">USD
                                                                         {{ $product->price }}</p>
                                                                 </div>
-                                                                <div class="button_border rounded-pill mx-3">
-                                                                    <a href="{{ asset('cart') }}">
+                                                                <div class="button_border rounded-pill">
+                                                                    <div class="d-flex">
                                                                         <button
-                                                                            class="button_leniar_style px-4 rounded-pill fs-12">Add
-                                                                            to Cart</button>
-                                                                    </a>
+                                                                            class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
+                                                                            style="height: 25px;">
+                                                                            <input type="text"
+                                                                                class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
+                                                                                value="{{ $product['id'] }}">Book</button>
+                                                                            <input type="text"
+                                                                            class="vprice d-none w-0 border-0 bg-transparent"
+                                                                            value="{{ $product['price'] }}">
+                                                                        <input type="text"
+                                                                            class="vpeople d-none w-0 border-0 bg-transparent"
+                                                                            value="{{ $product['name'] }}">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
