@@ -2094,6 +2094,13 @@ max-width: 40px;
   width: 0;
   height: 0;
 }
+.fix_div2 {
+  overflow-y: auto;
+  height: 100vh;
+}
+.fix_div2::-webkit-scrollbar {
+  width: 0px;
+}
 @media screen and (max-width: 1200px) {
   .back_img {
     height: 100%;
