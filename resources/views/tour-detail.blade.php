@@ -96,22 +96,16 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="d-flex align-items-center flex-wrap gap-2">
-                            @if (auth()->check())
+                        @if (auth()->check())
+                            <div class="d-flex align-items-center flex-wrap gap-2">
                                 <div class="">
                                     <div class="button_border rounded-pill">
                                         <button type="button"
                                             class="button_leniar_style px-5 rounded-pill open-res">Book</button>
                                     </div>
                                 </div>
-                            @endif
-                            <div>
-                                <div class="button_border rounded-pill">
-                                    <button type="button" class="button_leniar_style px-5 rounded-pill ">Add to
-                                        Cart</button>
-                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
 
