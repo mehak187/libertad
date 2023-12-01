@@ -58,6 +58,9 @@
                                             class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
                                     </div>
                                 </div>
+                                <div class="next_arrow5 ">
+                                    <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                                </div>
                             </div>
                         </div>
                 @endif

@@ -71,7 +71,15 @@
                                         </div>
                                         <div>
                                             <h6 class="m-0">Description:</h6>
-                                            <p class="m-0">
+                                            <div>
+                                                <button
+                                                class="read-more bg-transparent border-0 text-black p-0 m-0 text-decoration-underline">Read
+                                                More</button>
+                                            <button
+                                                class="read-less bg-transparent border-0 text-black p-0 m-0 text-decoration-underline">Read
+                                                Less</button>
+                                            </div>
+                                            <p class="m-0 read-text">
                                                 {{ $book['description'] }}
                                             </p>
                                         </div>
