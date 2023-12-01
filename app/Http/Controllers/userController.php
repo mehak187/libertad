@@ -62,25 +62,7 @@ class userController extends Controller
         $data=book::paginate(9);
         return view('book',['books'=>$data]);
     }
-    public function cart(){
-        $id =  auth()->user()->id;
-        $data = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
-        ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
-        ->select('bookings.*', 'payments.*', 'users.name as user_name','bookings.role as booking_role', 'users.*')
-        ->where('bookings.user_id',$id)
-        ->whereNotNull('payments.book_id')
-        ->orderBy('bookings.id', 'desc')
-        ->get();
 
-        $data2 = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
-        ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
-        ->select('bookings.*', 'payments.*', 'users.name as user_name', 'bookings.id as bk_id', 'users.*')
-        ->where('bookings.user_id',$id)
-        ->whereNull('payments.book_id')
-        ->orderBy('bookings.id', 'desc')
-        ->get();
-        return view('cart',['products'=>$data],['unpaidproducts'=>$data2]);
-    }
     public function contact(){
         $data['contact'] = contact::first();
         return view('contact-us',$data);
@@ -488,7 +470,7 @@ class userController extends Controller
     			"source"=>$req->stripeToken,
     			"description"=>"Test payment from " .auth()->user()->name
     	]);
-        if ($req->has('book_role')) {
+        if ($req->has('book_role') && $req->input('book_role') == 2) {
             spayment::create([
                 'book_id' => $req->booking_id,
                 'amount' => $req->amount,
@@ -499,7 +481,7 @@ class userController extends Controller
             Session::flash("success","Payment completed successfully!");
     	    return back();
         }
-        else{
+        elseif($req->has('book_role') && $req->input('book_role') == 1){
             payment::create([
                 'book_id' => $req->booking_id,
                 'amount' => $req->amount,
@@ -510,7 +492,21 @@ class userController extends Controller
             Session::flash("success","Payment completed successfully!");
     	    return back();
         }
-    	
+    	else{
+            $book_ids = $req->book_id;
+            foreach ($book_ids as $book_id){
+                payment::create([
+                    'book_id' => $book_id
+                    // 'amount' => $req->amount,
+                    // 'currency' => 'usd', // Adjust accordingly
+                    // 'stripe_token' => $req->stripeToken,
+                    // 'description' => "Test payment from " . auth()->user()->name,
+                ]);
+            }
+            Session::flash("success","Payment completed successfully!");
+    	    return back();
+        }
+       
     }
 
     public function shuttlebooking(request $request){
@@ -542,4 +538,44 @@ class userController extends Controller
         $requestData = $request->all();
         return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData);
     }
+    public function cart(){
+        $id =  auth()->user()->id;
+    
+        $data = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
+            ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
+            ->select('bookings.*', 'payments.*', 'users.name as user_name','bookings.role as booking_role', 'users.*')
+            ->where('bookings.user_id', $id)
+            ->whereNotNull('payments.book_id')
+            ->orderBy('payments.id', 'desc')
+            ->get();
+    
+        $data2 = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
+            ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
+            ->select('bookings.*', 'payments.*', 'users.name as user_name', 'bookings.id as bk_id', 'users.*')
+            ->where('bookings.user_id', $id)
+            ->whereNull('payments.book_id')
+            ->orderBy('bookings.id', 'desc')
+            ->get();
+    
+        // $data3 = sbooking::leftJoin('spayments', 'sbookings.id', '=', 'spayments.book_id')
+        //     ->leftJoin('users', 'sbookings.user_id', '=', 'users.id')
+        //     ->select('sbookings.*', 'spayments.*', 'users.name as user_name', 'users.*')
+        //     ->where('sbookings.user_id', $id)
+        //     ->whereNull('spayments.book_id')
+        //     ->orderBy('sbookings.id', 'desc')
+        //     ->get();
+    
+        $viewData = [
+            'products' => $data,
+            'unpaidproducts' => $data2,
+        ];
+    
+        return view('cart', $viewData);
+    }
+    public function deletecart($bk_id){
+        $data =booking::find($bk_id);
+        $data->delete();
+        return back()->with ('Delete','Airport Shuttle Deleted Successfully');
+    } 
+    
 }

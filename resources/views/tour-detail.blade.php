@@ -334,6 +334,7 @@
                             placeholder="Card number" class='form-control shadow-none card-number'>
                     </div>
                     <div class="mt-3">
+                <input type="" name="book_role" value="1" class='d-none' readonly>
                         <input type="text" class='form-control card-number d-none'
                             value="{{ session('requestData.totalamount') }}" name="amount" readonly>
                         <input type="text" class='form-control card-number d-none'

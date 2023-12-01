@@ -62,6 +62,7 @@ use App\Http\Controllers\adminController;
         Route::post('/stripe','stripePyament')->name("stripe.post");
         Route::post('shuttlebooking','shuttlebooking');
         Route::post('shuttle_check','shuttle_check');
+        Route::get('deletecart/{bk_id}','deletecart');
         });
 
 Route::group(['middleware' => ['AdminMiddleware']], function () {

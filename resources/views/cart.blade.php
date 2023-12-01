@@ -46,96 +46,97 @@
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                     aria-labelledby="pills-home-tab">
                                     @if (count($unpaidproducts) > 0)
-                                    <div class="row">
-                                        <div class="col-lg-8">
-                                            <?php $num=1 ?>
-                                            @foreach ($unpaidproducts as $unpaidproduct)
-                                            <label for="pr-{{$num}}" class="d-flex">
-                                                <input type="checkbox" id="pr-{{$num}}" class="checkbox" name="myCheckbox" value=" {{ $unpaidproduct['t_price'] }}">
-                                                <input type="number" class="b_id bg-transparent d-none" name="book_id[]" value="{{ $unpaidproduct['bk_id'] }}">
-                                                {{-- <input type="text" class="b_id bg-transparent" name="book_id[]" value=" {{ $unpaidproduct['bk_id'] }}"> --}}
-                                                <div class="table-responsive w-100 myDiv mt-3">
-                                                    <table class="table mb-0">
-                                                        <thead>
-                                                            <tr class="cyan-bg">
-                                                                <th class="text-nowrap px-4 py-3">Image</th>
-                                                                <th class="text-nowrap px-4 py-3">Activity Name</th>
-                                                                <th class="text-nowrap px-4 py-3">Unit price</th>
-                                                                <th class="text-nowrap px-4 py-3">People</th>
-                                                                <th class="text-nowrap px-4 py-3 position-relative">
-                                                                    Total
-                                                                    <div class="position-x close-icon"><i
-                                                                            class="bi bi-x"></i>
-                                                                    </div>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="light-bground">
-                                                                <td class="align-middle text-nowrap px-4 py-2">
-                                                                    <div><img src="./imgs/galal-garwan.png"
-                                                                            alt="" class="img-galal">
-                                                                    </div>
-                                                                </td>
-                                                                <td
-                                                                    class="fw-bold align-middle text-nowrap px-4 py-2">
-                                                                    {{ $unpaidproduct['tour_name'] }}
-                                                                </td>
-                                                                <td class="align-middle text-nowrap px-4 py-2">
-                                                                    @php
-                                                                        $nprice = $unpaidproduct['t_price'];
-                                                                        $npeople = $unpaidproduct['people'];
-                                                                        $singleprice = $nprice / $npeople;
-                                                                    @endphp
-                                                                    {{ $singleprice }}</td>
-                                                                <td class="align-middle text-nowrap px-4 py-2">
-                                                                    {{ $unpaidproduct['people'] }}</td>
-                                                                <td class="align-middle text-nowrap px-4 py-2">
-                                                                    {{ $unpaidproduct['t_price'] }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </label>
-                                            <?php $num+=1 ?>
-                                             @endforeach
-                                        </div>
-                                        <div class="col-lg-4 mt-lg-0 mt-3 contain">
-                                            <div
-                                                class="light-bground p-2 my-height d-flex flex-column justify-content-between">
-                                                <div class="p-3">
-                                                    <p class="font-semi">Orders Summary</p>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <p>SubTotal</p>
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <?php $num=1 ?>
+                                                @foreach ($unpaidproducts as $unpaidproduct)
+                                                    <label for="pr-{{$num}}" class="d-flex align-items-center mt-3">
+                                                        <input type="checkbox" id="pr-{{$num}}" class="checkbox me-3" name="myCheckbox" value=" {{ $unpaidproduct['t_price'] }}">
+                                                        <input type="number" class="b_id bg-transparent d-none" name="book_id[]" value="{{ $unpaidproduct['bk_id'] }}">
+                                                        {{-- <input type="text" class="b_id bg-transparent" name="book_id[]" value=" {{ $unpaidproduct['bk_id'] }}"> --}}
+                                                        <div class="table-responsive w-100 myDiv">
+                                                            <table class="table mb-0">
+                                                                <thead>
+                                                                    <tr class="cyan-bg">
+                                                                        {{-- <th class="text-nowrap px-4 py-3">Image</th> --}}
+                                                                        <th class="text-nowrap px-4 py-3">Activity Name</th>
+                                                                        <th class="text-nowrap px-4 py-3">Unit price</th>
+                                                                        <th class="text-nowrap px-4 py-3">People</th>
+                                                                        <th class="text-nowrap px-4 py-3 position-relative">
+                                                                            Total
+                                                                            <a href="{{"deletecart/" .$unpaidproduct['bk_id'] }}" class="del_item">
+                                                                                <i class="fa-solid fa-circle-xmark"></i>
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="light-bground">
+                                                                        {{-- <td class="align-middle text-nowrap px-4 py-2">
+                                                                            <div><img src="./imgs/galal-garwan.png"
+                                                                                    alt="" class="img-galal">
+                                                                            </div>
+                                                                        </td> --}}
+                                                                        <td
+                                                                            class="fw-bold align-middle text-nowrap px-4 py-2">
+                                                                            {{ $unpaidproduct['tour_name'] }}
+                                                                        </td>
+                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                            @php
+                                                                                $nprice = $unpaidproduct['t_price'];
+                                                                                $npeople = $unpaidproduct['people'];
+                                                                                $singleprice = $nprice / $npeople;
+                                                                            @endphp
+                                                                            {{ $singleprice }}</td>
+                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                            {{ $unpaidproduct['people'] }}</td>
+                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                            {{ $unpaidproduct['t_price'] }}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </div>
-                                                        <div class="col-6">
-                                                            <p class="sum">$<span id="totalSum">0.00</span></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ids">
-
-                                                </div>
-                                                <div class="px-3">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <p>Grand Total</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p>1000</p>
+                                                    </label>
+                                                    <?php $num+=1 ?>
+                                                @endforeach
+                                            </div>
+                                            <div class="col-lg-4 mt-lg-0 mt-3 contain">
+                                                <div
+                                                    class="light-bground p-2 my-height d-flex flex-column justify-content-between">
+                                                    <div class="p-3">
+                                                        <p class="font-semi">Orders Summary</p>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p>SubTotal</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <p class="sum">$<span id="totalSum">0.00</span></p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <button type="button" data-bs-target="#myModal"
-                                                            data-bs-toggle="modal"
-                                                            class="mybutton border-0 text-white w-100 py-2 rounded-2">Proceed
-                                                            to Pay</button>
+                                                
+                                                    <div class="px-3">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p>Grand Total</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <p class="sum">$<span id="grandt">0.00</span></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="p-btn">
+                                                            <button type="button" class="mybutton open-res border-0 text-white w-100 py-2 rounded-2">Proceed
+                                                                to Pay</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="d-flex align-items-center mt-3 ">
+                                            <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                                            <p class="text-danger fs-5 mb-0">Cart is empty</p>
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel"
@@ -148,7 +149,7 @@
                                                             <table class="table mb-0">
                                                                 <thead>
                                                                     <tr class="cyan-bg">
-                                                                        <th class="text-nowrap px-4 py-3">Image</th>
+                                                                        {{-- <th class="text-nowrap px-4 py-3">Image</th> --}}
                                                                         <th class="text-nowrap px-4 py-3">Product Name</th>
                                                                         <th class="text-nowrap px-4 py-3">Unit price</th>
                                                                         <th class="text-nowrap px-4 py-3">People</th>
@@ -160,11 +161,11 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr class="light-bground">
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        {{-- <td class="align-middle text-nowrap px-4 py-2">
                                                                             <div><img src="./imgs/galal-garwan.png"
                                                                                     alt="" class="img-galal">
                                                                             </div>
-                                                                        </td>
+                                                                        </td> --}}
                                                                         <td
                                                                             class="fw-bold align-middle text-nowrap px-4 py-2">
                                                                             {{ $product['tour_name'] }}
@@ -190,7 +191,7 @@
                                     @else
                                         <div class="d-flex align-items-center mt-3 ">
                                             <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
-                                            <p class="text-danger fs-5">No record to show</p>
+                                            <p class="text-danger fs-5 mb-0">No record to show</p>
                                         </div>
                                     @endif
                                 </div>
@@ -201,13 +202,14 @@
             </div>
         </section>
         @include('template.footer')
-
     </div>
-    <div class="custom-model res-model">
+    <div class="custom-model res-model h-100" style="max-height: 73vh">
         <div class="custom-model payment-model">
             <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
                 data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                 @csrf
+                {{-- <input class="sum_field" value=""> --}}
+            
                 <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
                     <h1 class="modal-title fs-5">Payment methods</h1>
                     <i class="fas fa-times text-secondary fs-4 close-m"></i>
@@ -238,10 +240,11 @@
                             placeholder="Card number" class='form-control shadow-none card-number'>
                     </div>
                     <div class="mt-3">
-                        <input type="text" class='form-control card-number d-none'
-                            value="{{ session('requestData.totalamount') }}" name="amount" readonly>
-                        <input type="text" class='form-control card-number d-none'
-                            value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
+                        <input type="text" value="" class='sum_field form-control card-number d-none' name="amount" readonly>
+                        <div class="ids d-none">
+
+                        </div>
+                  
                     </div>
                     {{-- <div class="mt-3">
                         <input type="text" id="monthYearInput" class="form-control shadow-none"
@@ -300,26 +303,49 @@
     </div>
     @include('template.jslinks')
     <script>
-        $(document).ready(function () {
-            // Event listener for checkbox changes
-            $('.checkbox').change(function () {
-                updateTotalSum();
-            });
-    
-            // Function to update the total sum
-            function updateTotalSum() {
-                var totalSum = 0;
-                // Iterate over checked checkboxes and sum their values
-                $('.checkbox:checked').each(function () {
-                    totalSum += parseFloat($(this).val());
-                });
-                // Update the displayed total sum
-                $('#totalSum').text(totalSum.toFixed(2));
-            }
+     $(document).ready(function () {
+        $('.checkbox').change(function () {
+            updateTotalSum();
         });
-    </script>
-    <script>
-        $(document).ready(function () {
+
+        function updateTotalSum() {
+            var totalSum = 0;
+            $('.checkbox:checked').each(function () {
+                totalSum += parseFloat($(this).val());
+            });
+            $('#totalSum').text(totalSum.toFixed(2));
+            $('.sum_field').val(totalSum.toFixed(2));
+        }
+    });
+    // ---------grand total-----
+    $(document).ready(function () {
+        function updateGrandt() {
+            var totalSum = parseFloat($("#totalSum").text());
+            $("#grandt").text(totalSum.toFixed(2));
+        }
+        updateGrandt();
+        $("#totalSum").on("DOMSubtreeModified", function () {
+            updateGrandt();
+        });
+    });
+    // --------payment button show hide-----
+    $(document).ready(function () {
+        togglePBtnVisibility();
+        $("#totalSum").on("DOMSubtreeModified", function () {
+            togglePBtnVisibility();
+        });
+
+        function togglePBtnVisibility() {
+            var totalSum = parseFloat($("#totalSum").text());
+            if (totalSum > 0) {
+                $(".p-btn").show(); 
+            } else {
+                $(".p-btn").hide();
+            }
+        }
+    });
+    // -----sibling book -id-------
+    $(document).ready(function () {
             $('.checkbox').change(function () {
                 updateIds();
             });
@@ -334,7 +360,6 @@
     </script>
      <script>
         $(".res-model").hide();
-
         $(".open-book").click(function() {
             $(".book-model").show();
         });
@@ -369,13 +394,8 @@
             $('#date').attr('min', formattedDate);
         });
         $(document).ready(function() {
-            // Get the current date
             var currentDate = new Date();
-
-            // Format the date as 'YYYY-MM-DD' (required format for input type date)
             var formattedDate = currentDate.toISOString().split('T')[0];
-
-            // Set the maximum date for the input
             $('#dob').attr('max', formattedDate);
         });
     </script>
