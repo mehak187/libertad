@@ -88,7 +88,7 @@
                                                         <input type="number" name="tour_id" value="{{ $product->id }}" class="d-none" readonly>
                                                         <input type="text" name="tour_name" value="{{ $product->name }}" class="d-none" readonly>
                                                         <input type="text" name="t_price" value="{{ $product->price }}" class="d-none" readonly>
-                                                        <input type="text" name="rolgit e" value="6" class="d-none" readonly>
+                                                        <input type="text" name="role" value="6" class="d-none" readonly>
                                                         <input type="text" name="peoplenew" value="0" class="d-none" readonly>
                                                         <div class="col mx-1 padimg ">
                                                             <img class="img-fluid w-100" src="<?php echo asset('uploads/' . $product['img']); ?>"
