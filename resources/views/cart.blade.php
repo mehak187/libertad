@@ -177,14 +177,25 @@
                                                                             {{ $product['tour_name'] }}
                                                                         </td>
                                                                         <td class="align-middle text-nowrap px-4 py-2">
-                                                                        @php
-                                                                            $nprice= $product['t_price'];
-                                                                            $npeople= $product['people'];
-                                                                            $singleprice =  $nprice / $npeople;
-                                                                        @endphp
-                                                                            {{ $singleprice }}</td>
+                                                                            @php
+                                                                            if($product['people'] > 0) {
+                                                                                $nprice = $product['t_price'];
+                                                                                $npeople = $product['people'];
+                                                                                $singleprice = $nprice / $npeople;
+                                                                                echo $singleprice;
+                                                                            }
+                                                                            else{
+                                                                                echo $product['t_price'];
+                                                                            }
+                                                                            @endphp
+                                                                        </td>
                                                                         <td class="align-middle text-nowrap px-4 py-2">
-                                                                            {{ $product['people'] }}</td>
+                                                                            @if($product['people'] == 0)
+                                                                            N/A
+                                                                            @else
+                                                                                {{ $product['people'] }}
+                                                                            @endif
+                                                                        </td>
                                                                         <td class="align-middle text-nowrap px-4 py-2">
                                                                             {{ $product['t_price'] }}</td>
                                                                     </tr>
