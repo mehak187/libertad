@@ -9,6 +9,11 @@
 </head>
 
 <body class="background_img">
+    @if (session('loginerror'))
+    <script>
+        swal("Ooops!", "{{session('loginerror')}}", "error");
+    </script>
+@endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')

@@ -20,7 +20,6 @@ use App\Http\Controllers\adminController;
     Route::controller(userController::class)->group(function(){
         Route::get('airport','airport');
         Route::get('book','book');
-        Route::get('cart','cart');
         Route::get('contact','contact');
         Route::get('dailyactivites','dailyactivites');
         Route::get('daily_activities_det/{id}','daily_activities_det');
@@ -56,6 +55,11 @@ use App\Http\Controllers\adminController;
         Route::post('site_review','site_review');
         Route::post('activities_review','activities_review');
         Route::post('acc_review','acc_review');
+      
+    });
+
+ Route::group(['middleware' => ['UserMiddleware']], function () {
+    Route::controller(userController::class)->group(function(){
         Route::post('book1','book1');
         Route::post('savebooking','savebooking');
         Route::post('check','check');
@@ -63,7 +67,9 @@ use App\Http\Controllers\adminController;
         Route::post('shuttlebooking','shuttlebooking');
         Route::post('shuttle_check','shuttle_check');
         Route::get('deletecart/{bk_id}','deletecart');
-        });
+        Route::get('cart','cart');
+    });
+});
 
 Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::controller(adminController::class)->group(function(){

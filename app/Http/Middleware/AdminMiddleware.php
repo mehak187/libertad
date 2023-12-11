@@ -18,6 +18,6 @@ class AdminMiddleware
         if(isset(auth()->user()->role) && auth()->user()->role == 0){
             return $next($request);
         }
-        return redirect('/')->with('loginerror',"Access Denied! You don't have permission to access this panel.");
+        return redirect('/')->with('loginerror',"Access Denied! You dont have permission to access this panel.");
     }
 }
