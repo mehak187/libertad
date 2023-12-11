@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(isset(auth()->user()->role) && auth()->user()->role == 1){
+        if(auth()->check()) {
+            // User is authenticated, allow access to the routes
             return $next($request);
         }
-        return redirect('/')->with('loginerror',"Access Denied! You don't have permission to access this panel.");
+        return redirect('/')->with('loginerror',"Access Denied! In order to access this page login first");
     }
 }

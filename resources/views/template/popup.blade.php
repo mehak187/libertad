@@ -77,7 +77,7 @@
     }
 
     .popup.show {
-        top: 50%;
+        top: 35%;
         left: 50%;
         opacity: 1;
         pointer-events: auto;
