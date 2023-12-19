@@ -91,8 +91,12 @@ class userController extends Controller
         '*'=>'required',
         ]);
         $user_id = auth()->user()->id;
+        $transportation = implode(',', $request->input('transportation'));
+        $cities = implode('->', $request->input('cities'));
         $data = $request->all();
         $data['user_id'] = $user_id;
+        $data['transportation'] = $transportation;
+        $data['cities'] = $cities;
         $trip = Trip::create($data);
         return redirect('travelyourway2')->with('success', 'Trip added successfully')->with('trip', $trip);
     }

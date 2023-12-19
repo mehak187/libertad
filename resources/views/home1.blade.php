@@ -244,7 +244,7 @@
                                                                     are the
                                                                     cities do you want to visit?</label>
                                                                 <select id="city"
-                                                                    class=" mb-1 text-white py-1" name="cities" multiple>
+                                                                    class=" mb-1 text-white py-1" name="cities[]" multiple>
                                                                     @foreach ($cities as $city)
                                                                         <option value="{{$city['Cityname']}}">{{$city['Cityname']}}</option>
                                                                     @endforeach
@@ -284,7 +284,7 @@
                                                                     transportation do you prefer between cities?</label>
                                                                 <p class="mb-0 font-12 text-white">Note: Flight tickets are not
                                                                     included in the price</p>
-                                                                <select name="transportation" id="transport-whecle"
+                                                                <select name="transportation[]" id="transport-whecle"
                                                                     class=" mb-1 text-white py-1" multiple>
                                                                     <option value="Car">Car</option>
                                                                     <option value="Train">Train</option>
@@ -301,7 +301,7 @@
                                                                     class="mb-1 fs-12 dropdown_label_color">Trip Start
                                                                     Date</label>
                                                                 <input name="date" type="date"
-                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="date">
                                                                     @error('date')
                                                                     <span class="error text-danger">
                                                                         {{$message}}
@@ -361,6 +361,15 @@
         </div>
     </section>
     @include('template.jslinks')
+    <script>
+           $(document).ready(function() {
+            var currentDate = new Date();
+            var tomorrow = new Date();
+            tomorrow.setDate(currentDate.getDate() + 1);
+            var formattedDate = tomorrow.toISOString().split('T')[0];
+            $('#date').attr('min', formattedDate);
+        });
+    </script>
 </body>
 
 </html>

@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +20,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{ asset('home') }}" class="text-decoration-none">
+                        <a href="home-libertad" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                         </a>
                     </div>
@@ -53,13 +56,19 @@
                                     <p class="text-white">{{ session('trip')->cities }}</p>
                                 </div>
                                 <h6 class="fw-bold golden-clr fs-5">Tours Information</h6>
+                                @php
+                                    $originalDate = session('trip')->date;
+                                    $days = session('trip')->days;
+                                    $carbonDate = Carbon::parse($originalDate);
+                                    $newDate = $carbonDate->addDays($days);
+                                @endphp
                                 <div>
                                     <h6 class="golden-clr">Date</h6>
-                                    <p class="text-white">{{ session('trip')->date }}</p>
+                                    <p class="text-white">{{ session('trip')->date }} to {{ $newDate->format('Y-m-d') }}</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">Tour Duration</h6>
-                                    <p class="text-white">{{ session('trip')->days }}</p>
+                                    <p class="text-white">{{ session('trip')->days }} days</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">No. of Travellers</h6>
