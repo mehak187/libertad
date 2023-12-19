@@ -29,6 +29,7 @@ use App\Models\User;
 use App\Models\payment;
 use App\Models\sbooking;
 use App\Models\spayment;
+use App\Models\trip;
 use Stripe;
 use Session;
 
@@ -1352,6 +1353,12 @@ class adminController extends Controller
             return $item;
         });
         return view('admin.manage_shuttle_payments', ['payments' => $data]);
+    }
+    public function manage_trip(){
+        $data = trip::leftJoin('users', 'trips.user_id', '=', 'users.id')
+        ->orderBy('trips.id', 'desc')
+        ->get();
+        return view('admin.manage_trip', ['trips' => $data]);
     }
     
 }

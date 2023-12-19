@@ -182,6 +182,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::post('save_libertad','save_libertad');
         Route::get('manage_payments','manage_payments');
         Route::get('manage_shuttle_payments','manage_shuttle_payments');
+
+        Route::get('manage_trip','manage_trip');
     });
 });
 
