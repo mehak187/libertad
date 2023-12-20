@@ -1025,12 +1025,14 @@ class adminController extends Controller
             'tourimg'   =>'required|file|mimes:jpeg,png,jpg,svg,webp',
         ]);
         $cityname =$request-> Cityname;
+        $include =$request-> include;
         $photo = $request->file('tourimg');
         $photo_name= time()."-".$photo->getClientOriginalName();
         $photo_destination=public_path('uploads');
         $photo->move($photo_destination,$photo_name);
         city::create([
             'Cityname' => $cityname,
+            'include' => $include,
             'tourimg' => $photo_name
         ]);
         return redirect('manage_cities')->with ('success','City added Successfully');
@@ -1038,8 +1040,10 @@ class adminController extends Controller
     public function updatecity(request $request){
         if($request->file('tourimg')==null){
             $cityname =$request->Cityname;
+            $include =$request->include;
             city::find($request->id)->update([
                 'Cityname' => $cityname,
+                'include' => $include,
             ]);
         }else{
             $photo = $request->file('tourimg');
@@ -1047,8 +1051,10 @@ class adminController extends Controller
             $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $cityname =$request->Cityname;
+            $include =$request->include;
             city::find($request->id)->update([
             'Cityname' => $cityname,
+            'include' => $include,
             'tourimg' => $photo_name
         ]);
         }

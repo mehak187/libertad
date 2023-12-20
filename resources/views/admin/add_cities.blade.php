@@ -33,6 +33,17 @@
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field w-100 dark-btn mt-4">
+                            <textarea class="w-100" placeholder="include" name="include">{{old('include')}}</textarea>
+                            @error('include')
+                                <span class="error text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fs-bold">city image</label>
                             <input type="file" class="w-100" id="tour-img" name="tourimg" onchange="showImagePreview(this)">
