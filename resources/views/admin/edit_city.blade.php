@@ -30,6 +30,13 @@
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field w-100 dark-btn mt-4">
+                            <label for="include" class="text-dark fw-bold">Include</label>
+                            <textarea class="w-100" name="include">{{ $cities->include }}</textarea>
+                            <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fw-bold s-field">City image<br>
                             <img id="image-preview-single" src="<?php echo asset('uploads/' . $cities->tourimg)?>" alt="" class="w-300 mt-2">

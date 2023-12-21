@@ -11,5 +11,6 @@ class city extends Model
     protected $fillable = [
         'Cityname',
         'tourimg',
+        'include',
     ];
 }

@@ -29,6 +29,7 @@ use App\Models\User;
 use App\Models\payment;
 use App\Models\sbooking;
 use App\Models\spayment;
+use App\Models\trip;
 use Stripe;
 use Session;
 
@@ -1024,12 +1025,14 @@ class adminController extends Controller
             'tourimg'   =>'required|file|mimes:jpeg,png,jpg,svg,webp',
         ]);
         $cityname =$request-> Cityname;
+        $include =$request-> include;
         $photo = $request->file('tourimg');
         $photo_name= time()."-".$photo->getClientOriginalName();
         $photo_destination=public_path('uploads');
         $photo->move($photo_destination,$photo_name);
         city::create([
             'Cityname' => $cityname,
+            'include' => $include,
             'tourimg' => $photo_name
         ]);
         return redirect('manage_cities')->with ('success','City added Successfully');
@@ -1037,8 +1040,10 @@ class adminController extends Controller
     public function updatecity(request $request){
         if($request->file('tourimg')==null){
             $cityname =$request->Cityname;
+            $include =$request->include;
             city::find($request->id)->update([
                 'Cityname' => $cityname,
+                'include' => $include,
             ]);
         }else{
             $photo = $request->file('tourimg');
@@ -1046,8 +1051,10 @@ class adminController extends Controller
             $photo_destination=public_path('uploads');
             $photo->move($photo_destination,$photo_name);
             $cityname =$request->Cityname;
+            $include =$request->include;
             city::find($request->id)->update([
             'Cityname' => $cityname,
+            'include' => $include,
             'tourimg' => $photo_name
         ]);
         }
@@ -1352,6 +1359,12 @@ class adminController extends Controller
             return $item;
         });
         return view('admin.manage_shuttle_payments', ['payments' => $data]);
+    }
+    public function manage_trip(){
+        $data = trip::leftJoin('users', 'trips.user_id', '=', 'users.id')
+        ->orderBy('trips.id', 'desc')
+        ->get();
+        return view('admin.manage_trip', ['trips' => $data]);
     }
     
 }

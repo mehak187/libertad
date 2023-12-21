@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('Cityname');
             $table->string('tourimg');
+            $table->text('include')->nullable();
             $table->timestamps();
         });
     }
