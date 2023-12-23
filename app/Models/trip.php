@@ -15,5 +15,6 @@ class trip extends Model
         'days',
         'transportation',
         'date',
+        'accommodation'
     ];
 }

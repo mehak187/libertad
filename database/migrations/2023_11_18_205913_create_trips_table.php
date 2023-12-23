@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('days');
             $table->string('transportation');
             $table->string('date');
+            $table->text('accommodation')->nullable();
             $table->timestamps();
         });
     }

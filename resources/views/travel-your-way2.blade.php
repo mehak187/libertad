@@ -79,6 +79,10 @@ use Carbon\Carbon;
                                     <h6 class="golden-clr">Transportation between cities</h6>
                                     <p class="text-white">{{ session('trip')->transportation }}</p>
                                 </div>
+                                <div>
+                                    <h6 class="golden-clr">Accommodation</h6>
+                                    <p class="text-white">{{ session('trip')->accommodation }}</p>
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-2 mt-3">
