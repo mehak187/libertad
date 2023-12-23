@@ -25,112 +25,118 @@
                         <p class="golden-clr m-0 font-22">Tours</p>
                     </div>
                 </div>
-                @if (count($cityTours) > 0)
-                    <div class="row">
-                        <div class="col-md-11 col-12 mx-auto">
-                            <div class=" mt-5 position-relative sandm sites px-4 px-sm-5 px-md-3">
-                                <h4 class="text-white text-uppercase">City's Tours</h4>
+                @if ((count($cityTours) > 0) || (count($museums) > 0) || (count($sites) > 0))
+                    @if (count($cityTours) > 0)
+                        <div class="row">
+                            <div class="col-md-11 col-12 mx-auto">
+                                <div class=" mt-5 position-relative sandm sites px-4 px-sm-5 px-md-3">
+                                    <h4 class="text-white text-uppercase">City's Tours</h4>
 
-                                <div class="prev_arrow5 ">
-                                    <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>
-                                </div>
-                                <div class="row site-map mx-3">
-                                    @foreach ($cityTours as $citytour)
-                                        <a href="/{{ 'city_tour_det/' . $citytour['id'] }}"
-                                            class="col-12 mx-2 text-decoration-none text-dark">
-                                            <div class="ct-img">
-                                                <img src="<?php echo asset('uploads/' . $citytour['img']); ?>" alt="" class="minor-img">
-                                            </div>
-                                            <div class="sky-bg p-2 round-site px-2 py-3">
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h5 class="font-14 m-0 fw-bold">{{ $citytour['name'] }}</h5>
-                                                    <p class="text-white m-0 fw-bold">{{ $citytour['price'] }}</p>
-                                                </div>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <i class="bi bi-geo-alt-fill"></i>
-                                                    <p class="m-0 font-13">{{ $citytour['location'] }}.</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                    <div class="next_arrow5 ">
-                                        <i
-                                            class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                                    <div class="prev_arrow5 ">
+                                        <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>
                                     </div>
-                                </div>
-                                <div class="next_arrow5 ">
-                                    <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
-                                </div>
-                            </div>
-                        </div>
-                @endif
-                @if (count($museums) > 0)
-                    <div class="row black-opacity mt-5 rounded-4 py-5 px-2 px-sm-0 mx-sm-0 mx-3">
-                        <div class="col-sm-11 col-10 mx-auto">
-                            <div class="position-relative sites">
-                                <h4 class="text-white text-uppercase">Museums</h4>
-                                <div class="prev_arrow3">
-                                    <i class="fa-solid fa-arrow-left rounded-circle golden-bg px-2 py-2 text-dark"></i>
-                                </div>
-                                <div class="row site-map2">
-                                    @foreach ($museums as $musuem)
-                                        <div class="col-12 mx-2">
-                                            <a href="/{{ 'musuem_det/' . $musuem['id'] }}"
-                                                class="text-dark text-decoration-none">
-                                                <div class="ct-img">>
-                                                    <img src="<?php echo asset('uploads/' . $musuem['img']); ?>" alt="" class="minor-img">
-                                                </div>
-                                                <div class="golden-bg p-2 round-site px-2 py-3">
-                                                    <h5 class="font-14">{{ $musuem['name'] }}</h5>
-                                                    <div class="d-flex align-items-center gap-2">
-                                                        <i class="bi bi-geo-alt-fill"></i>
-                                                        <p class="m-0 font-13">{{ $musuem['location'] }}</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <div class="next_arrow3">
-                                    <i class="fa-solid fa-arrow-right rounded-circle golden-bg px-2 py-2 text-dark"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                @if (count($sites) > 0)
-                    <div class="row">
-                        <div class="col-sm-11 col-10 mx-auto">
-                            <div class=" mt-5 position-relative sites">
-                                <h4 class="text-white text-uppercase">Sites and Monuments</h4>
-                                <div class="prev_arrow4">
-                                    <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>
-                                </div>
-                                <div class="row site-map3">
-                                    @foreach ($sites as $site)
-                                        <div class="col-12 mx-2">
-                                            <a href="/{{ 'sitesandmonoments/' . $site['id'] }}"
-                                                class="text-decoration-none text-dark">
-                                                <div class="ct-img">>
-                                                    <img src="<?php echo asset('uploads/' . $site['img']); ?>" alt="" class="minor-img">
+                                    <div class="row site-map mx-3">
+                                        @foreach ($cityTours as $citytour)
+                                            <a href="/{{ 'city_tour_det/' . $citytour['id'] }}"
+                                                class="col-12 mx-2 text-decoration-none text-dark">
+                                                <div class="ct-img">
+                                                    <img src="<?php echo asset('uploads/' . $citytour['img']); ?>" alt="" class="minor-img">
                                                 </div>
                                                 <div class="sky-bg p-2 round-site px-2 py-3">
-                                                    <h5 class="font-14">{{ $site['name'] }}</h5>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <h5 class="font-14 m-0 fw-bold">{{ $citytour['name'] }}</h5>
+                                                        <p class="text-white m-0 fw-bold">{{ $citytour['price'] }}</p>
+                                                    </div>
                                                     <div class="d-flex align-items-center gap-2">
                                                         <i class="bi bi-geo-alt-fill"></i>
-                                                        <p class="m-0 font-13">{{ $site['location'] }}</p>
+                                                        <p class="m-0 font-13">{{ $citytour['location'] }}.</p>
                                                     </div>
                                                 </div>
                                             </a>
+                                        @endforeach
+                                        <div class="next_arrow5 ">
+                                            <i
+                                                class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    <div class="next_arrow5 ">
+                                        <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                                    </div>
                                 </div>
-                                <div class="next_arrow4">
-                                    <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                            </div>
+                    @endif
+                    @if (count($museums) > 0)
+                        <div class="row black-opacity mt-5 rounded-4 py-5 px-2 px-sm-0 mx-sm-0 mx-3">
+                            <div class="col-sm-11 col-10 mx-auto">
+                                <div class="position-relative sites">
+                                    <h4 class="text-white text-uppercase">Museums</h4>
+                                    <div class="prev_arrow3">
+                                        <i class="fa-solid fa-arrow-left rounded-circle golden-bg px-2 py-2 text-dark"></i>
+                                    </div>
+                                    <div class="row site-map2">
+                                        @foreach ($museums as $musuem)
+                                            <div class="col-12 mx-2">
+                                                <a href="/{{ 'musuem_det/' . $musuem['id'] }}"
+                                                    class="text-dark text-decoration-none">
+                                                    <div class="ct-img">>
+                                                        <img src="<?php echo asset('uploads/' . $musuem['img']); ?>" alt="" class="minor-img">
+                                                    </div>
+                                                    <div class="golden-bg p-2 round-site px-2 py-3">
+                                                        <h5 class="font-14">{{ $musuem['name'] }}</h5>
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <i class="bi bi-geo-alt-fill"></i>
+                                                            <p class="m-0 font-13">{{ $musuem['location'] }}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="next_arrow3">
+                                        <i class="fa-solid fa-arrow-right rounded-circle golden-bg px-2 py-2 text-dark"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
+                    @if (count($sites) > 0)
+                        <div class="row">
+                            <div class="col-sm-11 col-10 mx-auto">
+                                <div class=" mt-5 position-relative sites">
+                                    <h4 class="text-white text-uppercase">Sites and Monuments</h4>
+                                    <div class="prev_arrow4">
+                                        <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                                    </div>
+                                    <div class="row site-map3">
+                                        @foreach ($sites as $site)
+                                            <div class="col-12 mx-2">
+                                                <a href="/{{ 'sitesandmonoments/' . $site['id'] }}"
+                                                    class="text-decoration-none text-dark">
+                                                    <div class="ct-img">>
+                                                        <img src="<?php echo asset('uploads/' . $site['img']); ?>" alt="" class="minor-img">
+                                                    </div>
+                                                    <div class="sky-bg p-2 round-site px-2 py-3">
+                                                        <h5 class="font-14">{{ $site['name'] }}</h5>
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <i class="bi bi-geo-alt-fill"></i>
+                                                            <p class="m-0 font-13">{{ $site['location'] }}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="next_arrow4">
+                                        <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @else
+                <div class="d-flex align-items-center mt-3 ">
+                    <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger mb-0 fs-5">No record to show</p>
+                </div>
                 @endif
             </div>
         </div>

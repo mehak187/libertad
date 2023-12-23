@@ -202,9 +202,9 @@ class userController extends Controller
         ->leftJoin('musuems', 'cities.id', '=', 'musuems.city')
         ->leftJoin('citytours', 'cities.id', '=', 'citytours.city')
         ->leftJoin('sites', 'cities.id', '=', 'sites.city')
-        ->whereNotNull('musuems.city')
-        ->orWhereNotNull('citytours.city')
-        ->orWhereNotNull('sites.city')
+        // ->whereNotNull('musuems.city')
+        // ->orWhereNotNull('citytours.city')
+        // ->orWhereNotNull('sites.city')
         ->distinct()
         ->get();
     

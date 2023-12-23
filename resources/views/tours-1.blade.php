@@ -104,10 +104,10 @@
                             @if (@isset($cities1) && @isset($cities2))
                                 <div class="row me-3">
                                     <div class="col-11">
-                                        <div class="autoplay mb-3 px-1">
+                                        <div class="autoplay city-mn  mb-3 px-1">
                                             @foreach ($cities1 as $city1)
-                                                <div class="slide mx-2 city-result">
-                                                    <div class="container1 container1_2">
+                                                <div class="slide mx-2 ">
+                                                    <div class="container1 container1_2 city-result">
                                                         <img src="<?php echo asset('uploads/' . $city1['tourimg']); ?>" alt="Avatar"
                                                             class="image1 image1_2">
                                                         <a href="{{ 'cities_detail/' . $city1['id'] }}" class="overlay">
@@ -125,16 +125,16 @@
                                 </div>
                                 <div class="row me-3">
                                     <div class="col-11">
-                                        <div class="autoplay mb-3 px-1">
+                                        <div class="autoplay city-mn mb-3 px-1">
                                             @foreach ($cities2 as $city2)
-                                                <div class="slide mx-2 city-result">
-                                                    <div class="container1 container1_2">
+                                                <div class="slide  mx-2">
+                                                    <div class="container1 container1_2  city-result2">
                                                         <img src="<?php echo asset('uploads/' . $city2['tourimg']); ?>" alt="Avatar"
                                                             class="image1 image1_2">
                                                         <a href="{{ 'cities_detail/' . $city2['id'] }}" class="overlay">
                                                             <div
                                                                 class="text1 d-flex align-items-center justify-content-between">
-                                                                <span class="text-white searchable">{{ $city2['Cityname'] }}</span>
+                                                                <span class="text-white author">{{ $city2['Cityname'] }}</span>
                                                                 <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                                             </div>
                                                         </a>
@@ -176,38 +176,45 @@
     </section>
     @include('template.jslinks')
     <script>
-        function searchFunction() {
-            var input, filter, ul, li, a, i;
-            input = document.getElementById('myinput');
-            filter = input.value.toUpperCase();
-            li=document.getElementsByClassName('city-result');
+      function searchFunction() {
+    var input, filter, li, a, i, author;
+    input = document.getElementById('myinput');
+    filter = input.value.toUpperCase();
+    li = document.getElementsByClassName('city-result');
+    lit = document.getElementsByClassName('city-result2');
+    cusall = document.getElementsByClassName('customer-all-main');
 
-            cusall=document.getElementsByClassName('customer-all-main');
-            var resultsFound = false; // initialize the flag to false
-        
-            for(i=0 ; i< li.length; i++){
-                a = li[i].getElementsByClassName('searchable')[0];
-                if(a.innerHTML.toUpperCase().startsWith(filter)){
-                    li[i].style.display = "";
-                    resultsFound = true; // set flag to true if a result is found
-                } else {
-                    li[i].style.display = 'none';
-                }
-            }
-            
-            document.getElementById('filter-heading').style.display = 'none';
-            for(var j=0; j<cusall.length; j++){
-                    cusall[j].style.display = 'none';
-                }
+    var resultsFound = false;
 
-            if(!resultsFound){ // if no result is found, display the error message
-                document.getElementById('searcherror').style.display = 'block';
-                document.getElementById('error_msg').style.display = 'none';
-
-            } else {
-                document.getElementById('searcherror').style.display = 'none'; // hide error message if result is found
-            }
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName('searchable')[0];
+        if (a.innerHTML.toUpperCase().includes(filter)) {
+            li[i].style.display = "";
+            resultsFound = true;
+        } else {
+            li[i].style.display = 'none';
         }
+    }
+
+    for (i = 0; i < lit.length; i++) {
+        author = lit[i].getElementsByClassName('author')[0];
+        if (author.innerHTML.toUpperCase().includes(filter)) {
+            lit[i].style.display = "";
+            resultsFound = true;
+        } else {
+            lit[i].style.display = 'none';
+        }
+    }
+
+    // Remove "slide" class from elements with class "city-mn" if results are found
+    var cityMnElements = document.getElementsByClassName('city-mn');
+    if (resultsFound) {
+        for (i = 0; i < cityMnElements.length; i++) {
+            cityMnElements[i].classList.remove('slick-slider');
+        }
+    }
+}
+
     </script>
 </body>
 
