@@ -264,8 +264,6 @@
                                                             <div>
                                                                 <label for="" class="fs-12 dropdown_label_color">What
                                                                     transportation do you prefer between cities?</label>
-                                                                <p class="mb-0 font-12 text-white">Note: Flight tickets are not
-                                                                    included in the price</p>
                                                                 <select name="transportation[]" id="transport-whecle"
                                                                     class=" mb-1 text-white py-1" multiple>
                                                                     <option value="Car">Car</option>
@@ -273,6 +271,15 @@
                                                                     <option value="Airplane">Airplane</option>
                                                                 </select>
                                                                 @error('transportation')
+                                                                <span class="error text-danger">
+                                                                    {{$message}}
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div>
+                                                                <label for="" class="fs-12 dropdown_label_color">Accommodation</label>
+                                                                <input type="text" name="accommodation" class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
+                                                                @error('accommodation')
                                                                 <span class="error text-danger">
                                                                     {{$message}}
                                                                 </span>
