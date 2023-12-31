@@ -66,26 +66,27 @@
         border-radius: 15px;
         top: 10%;
         max-width: 380px;
-        width: 100%;
+        width: calc(100% - 30px);
         opacity: 0;
         pointer-events: none;
+        box-sizing: border-box;
         box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-        transform: translate(-50%, -50%) scale(1.2);
+        transform: translate(-50%, -50%) ;
         transition: top 0s 0.2s ease-in-out,
             opacity 0.2s 0s ease-in-out,
             transform 0.2s 0s ease-in-out;
     }
 
     .popup.show {
-        top: 35%;
+        top: 50%;
         left: 50%;
         opacity: 1;
         pointer-events: auto;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) ;
         transition: top 0s 0s ease-in-out,
             opacity 0.2s 0s ease-in-out,
             transform 0.2s 0s ease-in-out;
-
+        position: fixed
     }
 
     .popup :is(header, .icons, .field) {

@@ -9,8 +9,8 @@ class trip extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
-        'cities',
+        'name',
+        'email',
         'persons',
         'days',
         'transportation',

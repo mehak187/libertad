@@ -44,7 +44,7 @@
                     <div class="col-lg-6 py-3 px-4">
                         <p class="text-white">{{ $citytour->name }}</p>
                         <div class="row align-items-center">
-                            <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
+                            <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 ">
                                 <a href="#"
                                     class=" view-modal d-flex align-items-center text text-decoration-none gap-2">
                                     <i class="bi bi-share border-golden rounded-circle px-2 py-1 golden-clr"></i>

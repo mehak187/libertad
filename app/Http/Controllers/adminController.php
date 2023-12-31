@@ -1361,9 +1361,7 @@ class adminController extends Controller
         return view('admin.manage_shuttle_payments', ['payments' => $data]);
     }
     public function manage_trip(){
-        $data = trip::leftJoin('users', 'trips.user_id', '=', 'users.id')
-        ->orderBy('trips.id', 'desc')
-        ->get();
+        $data = trip::all();
         return view('admin.manage_trip', ['trips' => $data]);
     }
     

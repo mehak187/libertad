@@ -14,7 +14,7 @@
                 <ul class="list-unstyled m-0 pb-3">
                     <li class="mt-3">
                         <a href="/manage_libertad_reviews" class="d-flex align-items-center active-link">
-                            <h3 class="nav-text m-0 ms-2 ">Manage Libertad Reviews</h3>
+                            <h3 class="nav-text m-0 ms-2 ">Libertad Reviews</h3>
                         </a>
                     </li>
                     <li class="mt-3">
@@ -22,11 +22,11 @@
                             <h3 class="nav-text m-0 ms-2 ">Manage Special Tours</h3>
                         </a>
                     </li>
-                    <li class="mt-3">
+                    {{-- <li class="mt-3">
                         <a href="/manage_cities" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage Cities</h3>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="mt-3">
                         <a href="/manage_city_tours" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage city tours</h3>
@@ -48,23 +48,13 @@
                         </a>
                     </li>
                     <li class="mt-3">
-                        <a href="/manage_books" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Manage Books</h3>
-                        </a>
-                    </li>
-                    <li class="mt-3">
                         <a href="/manage_shuttle" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage Airport Shuttle</h3>
                         </a>
                     </li>
                     <li class="mt-3">
-                        <a href="/manage_events" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Manage Events</h3>
-                        </a>
-                    </li>
-                    <li class="mt-3">
-                        <a href="/manage_contact" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Manage Contact Info</h3>
+                        <a href="/manage_daily_activities" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Daily Activities</h3>
                         </a>
                     </li>
                     <li class="mt-3">
@@ -78,8 +68,18 @@
                         </a>
                     </li>
                     <li class="mt-3">
-                        <a href="/manage_daily_activities" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Manage Daily Activities</h3>
+                        <a href="/manage_books" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Books</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
+                        <a href="/manage_events" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Events</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
+                        <a href="/manage_contact" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Contact Info</h3>
                         </a>
                     </li>
                     <li class="mt-3">

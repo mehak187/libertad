@@ -34,6 +34,8 @@ use App\Models\traveller;
 use App\Models\payment;
 use App\Models\sbooking;
 use App\Models\spayment;
+use App\Models\trip_city;
+
 use Stripe;
 use Session;
 
@@ -90,15 +92,128 @@ class userController extends Controller
         $request->validate([
         '*'=>'required',
         ]);
-        $user_id = auth()->user()->id;
-        $transportation = implode(',', $request->input('transportation'));
-        $cities = implode('->', $request->input('cities'));
+        $transportation = implode(', ', $request->input('transportation'));
+        // $cities = implode('->', $request->input('cities'));
         $data = $request->all();
-        $data['user_id'] = $user_id;
         $data['transportation'] = $transportation;
-        $data['cities'] = $cities;
-        $trip = Trip::create($data);
-        return redirect('travelyourway2')->with('success', 'Trip added successfully')->with('trip', $trip);
+        // $data['cities'] = $cities;
+        $trip = trip::create($data);
+        $cityTourId = $trip->id;
+        $cities = $request->input('cities');
+        foreach ($cities as $city) {
+            trip_city::create([
+                'uid' => $cityTourId,
+                'city' => $city
+            ]);
+        }
+        // return redirect('travelyourway2')->with('success', 'Trip added successfully')->with('trip', $trip)->with(['cdetails' => $data2]);
+        return redirect()->route('travelyourway2', ['cityTourId' => $cityTourId]);
+    }
+
+    public function travelyourway2($cityTourId)
+    {
+        $data['trip'] = Trip::find($cityTourId);
+        $data['tripcities'] = trip_city::leftJoin('cities', 'trip_cities.city', '=', 'cities.id')
+            ->where('trip_cities.uid', $cityTourId)
+            ->select('cities.id as city_id', 'trip_cities.*', 'cities.*')
+            ->get();
+        return view('travel-your-way2', $data);
+    }
+
+    public function tourdetail($id){
+        $data['stour'] =specialtours::find($id);
+        return view('tour-detail',$data);
+    }
+    public function tour1(){
+        $cities = City::select('cities.*')
+        ->leftJoin('musuems', 'cities.id', '=', 'musuems.city')
+        ->leftJoin('citytours', 'cities.id', '=', 'citytours.city')
+        ->leftJoin('sites', 'cities.id', '=', 'sites.city')
+        // ->whereNotNull('musuems.city')
+        // ->orWhereNotNull('citytours.city')
+        // ->orWhereNotNull('sites.city')
+        ->distinct()
+        ->get();
+    
+        if ($cities->isEmpty()) {
+            return view('tours-1')->with('error', 'No record to show');
+        }
+    
+        if ($cities->count() > 5) {
+            $upper = $cities->take($cities->count() / 2);
+            $lower = $cities->skip($cities->count() / 2);
+            return view('tours-1', [
+                'cities1' => $upper,
+                'cities2' => $lower
+            ]);
+        } else {
+            return view('tours-1', ['cities' => $cities]);
+        }
+    }
+    
+    public function cities_detail($id){
+        $cityId = $id;
+        $data = citytour::where('city', $cityId)->get();
+        $data2 = musuem::where('city', $cityId)->get();
+        $data3 = site::where('city', $cityId)->get();
+        return view('tours', ['cityTours' => $data, 'museums' => $data2, 'sites' => $data3]);
+    }
+    public function city_tour_det($id){
+        $data['citytour'] =citytour::find($id);
+        $city = $data['citytour']->city;
+        $data['ct'] = citytour::join('cities', 'citytours.city', '=', 'cities.id')
+        ->select('citytours.*', 'cities.Cityname')
+        ->where('citytours.id', $id)
+        ->first();
+        $cityTourId = $data['citytour']->id;
+
+        $data['galleryImages'] = GalleryImage::leftJoin('citytours', 'gallery_images.city_tour_id', '=', 'citytours.id')
+        ->where('gallery_images.city_tour_id', $cityTourId)
+        ->select('gallery_images.*')
+        ->get();
+        return view('city_tour_det',$data);
+    }
+    public function musuem_det($id){
+        $data['citytour'] =musuem::find($id);
+        $city = $data['citytour']->city;
+        $data['ct'] = musuem::join('cities', 'musuems.city', '=', 'cities.id')
+        ->select('musuems.*', 'cities.Cityname')
+        ->where('musuems.id', $id)
+        ->first();
+        $cityTourId = $data['citytour']->id;
+
+        $data['galleryImages'] = GalleryImageMusuem::leftJoin('musuems', 'gallery_image_musuems.musuem_id', '=', 'musuems.id')
+        ->where('gallery_image_musuems.musuem_id', $cityTourId)
+        ->select('gallery_image_musuems.*')
+        ->get();
+        return view('museum_det',$data);
+    }
+    public function sitesandmonoments($id){
+        $data['sites'] =site::find($id);
+        $city = $data['sites']->city;
+        $data['ct'] = site::join('cities', 'sites.city', '=', 'cities.id')
+        ->select('sites.*', 'cities.Cityname')
+        ->where('sites.id', $id)
+        ->first();
+        $cityTourId = $data['sites']->id;
+
+        $data['galleryImages'] = GalleryImageSite::leftJoin('sites', 'gallery_image_sites.site_id', '=', 'sites.id')
+        ->where('gallery_image_sites.site_id', $cityTourId)
+        ->select('gallery_image_sites.*')
+        ->get();
+
+        $data['days'] = SiteDay::leftJoin('sites', 'site_days.site_id', '=', 'sites.id')
+        ->where('site_days.site_id', $cityTourId)
+        ->select('site_days.*')
+        ->get();
+        return view('sitesandmonoments',$data);
+    }
+    public function tours(){
+        return view('tours');
+    }
+    public function travelyourway(){
+        $data=event::paginate(9);
+        return view('travel-your-way',['events'=>$data]);
     }
     public function hotels(){
         $data=accomodation::all();
@@ -192,104 +307,6 @@ class userController extends Controller
         ->orderBy('acc_ratings.id', 'desc')->get();
 
         return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6]);
-    }
-    public function tourdetail($id){
-        $data['stour'] =specialtours::find($id);
-        return view('tour-detail',$data);
-    }
-    public function tour1(){
-        $cities = City::select('cities.*')
-        ->leftJoin('musuems', 'cities.id', '=', 'musuems.city')
-        ->leftJoin('citytours', 'cities.id', '=', 'citytours.city')
-        ->leftJoin('sites', 'cities.id', '=', 'sites.city')
-        ->whereNotNull('musuems.city')
-        ->orWhereNotNull('citytours.city')
-        ->orWhereNotNull('sites.city')
-        ->distinct()
-        ->get();
-    
-        if ($cities->isEmpty()) {
-            return view('tours-1')->with('error', 'No record to show');
-        }
-    
-        if ($cities->count() > 5) {
-            $upper = $cities->take($cities->count() / 2);
-            $lower = $cities->skip($cities->count() / 2);
-            return view('tours-1', [
-                'cities1' => $upper,
-                'cities2' => $lower
-            ]);
-        } else {
-            return view('tours-1', ['cities' => $cities]);
-        }
-    }
-    
-    public function cities_detail($id){
-        $cityId = $id;
-        $data = citytour::where('city', $cityId)->get();
-        $data2 = musuem::where('city', $cityId)->get();
-        $data3 = site::where('city', $cityId)->get();
-        return view('tours', ['cityTours' => $data, 'museums' => $data2, 'sites' => $data3]);
-    }
-    public function city_tour_det($id){
-        $data['citytour'] =citytour::find($id);
-        $city = $data['citytour']->city;
-        $data['ct'] = citytour::join('cities', 'citytours.city', '=', 'cities.id')
-        ->select('citytours.*', 'cities.Cityname')
-        ->where('citytours.id', $id)
-        ->first();
-        $cityTourId = $data['citytour']->id;
-
-        $data['galleryImages'] = GalleryImage::leftJoin('citytours', 'gallery_images.city_tour_id', '=', 'citytours.id')
-        ->where('gallery_images.city_tour_id', $cityTourId)
-        ->select('gallery_images.*')
-        ->get();
-        return view('city_tour_det',$data);
-    }
-    public function musuem_det($id){
-        $data['citytour'] =musuem::find($id);
-        $city = $data['citytour']->city;
-        $data['ct'] = musuem::join('cities', 'musuems.city', '=', 'cities.id')
-        ->select('musuems.*', 'cities.Cityname')
-        ->where('musuems.id', $id)
-        ->first();
-        $cityTourId = $data['citytour']->id;
-
-        $data['galleryImages'] = GalleryImageMusuem::leftJoin('musuems', 'gallery_image_musuems.musuem_id', '=', 'musuems.id')
-        ->where('gallery_image_musuems.musuem_id', $cityTourId)
-        ->select('gallery_image_musuems.*')
-        ->get();
-        return view('museum_det',$data);
-    }
-    public function sitesandmonoments($id){
-        $data['sites'] =site::find($id);
-        $city = $data['sites']->city;
-        $data['ct'] = site::join('cities', 'sites.city', '=', 'cities.id')
-        ->select('sites.*', 'cities.Cityname')
-        ->where('sites.id', $id)
-        ->first();
-        $cityTourId = $data['sites']->id;
-
-        $data['galleryImages'] = GalleryImageSite::leftJoin('sites', 'gallery_image_sites.site_id', '=', 'sites.id')
-        ->where('gallery_image_sites.site_id', $cityTourId)
-        ->select('gallery_image_sites.*')
-        ->get();
-
-        $data['days'] = SiteDay::leftJoin('sites', 'site_days.site_id', '=', 'sites.id')
-        ->where('site_days.site_id', $cityTourId)
-        ->select('site_days.*')
-        ->get();
-        return view('sitesandmonoments',$data);
-    }
-    public function tours(){
-        return view('tours');
-    }
-    public function travelyourway(){
-        $data=event::paginate(9);
-        return view('travel-your-way',['events'=>$data]);
-    }
-    public function travelyourway2(){
-        return view('travel-your-way2');
     }
     public function vehicle(){
         return view('vehicle-destination');
