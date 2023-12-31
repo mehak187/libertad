@@ -20,7 +20,7 @@ use Carbon\Carbon;
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="home-libertad" class="text-decoration-none">
+                        <a href="/{{ URL::previous() }}" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                         </a>
                     </div>
@@ -28,10 +28,26 @@ use Carbon\Carbon;
                         <p class="text-white m-0 font-22">Travel your way</p>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-lg-6">
-                        <img src="./imgs/IMG_7.jpg" alt="" class="img-tree rounded-4">
+                <div class="row mt-3 flex-column flex-column-reverse flex-lg-row">
+                    <div class="col-lg-6 h-100">
+                        {{-- <img src="<?php echo asset('imgs/IMG_7.jpg')?>" alt="" class="img-tree rounded-4"> --}}
+                        <div class="autoplay-travel mb-3 px-1 h-100">
+                            @foreach ($tripcities as $tripcity)
+                                <div class="slide mx-2 city-result mt-3">
+                                    <div class="container1 container-travel">
+                                        <img src="<?php echo asset('uploads/' . $tripcity['tourimg']); ?>" alt="Avatar" class="image1 image1_2" >
+                                        <a href="/{{ 'cities_detail/' . $tripcity['id'] }}" class="overlay ">
+                                            <div class="text1 d-flex align-items-center justify-content-between">
+                                                <span class="text-white searchable">{{$tripcity['Cityname']}}</span>
+                                                <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
+                    
                     <div class="col-lg-6 py-3 px-4">
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
@@ -42,50 +58,54 @@ use Carbon\Carbon;
                                 </a>
                                 @include('template.popup')
                                 <button type="button"
-                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
+                                        class="d-inline-block mt-0 mt-sm-0  mt-xl-0 rate-button"
                                         data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                     
+                         <div class="row mt-3">
                             <div>
                                 <h6 class="fw-bold golden-clr fs-5">Tour trail</h6>
                                 <div class="d-flex align-items-center position-city-p">
-                                    <p class="text-white">{{ session('trip')->cities }}</p>
+                                @foreach ($tripcities as $tripcity)
+                                        <p class="text-white">{{$tripcity['Cityname']}}</p>
+                                @endforeach
                                 </div>
+
                                 <h6 class="fw-bold golden-clr fs-5">Tours Information</h6>
                                 @php
-                                    $originalDate = session('trip')->date;
-                                    $days = session('trip')->days;
+                                    $originalDate = $trip->date;
+                                    $days = $trip->days;
                                     $carbonDate = Carbon::parse($originalDate);
                                     $newDate = $carbonDate->addDays($days);
                                 @endphp
                                 <div>
                                     <h6 class="golden-clr">Date</h6>
-                                    <p class="text-white">{{ session('trip')->date }} to {{ $newDate->format('Y-m-d') }}</p>
+                                    <p class="text-white">{{ $trip->date }} to {{ $newDate->format('Y-m-d') }}</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">Tour Duration</h6>
-                                    <p class="text-white">{{ session('trip')->days }} days</p>
+                                    <p class="text-white">{{ $trip->days }}</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">No. of Travellers</h6>
-                                    <p class="text-white">{{ session('trip')->persons }}</p>
+                                    <p class="text-white">{{ $trip->persons }}</p>
                                 </div>
 
                                 <div>
                                     <h6 class="golden-clr">Transportation between cities</h6>
-                                    <p class="text-white">{{ session('trip')->transportation }}</p>
+                                    <p class="text-white">{{ $trip->transportation }}</p>
                                 </div>
                                 <div>
                                     <h6 class="golden-clr">Accommodation</h6>
-                                    <p class="text-white">{{ session('trip')->accommodation }}</p>
+                                    <p class="text-white">{{ $trip->accommodation }}</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-2 mt-3">
+                        </div> 
+                        <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
                             <div class="">
                                 <div class="button_border rounded-pill">
                                     <button type="button" class="button_leniar_style px-5 rounded-pill "
@@ -102,60 +122,19 @@ use Carbon\Carbon;
                     </div>
                 </div>
 
+                {{-- ---------cities------- --}}
+                {{-- <div class="row me-3 mt-4">
+                    <div class="col-11">
+                       
+                    </div>
+                </div> --}}
             </div>
         </div>
     </section>
-    <footer class="sky-light py-3">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-11 mx-auto">
-                    <div class="row justify-content-between align-items-end">
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center gap-2">
-                                <div>
-                                    <img src="./imgs/footer-logo.png" alt="" class="rounded-circle img-footer">
-                                </div>
-                                <div>
-                                    <h4 class="m-0">Liberta<span class="sky-clr">d</span>elmund</h4>
-                                </div>
-                            </div>
-                            <div class="mt-3">
-                                <p class="mb-0">
-                                    The word “Libertad” means “freedom” in Spanish, and so we are willing to
-                                    change the concept of traveling by offering our visitors the opportunity to discover
-                                    our land in his/her way: “Libertad- Travel your way”
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 d-flex justify-content-md-end mt-md-0 mt-3">
-                            <div>
-                                <div>
-                                    <h5>Social Media:</h5>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <a href="https://www.tripadvisor.com/Attraction_Review-g294201-d26208912-Reviews-Libertad_Del_Mundo-Cairo_Cairo_Governorate.html"
-                                        class="p-0"><img src="./imgs/owl-2.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                    <a href="https://www.facebook.com/profile.php?id=100090555392220"
-                                        class="p-0"><img src="./imgs/fb-2.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                    <a href="mailto:info@libertadelmundo.com" class="p-0"><img
-                                            src="./imgs/google-plus2.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                    <a href="mailto:info@libertadelmundo.com" class="p-0"><img
-                                            src="./imgs/youtube2.png" style="height: 40px; width: 40px;"
-                                            alt=""></a>
-                                    <a href="https://www.instagram.com/libertadelmundoofficial/?next=%2F"
-                                        class="p-0"><img src="./imgs/insta2.png"
-                                            style="height: 40px; width: 40px;" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+   
+
+    @include('template.footer')
+
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-booking">
             <div class="modal-content light-bground py-3 rounded-4">

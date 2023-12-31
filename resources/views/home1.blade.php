@@ -219,16 +219,37 @@
                                             <div class="p-3 dropdown_bg_color max-w" id="content">
                                                 <form action="save_trip" method="POST" enctype="multipart/form-data" >
                                                     @csrf
-                                                    @if(auth()->user())
                                                         @if (count($cities) > 0)
+                                                        <div>
+                                                            <label for="name"
+                                                                class="mb-1 fs-12 dropdown_label_color">Name</label>
+                                                            <input type="text"
+                                                                class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="name" id="name">
+                                                                @error('name')
+                                                                <span class="error text-danger">
+                                                                    {{$message}}
+                                                                </span>
+                                                                @enderror
+                                                        </div>
+                                                        <div>
+                                                            <label for="email"
+                                                                class="mb-1 fs-12 dropdown_label_color">Email</label>
+                                                            <input type="email"
+                                                                class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="email" id="email">
+                                                                @error('email')
+                                                                <span class="error text-danger">
+                                                                    {{$message}}
+                                                                </span>
+                                                                @enderror
+                                                        </div>
                                                             <div>
-                                                                <label for="" class="fs-12 dropdown_label_color">What
+                                                                <label for="city" class="fs-12 dropdown_label_color">What
                                                                     are the
                                                                     cities do you want to visit?</label>
                                                                 <select id="city"
                                                                     class=" mb-1 text-white py-1" name="cities[]" multiple>
                                                                     @foreach ($cities as $city)
-                                                                        <option value="{{$city['Cityname']}}">{{$city['Cityname']}}</option>
+                                                                        <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('cities')
@@ -238,11 +259,11 @@
                                                                 @enderror
                                                             </div>
                                                             <div>
-                                                                <label for=""
+                                                                <label for="persons"
                                                                     class="mb-1 fs-12 dropdown_label_color">How many
                                                                     Person would join the trip?</label>
                                                                 <input type="number"
-                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="persons">
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="persons" name="persons">
                                                                     @error('persons')
                                                                     <span class="error text-danger">
                                                                         {{$message}}
@@ -250,11 +271,11 @@
                                                                     @enderror
                                                             </div>
                                                             <div>
-                                                                <label for=""
+                                                                <label for="days"
                                                                     class="mb-1 fs-12 dropdown_label_color">How many
                                                                     days do you want to spend in Egypt?</label>
                                                                 <input type="number"
-                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="days">
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="days" id="days">
                                                                     @error('days')
                                                                     <span class="error text-danger">
                                                                         {{$message}}
@@ -277,8 +298,8 @@
                                                                 @enderror
                                                             </div>
                                                             <div>
-                                                                <label for="" class="fs-12 dropdown_label_color">Accommodation</label>
-                                                                <input type="text" name="accommodation" class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white">
+                                                                <label for="Accommodation" class="fs-12 dropdown_label_color">Accommodation</label>
+                                                                <input type="text" name="accommodation" class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="Accommodation">
                                                                 @error('accommodation')
                                                                 <span class="error text-danger">
                                                                     {{$message}}
@@ -286,7 +307,7 @@
                                                                 @enderror
                                                             </div>
                                                             <div>
-                                                                <label for=""
+                                                                <label for="date"
                                                                     class="mb-1 fs-12 dropdown_label_color">Trip Start
                                                                     Date</label>
                                                                 <input name="date" type="date"
@@ -312,12 +333,7 @@
                                                                 <p class="text-danger fs-5 mb-0">No city exist</p>
                                                             </div>
                                                         @endif
-                                                    @else
-                                                        <div class="d-flex align-items-center">
-                                                            <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
-                                                            <p class="text-danger fs-6 mb-0">In order to plan a trip you need to login first</p>
-                                                        </div>
-                                                    @endif
+                                             
                                                 </form>
                                             </div>
                                         </div>

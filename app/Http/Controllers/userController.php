@@ -34,6 +34,8 @@ use App\Models\traveller;
 use App\Models\payment;
 use App\Models\sbooking;
 use App\Models\spayment;
+use App\Models\trip_city;
+
 use Stripe;
 use Session;
 
@@ -90,109 +92,34 @@ class userController extends Controller
         $request->validate([
         '*'=>'required',
         ]);
-        $user_id = auth()->user()->id;
-        $transportation = implode(',', $request->input('transportation'));
-        $cities = implode('->', $request->input('cities'));
+        $transportation = implode(', ', $request->input('transportation'));
+        // $cities = implode('->', $request->input('cities'));
         $data = $request->all();
-        $data['user_id'] = $user_id;
         $data['transportation'] = $transportation;
-        $data['cities'] = $cities;
-        $trip = Trip::create($data);
-        return redirect('travelyourway2')->with('success', 'Trip added successfully')->with('trip', $trip);
-    }
-    public function hotels(){
-        $data=accomodation::all();
-        if ($data->isEmpty()) {
-            return view('hotels-1')->with ('error','No record to show');
-        }
-        if($data->count()>5){
-            $upper=$data->take($data->count()/2);
-            $lower=$data->skip($data->count()/2);
-            return view('hotels-1',[
-                'hotels1'=>$upper,
-                'hotels2'=>$lower
+        // $data['cities'] = $cities;
+        $trip = trip::create($data);
+        $cityTourId = $trip->id;
+        $cities = $request->input('cities');
+        foreach ($cities as $city) {
+            trip_city::create([
+                'uid' => $cityTourId,
+                'city' => $city
             ]);
         }
-        else{
-            return view('hotels-1',['hotels'=>$data]);
-        }
+        // return redirect('travelyourway2')->with('success', 'Trip added successfully')->with('trip', $trip)->with(['cdetails' => $data2]);
+        return redirect()->route('travelyourway2', ['cityTourId' => $cityTourId]);
     }
-    public function index(){
-        return view('index');
-    }
-    public function savereview(request $request){
-        $name=auth()->user()->name;
-        $request->validate([
-            '*'=>'required',
-            ]);
-            $data = $request->all();
-            $data['name'] = $name;
-            indexreview::create($data);
-            return redirect('/')->with ('success','Review sent Successfully');
-    }
-    public function museum1(){
-        return view('museum1');
-    }
-    public function notification(){
-        return view('notification-page');
-    }
-    public function pakages(){
-        return view('packages-1');
-    }
-    public function pakage(){
-        return view('package');
-    }
-    public function accommodation(){
-        $data=accomodation::all();
-        if ($data->isEmpty()) {
-            return view('hotels-1')->with ('error','No record to show');
-        }
-        elseif($data->count()>5){
-            $upper=$data->take($data->count()/2);
-            $lower=$data->skip($data->count()/2);
-            return view('hotels-1',[
-                'hotel1'=>$upper,
-                'hotel2'=>$lower
-            ]);
-        }
-        else{
-            return view('hotels-1',['hotels'=>$data]);
-        }
-    }
-    public function accomodation_detail1($id){
-        $data['hotel_old'] =accomodation::find($id);
-        $city = $data['hotel_old']->city;
-        $data['hotel'] = accomodation::join('cities', 'accomodations.city', '=', 'cities.id')
-        ->select('accomodations.*', 'cities.Cityname')
-        ->where('accomodations.id', $id)
-        ->first();
-        return view('recommended-accommodation-page',$data);
-    }
-    public function sites(){
-        return view('sites');
-    }
-    public function testimonial(){
-        $data=StourRating::leftJoin('users', 'stour_ratings.user_id', '=', 'users.id')
-        ->select('stour_ratings.*', 'users.*')
-       ->orderBy('stour_ratings.id', 'desc')->get();
-        $data2=citytourRating::leftJoin('users', 'citytour_ratings.user_id', '=', 'users.id')
-        ->select('citytour_ratings.*', 'users.*')
-        ->orderBy('citytour_ratings.id', 'desc')->get();
-        $data3=musuemRating::leftJoin('users', 'musuem_ratings.user_id', '=', 'users.id')
-        ->select('musuem_ratings.*', 'users.*')
-        ->orderBy('musuem_ratings.id', 'desc')->get();
-        $data4=siteRating::leftJoin('users', 'site_ratings.user_id', '=', 'users.id')
-        ->select('site_ratings.*', 'users.*')
-        ->orderBy('site_ratings.id', 'desc')->get();
-        $data5=activitiesRating::leftJoin('users', 'activities_ratings.user_id', '=', 'users.id')
-        ->select('activities_ratings.*', 'users.*')
-        ->orderBy('activities_ratings.id', 'desc')->get();
-        $data6=accRating::leftJoin('users', 'acc_ratings.user_id', '=', 'users.id')
-        ->select('acc_ratings.*', 'users.*')
-        ->orderBy('acc_ratings.id', 'desc')->get();
 
-        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6]);
+    public function travelyourway2($cityTourId)
+    {
+        $data['trip'] = Trip::find($cityTourId);
+        $data['tripcities'] = trip_city::leftJoin('cities', 'trip_cities.city', '=', 'cities.id')
+            ->where('trip_cities.uid', $cityTourId)
+            ->select('cities.id as city_id', 'trip_cities.*', 'cities.*')
+            ->get();
+        return view('travel-your-way2', $data);
     }
+
     public function tourdetail($id){
         $data['stour'] =specialtours::find($id);
         return view('tour-detail',$data);
@@ -288,8 +215,98 @@ class userController extends Controller
         $data=event::paginate(9);
         return view('travel-your-way',['events'=>$data]);
     }
-    public function travelyourway2(){
-        return view('travel-your-way2');
+    public function hotels(){
+        $data=accomodation::all();
+        if ($data->isEmpty()) {
+            return view('hotels-1')->with ('error','No record to show');
+        }
+        if($data->count()>5){
+            $upper=$data->take($data->count()/2);
+            $lower=$data->skip($data->count()/2);
+            return view('hotels-1',[
+                'hotels1'=>$upper,
+                'hotels2'=>$lower
+            ]);
+        }
+        else{
+            return view('hotels-1',['hotels'=>$data]);
+        }
+    }
+    public function index(){
+        return view('index');
+    }
+    public function savereview(request $request){
+        $name=auth()->user()->name;
+        $request->validate([
+            '*'=>'required',
+            ]);
+            $data = $request->all();
+            $data['name'] = $name;
+            indexreview::create($data);
+            return redirect('/')->with ('success','Review sent Successfully');
+    }
+    public function museum1(){
+        return view('museum1');
+    }
+    public function notification(){
+        return view('notification-page');
+    }
+    public function pakages(){
+        return view('packages-1');
+    }
+    public function pakage(){
+        return view('package');
+    }
+    public function accommodation(){
+        $data=accomodation::all();
+        if ($data->isEmpty()) {
+            return view('hotels-1')->with ('error','No record to show');
+        }
+        elseif($data->count()>5){
+            $upper=$data->take($data->count()/2);
+            $lower=$data->skip($data->count()/2);
+            return view('hotels-1',[
+                'hotel1'=>$upper,
+                'hotel2'=>$lower
+            ]);
+        }
+        else{
+            return view('hotels-1',['hotels'=>$data]);
+        }
+    }
+    public function accomodation_detail1($id){
+        $data['hotel_old'] =accomodation::find($id);
+        $city = $data['hotel_old']->city;
+        $data['hotel'] = accomodation::join('cities', 'accomodations.city', '=', 'cities.id')
+        ->select('accomodations.*', 'cities.Cityname')
+        ->where('accomodations.id', $id)
+        ->first();
+        return view('recommended-accommodation-page',$data);
+    }
+    public function sites(){
+        return view('sites');
+    }
+    public function testimonial(){
+        $data=StourRating::leftJoin('users', 'stour_ratings.user_id', '=', 'users.id')
+        ->select('stour_ratings.*', 'users.*')
+       ->orderBy('stour_ratings.id', 'desc')->get();
+        $data2=citytourRating::leftJoin('users', 'citytour_ratings.user_id', '=', 'users.id')
+        ->select('citytour_ratings.*', 'users.*')
+        ->orderBy('citytour_ratings.id', 'desc')->get();
+        $data3=musuemRating::leftJoin('users', 'musuem_ratings.user_id', '=', 'users.id')
+        ->select('musuem_ratings.*', 'users.*')
+        ->orderBy('musuem_ratings.id', 'desc')->get();
+        $data4=siteRating::leftJoin('users', 'site_ratings.user_id', '=', 'users.id')
+        ->select('site_ratings.*', 'users.*')
+        ->orderBy('site_ratings.id', 'desc')->get();
+        $data5=activitiesRating::leftJoin('users', 'activities_ratings.user_id', '=', 'users.id')
+        ->select('activities_ratings.*', 'users.*')
+        ->orderBy('activities_ratings.id', 'desc')->get();
+        $data6=accRating::leftJoin('users', 'acc_ratings.user_id', '=', 'users.id')
+        ->select('acc_ratings.*', 'users.*')
+        ->orderBy('acc_ratings.id', 'desc')->get();
+
+        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6]);
     }
     public function vehicle(){
         return view('vehicle-destination');

@@ -1502,6 +1502,12 @@ body {
     border-radius: 0.375rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+.container-travel .overlay {
+  height: 13%;
+}
+.container-travel img {
+  height: 74vh
+}
 @media (prefers-reduced-motion: reduce) {
   .search1 {
     --transition-time-icon: 0s !important;
@@ -2432,6 +2438,7 @@ max-width: 40px;
   .font-22{
     font-size: 18px;
   }
+  
 }
 
 
@@ -3002,7 +3009,12 @@ left: -20px;
 .care {
   width: calc(100% - 0px);
 }
-
+.container-travel img {
+  height: 100%;
+}
+.container-travel .overlay {
+  height: 23%;
+}
 .sites .next_arrow5 {
   position: absolute;
   top: 50%;

@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{ asset('tour1') }}" class="text-decoration-none">
+                        <a href="{{ URL::previous() }}" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                         </a>
                     </div>
@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-md-11 col-12 mx-auto">
                                 <div class=" mt-5 position-relative sandm sites px-4 px-sm-5 px-md-3">
-                                    <h4 class="text-white text-uppercase">City's Tours</h4>
+                                    <h4 class="text-white text-uppercase">City Tours</h4>
 
                                     <div class="prev_arrow5 ">
                                         <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>

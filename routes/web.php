@@ -38,7 +38,7 @@ use App\Http\Controllers\adminController;
         Route::get('tour1','tour1');
         Route::get('tours','tours');
         Route::get('travelyourway','travelyourway');
-        Route::get('travelyourway2','travelyourway2');
+        Route::get('travelyourway2/{cityTourId}', 'travelyourway2')->name('travelyourway2');
         Route::get('vehicle','vehicle');
         Route::get('accomodation_detail1/{id}','accomodation_detail1');
         Route::get('cities_detail/{id}','cities_detail');
