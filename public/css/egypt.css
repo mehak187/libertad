@@ -3234,6 +3234,14 @@ color: #000;
 .right-content {
   min-height: calc(100vh - 53px);
   padding-bottom: 20px !important;
+  overflow: auto;
+}
+ .right-content::-webkit-scrollbar {
+  width: 0px;
+} 
+.main-tem{
+  height: calc(100vh - 53px);
+overflow: hidden;
 }
 .rating-show {
   unicode-bidi: bidi-override;

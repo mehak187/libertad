@@ -35,6 +35,7 @@ use App\Models\payment;
 use App\Models\sbooking;
 use App\Models\spayment;
 use App\Models\trip_city;
+use App\Models\TripRating;
 
 use Stripe;
 use Session;
@@ -305,8 +306,11 @@ class userController extends Controller
         $data6=accRating::leftJoin('users', 'acc_ratings.user_id', '=', 'users.id')
         ->select('acc_ratings.*', 'users.*')
         ->orderBy('acc_ratings.id', 'desc')->get();
+        $data7=TripRating::leftJoin('users', 'trip_ratings.user_id', '=', 'users.id')
+        ->select('trip_ratings.*', 'users.*')
+       ->orderBy('trip_ratings.id', 'desc')->get();
 
-        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6]);
+        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6,'tripRatings'=>$data7]);
     }
     public function vehicle(){
         return view('vehicle-destination');
@@ -344,6 +348,21 @@ class userController extends Controller
         $data = $request->all();
         $data['user_id'] = $user_id;
         StourRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    public function tripreview(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        $stour_id = $request->input('stour_id');
+        if (TripRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+       
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        TripRating::create($data);
         return redirect()->back()->with('success', 'Thanks for your review');
     }
     public function citytourreview(request $request){

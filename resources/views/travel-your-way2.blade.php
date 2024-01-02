@@ -12,6 +12,16 @@ use Carbon\Carbon;
 </head>
 
 <body class="">
+    @if (session('success'))
+    <script>
+        swal("Good job!", "{{session('success')}}", "success");
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        swal("Ooops!", "{{session('error')}}", "error");
+    </script>
+@endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -30,7 +40,6 @@ use Carbon\Carbon;
                 </div>
                 <div class="row mt-3 flex-column flex-column-reverse flex-lg-row">
                     <div class="col-lg-6 h-100">
-                        {{-- <img src="<?php echo asset('imgs/IMG_7.jpg')?>" alt="" class="img-tree rounded-4"> --}}
                         <div class="autoplay-travel mb-3 px-1 h-100">
                             @foreach ($tripcities as $tripcity)
                                 <div class="slide mx-2 city-result mt-3">
@@ -57,12 +66,14 @@ use Carbon\Carbon;
                                     <p class="m-0 text-white ">Share</p>
                                 </a>
                                 @include('template.popup')
-                                <button type="button"
-                                        class="d-inline-block mt-0 mt-sm-0  mt-xl-0 rate-button"
+                                @if (auth()->check())
+                                    <button type="button"
+                                        class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
                                         data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
+                                @endif
                             </div>
                         </div>
                      
@@ -135,39 +146,6 @@ use Carbon\Carbon;
 
     @include('template.footer')
 
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-booking">
-            <div class="modal-content light-bground py-3 rounded-4">
-                <div class="modal-header border-0 pt-0 px-5">
-                    <h1 class="modal-title fs-5 brown-clr">Rate & Review</h1>
-                </div>
-                <div class="modal-body pt-0 px-5">
-                    <form action="">
-                        <div>
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rating" value="5">
-                                <label for="star5"></label>
-                                <input type="radio" id="star4" name="rating" value="4">
-                                <label for="star4"></label>
-                                <input type="radio" id="star3" name="rating" value="3">
-                                <label for="star3"></label>
-                                <input type="radio" id="star2" name="rating" value="2">
-                                <label for="star2"></label>
-                                <input type="radio" id="star1" name="rating" value="1">
-                                <label for="star1"></label>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <textarea class="myInput" placeholder="Write" rows="3"></textarea>
-                        </div>
-                        <div class="mt-3">
-                            <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
         tabindex="-1">
         <div class="modal-dialog modal-booking modal-dialog-centered">
@@ -494,5 +472,45 @@ use Carbon\Carbon;
     </div>
     @include('template.jslinks')
 </body>
-
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-booking">
+        <div class="modal-content light-bground py-3 rounded-4">
+            <div class="modal-header border-0 pt-0 px-5">
+                <h1 class="modal-title fs-5 brown-clr">Rate & Review</h1>
+            </div>
+            <div class="modal-body pt-0 px-5">
+                <form action="/tripreview" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input type="number" class="d-none" name="stour_id" value="{{ $trip->id }}">
+                    <div>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5" onclick="updateStarValue(5)"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" onclick="updateStarValue(4)"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" onclick="updateStarValue(3)"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" onclick="updateStarValue(2)"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" onclick="updateStarValue(1)"></label>
+                        </div>
+                        <input type="number" id="star" name="star" class="d-none" value="" required>
+                        <script>
+                            function updateStarValue(value) {
+                                document.getElementById('star').value = value;
+                            }
+                        </script>
+                    </div>
+                    <div class="mt-3">
+                        <textarea class="myInput" placeholder="Write" name="review" rows="3" maxlength="200" required></textarea>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
