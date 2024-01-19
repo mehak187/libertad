@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('p_catg');
             $table->string('img');
+            $table->text('des')->nullable();
             $table->timestamps();
         });
     }

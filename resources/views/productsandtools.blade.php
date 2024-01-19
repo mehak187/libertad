@@ -75,7 +75,25 @@
                             <div>
                                 <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Products and </span>Tools
                                 </h2> 
-                            @if (count($products) > 0)
+                                    <div class="px-3">
+                                        <div class="position-relative my-3">
+                                        <h5 class="text-white"></h5>
+                                            <div class="row autoplay_2">
+                                                @foreach ($catagories as $catagory)
+                                                        <a href="{{"product_detial/" .$catagory['id'] }}" class="text-decoration-none text-dark col mx-2 padimg ">
+                                                            <img class="img-fluid w-100" src="<?php echo asset('uploads/' . $catagory['img']); ?>"
+                                                                alt="">
+                                                            <div
+                                                                class="dis1 d-flex p-3 sky-bg justify-content-between align-items-center">
+                                                                    <p class="mb-0 fs-6 fw-bold">{{ $catagory->catg }}
+                                                                    </p>
+                                                            </div>
+                                                        </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                            {{-- @if (count($products) > 0)
                                 @foreach ($catagories as $catagory)
                                     <div class="px-3">
                                         <h5 class="text-white">{{ $catagory->catg }}</h5>
@@ -119,7 +137,7 @@
                                 <div class="d-flex align-items-center mt-3 ">
                                     <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger mb-0 fs-5">No record to show</p>
                                 </div>
-                            @endif
+                            @endif --}}
                             </div>
 
                         </div>

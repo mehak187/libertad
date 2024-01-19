@@ -9,6 +9,7 @@ class categories extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'catg'
+        'catg',
+        'img'
     ];
 }

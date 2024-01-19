@@ -53,6 +53,16 @@
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field mt-4">
+                            <textarea name="des" class="w-100" rows="6" >{{ $product['des'] }}</textarea>
+                            @error('price')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <input type="submit" value="Update Product" class="w-100">
                         </div>

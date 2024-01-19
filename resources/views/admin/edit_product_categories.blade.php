@@ -20,13 +20,21 @@
                     </div>
                 </div>
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Update Category</h4>
-                <form action="/updatecatg" method="POST" class="mt-2">
+                <form action="/updatecatg" enctype="multipart/form-data" method="POST" class="mt-2">
                     @csrf
                     <input type="text" class="w-100 d-none" name="id" value="{{$category->id}}">
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="catg" class="text-dark fw-bold">Category name</label>
                             <input type="text" class="w-100" id="catg" value="{{$category['catg']}}" name="catg">
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field dark-btn mt-4">
+                            <label for="tour-img" class="text-dark fw-bold s-field">Category image<br>
+                            <img id="image-preview-single" src="<?php echo asset('uploads/' . $category->img)?>" alt="" class="w-300 mt-2">
+                            </label>
+                            <input type="file" id="tour-img" name="img" class="d-none" onchange="updateImagePreview(this)">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">

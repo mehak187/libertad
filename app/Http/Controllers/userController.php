@@ -316,14 +316,19 @@ class userController extends Controller
         return view('vehicle-destination');
     }
     public function productsandtools(){
-        $data = categories::join('products', 'categories.id', '=', 'products.p_catg')
-        ->select('categories.*')
-        ->distinct()
-        ->get();
+        // $data = categories::join('products', 'categories.id', '=', 'products.p_catg')
+        // ->select('categories.*')
+        // ->distinct()
+        // ->get();
+        $data = categories::orderBy('id', 'desc')->get();
         $data2 = product::leftJoin('categories', 'products.p_catg', '=', 'categories.id')
         ->select('products.*', 'categories.catg')
         ->get();
         return view('productsandtools',['catagories'=>$data,'products'=>$data2]);
+    }
+    public function product_detial($id){
+        $data =product::where('p_catg',$id)->orderBy('id', 'desc')->get();
+        return view('product_details',['products'=>$data]);
     }
     public function libertad(){
         $data['libertad'] =libertad::first();
@@ -456,6 +461,7 @@ class userController extends Controller
             'date' => $request->date,
             'people' => $request->peoplenew,
             't_price' => $request->t_price,
+            'address' => $request->address,
         ]);
         $imagePaths = $request->file('passport');
         if ($imagePaths) {
@@ -477,7 +483,12 @@ class userController extends Controller
             }
         }
         $latestBookingId = $booking->id;
-        return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
+        return back()
+        ->with('showm', 'City tour added Successfully')
+        ->with('booking', $booking)
+        ->with('t_price', $request->t_price)
+        ->with('latestBookingId', $latestBookingId);
+        // return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
     }
     public function check(request $request){
         $request->validate([

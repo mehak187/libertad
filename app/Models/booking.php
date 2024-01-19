@@ -16,5 +16,6 @@ class booking extends Model
         'date',
         'people',
         't_price',
+        'address',
     ];
 }

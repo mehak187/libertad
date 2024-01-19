@@ -58,11 +58,11 @@
                                                             <table class="table mb-0">
                                                                 <thead>
                                                                     <tr class="cyan-bg">
-                                                                        {{-- <th class="text-nowrap px-4 py-3">Image</th> --}}
-                                                                        <th class="text-nowrap px-4 py-3">Activity Name</th>
-                                                                        <th class="text-nowrap px-4 py-3">Unit price</th>
-                                                                        <th class="text-nowrap px-4 py-3">People</th>
-                                                                        <th class="text-nowrap px-4 py-3 position-relative">
+                                                                        {{-- <th class="w-25 px-4 py-3">Image</th> --}}
+                                                                        <th class="w-25 px-4 py-3">Activity Name</th>
+                                                                        <th class="w-25 px-4 py-3">Unit price</th>
+                                                                        <th class="w-25 px-4 py-3">People</th>
+                                                                        <th class="w-25 px-4 py-3 position-relative">
                                                                             Total
                                                                             <a href="{{"deletecart/" .$unpaidproduct['bk_id'] }}" class="del_item">
                                                                                 <i class="fa-solid fa-circle-xmark"></i>
@@ -73,10 +73,10 @@
                                                                 <tbody>
                                                                     <tr class="light-bground">
                                                                         <td
-                                                                            class="fw-bold align-middle text-nowrap px-4 py-2">
+                                                                            class="fw-bold align-middle w-25 px-4 py-2">
                                                                             {{ $unpaidproduct['tour_name'] }}
                                                                         </td>
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        <td class="align-middle w-25 px-4 py-2">
                                                                             @php
                                                                             if($unpaidproduct['people'] > 0) {
                                                                                 $nprice = $unpaidproduct['t_price'];
@@ -89,14 +89,14 @@
                                                                             }
                                                                             @endphp
                                                                         </td>
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        <td class="align-middle w-25 px-4 py-2">
                                                                             @if($unpaidproduct['people'] == 0)
                                                                                     N/A
                                                                             @else
                                                                                 {{ $unpaidproduct['people'] }}
                                                                             @endif
                                                                         </td>
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        <td class="align-middle w-25 px-4 py-2">
                                                                             {{ $unpaidproduct['t_price'] }} USD</td>
                                                                     </tr>
                                                                 </tbody>
@@ -155,28 +155,28 @@
                                                             <table class="table mb-0">
                                                                 <thead>
                                                                     <tr class="cyan-bg">
-                                                                        {{-- <th class="text-nowrap px-4 py-3">Image</th> --}}
-                                                                        <th class="text-nowrap px-4 py-3">Product Name</th>
-                                                                        <th class="text-nowrap px-4 py-3">Unit price</th>
-                                                                        <th class="text-nowrap px-4 py-3">People</th>
+                                                                        {{-- <th class="w-25 px-4 py-3">Image</th> --}}
+                                                                        <th class="w-25 px-4 py-3">Product Name</th>
+                                                                        <th class="w-25 px-4 py-3">Unit price</th>
+                                                                        <th class="w-25 px-4 py-3">People</th>
                                                                         <th
-                                                                            class="text-nowrap px-4 py-3 position-relative">
+                                                                            class="w-25 px-4 py-3 position-relative">
                                                                             Total
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr class="light-bground">
-                                                                        {{-- <td class="align-middle text-nowrap px-4 py-2">
+                                                                        {{-- <td class="align-middle w-25 px-4 py-2">
                                                                             <div><img src="./imgs/galal-garwan.png"
                                                                                     alt="" class="img-galal">
                                                                             </div>
                                                                         </td> --}}
                                                                         <td
-                                                                            class="fw-bold align-middle text-nowrap px-4 py-2">
+                                                                            class="fw-bold fs-6 align-middle w-25 px-4 py-2">
                                                                             {{ $product['tour_name'] }}
                                                                         </td>
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        <td class="align-middle w-25 px-4 py-2">
                                                                             @php
                                                                             if($product['people'] > 0) {
                                                                                 $nprice = $product['t_price'];
@@ -189,14 +189,14 @@
                                                                             }
                                                                             @endphp
                                                                         </td>
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        <td class="align-middle w-25 px-4 py-2">
                                                                             @if($product['people'] == 0)
                                                                             N/A
                                                                             @else
                                                                                 {{ $product['people'] }}
                                                                             @endif
                                                                         </td>
-                                                                        <td class="align-middle text-nowrap px-4 py-2">
+                                                                        <td class="align-middle w-25 px-4 py-2">
                                                                             {{ $product['t_price'] }}</td>
                                                                     </tr>
                                                                 </tbody>

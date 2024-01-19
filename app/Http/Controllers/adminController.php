@@ -1129,8 +1129,15 @@ class adminController extends Controller
         $request->validate([
         '*'=>'required',
         ]);
-        $data = $request->all();
-        categories::create($data);
+        $photo = $request->file('img');
+        $photo_name= time()."-".$photo->getClientOriginalName();
+        $photo_destination=public_path('uploads');
+        $photo->move($photo_destination,$photo_name);
+        categories::create([
+            'catg' => $request->catg,
+            'img' => $photo_name
+        ]);
+
         return redirect('manage_product_categories')->with ('success','Category added Successfully');
     }
     public function deletecatg($id){
@@ -1146,10 +1153,21 @@ class adminController extends Controller
         return view('admin.edit_product_categories',$data);
     }   
     public function updatecatg(request $request){
-            $catg =$request->catg;
+        if($request->file('img')==null){
             categories::find($request->id)->update([
-            'catg' => $catg
-        ]);
+                'catg' => $request->catg,
+            ]);
+        }else{
+            $photo = $request->file('img');
+            $photo_name= time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            categories::find($request->id)->update([
+                'catg' => $request->catg,
+                'img' => $photo_name
+            ]);
+        }
+        // print_r($photo_name);
         return redirect('manage_product_categories')->with ('update','Category updated Successfully');
     }
 

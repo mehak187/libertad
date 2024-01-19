@@ -298,8 +298,13 @@
                                                                 @enderror
                                                             </div>
                                                             <div>
-                                                                <label for="Accommodation" class="fs-12 dropdown_label_color">Accommodation</label>
-                                                                <input type="text" name="accommodation" class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="Accommodation">
+                                                                <label for="accommodation" class="fs-12 w-100 dropdown_label_color">Accommodation</label>
+                                                                <select name="accommodation" class="bg-transparent text-light rounded-2 w-100 mb-1 py-2 border-1" required>
+                                                                    <option value="Luxury 5 star hotels" class=" text-light" selected disabled hidden>Select any one</option>
+                                                                    <option value="Luxury 5 star hotels" class=" text-dark">Luxury 5 star hotels</option>
+                                                                    <option value="Standard Hotels" class=" text-dark">Standard Hotels</option>
+                                                                    <option value="B & B (Bed and breakfast)" class=" text-dark">B & B (Bed and breakfast)</option>
+                                                                </select>
                                                                 @error('accommodation')
                                                                 <span class="error text-danger">
                                                                     {{$message}}
