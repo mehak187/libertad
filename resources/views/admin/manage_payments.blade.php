@@ -34,8 +34,20 @@
                             <td>{{$payment['user_name']}}</td>
                             <td>{{$payment['email']}}</td>
                             <td>{{$payment['t_price']}}</td>
-                            <td>{{$payment['date']}}</td>
-                            <td>{{$payment['people']}}</td>
+                            <td class="text-nowrap">
+                              @if ($payment['date']==NULL)
+                                  {{"N/A"}}
+                              @else
+                              {{$payment['date']}}
+                              @endif
+                            </td>
+                            <td>
+                              @if ($payment['people']==0)
+                                {{"N/A"}}
+                              @else
+                              {{$payment['people']}}
+                              @endif
+                            </td>
                             @php
                             $role = $payment['booking_role'];
                                 if ($role == 1) {
@@ -54,7 +66,7 @@
                                   $role = "Special tour";
                                 }
                                 elseif($role == 6) {
-                                  $role = "Special tour";
+                                  $role = "Products and tools";
                                 }
                             @endphp
                             <td>{{$role}} - {{$payment['tour_name']}}</td>

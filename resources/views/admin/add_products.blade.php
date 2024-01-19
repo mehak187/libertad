@@ -57,14 +57,24 @@
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
-                        <div class="input-field dark-btn mt-4">
-                            <label for="tour-img" class="text-dark fs-bold">Product image</label>
+                        <div class="input-field mt-4">
+                            <textarea name="des" class="w-100" rows="6" placeholder="Description"></textarea>
+                            @error('price')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field dark-btn mt-3">
+                            {{-- <label for="tour-img" class="text-dark fs-bold">Product image</label> --}}
                             <input type="file" class="w-100" id="tour-img" name="img" onchange="showImagePreview(this)">
                         </div>
                     </div>
                     <div class="mt-3">
                         <img id="image-preview" src="" alt="" class="w-300" style="display: none;">
-                        @error('img')
+                            @error('img')
                                 <span class="error text-danger">
                                     {{$message}}
                                 </span>

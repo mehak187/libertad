@@ -39,6 +39,7 @@
                             <tr>
                                 <th>Sr</th>
                                 <th>Category name</th>
+                                <th>Category image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -48,6 +49,7 @@
                           <tr>
                             <td><?php echo $num++?></td>
                             <td>{{$category['catg']}}</td>
+                            <td><img src="<?php echo asset('uploads/' . $category['img'])?>" alt="" ></td>
                             <td>
                                 <a href="{{"edit_product_categories/" .$category['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>
                                 <a href="{{"deletecatg/" .$category['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->integer('people');
             $table->string('t_price');
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

@@ -55,7 +55,7 @@ use App\Http\Controllers\adminController;
         Route::post('site_review','site_review');
         Route::post('activities_review','activities_review');
         Route::post('acc_review','acc_review');
-      
+        Route::get('product_detial/{id}','product_detial');
     });
 
  Route::group(['middleware' => ['UserMiddleware']], function () {

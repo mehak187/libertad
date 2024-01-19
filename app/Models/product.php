@@ -13,5 +13,6 @@ class product extends Model
         'price',
         'p_catg',
         'img',
+        'des',
     ];
 }
