@@ -30,6 +30,16 @@
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field mt-4">
+                            <textarea name="des" class="w-100" rows="5">{{$category['des']}}</textarea>
+                            @error('des')
+                            <span class="error text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fw-bold s-field">Category image<br>
                             <img id="image-preview-single" src="<?php echo asset('uploads/' . $category->img)?>" alt="" class="w-300 mt-2">

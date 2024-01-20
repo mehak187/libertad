@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('cities');
             $table->integer('persons');
             $table->integer('days');
             $table->string('transportation');

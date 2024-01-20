@@ -11,19 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('tripbookings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('catg');
-            $table->string('img')->nullable();
-            $table->text('des')->nullable();
+            $table->integer('trip_id');
+            $table->string('fname');
+            $table->string('lname');
+            $table->string('email');
+            $table->string('phone');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('tripbookings');
     }
 };

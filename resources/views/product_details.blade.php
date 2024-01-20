@@ -31,11 +31,27 @@
                                 class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i></a>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <p class="text-white m-0 font-22">Products</p>
+                        <p class="text-white m-0 font-22">{{$category->catg}}</p>
                     </div>
                 </div>
+                <div class="row px-3 mt-3 align-items-start">
+                    <div class="col-lg-6">
+                        <img src="<?php echo asset('uploads/' .  $category->img)?>" alt="" class="img-tree rounded-4">
+                    </div>
+                    <div class="col-lg-6 py-3 px-4">
+                        <div class="row mt-3">
+                            <p class="golden-clr fs-5 fw-bold mb-0">Description:</p>
+                            <p class="text-white">
+                                {{ $category->des }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mt-4 ms-3 gap-2">
+                    <p class="text-white m-0 fs-4 fw-bold">Products</p>
+                </div>
                 @if (count($products) > 0)
-                    <div class="container-fluid">
+                    <div class="w-100">
                         <div class="px-3">
                             <div class="position-relative my-3">
                                 <h5 class="text-white"></h5>
@@ -77,149 +93,161 @@
                         <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
                         <p class="text-danger mb-0 fs-5">No record to show</p>
                     </div>
-                @endif
+                @endif 
             </div>
         </div>
     </section>
     @include('template.footer')
-    <div class="custom-model book-model">
-        <form name="booking" action="/savebooking" method="POST" enctype="multipart/form-data" class="mt-2">
-            @csrf
-            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
-                <h1 class="modal-title fs-5 ">Booking Data</h1>
-                <i class="fas fa-times text-secondary fs-4 close-m"></i>
-            </div>
-            <div class="tbody px-3" id="tbodyContainer">
-                <div class="t-data">
-                    <div class="">
-                        <label for="f_name" class="font-12">Name</label>
-                        <input type="text" class="form-control shadow-none font-12" placeholder="First Name"
-                            id="f_name"  value="{{auth()->user()->name}}" required readonly>
-                    </div>
-                    <div class="">
-                        <label for="email" class="font-12">Email</label>
-                        <input type="text" class="form-control shadow-none font-12" placeholder="Email"
-                            id="email"  value="{{auth()->user()->email}}" required readonly>
-                    </div>
-                    <div class="">
-                        <label for="phone" class="font-12">Phone number</label>
-                        <input type="text" class="form-control shadow-none font-12"
-                            placeholder="Date of birth" id="phone"  value="{{auth()->user()->phone}}" required readonly>
-                    </div>
-                    <div class="">
-                        <label for="address" class="font-12">Address</label>
-                        <input type="text" class="form-control shadow-none font-12"
-                            placeholder="Address" id="address" name="address" value="" required >
-                    </div>
-                    <input type="number" name="tour_id" value="" class="d-none pidnew" readonly>
-                    <input type="text" name="tour_name" value="" class="d-none namenew" readonly>
-                    <input type="number" name="t_price" value="" class="d-none pricenew" readonly>
-                    <input type="text" name="role" value="6" class="d-none" readonly>
-                    <input type="text" name="peoplenew" value="0" class="d-none" readonly>
+    @if (auth()->check())
+        <div class="custom-model book-model">
+            <form name="booking" action="/savebooking" method="POST" enctype="multipart/form-data" class="mt-2">
+                @csrf
+                <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                    <h1 class="modal-title fs-5 ">Booking Data</h1>
+                    <i class="fas fa-times text-secondary fs-4 close-m"></i>
                 </div>
-            </div>
-            <div class="mt-3 d-flex justify-content-end">
-                <input type="submit" value="Confirm my booking" name="booking"
-                    class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 ">
-            </div>
-        </form>
-    </div>
-    @if(session('booking'))
-    <div class="custom-model payment-model">
-        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
-            data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
-            @csrf
-            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
-                <h1 class="modal-title fs-5">Payment methods</h1>
-                <i class="fas fa-times text-secondary fs-4 close-m"></i>
-            </div>
+                <div class="tbody px-3" id="tbodyContainer">
+                    <div class="t-data">
+                        <div class="">
+                            <label for="f_name" class="font-12">Name</label>
+                            <input type="text" class="form-control shadow-none font-12" placeholder="First Name"
+                                id="f_name"  value="{{auth()->user()->name}}" required readonly>
+                        </div>
+                        <div class="">
+                            <label for="email" class="font-12">Email</label>
+                            <input type="text" class="form-control shadow-none font-12" placeholder="Email"
+                                id="email"  value="{{auth()->user()->email}}" required readonly>
+                        </div>
+                        <div class="">
+                            <label for="phone" class="font-12">Phone number</label>
+                            <input type="text" class="form-control shadow-none font-12"
+                                placeholder="Date of birth" id="phone"  value="{{auth()->user()->phone}}" required readonly>
+                        </div>
+                        <div class="">
+                            <label for="address" class="font-12">Address</label>
+                            <input type="text" class="form-control shadow-none font-12"
+                                placeholder="Address" id="address" name="address" value="" required >
+                        </div>
+                        <input type="number" name="tour_id" value="" class="d-none pidnew" readonly>
+                        <input type="text" name="tour_name" value="" class="d-none namenew" readonly>
+                        <input type="number" name="t_price" value="" class="d-none pricenew" readonly>
+                        <input type="text" name="role" value="6" class="d-none" readonly>
+                        <input type="text" name="peoplenew" value="0" class="d-none" readonly>
+                    </div>
+                </div>
+                <div class="mt-3 d-flex justify-content-end">
+                    <input type="submit" value="Confirm my booking" name="booking"
+                        class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 ">
+                </div>
+            </form>
+        </div>
+        @if(session('booking'))
+        <div class="custom-model payment-model">
+            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
+                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                @csrf
+                <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                    <h1 class="modal-title fs-5">Payment methods</h1>
+                    <i class="fas fa-times text-secondary fs-4 close-m"></i>
+                </div>
 
-            <div class="row d-flex align-items-center justify-content-between px-3">
-                <div class="col-6 form-check px-3">
-                    <label class="form-check-label  ms-3" for="flexRadioDefault1" id="credit">
+                <div class="row d-flex align-items-center justify-content-between px-3">
+                    <div class="col-6 form-check px-3">
+                        <label class="form-check-label  ms-3" for="flexRadioDefault1" id="credit">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1" checked>
+                            Credit Card
+                        </label>
+                    </div>
+                    <div class="col-6 d-flex align-items-center justify-content-end">
+                        <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                        <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                        <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
+                    </div>
+                </div>
+                {{-- -----credit card---- --}}
+                <div id="credit-det" class="px-3 ">
+                    <div class="mt-3">
+                        <input type="text" class="form-control shadow-none" name="name"
+                            placeholder="Cardholder name">
+                    </div>
+                    <div class="mt-3">
+                        <input type="number" name="" id="flexRadioDefault1" autocomplete='off'
+                            placeholder="Card number" class='form-control shadow-none card-number'>
+                    </div>
+                    <div class="mt-3">
+                        <input type="" name="book_role" value="1" class='d-none' readonly>
+                        <input type="text" class='form-control card-number d-none'
+                            value="{{ session('t_price') }}" name="amount" readonly>
+                        <input type="text" class='form-control card-number d-none'
+                            value="{{ session('latestBookingId') }}" name="booking_id" readonly>
+                    </div>
+                    {{-- <div class="mt-3">
+                        <input type="text" id="monthYearInput" class="form-control shadow-none"
+                            placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
+                            title="Please enter a valid Month/Year (MM/YYYY)">
+                    </div> --}}
+                    <div class="row mt-3">
+                        <div class='col-md-6 form-group expiration required'>
+                            <input class='form-control card-expiry-month' placeholder='MM' size='2'
+                                type='text'>
+                        </div>
+                        <div class='col-md-6 col-md-4 form-group expiration required'>
+                            <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                type='text'>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV"
+                            maxlength='4'>
+                    </div>
+                </div>
+                {{-- ----paypal---- --}}
+                <div class="mt-3 form-check " class="px-3">
+                    <label class="form-check-label  ms-3" for="flexRadioDefault2" id="paypal">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault1" checked>
-                        Credit Card
+                            id="flexRadioDefault2">
+                        <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
                     </label>
                 </div>
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
-                    <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
-                    <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
-                </div>
-            </div>
-            {{-- -----credit card---- --}}
-            <div id="credit-det" class="px-3 ">
-                <div class="mt-3">
-                    <input type="text" class="form-control shadow-none" name="name"
-                        placeholder="Cardholder name">
-                </div>
-                <div class="mt-3">
-                    <input type="number" name="" id="flexRadioDefault1" autocomplete='off'
-                        placeholder="Card number" class='form-control shadow-none card-number'>
-                </div>
-                <div class="mt-3">
-                    <input type="" name="book_role" value="1" class='d-none' readonly>
-                    <input type="text" class='form-control card-number d-none'
-                        value="{{ session('t_price') }}" name="amount" readonly>
-                    <input type="text" class='form-control card-number d-none'
-                        value="{{ session('latestBookingId') }}" name="booking_id" readonly>
-                </div>
-                {{-- <div class="mt-3">
-                    <input type="text" id="monthYearInput" class="form-control shadow-none"
-                        placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
-                        title="Please enter a valid Month/Year (MM/YYYY)">
-                </div> --}}
-                <div class="row mt-3">
-                    <div class='col-md-6 form-group expiration required'>
-                        <input class='form-control card-expiry-month' placeholder='MM' size='2'
-                            type='text'>
-                    </div>
-                    <div class='col-md-6 col-md-4 form-group expiration required'>
-                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                            type='text'>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV"
-                        maxlength='4'>
-                </div>
-            </div>
-            {{-- ----paypal---- --}}
-            <div class="mt-3 form-check " class="px-3">
-                <label class="form-check-label  ms-3" for="flexRadioDefault2" id="paypal">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault2">
-                    <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
-                </label>
-            </div>
 
-            <div class="mt-3 ps-4 d-flex align-items-center px-3">
-                <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
-                <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
-                <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
-            </div>
-            <div class="px-3" id="paypal-det">
-                <div class="mt-3">
-                    <label for="">Email</label>
-                    <input type="text" name="" id="" class="form-control shadow-none"
-                        placeholder="Email">
+                <div class="mt-3 ps-4 d-flex align-items-center px-3">
+                    <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                    <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                    <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
                 </div>
-                <div class="mt-3">
-                    <label for="">Password</label>
-                    <input type="password" class="text-dark form-control shadow-none" placeholder="Password">
+                <div class="px-3" id="paypal-det">
+                    <div class="mt-3">
+                        <label for="">Email</label>
+                        <input type="text" name="" id="" class="form-control shadow-none"
+                            placeholder="Email">
+                    </div>
+                    <div class="mt-3">
+                        <label for="">Password</label>
+                        <input type="password" class="text-dark form-control shadow-none" placeholder="Password">
+                    </div>
+                    <div class="text-center mt-3">
+                        <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                    </div>
                 </div>
-                <div class="text-center mt-3">
-                    <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                <div class="mt-3 d-flex justify-content-end">
+                    <input type="submit" value="Pay Secure"
+                        class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
                 </div>
-            </div>
-            <div class="mt-3 d-flex justify-content-end">
-                <input type="submit" value="Pay Secure"
-                    class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
-            </div>
-        </form>
+            </form>
+        </div>
+        @endif
+    @else
+    <div class="custom-model book-model px-4 pb-5">
+        <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+            <h1 class="modal-title fs-5 ">Alert</h1>
+            <i class="fas fa-times text-secondary fs-4 close-m"></i>
+        </div>
+        <div class="d-flex align-items-center mt-3  mb-5">
+            <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger mb-0 fs-5">In order to book a product, login first</p>
+        </div>
     </div>
-@endif
+    @endif
 <!-- Add this script section at the end of your HTML -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -13,15 +13,15 @@ use Carbon\Carbon;
 
 <body class="">
     @if (session('success'))
-    <script>
-        swal("Good job!", "{{session('success')}}", "success");
-    </script>
-@endif
-@if (session('error'))
-    <script>
-        swal("Ooops!", "{{session('error')}}", "error");
-    </script>
-@endif
+        <script>
+            swal("Good job!", "{{ session('success') }}", "success");
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            swal("Ooops!", "{{ session('error') }}", "error");
+        </script>
+    @endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -44,10 +44,10 @@ use Carbon\Carbon;
                             @foreach ($tripcities as $tripcity)
                                 <div class="slide mx-2 city-result mt-3">
                                     <div class="container1 container-travel">
-                                        <img src="<?php echo asset('uploads/' . $tripcity['tourimg']); ?>" alt="Avatar" class="image1 image1_2" >
+                                        <img src="<?php echo asset('uploads/' . $tripcity['tourimg']); ?>" alt="Avatar" class="image1 image1_2">
                                         <a href="/{{ 'cities_detail/' . $tripcity['id'] }}" class="overlay ">
                                             <div class="text1 d-flex align-items-center justify-content-between">
-                                                <span class="text-white searchable">{{$tripcity['Cityname']}}</span>
+                                                <span class="text-white searchable">{{ $tripcity['Cityname'] }}</span>
                                                 <i class="bi bi-heart fs-5" style="color: #4EBFC7;"></i>
                                             </div>
                                         </a>
@@ -56,7 +56,7 @@ use Carbon\Carbon;
                             @endforeach
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6 py-3 px-4">
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
@@ -76,14 +76,14 @@ use Carbon\Carbon;
                                 @endif
                             </div>
                         </div>
-                     
-                         <div class="row mt-3">
+
+                        <div class="row mt-3">
                             <div>
                                 <h6 class="fw-bold golden-clr fs-5">Tour trail</h6>
                                 <div class="d-flex align-items-center position-city-p">
-                                @foreach ($tripcities as $tripcity)
-                                        <p class="text-white">{{$tripcity['Cityname']}}</p>
-                                @endforeach
+                                    @foreach ($tripcities as $tripcity)
+                                        <p class="text-white">{{ $tripcity['Cityname'] }}</p>
+                                    @endforeach
                                 </div>
 
                                 <h6 class="fw-bold golden-clr fs-5">Tours Information</h6>
@@ -115,20 +115,15 @@ use Carbon\Carbon;
                                     <p class="text-white">{{ $trip->accommodation }}</p>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
                             <div class="">
                                 <div class="button_border rounded-pill">
-                                    <button type="button" class="button_leniar_style px-5 rounded-pill "
-                                        data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Book</button>
+                                    <button type="button"
+                                        class="button_leniar_style px-5 rounded-pill open-res">Book</button>
                                 </div>
                             </div>
-                            <div>
-                                <div class="button_border rounded-pill">
-                                    <button type="button" class="button_leniar_style px-5 rounded-pill ">Add to
-                                        Cart</button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -142,335 +137,153 @@ use Carbon\Carbon;
             </div>
         </div>
     </section>
-   
+
 
     @include('template.footer')
+    <div class="custom-model res-model">
+        <form name="booking" action="/tripbooking" method="POST" enctype="multipart/form-data" class="mt-2">
+            @csrf
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Booking Data</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+            <input type="number" class="d-none" name="trip_id" value="{{ $trip->id }}">
+            {{-- <input type="text" class="d-none" name="tour_name" value="{{ $trip->name }}">
+            <input type="number" class="d-none" name="role" value="1" readonly> --}}
+            {{-- <input type="number" id="pvalue" class="d-none" value="{{ session('requestData.people') }}"
+                readonly>
+            <input type="number" name="peoplenew" id="tpriceInputn" class="d-none" value="" readonly>
+            <input type="number" name="t_price" id="tpricenew" class="d-none "
+                value="{{ session('requestData.tprice') }}" readonly>
+            <input type="date" name="date" id="datenew" class="d-none "
+                value="{{ session('requestData.date') }}" readonly> --}}
+            <div class="tbody px-3" id="tbodyContainer">
+                <div class="t-data">
+                    {{-- <h6 class="mt-3">Traveller 1</h6> --}}
+                    <div class="">
+                        <label for="f_name" class="font-12">First Name</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="First Name"
+                            id="f_name" name="f_name" required>
+                    </div>
+                    <div class="">
+                        <label for="l_name" class="font-12">Last Name</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="Last Name"
+                            id="l_name" name="l_name" required>
+                    </div>
+                    <div class="">
+                        <label for="email" class="font-12">Email</label>
+                        <input type="email" class="form-control shadow-none font-12" placeholder="Email"
+                            id="email" name="email" required>
+                    </div>
+                    <div class="">
+                        <label for="phone" class="font-12">Phone No.</label>
+                        <input type="phone" class="form-control shadow-none font-12" placeholder="phone"
+                            id="phone" name="phone" required>
+                    </div>
 
-    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1">
-        <div class="modal-dialog modal-booking modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Reservation</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="">
-                            <label for="" class="font-12">Select the date</label>
-                            <input type="date" class="form-control shadow-none font-12" placeholder="date">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">No. of people</label>
-                            <input type="number" class="form-control shadow-none font-12" placeholder="12">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Total Price</label>
-                            <input type="number" class="form-control shadow-none font-12" placeholder="12$">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
-                        class="btn mybutton px-4 border-0 rounded-pill">Continue with my booking</button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Booking Data</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <h6 class="fw-bold ">Enter your details</h6>
-                        <div class="">
-                            <label for="" class="font-12">First Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Family Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Nationality</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Nationality">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Email">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12"
-                                placeholder="Confirm Email">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12"
-                                placeholder="Phone Number">
-                        </div>
-                        <div class="mt-2">
-                            <div class="d-flex flex-column">
-                                <span for="" class="font-12">
-                                    Passport Copy/ID for Egyptians
-                                </span>
-                                <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
-                                        class="profile-img">
-                                </label>
-                                <input type="file" name="img" class="d-none" id="myImg2"
-                                    onchange="readURL(this);">
-                            </div>
-                        </div>
-                        <h6 class="fw-bold mt-3">Travellers Detail</h6>
-                        <h6>Traveller 1</h6>
-                        <div class="">
-                            <label for="" class="font-12">First Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Family Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Date of Birth</label>
-                            <input type="date" class="form-control shadow-none font-12" placeholder="Nationality">
-                        </div>
-                        <div class="mt-2">
-                            <div class="d-flex flex-column">
-                                <span for="" class="font-12">
-                                    Passport Copy/ID for Egyptians
-                                </span>
-                                <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
-                                        class="profile-img">
-                                </label>
-                                <input type="file" name="img" class="d-none" id="myImg2"
-                                    onchange="readURL(this);">
-                            </div>
-                        </div>
-                        <h6>Traveller 2</h6>
-                        <div class="">
-                            <label for="" class="font-12">First Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="First Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Family Name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Family Name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Date of Birth</label>
-                            <input type="date" class="form-control shadow-none font-12" placeholder="Nationality">
-                        </div>
-                        <div class="mt-2">
-                            <div class="d-flex flex-column">
-                                <span class="font-12">
-                                    Passport Copy/ID for Egyptians
-                                </span>
-                                <label for="myImg2">
-                                    <img id="blah2" src="./imgs/add_profile.png" alt=""
-                                        class="profile-img">
-                                </label>
-                                <input type="file" name="img" class="d-none" id="myImg2"
-                                    onchange="readURL(this);">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button data-bs-target="#exampleModalToggle4" data-bs-toggle="modal"
-                        class="btn mybutton px-4 border-0 rounded-pill">Confirm my Booking</button>
-                </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <input type="submit" value="Confirm my booking" name="booking"
+                    class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2 ">
             </div>
-        </div>
+        </form>
     </div>
-    <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Summary</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    @if (session('showm'))
+        <div class="custom-model show-model">
+            <form action="/check" method="POST">
+                @csrf
+                <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                    <h1 class="modal-title fs-5 ">Summary</h1>
+                    <i class="fas fa-times text-secondary fs-4 close-m"></i>
                 </div>
-                <div class="modal-body">
-                    <form action="">
-                        <h6 class="fw-bold">Tour data</h6>
-                        <div class="">
-                            <h6>Tour Name</h6>
-                            <p>Alexandria</p>
-                        </div>
-                        <div class="">
-                            <h6>Cities</h6>
-                            <p>Alexandria, Siwa</p>
-                        </div>
-                        <div class="">
-                            <h6>Tour duration</h6>
-                            <p>2 days</p>
-                        </div>
-                        <div class="">
-                            <h6>Date</h6>
-                            <p>12/12/23</p>
-                        </div>
-                        <div class="">
-                            <h6>No. of people</h6>
-                            <p>12</p>
-                        </div>
-                        <h6 class="fw-bold">Total Price</h6>
-                        <p>120$</p>
-                        <h6>Terms $ Conditions/Cancellation policy</h6>
-                        <div class="d-flex align-items-start">
-                            <input type="checkbox" class="me-2 mt-2">
-                            <label for="" class="font-12">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                elit. Est
-                                deserunt sed repudiandae doloribus quod accusantium cumque consectetur omnis
-                                laboriosam.label>
-                        </div>
-                    </form>
+                <div class="px-3">
+                    <div class="mt-2">
+                        <h6>Tour Name</h6>
+                        <p>{{ $trip->accommodation }}</p>
+                    </div>
+                    <div class="">
+                        <h6>Cities</h6>
+                        <p class="mb-2">
+                            @foreach ($tripcities as $tripcity)
+                                <p class="">{{ $tripcity['Cityname'] }}</p>
+                            @endforeach
+                        </p>
+                    </div>
+                    <div class="">
+                        <h6>Tour duration</h6>
+                        <p>{{ $trip->days }}</p>
+                    </div>
+                    <div class="">
+                        <h6>Date</h6>
+                        <p>{{ $trip->date }} to {{ $newDate->format('Y-m-d') }}</p>
+                    </div>
+                    <div class="">
+                        <h6>No. of travellers</h6>
+                        <p>{{ $trip->persons }}</p>
+                    </div>
+                    <div class="">
+                        <h6>Transportation between cities</h6>
+                        <p>{{ $trip->transportation }}</p>
+                    </div>
+                    <div class="">
+                        <h6>Accommodation</h6>
+                        <p>{{ $trip->accommodation }}</p>
+                    </div>
+                    
                 </div>
-                <div class="modal-footer">
-                    <button data-bs-target="#exampleModalToggle5" data-bs-toggle="modal"
-                        class="btn mybutton px-4 border-0 rounded-pill">Continue & Pay</button>
+                <div class="d-flex align-items-center px-3">
+                    <label for="check" class="fs-6">Thank u for choosing us. Our team will contact u within 24 to 48 hours
                 </div>
-            </div>
+                {{-- <div class="mt-3 d-flex justify-content-end">
+                    <button class="text-secondary fs-4 close-m w-100 mx-3 w-auto text-dark border-0 mybutton px-4 text-center rounded-pill py-2">OK</button>
+                </div> --}}
+            </form>
         </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel5"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Payment methods</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="row d-flex align-items-center justify-content-between px-3">
-                            <div class="col-6 form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1" checked>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Credit Card
-                                </label>
-                            </div>
-
-                            <div class="col-6 d-flex align-items-center justify-content-end">
-                                <img class="payment-logos" src="./imgs/VISA-Logo-2014.png" alt="">
-                                <img class="payment-logos" src="./imgs/Mastercard-Logo.png" alt="">
-                                <img class="payment-logos" src="./imgs/Emex-logo.png" alt="">
-                            </div>
-                        </div>
-                        <div id="has" style="display: block;">
-
-
-                            <div class="mt-3">
-                                <input type="number" class="form-control shadow-none" placeholder="Card number">
-                            </div>
-                            <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1"
-                                    class="form-control shadow-none" placeholder="Cardholder name">
-                            </div>
-                            <div class="mt-3">
-                                <input type="text" id="monthYearInput" class="form-control shadow-none"
-                                    placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
-                                    title="Please enter a valid Month/Year (MM/YYYY)">
-                            </div>
-                            <div class="mt-3">
-                                <input type="text" class="form-control shadow-none" placeholder="CCV">
-                            </div>
-                        </div>
-                        <div class="mt-3 form-check">
-                            <input class=" form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                <img class="w-25" src="./imgs/paypal-logo-png-16.png" alt="">
-                            </label>
-                        </div>
-
-                        <div class="mt-3 ps-4 d-flex align-items-center">
-                            <img class="payment-logoslast" src="./imgs/VISA-Logo-2014.png" alt="">
-                            <img class="payment-logoslast" src="./imgs/Mastercard-Logo.png" alt="">
-                            <img class="payment-logoslast" src="./imgs/Emex-logo.png" alt="">
-                        </div>
-                        <div id="asd" style="display: none;">
-                            <div class="mt-3">
-                                <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none"
-                                    placeholder="Email">
-                            </div>
-                            <div class="mt-3">
-                                <label for="">Password</label>
-                                <input type="password" class="text-dark form-control shadow-none"
-                                    placeholder="Password">
-                            </div>
-                            <div class="text-center mt-3">
-                                <input type="submit" value="Login"
-                                    class="golden-bg border-0 rounded-pill px-3 py-2">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle6 "
-                        class="btn mybutton px-4 border-0 rounded-pill">Pay Secure</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle6" aria-hidden="true" aria-labelledby="exampleModalToggleLabel6"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel5">Summary</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div>
-                            <label for="" class="fw-semibold">Product description</label>
-                            <p class="shadow-none font-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Vivamus ac odio ac justo facilisis fringilla ac eu justo.</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Qty</label>
-                            <p class="shadow-none font-12">4</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Receipt No.</label>
-                            <p class="shadow-none font-12">200</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Date Paid</label>
-                            <p class="shadow-none font-12">8/18/2023</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Payment Method</label>
-                            <p class="shadow-none font-12">PayPal</p>
-                        </div>
-                        <div>
-                            <label for="" class="w-100 fw-semibold">Logo</label>
-                            <img class="w-25" src="./imgs/logo_text.png" alt="">
-                            <p class="d-flex">Liberta<span class="way_color">d</span>elmundo</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Person name</label>
-                            <p class="shadow-none font-12">Ashir Ali Bhalli</p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button data-bs-toggle="modal" aria-label="Close"
-                        class="btn mybutton px-4 border-0 rounded-pill">Send Email</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @endif
     @include('template.jslinks')
+    <script>
+        $(".res-model").hide();
+
+        $(".open-book").click(function() {
+            $(".book-model").show();
+        });
+        $(".open-res").click(function() {
+            $(".res-model").show();
+        });
+
+        $(".close-m").click(function() {
+            $(".book-model").hide();
+            $(".res-model").hide();
+            $(".show-model").hide();
+            $(".payment-model").hide();
+        });
+
+        $(document).ready(function() {
+            $("#paypal-det").hide();
+
+            $("#credit").click(function() {
+                $("#credit-det").show();
+                $("#paypal-det").hide();
+            });
+            $("#paypal").click(function() {
+                $("#credit-det").hide();
+                $("#paypal-det").show();
+            });
+        });
+        $(document).ready(function() {
+            var currentDate = new Date();
+            var tomorrow = new Date();
+            tomorrow.setDate(currentDate.getDate() + 1);
+            var formattedDate = tomorrow.toISOString().split('T')[0];
+            $('#date').attr('min', formattedDate);
+        });
+        $(document).ready(function() {
+            var currentDate = new Date();
+            var formattedDate = currentDate.toISOString().split('T')[0];
+            $('#dob').attr('max', formattedDate);
+        });
+    </script>
 </body>
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-booking">
@@ -513,4 +326,5 @@ use Carbon\Carbon;
         </div>
     </div>
 </div>
+
 </html>

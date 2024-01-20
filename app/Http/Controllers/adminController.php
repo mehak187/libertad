@@ -1135,6 +1135,7 @@ class adminController extends Controller
         $photo->move($photo_destination,$photo_name);
         categories::create([
             'catg' => $request->catg,
+            'des' => $request->des,
             'img' => $photo_name
         ]);
 
@@ -1156,6 +1157,7 @@ class adminController extends Controller
         if($request->file('img')==null){
             categories::find($request->id)->update([
                 'catg' => $request->catg,
+                'des' => $request->des,
             ]);
         }else{
             $photo = $request->file('img');
@@ -1164,10 +1166,10 @@ class adminController extends Controller
             $photo->move($photo_destination,$photo_name);
             categories::find($request->id)->update([
                 'catg' => $request->catg,
+                'des' => $request->des,
                 'img' => $photo_name
             ]);
         }
-        // print_r($photo_name);
         return redirect('manage_product_categories')->with ('update','Category updated Successfully');
     }
 
@@ -1379,7 +1381,7 @@ class adminController extends Controller
         return view('admin.manage_shuttle_payments', ['payments' => $data]);
     }
     public function manage_trip(){
-        $data = trip::all();
+        $data = trip::leftjoin('tripbookings','trips.id','=','tripbookings.trip_id')->get();
         return view('admin.manage_trip', ['trips' => $data]);
     }
     

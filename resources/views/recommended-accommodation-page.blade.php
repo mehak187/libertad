@@ -34,7 +34,7 @@
                         <p class="text-white m-0 font-22">Accommodation</p>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row my-3 align-items-start">
                     <div class="col-lg-6">
                         <img src="<?php echo asset('uploads/' . $hotel['tourimg']); ?>" alt="" class="img-tree rounded-4">
                     </div>
