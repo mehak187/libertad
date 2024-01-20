@@ -22,7 +22,6 @@
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
-        <!-- main content -->
         <div class="right-content ftr fix_div cyan-bg py-5">
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
@@ -34,7 +33,7 @@
                         <p class="text-white m-0 font-22">Accommodation</p>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row my-3 align-items-start">
                     <div class="col-lg-6">
                         <img src="<?php echo asset('uploads/' . $hotel['tourimg']); ?>" alt="" class="img-tree rounded-4">
                     </div>

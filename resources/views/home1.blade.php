@@ -220,34 +220,12 @@
                                                 <form action="save_trip" method="POST" enctype="multipart/form-data" >
                                                     @csrf
                                                         @if (count($cities) > 0)
-                                                        <div>
-                                                            <label for="name"
-                                                                class="mb-1 fs-12 dropdown_label_color">Name</label>
-                                                            <input type="text"
-                                                                class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="name" id="name">
-                                                                @error('name')
-                                                                <span class="error text-danger">
-                                                                    {{$message}}
-                                                                </span>
-                                                                @enderror
-                                                        </div>
-                                                        <div>
-                                                            <label for="email"
-                                                                class="mb-1 fs-12 dropdown_label_color">Email</label>
-                                                            <input type="email"
-                                                                class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="email" id="email">
-                                                                @error('email')
-                                                                <span class="error text-danger">
-                                                                    {{$message}}
-                                                                </span>
-                                                                @enderror
-                                                        </div>
                                                             <div>
                                                                 <label for="city" class="fs-12 dropdown_label_color">What
                                                                     are the
                                                                     cities do you want to visit?</label>
                                                                 <select id="city"
-                                                                    class=" mb-1 text-white py-1" name="cities[]" multiple>
+                                                                    class=" mb-1 text-white py-1" name="cities[]" multiple required>
                                                                     @foreach ($cities as $city)
                                                                         <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
                                                                     @endforeach
@@ -263,7 +241,7 @@
                                                                     class="mb-1 fs-12 dropdown_label_color">How many
                                                                     Person would join the trip?</label>
                                                                 <input type="number"
-                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="persons" name="persons">
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="persons" name="persons" required>
                                                                     @error('persons')
                                                                     <span class="error text-danger">
                                                                         {{$message}}
@@ -275,7 +253,7 @@
                                                                     class="mb-1 fs-12 dropdown_label_color">How many
                                                                     days do you want to spend in Egypt?</label>
                                                                 <input type="number"
-                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="days" id="days">
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" name="days" id="days" required>
                                                                     @error('days')
                                                                     <span class="error text-danger">
                                                                         {{$message}}
@@ -286,7 +264,7 @@
                                                                 <label for="" class="fs-12 dropdown_label_color">What
                                                                     transportation do you prefer between cities?</label>
                                                                 <select name="transportation[]" id="transport-whecle"
-                                                                    class=" mb-1 text-white py-1" multiple>
+                                                                    class=" mb-1 text-white py-1" multiple required>
                                                                     <option value="Car">Car</option>
                                                                     <option value="Train">Train</option>
                                                                     <option value="Airplane">Airplane</option>
@@ -316,7 +294,7 @@
                                                                     class="mb-1 fs-12 dropdown_label_color">Trip Start
                                                                     Date</label>
                                                                 <input name="date" type="date"
-                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="date">
+                                                                    class="form-control mb-1 dropdown_bg_color bg-transparent py-1 text-white" id="date" required>
                                                                     @error('date')
                                                                     <span class="error text-danger">
                                                                         {{$message}}

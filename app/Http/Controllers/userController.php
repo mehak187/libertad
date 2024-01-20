@@ -36,6 +36,7 @@ use App\Models\sbooking;
 use App\Models\spayment;
 use App\Models\trip_city;
 use App\Models\TripRating;
+use App\Models\tripbooking;
 
 use Stripe;
 use Session;
@@ -94,10 +95,8 @@ class userController extends Controller
         '*'=>'required',
         ]);
         $transportation = implode(', ', $request->input('transportation'));
-        // $cities = implode('->', $request->input('cities'));
         $data = $request->all();
         $data['transportation'] = $transportation;
-        // $data['cities'] = $cities;
         $trip = trip::create($data);
         $cityTourId = $trip->id;
         $cities = $request->input('cities');
@@ -328,7 +327,10 @@ class userController extends Controller
     }
     public function product_detial($id){
         $data =product::where('p_catg',$id)->orderBy('id', 'desc')->get();
-        return view('product_details',['products'=>$data]);
+        $data2['category'] =categories::find($id);
+        // print_r($data2);die();
+        return view('product_details',['products'=>$data],$data2);
+        
     }
     public function libertad(){
         $data['libertad'] =libertad::first();
@@ -558,7 +560,24 @@ class userController extends Controller
     	    return back();
         }
     }
+    public function tripbooking(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
 
+        $booking = tripbooking::create([
+            'trip_id' => $request->trip_id,
+            'fname' => $request->f_name,
+            'lname' => $request->l_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+        ]);
+       
+        return back()
+        ->with('showm', 'City tour added Successfully')
+        ->with('booking', $booking);
+        // return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
+    }
     public function shuttlebooking(request $request){
         $request->validate([
             '*' => 'required',

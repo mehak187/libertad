@@ -3240,7 +3240,7 @@ color: #000;
   width: 0px;
 } 
 .main-tem{
-  height: calc(100vh - 53px);
+  min-height: calc(100vh - 53px);
 overflow: hidden;
 }
 .rating-show {

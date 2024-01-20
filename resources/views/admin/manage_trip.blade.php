@@ -32,8 +32,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>User email</th>
-                                <th>Cities</th>
+                                <th>Name</th>
+                                <th>Email</th>
                                 <th>Persons</th>
                                 <th>Days</th>
                                 <th>transportation</th>
@@ -43,8 +43,8 @@
                         <tbody>
                           @foreach ($trips as $trip)
                           <tr>
+                            <td>{{$trip['fname']}} {{$trip['fname']}}</td>
                             <td>{{$trip['email']}}</td>
-                            <td>{{$trip['cities']}}</td>
                             <td>{{$trip['persons']}}</td>
                             <td>{{$trip['days']}}</td>
                             <td>{{$trip['transportation']}}</td>

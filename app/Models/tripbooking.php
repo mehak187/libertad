@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class trip extends Model
+class tripbooking extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'persons',
-        'days',
-        'transportation',
-        'date',
-        'accommodation'
+        'trip_id',
+        'fname',
+        'lname',
+        'email',
+        'phone',
     ];
 }
