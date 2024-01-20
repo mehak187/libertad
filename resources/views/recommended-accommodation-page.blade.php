@@ -22,7 +22,6 @@
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
-        <!-- main content -->
         <div class="right-content ftr fix_div cyan-bg py-5">
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
