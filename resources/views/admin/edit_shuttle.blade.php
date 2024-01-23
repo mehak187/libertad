@@ -25,10 +25,10 @@
                     <input type="text" class="w-100 d-none" name="id" value="{{$vehicle->id}}">
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="From" value="{{$vehicle['from']}}" name="from">
+                            <input type="text" class="w-100" id="locationInput2" placeholder="From" value="{{$vehicle['from']}}" name="from">
                         </div>
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="TO" value="{{$vehicle['to']}}" name="to">
+                            <input type="text" class="w-100" id="locationInput3" placeholder="TO" value="{{$vehicle['to']}}" name="to">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
@@ -65,5 +65,8 @@
         </div>
     </section>
     @include('admin.templates.scripts')
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu1gwHCSzLG9ACacQqLk-LG8oJMkarNF0&libraries=drawing,places&callback=initAutocomplete">
+</script>
 </body>
 </html>

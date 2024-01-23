@@ -116,3 +116,20 @@ $(document).ready(function () {
         // You can add additional logic or customization here if needed
     });
 });
+function initAutocomplete() {
+    var input = document.getElementById('locationInput');
+    var input1 = document.getElementById('locationInput1');
+    var input2 = document.getElementById('locationInput2');
+    var input3 = document.getElementById('locationInput3');
+
+  
+  
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    var autocomplete1 = new google.maps.places.Autocomplete(input1);
+    var autocomplete2 = new google.maps.places.Autocomplete(input2);
+    var autocomplete3 = new google.maps.places.Autocomplete(input3);
+
+  
+  }
+  
+  google.maps.event.addDomListener(window, 'load', initAutocomplete);
