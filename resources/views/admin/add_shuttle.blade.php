@@ -24,7 +24,7 @@
                     @csrf
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="From" name="from">
+                            <input type="text" class="w-100" id="locationInput" placeholder="From" name="from">
                             @error('from')
                                 <span class="error text-danger">
                                     {{$message}}
@@ -32,7 +32,7 @@
                             @enderror
                         </div>
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="TO" name="to">
+                            <input type="text" class="w-100" id="locationInput1" placeholder="TO" name="to">
                             @error('to')
                                 <span class="error text-danger">
                                     {{$message}}
@@ -92,5 +92,8 @@
         </div>
     </section>
     @include('admin.templates.scripts')
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu1gwHCSzLG9ACacQqLk-LG8oJMkarNF0&libraries=drawing,places&callback=initAutocomplete">
+</script>
 </body>
 </html>
