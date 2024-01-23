@@ -696,6 +696,25 @@ class adminController extends Controller
         $data=city::all();
         return view('admin.add_package',['cities'=>$data]);
     }
+    public function save_packages(Request $request){
+        $request->validate([
+            'city' => 'required'
+        ]);
+    
+        $city = $request->city;
+        $cityname = city::where('id',$city)->pluck('Cityname')->first();
+    
+        $sites = site::where('city',$city)
+            ->orderBy('id', 'desc')
+            ->get();
+    // print_r($sites); die();
+        return view('admin.add_package2', compact('cityname', 'sites'));
+    }
+    
+    // public function add_packages2(){
+    //     $data=city::all();
+    //     return view('admin.add_package2',['cities'=>$data]);
+    // }
 
     public function add_daily_activities(){
         return view('admin.add_daily_activities');

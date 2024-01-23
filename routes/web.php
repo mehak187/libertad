@@ -105,6 +105,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('manage_packages','manage_packages');
         Route::post('save_packages','save_packages');
         Route::get('add_packages','add_packages');
+        Route::get('add_packages2','add_packages2');
         Route::get('edit_packages/{id}','edit_packages');
         Route::get('packages_details/{id}','packages_details');
         Route::get('delete_packages/{id}','delete_packages');
