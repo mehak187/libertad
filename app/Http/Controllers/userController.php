@@ -312,7 +312,21 @@ class userController extends Controller
         return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6,'tripRatings'=>$data7]);
     }
     public function vehicle(){
-        return view('vehicle-destination');
+        $data=shuttle::all();
+        if ($data->isEmpty()) {
+            return view('vehicle-destination')->with ('error','No record to show');
+        }
+        if($data->count()>5){
+            $upper=$data->take($data->count()/2);
+            $lower=$data->skip($data->count()/2);
+            return view('vehicle-destination',[
+                'vehicles1'=>$upper,
+                'vehicles2'=>$lower
+            ]);
+        }
+        else{
+            return view('vehicle-destination',['vehicles'=>$data]);
+        }
     }
     public function productsandtools(){
         // $data = categories::join('products', 'categories.id', '=', 'products.p_catg')

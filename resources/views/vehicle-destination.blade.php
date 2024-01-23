@@ -82,72 +82,189 @@
                                         <p class="golden-clr m-0 font-22">Select the Vehicle:</p>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-sm-6 mt-3">
-                                    <div class="card first_card_slider border-0">
-                                        <img src="./imgs/1.jpg" alt="Avatar" class="image1_2_duplicate rounded_top">
-                                        <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <p class="fw-bold fs-12 mb-0">Car Model: Toyota</p>
-                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                    <p class="mb-0 fs-12 fw-bold">No. of passengers: 5</p>
-                                                </div>
-                                                <div class="button_border rounded-pill dropdown">
-                                                    <div>
-                                                        <button class="button_leniar_style px-4 rounded-pill fs-12"
-                                                            style="height: 25px;" data-bs-target="#exampleModalToggle2"
-                                                            data-bs-toggle="modal">Book</button>
+                                @if (@isset($vehicles1) && @isset($vehicles2))
+                                <div class="row me-md-0 me-sm-2">
+                                    <div class="col-xl-11">
+                                        <div class="first_slider">
+                                            <div class="autoplay_2 mb-3">
+                                                @foreach ($vehicles1 as $vehicle1)
+                                                    <div class="slide mx-2 city-result1">
+                                                        <div class="card first_card_slider border-0">
+                                                            <img src="<?php echo asset('uploads/' . $vehicle1['img']); ?>" alt="Avatar"
+                                                                class="image1_2_duplicate rounded_top">
+                                                            <div class="card-body card_bottom"
+                                                                style="background-color: #E2BE4E;">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-end">
+                                                                    <div>
+                                                                        <p class="mb-0 fs-12 fw-bold">
+                                                                            {{ $vehicle1['from'] }} to
+                                                                            {{ $vehicle1['to'] }}</p>
+                                                                        <p
+                                                                            class="mb-0 fs-12 fw-bold">
+                                                                            Vehicle type:
+                                                                            <span class="searchable1"> {{ $vehicle1['vehicle'] }}</span>
+                                                                        </p>
+                                                                        <p class="mb-0 fs-12 fw-bold">No. of
+                                                                            people:
+                                                                            {{ $vehicle1['passengers'] }}
+                                                                        </p>
+                                                                        <p class="mb-0 fs-12 fw-bold">Price:
+                                                                            USD
+                                                                            {{ $vehicle1['price'] }}</p>
+                                                                    </div>
+                                                                    <div class="button_border rounded-pill">
+                                                                        <div class="d-flex">
+                                                                            <button
+                                                                                class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
+                                                                                style="height: 25px;">
+                                                                                <input type="text"
+                                                                                    class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
+                                                                                    value="{{ $vehicle1['id'] }}">
+                                                                                Book</button>
+                                                                                <input type="text"
+                                                                                class="vprice d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle1['price'] }}">
+                                                                            <input type="text"
+                                                                                class="vpeople d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle1['passengers'] }}">
+                                                                            <input type="text"
+                                                                                class="vtype d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle1['vehicle'] }}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-sm-6 mt-3">
-                                    <div class="card first_card_slider border-0">
-                                        <img src="./imgs/car3.jpg" alt="Avatar"
-                                            class="image1_2_duplicate rounded_top">
-                                        <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <p class="fw-bold fs-12 mb-0">Car Model: Toyota</p>
-                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                    <p class="mb-0 fs-12 fw-bold">No. of passengers: 5</p>
-                                                </div>
-                                                <div class="button_border rounded-pill dropdown">
-                                                    <div>
-                                                        <button class="button_leniar_style px-4 rounded-pill fs-12"
-                                                            style="height: 25px;" data-bs-target="#exampleModalToggle2"
-                                                            data-bs-toggle="modal">Book</button>
+                                <div class="row me-md-0 me-sm-2">
+                                    <div class="col-xl-11">
+                                        <div class="first_slider">
+                                            <div class="autoplay_2 mb-3">
+                                                @foreach ($vehicles2 as $vehicle2)
+                                                    <div class="slide mx-2 city-result">
+                                                        <div class="card first_card_slider border-0">
+                                                            <img src="<?php echo asset('uploads/' . $vehicle2['img']); ?>" alt="Avatar"
+                                                                class="image1_2_duplicate rounded_top">
+                                                            <div class="card-body card_bottom"
+                                                                style="background-color: #E2BE4E;">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-end">
+                                                                    <div>
+                                                                        <p class="mb-0 fs-12 fw-bold">
+                                                                            {{ $vehicle2['from'] }} to
+                                                                            {{ $vehicle2['to'] }}</p>
+                                                                        <p
+                                                                            class="mb-0 fs-12 fw-bold ">
+                                                                            Vehicle type:
+                                                                          <span class="searchable">{{ $vehicle2['vehicle'] }}</span>  
+                                                                        </p>
+                                                                        <p class="mb-0 fs-12 fw-bold">No. of
+                                                                            people:
+                                                                            {{ $vehicle2['passengers'] }}
+                                                                        </p>
+                                                                        <p class="mb-0 fs-12 fw-bold">Price:
+                                                                            USD
+                                                                            {{ $vehicle2['price'] }}</p>
+                                                                    </div>
+                                                                    <div class="button_border rounded-pill">
+                                                                        <div class="d-flex">
+                                                                            <button
+                                                                                class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
+                                                                                style="height: 25px;">
+                                                                                <input type="text"
+                                                                                    class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
+                                                                                    value="{{ $vehicle2['id'] }}">
+                                                                                Book</button>
+                                                                                <input type="text"
+                                                                                class="vprice d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle2['price'] }}">
+                                                                            <input type="text"
+                                                                                class="vpeople d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle2['passengers'] }}">
+                                                                            <input type="text"
+                                                                                class="vtype d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle2['vehicle'] }}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-sm-6 mt-3">
-                                    <div class="card first_card_slider border-0">
-                                        <img src="./imgs/car2.jpg" alt="Avatar"
-                                            class="image1_2_duplicate rounded_top">
-                                        <div class="card-body card_bottom" style="background-color: #E2BE4E;">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <p class="fw-bold fs-12 mb-0">Car Model: Toyota</p>
-                                                    <p class="mb-0 fs-12 fw-bold">Price: USD 500</p>
-                                                    <p class="mb-0 fs-12 fw-bold">No. of passengers: 5</p>
-                                                </div>
-                                                <div class="button_border rounded-pill dropdown">
-                                                    <div>
-                                                        <button class="button_leniar_style px-4 rounded-pill fs-12"
-                                                            style="height: 25px;"
-                                                            data-bs-target="#exampleModalToggle2"
-                                                            data-bs-toggle="modal">Book</button>
+                            @else
+                                <div class="row me-md-0 me-sm-2 my-4">
+                                    <div class="col-xl-11">
+                                        <div class="first_slider">
+                                            <div class="autoplay_2 mb-3">
+                                                {{-- @if (@isset($vehicles)) --}}
+                                                @foreach ($vehicles as $vehicle)
+                                                    <div class="slide mx-2 city-result">
+                                                        <div class="card first_card_slider border-0">
+                                                            <img src="<?php echo asset('uploads/' . $vehicle['img']); ?>" alt="Avatar"
+                                                                class="image1_2_duplicate rounded_top">
+                                                            <div class="card-body card_bottom"
+                                                                style="background-color: #E2BE4E;">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-end">
+                                                                    <div>
+                                                                        <p class="mb-0 fs-12 fw-bold">
+                                                                            {{ $vehicle['from'] }} to
+                                                                            {{ $vehicle['to'] }}</p>
+                                                                        <p class="mb-0 fs-12 fw-bold">Vehicle
+                                                                            type:
+                                                                            <span
+                                                                                class="searchable">{{ $vehicle['vehicle'] }}</span>
+                                                                        </p>
+                                                                        <p class="mb-0 fs-12 fw-bold">No. of
+                                                                            people:
+                                                                            {{ $vehicle['passengers'] }}
+                                                                        </p>
+                                                                        <p class="mb-0 fs-12 fw-bold">Price:
+                                                                            USD
+                                                                            {{ $vehicle['price'] }}</p>
+                                                                    </div>
+
+                                                                    <div class="button_border rounded-pill">
+                                                                        <div class="d-flex">
+                                                                            <button
+                                                                                class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
+                                                                                style="height: 25px;">
+                                                                                <input type="text"
+                                                                                    class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
+                                                                                    value="{{ $vehicle['id'] }}">
+                                                                                Book</button>
+                                                                                <input type="text"
+                                                                                class="vprice d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle['price'] }}">
+                                                                            <input type="text"
+                                                                                class="vpeople d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle['passengers'] }}">
+                                                                            <input type="text"
+                                                                                class="vtype d-none w-0 border-0 bg-transparent"
+                                                                                value="{{ $vehicle['vehicle'] }}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endforeach
+                                                {{-- @endif --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            @endif
                             </div>
                         </div>
                     </div>
