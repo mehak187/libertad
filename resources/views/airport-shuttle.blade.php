@@ -98,7 +98,7 @@
                                                 <div class="input-container">
                                                     <div>
                                                         <label for="" class="font-12 text-white">From</label>
-                                                        <input type="text" id="input1" value="Airport"
+                                                        <input type="text" id="locationInput" value="" placeholder="Airport"
                                                             class="form-control shadow-none bg-transparent text-white">
                                                     </div>
                                                     <div class="mt-3">
@@ -106,7 +106,7 @@
                                                     </div>
                                                     <div>
                                                         <label for="" class="font-12 text-white">To</label>
-                                                        <input type="text" id="input2" value="Hotel name"
+                                                        <input type="text" id="locationInput1" value="" placeholder="Hotel name"
                                                             class="form-control shadow-none bg-transparent text-white">
                                                     </div>
                                                 </div>
@@ -415,7 +415,7 @@
             </div>
             <div class="mt-3">
                 <label for="" class="fw-semibold">Pick-up location</label>
-                <input type="text" name="pick_location" class="form-control shadow-none" required>
+                <input type="text" id="locationInput2" name="pick_location" class="form-control shadow-none" required>
             </div>
             <div class="mt-3">
                 <label for="" class="fw-semibold">Drop-of time</label>
@@ -633,6 +633,9 @@
     </div>
     @endif
     @include('template.jslinks')
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu1gwHCSzLG9ACacQqLk-LG8oJMkarNF0&libraries=drawing,places&callback=initAutocomplete">
+</script>
     <script>
         function searchFunction() {
             var input, filter, ul, li, a, i;
