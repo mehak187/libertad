@@ -15,5 +15,6 @@ class DailyActivities extends Model
         'include',
         'des',
         'img',
+        'price',
     ];
 }

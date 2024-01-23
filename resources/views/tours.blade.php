@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{ URL::previous() }}" class="text-decoration-none">
+                        <a href="/tour1" class="text-decoration-none">
                             <i class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i>
                         </a>
                     </div>

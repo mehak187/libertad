@@ -692,6 +692,10 @@ class adminController extends Controller
             }
         return redirect('manage_sites_and_monuments')->with ('Delete','Sites and Monuments Deleted Successfully');
     }
+    public function add_packages(){
+        $data=city::all();
+        return view('admin.add_package',['cities'=>$data]);
+    }
 
     public function add_daily_activities(){
         return view('admin.add_daily_activities');
@@ -708,6 +712,7 @@ class adminController extends Controller
 
         $cityTour = DailyActivities::create([
             'name' => $request->name,
+            'price' => $request->price,
             'location' => $request->location,
             'sight_seeing' => $request->sight_seeing,
             'include' => $request->include,
@@ -766,6 +771,7 @@ class adminController extends Controller
 
         $dataToUpdate = [
             'name' => $request->name,
+            'price' => $request->price,
             'location' => $request->location,
             'sight_seeing' => $request->sight_seeing,
             'include' => $request->include,

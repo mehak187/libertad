@@ -3279,15 +3279,32 @@ overflow: hidden;
 .rating-show label.active:before {
   color: #E4C14F; 
 }
+#arrivetime::-webkit-scrollbar {
+  width: 4px;
+}
+#arrivetime::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+#arrivetime::-webkit-scrollbar-thumb {
+  background: #E2BE4E; 
+}
+#arrivetime::-webkit-scrollbar-thumb:hover {
+  background: #E2BE4E; 
+}
+#arrivetime:focus {
+  outline: none;
+}
+.right-content.ftr{
+  min-height: calc(100vh - 53px);
+  padding-bottom: 20px !important;
+}
 @media screen and (max-width: 768px){
   .right-content {
       min-height: calc(100vh - 105px);}
 }
-.right-content.ftr{
-  min-height: calc(100vh - 199px);
-  padding-bottom: 20px !important;
-}
-@media screen and (max-width: 768px){
+
+/* @media screen and (max-width: 768px){
   .right-content.ftr{
-      min-height: calc(100vh - 251px);}
-}
+      min-height: calc(100vh - 251px);
+    }
+} */

@@ -148,15 +148,6 @@ use Carbon\Carbon;
                 <i class="fas fa-times text-secondary fs-4 close-m"></i>
             </div>
             <input type="number" class="d-none" name="trip_id" value="{{ $trip->id }}">
-            {{-- <input type="text" class="d-none" name="tour_name" value="{{ $trip->name }}">
-            <input type="number" class="d-none" name="role" value="1" readonly> --}}
-            {{-- <input type="number" id="pvalue" class="d-none" value="{{ session('requestData.people') }}"
-                readonly>
-            <input type="number" name="peoplenew" id="tpriceInputn" class="d-none" value="" readonly>
-            <input type="number" name="t_price" id="tpricenew" class="d-none "
-                value="{{ session('requestData.tprice') }}" readonly>
-            <input type="date" name="date" id="datenew" class="d-none "
-                value="{{ session('requestData.date') }}" readonly> --}}
             <div class="tbody px-3" id="tbodyContainer">
                 <div class="t-data">
                     {{-- <h6 class="mt-3">Traveller 1</h6> --}}
@@ -166,9 +157,14 @@ use Carbon\Carbon;
                             id="f_name" name="f_name" required>
                     </div>
                     <div class="">
-                        <label for="l_name" class="font-12">Last Name</label>
+                        <label for="l_name" class="font-12">Family Name</label>
                         <input type="text" class="form-control shadow-none font-12" placeholder="Last Name"
                             id="l_name" name="l_name" required>
+                    </div>
+                    <div class="">
+                        <label for="nationality" class="font-12">Nationality</label>
+                        <input type="text" class="form-control shadow-none font-12" placeholder="nationality"
+                            id="nationality" name="nationality" required>
                     </div>
                     <div class="">
                         <label for="email" class="font-12">Email</label>
@@ -232,8 +228,8 @@ use Carbon\Carbon;
                     </div>
                     
                 </div>
-                <div class="d-flex align-items-center px-3">
-                    <label for="check" class="fs-6">Thank u for choosing us. Our team will contact u within 24 to 48 hours
+                <div class="d-flex align-items-center mx-3 border border-1 rounded-3 px-3 py-2">
+                    <label for="check" class="fs-6">Thank u for choosing us. Our team will contact u within 24 hours
                 </div>
                 {{-- <div class="mt-3 d-flex justify-content-end">
                     <button class="text-secondary fs-4 close-m w-100 mx-3 w-auto text-dark border-0 mybutton px-4 text-center rounded-pill py-2">OK</button>

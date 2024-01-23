@@ -58,6 +58,11 @@
                         </a>
                     </li>
                     <li class="mt-3">
+                        <a href="/manage_packages" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Packages</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
                         <a href="/manage_product_categories" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage Categories</h3>
                         </a>
