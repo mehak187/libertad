@@ -14,5 +14,6 @@ class tripbooking extends Model
         'lname',
         'email',
         'phone',
+        'nationality'
     ];
 }

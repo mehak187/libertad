@@ -36,6 +36,16 @@
                                 name="location">
                         </div>
                     </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field mt-4">
+                            <input type="number" class="w-100" placeholder="Price in USD" name="price" value="{{ $citytour->price }}">
+                            @error('price')
+                                <span class="error text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
               
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">

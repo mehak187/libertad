@@ -102,6 +102,14 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('delete_sites_and_monuments/{id}','delete_sites_and_monuments');
         Route::post('update_sites_and_monuments','update_sites_and_monuments');
 
+        Route::get('manage_packages','manage_packages');
+        Route::post('save_packages','save_packages');
+        Route::get('add_packages','add_packages');
+        Route::get('edit_packages/{id}','edit_packages');
+        Route::get('packages_details/{id}','packages_details');
+        Route::get('delete_packages/{id}','delete_packages');
+        Route::post('update_packages','update_packages');
+
         Route::get('manage_musuem','manage_musuem');
         Route::post('save_musuem','save_musuem');
         Route::get('add_musuem','add_musuem');
