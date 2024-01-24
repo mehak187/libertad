@@ -15,5 +15,6 @@ class site extends Model
         'city',
         'des',
         'img',
+        'price',
     ];
 }

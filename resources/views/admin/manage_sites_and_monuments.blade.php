@@ -34,6 +34,7 @@
                             <th>No of nights</th>
                             <th>Location</th>
                             <th>City name</th>
+                            <th>Price</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -44,6 +45,7 @@
                             <td>{{$citytour['nights']}}</td>
                             <td>{{$citytour['location']}}</td>
                             <td>{{$citytour['Cityname']}}</td>
+                            <td>{{$citytour['price']}}</td>
                             <td>
                                 <a href="{{"sites_and_monuments_details/" .$citytour['id'] }}" class="bg-success d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">View Details</a>
                                 <a href="{{"edit_sites_and_monuments/" .$citytour['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>

@@ -9,6 +9,11 @@
 </head>
 
 <body class="background_img">
+    @if (session('success'))
+    <script>
+        swal("Good job!", "{{ session('success') }}", "success");
+    </script>
+@endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -82,189 +87,73 @@
                                         <p class="golden-clr m-0 font-22">Select the Vehicle:</p>
                                     </div>
                                 </div>
-                                @if (@isset($vehicles1) && @isset($vehicles2))
-                                <div class="row me-md-0 me-sm-2">
-                                    <div class="col-xl-11">
-                                        <div class="first_slider">
-                                            <div class="autoplay_2 mb-3">
-                                                @foreach ($vehicles1 as $vehicle1)
-                                                    <div class="slide mx-2 city-result1">
-                                                        <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('uploads/' . $vehicle1['img']); ?>" alt="Avatar"
-                                                                class="image1_2_duplicate rounded_top">
-                                                            <div class="card-body card_bottom"
-                                                                style="background-color: #E2BE4E;">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-end">
-                                                                    <div>
-                                                                        <p class="mb-0 fs-12 fw-bold">
-                                                                            {{ $vehicle1['from'] }} to
-                                                                            {{ $vehicle1['to'] }}</p>
-                                                                        <p
-                                                                            class="mb-0 fs-12 fw-bold">
-                                                                            Vehicle type:
-                                                                            <span class="searchable1"> {{ $vehicle1['vehicle'] }}</span>
-                                                                        </p>
-                                                                        <p class="mb-0 fs-12 fw-bold">No. of
-                                                                            people:
-                                                                            {{ $vehicle1['passengers'] }}
-                                                                        </p>
-                                                                        <p class="mb-0 fs-12 fw-bold">Price:
-                                                                            USD
-                                                                            {{ $vehicle1['price'] }}</p>
-                                                                    </div>
-                                                                    <div class="button_border rounded-pill">
-                                                                        <div class="d-flex">
-                                                                            <button
-                                                                                class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
-                                                                                style="height: 25px;">
-                                                                                <input type="text"
-                                                                                    class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
-                                                                                    value="{{ $vehicle1['id'] }}">
-                                                                                Book</button>
-                                                                                <input type="text"
-                                                                                class="vprice d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle1['price'] }}">
-                                                                            <input type="text"
-                                                                                class="vpeople d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle1['passengers'] }}">
-                                                                            <input type="text"
-                                                                                class="vtype d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle1['vehicle'] }}">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row me-md-0 me-sm-2">
-                                    <div class="col-xl-11">
-                                        <div class="first_slider">
-                                            <div class="autoplay_2 mb-3">
-                                                @foreach ($vehicles2 as $vehicle2)
-                                                    <div class="slide mx-2 city-result">
-                                                        <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('uploads/' . $vehicle2['img']); ?>" alt="Avatar"
-                                                                class="image1_2_duplicate rounded_top">
-                                                            <div class="card-body card_bottom"
-                                                                style="background-color: #E2BE4E;">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-end">
-                                                                    <div>
-                                                                        <p class="mb-0 fs-12 fw-bold">
-                                                                            {{ $vehicle2['from'] }} to
-                                                                            {{ $vehicle2['to'] }}</p>
-                                                                        <p
-                                                                            class="mb-0 fs-12 fw-bold ">
-                                                                            Vehicle type:
-                                                                          <span class="searchable">{{ $vehicle2['vehicle'] }}</span>  
-                                                                        </p>
-                                                                        <p class="mb-0 fs-12 fw-bold">No. of
-                                                                            people:
-                                                                            {{ $vehicle2['passengers'] }}
-                                                                        </p>
-                                                                        <p class="mb-0 fs-12 fw-bold">Price:
-                                                                            USD
-                                                                            {{ $vehicle2['price'] }}</p>
-                                                                    </div>
-                                                                    <div class="button_border rounded-pill">
-                                                                        <div class="d-flex">
-                                                                            <button
-                                                                                class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
-                                                                                style="height: 25px;">
-                                                                                <input type="text"
-                                                                                    class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
-                                                                                    value="{{ $vehicle2['id'] }}">
-                                                                                Book</button>
-                                                                                <input type="text"
-                                                                                class="vprice d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle2['price'] }}">
-                                                                            <input type="text"
-                                                                                class="vpeople d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle2['passengers'] }}">
-                                                                            <input type="text"
-                                                                                class="vtype d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle2['vehicle'] }}">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @else
-                                <div class="row me-md-0 me-sm-2 my-4">
-                                    <div class="col-xl-11">
-                                        <div class="first_slider">
-                                            <div class="autoplay_2 mb-3">
-                                                {{-- @if (@isset($vehicles)) --}}
-                                                @foreach ($vehicles as $vehicle)
-                                                    <div class="slide mx-2 city-result">
-                                                        <div class="card first_card_slider border-0">
-                                                            <img src="<?php echo asset('uploads/' . $vehicle['img']); ?>" alt="Avatar"
-                                                                class="image1_2_duplicate rounded_top">
-                                                            <div class="card-body card_bottom"
-                                                                style="background-color: #E2BE4E;">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-end">
-                                                                    <div>
-                                                                        <p class="mb-0 fs-12 fw-bold">
-                                                                            {{ $vehicle['from'] }} to
-                                                                            {{ $vehicle['to'] }}</p>
-                                                                        <p class="mb-0 fs-12 fw-bold">Vehicle
-                                                                            type:
-                                                                            <span
-                                                                                class="searchable">{{ $vehicle['vehicle'] }}</span>
-                                                                        </p>
-                                                                        <p class="mb-0 fs-12 fw-bold">No. of
-                                                                            people:
-                                                                            {{ $vehicle['passengers'] }}
-                                                                        </p>
-                                                                        <p class="mb-0 fs-12 fw-bold">Price:
-                                                                            USD
-                                                                            {{ $vehicle['price'] }}</p>
-                                                                    </div>
+                                @if (count($shuttles) > 0)
 
-                                                                    <div class="button_border rounded-pill">
-                                                                        <div class="d-flex">
-                                                                            <button
-                                                                                class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
-                                                                                style="height: 25px;">
+                                    <div class="row me-md-0 me-sm-2 my-3">
+                                        <div class="col-xl-11">
+                                            <div class="first_slider">
+                                                <div class="autoplay_2 mb-3">
+                                                    @foreach ($shuttles as $shuttle)
+                                                        <div class="slide mx-2 city-result1">
+                                                            <div class="card first_card_slider border-0">
+                                                                <img src="<?php echo asset('uploads/' . $shuttle['img']); ?>" alt="Avatar"
+                                                                    class="image1_2_duplicate rounded_top">
+                                                                <div class="card-body card_bottom"
+                                                                    style="background-color: #E2BE4E;">
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-end">
+                                                                        <div>
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                {{ $shuttle['from'] }} to
+                                                                                {{ $shuttle['to'] }}</p>
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                Vehicle type:
+                                                                                <span class="searchable1">
+                                                                                    {{ $shuttle['vehicle'] }}</span>
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">No. of
+                                                                                people:
+                                                                                {{ $shuttle['passengers'] }}
+                                                                            </p>
+                                                                            <p class="mb-0 fs-12 fw-bold">Price:
+                                                                                USD
+                                                                                {{ $shuttle['price'] }}</p>
+                                                                        </div>
+                                                                        <div class="button_border rounded-pill">
+                                                                            <div class="d-flex">
+                                                                                <button
+                                                                                    class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
+                                                                                    style="height: 25px;">
+                                                                                    <input type="text"
+                                                                                        class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
+                                                                                        value="{{ $shuttle['id'] }}">
+                                                                                    Book</button>
                                                                                 <input type="text"
-                                                                                    class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
-                                                                                    value="{{ $vehicle['id'] }}">
-                                                                                Book</button>
+                                                                                    class="vprice d-none w-0 border-0 bg-transparent"
+                                                                                    value="{{ $shuttle['price'] }}">
                                                                                 <input type="text"
-                                                                                class="vprice d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle['price'] }}">
-                                                                            <input type="text"
-                                                                                class="vpeople d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle['passengers'] }}">
-                                                                            <input type="text"
-                                                                                class="vtype d-none w-0 border-0 bg-transparent"
-                                                                                value="{{ $vehicle['vehicle'] }}">
+                                                                                    class="vpeople d-none w-0 border-0 bg-transparent"
+                                                                                    value="{{ $shuttle['passengers'] }}">
+                                                                                <input type="text"
+                                                                                    class="vtype d-none w-0 border-0 bg-transparent"
+                                                                                    value="{{ $shuttle['vehicle'] }}">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
-                                                {{-- @endif --}}
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
+                                @else
+                                    <div class="d-flex align-items-center mt-3 ">
+                                        <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i>
+                                        <p class="mb-0 text-danger fs-5">No record to show</p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -274,296 +163,560 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1">
-        <div class="modal-dialog modal-booking modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Reservation</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="custom-model res-model">
+        {{-- <form action="/shuttlebooking" method="POST">
+            @csrf
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Reservation</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+           <div class="px-3">
+            <input type="number" value="" class="d-none vget" id="vgetValue" name="shuttle_id" readonly required>
+            <input type="number" value="" class="d-none pget" id="pgetValue" name="price" readonly required>
+            <input type="text" value="" class="d-none " id="peopleget" name="people" readonly required>
+            <input type="text" value="" class="d-none " id="typeget" name="type" readonly required>
+            <div class="mt-3">
+                <label for="" class="fw-semibold">Date of the ride</label>
+                <input type="date" name="date" class="form-control shadow-none" id="date" required>
+            </div>
+            <div class="mt-3">
+                <label for="" class="fw-semibold">Pick-Up time</label>
+                <select name="pick_time" class="input time  w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none bg-white grey-bg" id="arrivetime"  required>
+                    <option value="00:00:00">12:00 AM</option>
+                    <option value="00:30:00">12:30 AM</option>
+                    <option value="01:00:00">01:00 AM</option>
+                    <option value="01:30:00">01:30 AM</option>
+                    <option value="02:00:00">02:00 AM</option>
+                    <option value="02:30:00">02:30 AM</option>
+                    <option value="03:00:00">03:00 AM</option>
+                    <option value="03:30:00">03:30 AM</option>
+                    <option value="04:00:00">04:00 AM</option>
+                    <option value="04:30:00">04:30 AM</option>
+                    <option value="05:00:00">05:00 AM</option>
+                    <option value="05:30:00">05:30 AM</option>
+                    <option value="06:00:00">06:00 AM</option>
+                    <option value="06:30:00">06:30 AM</option>
+                    <option value="07:00:00">07:00 AM</option>
+                    <option value="07:30:00">07:30 AM</option>
+                    <option value="08:00:00">08:00 AM</option>
+                    <option value="08:30:00">08:30 AM</option>
+                    <option value="09:00:00">09:00 AM</option>
+                    <option value="09:30:00">09:30 AM</option>
+                    <option value="10:00:00">10:00 AM</option>
+                    <option value="10:30:00">10:30 AM</option>
+                    <option value="11:00:00">11:00 AM</option>
+                    <option value="11:30:00">11:30 AM</option>
+                    <option value="12:00:00">12:00 PM</option>
+                    <option value="12:30:00">12:30 PM</option>
+                    <option value="13:00:00">01:00 PM</option>
+                    <option value="13:30:00">01:30 PM</option>
+                    <option value="14:00:00">02:00 PM</option>
+                    <option value="14:30:00">02:30 PM</option>
+                    <option value="15:00:00">03:00 PM</option>
+                    <option value="15:30:00">03:30 PM</option>
+                    <option value="16:00:00">04:00 PM</option>
+                    <option value="16:30:00">04:30 PM</option>
+                    <option value="17:00:00">05:00 PM</option>
+                    <option value="17:30:00">05:30 PM</option>
+                    <option value="18:00:00">06:00 PM</option>
+                    <option value="18:30:00">06:30 PM</option>
+                    <option value="19:00:00">07:00 PM</option>
+                    <option value="19:30:00">07:30 PM</option>
+                    <option value="20:00:00">08:00 PM</option>
+                    <option value="20:30:00">08:30 PM</option>
+                    <option value="21:00:00">09:00 PM</option>
+                    <option value="21:30:00">09:30 PM</option>
+                    <option value="22:00:00">10:00 PM</option>
+                    <option value="22:30:00">10:30 PM</option>
+                    <option value="23:00:00">11:00 PM</option>
+                    <option value="23:30:00">11:30 PM</option>
+                </select>
+            </div>
+            <div class="mt-3">
+                <label for="" class="fw-semibold">Pick-up location</label>
+                <input type="text" id="locationInput2" name="pick_location" class="form-control shadow-none" required>
+            </div>
+            <div class="mt-3">
+                <label for="" class="fw-semibold">Drop-of time</label>
+                <select name="drop_time" class="input time  w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none bg-white grey-bg" id="arrivetime"  required>
+                    <option value="00:00:00">12:00 AM</option>
+                    <option value="00:30:00">12:30 AM</option>
+                    <option value="01:00:00">01:00 AM</option>
+                    <option value="01:30:00">01:30 AM</option>
+                    <option value="02:00:00">02:00 AM</option>
+                    <option value="02:30:00">02:30 AM</option>
+                    <option value="03:00:00">03:00 AM</option>
+                    <option value="03:30:00">03:30 AM</option>
+                    <option value="04:00:00">04:00 AM</option>
+                    <option value="04:30:00">04:30 AM</option>
+                    <option value="05:00:00">05:00 AM</option>
+                    <option value="05:30:00">05:30 AM</option>
+                    <option value="06:00:00">06:00 AM</option>
+                    <option value="06:30:00">06:30 AM</option>
+                    <option value="07:00:00">07:00 AM</option>
+                    <option value="07:30:00">07:30 AM</option>
+                    <option value="08:00:00">08:00 AM</option>
+                    <option value="08:30:00">08:30 AM</option>
+                    <option value="09:00:00">09:00 AM</option>
+                    <option value="09:30:00">09:30 AM</option>
+                    <option value="10:00:00">10:00 AM</option>
+                    <option value="10:30:00">10:30 AM</option>
+                    <option value="11:00:00">11:00 AM</option>
+                    <option value="11:30:00">11:30 AM</option>
+                    <option value="12:00:00">12:00 PM</option>
+                    <option value="12:30:00">12:30 PM</option>
+                    <option value="13:00:00">01:00 PM</option>
+                    <option value="13:30:00">01:30 PM</option>
+                    <option value="14:00:00">02:00 PM</option>
+                    <option value="14:30:00">02:30 PM</option>
+                    <option value="15:00:00">03:00 PM</option>
+                    <option value="15:30:00">03:30 PM</option>
+                    <option value="16:00:00">04:00 PM</option>
+                    <option value="16:30:00">04:30 PM</option>
+                    <option value="17:00:00">05:00 PM</option>
+                    <option value="17:30:00">05:30 PM</option>
+                    <option value="18:00:00">06:00 PM</option>
+                    <option value="18:30:00">06:30 PM</option>
+                    <option value="19:00:00">07:00 PM</option>
+                    <option value="19:30:00">07:30 PM</option>
+                    <option value="20:00:00">08:00 PM</option>
+                    <option value="20:30:00">08:30 PM</option>
+                    <option value="21:00:00">09:00 PM</option>
+                    <option value="21:30:00">09:30 PM</option>
+                    <option value="22:00:00">10:00 PM</option>
+                    <option value="22:30:00">10:30 PM</option>
+                    <option value="23:00:00">11:00 PM</option>
+                    <option value="23:30:00">11:30 PM</option>
+                </select>
+            </div>
+            <div class="mt-3">
+                <label for="" class="fw-semibold">Drop-of location</label>
+                <input type="address" id="locationInput3" name="drop_location" class="form-control shadow-none" required>
+            </div>
+           </div>
+            <div class="border-1 border-top mt-3 d-flex justify-content-end">
+                <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Confirm and pay</button>
+            </div>
+        </form> --}}
+        <form action="/shuttlebooking" method="POST">
+            @csrf
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Reservation</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+            <div class="px-3">
+               <input type="number" value="" class="vget d-none" id="vgetValue" name="shuttle_id" readonly required >
+                  <input type="number" value="" class="d-none pget" id="pgetValue" name="price" readonly required>
+                <input type="text" value="" class="d-none " id="peopleget" name="people" readonly required>
+                <input type="text" value="" class="d-none" id="typeget" name="type" readonly required>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Date of the ride</label>
+                    <input type="date" name="date" class="form-control shadow-none" id="date" required>
+                </div> 
+                 <div class="mt-3">
+                    <label for="" class="fw-semibold">Pick-Up time</label>
+                    <select name="pick_time" class="input time  w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none bg-white grey-bg" id="arrivetime"  required>
+                        <option value="00:00:00">12:00 AM</option>
+                        <option value="00:30:00">12:30 AM</option>
+                        <option value="01:00:00">01:00 AM</option>
+                        <option value="01:30:00">01:30 AM</option>
+                        <option value="02:00:00">02:00 AM</option>
+                        <option value="02:30:00">02:30 AM</option>
+                        <option value="03:00:00">03:00 AM</option>
+                        <option value="03:30:00">03:30 AM</option>
+                        <option value="04:00:00">04:00 AM</option>
+                        <option value="04:30:00">04:30 AM</option>
+                        <option value="05:00:00">05:00 AM</option>
+                        <option value="05:30:00">05:30 AM</option>
+                        <option value="06:00:00">06:00 AM</option>
+                        <option value="06:30:00">06:30 AM</option>
+                        <option value="07:00:00">07:00 AM</option>
+                        <option value="07:30:00">07:30 AM</option>
+                        <option value="08:00:00">08:00 AM</option>
+                        <option value="08:30:00">08:30 AM</option>
+                        <option value="09:00:00">09:00 AM</option>
+                        <option value="09:30:00">09:30 AM</option>
+                        <option value="10:00:00">10:00 AM</option>
+                        <option value="10:30:00">10:30 AM</option>
+                        <option value="11:00:00">11:00 AM</option>
+                        <option value="11:30:00">11:30 AM</option>
+                        <option value="12:00:00">12:00 PM</option>
+                        <option value="12:30:00">12:30 PM</option>
+                        <option value="13:00:00">01:00 PM</option>
+                        <option value="13:30:00">01:30 PM</option>
+                        <option value="14:00:00">02:00 PM</option>
+                        <option value="14:30:00">02:30 PM</option>
+                        <option value="15:00:00">03:00 PM</option>
+                        <option value="15:30:00">03:30 PM</option>
+                        <option value="16:00:00">04:00 PM</option>
+                        <option value="16:30:00">04:30 PM</option>
+                        <option value="17:00:00">05:00 PM</option>
+                        <option value="17:30:00">05:30 PM</option>
+                        <option value="18:00:00">06:00 PM</option>
+                        <option value="18:30:00">06:30 PM</option>
+                        <option value="19:00:00">07:00 PM</option>
+                        <option value="19:30:00">07:30 PM</option>
+                        <option value="20:00:00">08:00 PM</option>
+                        <option value="20:30:00">08:30 PM</option>
+                        <option value="21:00:00">09:00 PM</option>
+                        <option value="21:30:00">09:30 PM</option>
+                        <option value="22:00:00">10:00 PM</option>
+                        <option value="22:30:00">10:30 PM</option>
+                        <option value="23:00:00">11:00 PM</option>
+                        <option value="23:30:00">11:30 PM</option>
+                    </select>
                 </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="">
-                            <label for="" class="font-12">First name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="First name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Last name</label>
-                            <input type="text" class="form-control shadow-none font-12" placeholder="Last name">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Email</label>
-                            <input type="email" class="form-control shadow-none font-12" placeholder="Email">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Confirm Email</label>
-                            <input type="email" class="form-control shadow-none font-12"
-                                placeholder="Confirm Email">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Phone Number</label>
-                            <input type="tel" class="form-control shadow-none font-12" placeholder="Contact">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Flight number</label>
-                            <input type="number" class="form-control shadow-none font-12"
-                                placeholder="Enter flight number">
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Pickup time</label>
-                                <select name="arrivetime" class="input time font-12 w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none font-12 bg-white grey-bg" id="arrivetime"  type="time">
-                                    <option value="00:00:00">12:00 AM</option>
-                                    <option value="00:30:00">12:30 AM</option>
-                                    <option value="01:00:00">01:00 AM</option>
-                                    <option value="01:30:00">01:30 AM</option>
-                                    <option value="02:00:00">02:00 AM</option>
-                                    <option value="02:30:00">02:30 AM</option>
-                                    <option value="03:00:00">03:00 AM</option>
-                                    <option value="03:30:00">03:30 AM</option>
-                                    <option value="04:00:00">04:00 AM</option>
-                                    <option value="04:30:00">04:30 AM</option>
-                                    <option value="05:00:00">05:00 AM</option>
-                                    <option value="05:30:00">05:30 AM</option>
-                                    <option value="06:00:00">06:00 AM</option>
-                                    <option value="06:30:00">06:30 AM</option>
-                                    <option value="07:00:00">07:00 AM</option>
-                                    <option value="07:30:00">07:30 AM</option>
-                                    <option value="08:00:00">08:00 AM</option>
-                                    <option value="08:30:00">08:30 AM</option>
-                                    <option value="09:00:00">09:00 AM</option>
-                                    <option value="09:30:00">09:30 AM</option>
-                                    <option value="10:00:00">10:00 AM</option>
-                                    <option value="10:30:00">10:30 AM</option>
-                                    <option value="11:00:00">11:00 AM</option>
-                                    <option value="11:30:00">11:30 AM</option>
-                                    <option value="12:00:00">12:00 PM</option>
-                                    <option value="12:30:00">12:30 PM</option>
-                                    <option value="13:00:00">01:00 PM</option>
-                                    <option value="13:30:00">01:30 PM</option>
-                                    <option value="14:00:00">02:00 PM</option>
-                                    <option value="14:30:00">02:30 PM</option>
-                                    <option value="15:00:00">03:00 PM</option>
-                                    <option value="15:30:00">03:30 PM</option>
-                                    <option value="16:00:00">04:00 PM</option>
-                                    <option value="16:30:00">04:30 PM</option>
-                                    <option value="17:00:00">05:00 PM</option>
-                                    <option value="17:30:00">05:30 PM</option>
-                                    <option value="18:00:00">06:00 PM</option>
-                                    <option value="18:30:00">06:30 PM</option>
-                                    <option value="19:00:00">07:00 PM</option>
-                                    <option value="19:30:00">07:30 PM</option>
-                                    <option value="20:00:00">08:00 PM</option>
-                                    <option value="20:30:00">08:30 PM</option>
-                                    <option value="21:00:00">09:00 PM</option>
-                                    <option value="21:30:00">09:30 PM</option>
-                                    <option value="22:00:00">10:00 PM</option>
-                                    <option value="22:30:00">10:30 PM</option>
-                                    <option value="23:00:00">11:00 PM</option>
-                                    <option value="23:30:00">11:30 PM</option>
-                                </select>
-                        </div>
-                        <div class="">
-                            <label for="" class="font-12">Pickup date</label>
-                            <input type="date" class="form-control shadow-none font-12"
-                                placeholder="Departure time">
-                        </div>
-                    </form>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Pick-up location</label>
+                    <input type="text" id="locationInput2" name="pick_location" class="form-control shadow-none" required>
                 </div>
-                <div class="modal-footer">
-                    <button data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
-                        class="btn mybutton px-4 border-0 rounded-pill">Confirm & Pay</button>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Drop-of time</label>
+                    <select name="drop_time" class="input time  w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none bg-white grey-bg" id="arrivetime"  required>
+                        <option value="00:00:00">12:00 AM</option>
+                        <option value="00:30:00">12:30 AM</option>
+                        <option value="01:00:00">01:00 AM</option>
+                        <option value="01:30:00">01:30 AM</option>
+                        <option value="02:00:00">02:00 AM</option>
+                        <option value="02:30:00">02:30 AM</option>
+                        <option value="03:00:00">03:00 AM</option>
+                        <option value="03:30:00">03:30 AM</option>
+                        <option value="04:00:00">04:00 AM</option>
+                        <option value="04:30:00">04:30 AM</option>
+                        <option value="05:00:00">05:00 AM</option>
+                        <option value="05:30:00">05:30 AM</option>
+                        <option value="06:00:00">06:00 AM</option>
+                        <option value="06:30:00">06:30 AM</option>
+                        <option value="07:00:00">07:00 AM</option>
+                        <option value="07:30:00">07:30 AM</option>
+                        <option value="08:00:00">08:00 AM</option>
+                        <option value="08:30:00">08:30 AM</option>
+                        <option value="09:00:00">09:00 AM</option>
+                        <option value="09:30:00">09:30 AM</option>
+                        <option value="10:00:00">10:00 AM</option>
+                        <option value="10:30:00">10:30 AM</option>
+                        <option value="11:00:00">11:00 AM</option>
+                        <option value="11:30:00">11:30 AM</option>
+                        <option value="12:00:00">12:00 PM</option>
+                        <option value="12:30:00">12:30 PM</option>
+                        <option value="13:00:00">01:00 PM</option>
+                        <option value="13:30:00">01:30 PM</option>
+                        <option value="14:00:00">02:00 PM</option>
+                        <option value="14:30:00">02:30 PM</option>
+                        <option value="15:00:00">03:00 PM</option>
+                        <option value="15:30:00">03:30 PM</option>
+                        <option value="16:00:00">04:00 PM</option>
+                        <option value="16:30:00">04:30 PM</option>
+                        <option value="17:00:00">05:00 PM</option>
+                        <option value="17:30:00">05:30 PM</option>
+                        <option value="18:00:00">06:00 PM</option>
+                        <option value="18:30:00">06:30 PM</option>
+                        <option value="19:00:00">07:00 PM</option>
+                        <option value="19:30:00">07:30 PM</option>
+                        <option value="20:00:00">08:00 PM</option>
+                        <option value="20:30:00">08:30 PM</option>
+                        <option value="21:00:00">09:00 PM</option>
+                        <option value="21:30:00">09:30 PM</option>
+                        <option value="22:00:00">10:00 PM</option>
+                        <option value="22:30:00">10:30 PM</option>
+                        <option value="23:00:00">11:00 PM</option>
+                        <option value="23:30:00">11:30 PM</option>
+                    </select>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Drop-of location</label>
+                    <input type="address" id="locationInput3" name="drop_location" class="form-control shadow-none" required>
+                </div> 
+               </div>
+             <div class="border-1 border-top mt-3 d-flex justify-content-end">
+                <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Confirm and pay</button>
+            </div>
+        </form>
+    </div>
+    @if (session('showm'))
+    <div class="custom-model show-model">
+        <form action="/shuttle_check" method="POST">
+            @csrf
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5 ">Summary</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+            <div class="px-3">
+                <div class="">
+                        <label for="" class="fw-semibold">From</label>
+                        <p class="shadow-none font-12">{{ session('booking')->pick_location }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">To</label>
+                    <p class="shadow-none font-12">{{ session('booking')->drop_location }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Date of the ride</label>
+                    <p class="shadow-none font-12">{{ session('booking')->date }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Pick-Up Time</label>
+                    <p class="shadow-none font-12">{{ session('booking')->pick_time }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Drop-off Time</label>
+                    <p class="shadow-none font-12">{{ session('booking')->drop_time }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Car Type</label>
+                    <p class="shadow-none font-12">{{ session('booking')->type }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">No. of passengers</label>
+                    <p class="shadow-none font-12">{{ session('booking')->people }}</p>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="fw-semibold">Price</label>
+                    <p class="shadow-none font-12">{{ session('booking')->price }}</p>
+                </div>
+                <input type="" name="totalamount" value="{{ session('booking')->price }}" class="d-none" readonly>
+                <input type="" name="booking_id" value="{{ session('booking')->id }}" class='d-none' readonly>
+                <h6>Terms $ Conditions/Cancellation policy</h6>
+            </div>
+            <div class="d-flex align-items-center px-3">
+                <input type="checkbox" id="check" class="me-2 mt-0" name="check" required>
+                <label for="check" class="font-12">I agree to terms and conditions.
+            </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <input type="submit" value="Continue & Pay"
+                    class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 text-center rounded-pill py-2">
+            </div>
+        </form>
+    </div>
+    @endif
+    @if (session('paymentm'))
+    <div class="custom-model payment-model">
+        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
+            data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+            @csrf
+            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                <h1 class="modal-title fs-5">Payment methods</h1>
+                <i class="fas fa-times text-secondary fs-4 close-m"></i>
+            </div>
+
+            <div class="row d-flex align-items-center justify-content-between px-3">
+                <div class="col-6 form-check px-3">
+                    <label class="form-check-label  ms-3" for="flexRadioDefault1" id="credit">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault1" checked>
+                        Credit Card
+                    </label>
+                </div>
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                    <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                    <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Summary</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            {{-- -----credit card---- --}}
+            <div id="credit-det" class="px-3 ">
+                <div class="mt-3">
+                    <input type="text" class="form-control shadow-none" name="name"
+                        placeholder="Cardholder name" required>
                 </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div>
-                            <label for="" class="fw-semibold">From</label>
-                            <p class="shadow-none font-12">Cairo International Airport</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">To</label>
-                            <p class="shadow-none font-12">Abu Simbel Airport</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Date of the ride</label>
-                            <p class="shadow-none font-12">8/18/2023</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Time</label>
-                            <p class="shadow-none font-12">6:31 PM</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Car Model</label>
-                            <p class="shadow-none font-12">Toyota Land Cruiser V8</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">No. of passengers</label>
-                            <p class="shadow-none font-12">2</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Price</label>
-                            <p class="shadow-none font-12">200$</p>
-                        </div>
-                        <div class="d-flex align-items-start">
-                            <input type="checkbox" class="form-check shadow-none" id="chk">
-                            <label for="chk" class="font-12 ps-2 bg-white">Lorem ipsum dolor sit amet,
-                                consectetur
-                                adipiscing elit. Vivamus ac odio ac justo facilisis fringilla ac eu justo. I have read
-                                and agree to the Terms and Conditions / Cancellation Policy. I am Agree on terms and
-                                conditions.</label>
-                        </div>
-                    </form>
+                <div class="mt-3">
+                    <input type="number" name="" id="flexRadioDefault1" autocomplete='off'
+                        placeholder="Card number" class='form-control shadow-none card-number' required>
                 </div>
-                <div class="modal-footer">
-                    <button data-bs-target="#exampleModalToggle5" data-bs-toggle="modal"
-                        class="btn mybutton px-4 border-0 rounded-pill">Pay secure</button>
+                <div class="mt-3">
+                    <input type="text" class='form-control card-number d-none'
+                        value="{{ session('requestData.totalamount') }}" name="amount" readonly>
+                    <input type="text" class='form-control card-number d-none'
+                        value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
+                    <input type="" name="book_role" value="2" class='d-none' readonly>
+                </div>
+                <div class="row mt-3">
+                    <div class='col-md-6 form-group expiration required'>
+                        <input class='form-control card-expiry-month' placeholder='MM' size='2'
+                            type='text' required>
+                    </div>
+                    <div class='col-md-6 col-md-4 form-group expiration required'>
+                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                            type='text' required>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV"
+                        maxlength='4' required>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel5"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Payment methods</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            {{-- ----paypal---- --}}
+            <div class="mt-3 form-check " class="px-3">
+                <label class="form-check-label  ms-3" for="flexRadioDefault2" id="paypal">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                        id="flexRadioDefault2">
+                    <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
+                </label>
+            </div>
+
+            <div class="mt-3 ps-4 d-flex align-items-center px-3">
+                <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
+            </div>
+            <div class="px-3" id="paypal-det">
+                <div class="mt-3">
+                    <label for="">Email</label>
+                    <input type="text" name="" id="" class="form-control shadow-none"
+                        placeholder="Email">
                 </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="row d-flex align-items-center justify-content-between px-3">
-                            <div class="col-6 form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1" checked>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Credit Card
-                                </label>
-                            </div>
-
-                            <div class="col-6 d-flex align-items-center justify-content-end">
-                                <img class="payment-logos" src="./imgs/VISA-Logo-2014.png" alt="">
-                                <img class="payment-logos" src="./imgs/Mastercard-Logo.png" alt="">
-                                <img class="payment-logos" src="./imgs/Emex-logo.png" alt="">
-                            </div>
-                        </div>
-                        <div id="has" style="display: block;">
-
-
-                            <div class="mt-3">
-                                <input type="number" class="form-control shadow-none" placeholder="Card number">
-                            </div>
-                            <div class="mt-3">
-                                <input type="text" name="" id="flexRadioDefault1"
-                                    class="form-control shadow-none" placeholder="Cardholder name">
-                            </div>
-                            <div class="mt-3">
-                                <input type="text" id="monthYearInput" class="form-control shadow-none"
-                                    placeholder="MM/YYYY" maxlength="7" pattern="\d{2}/\d{4}"
-                                    title="Please enter a valid Month/Year (MM/YYYY)">
-                            </div>
-                            <div class="mt-3">
-                                <input type="text" class="form-control shadow-none" placeholder="CCV">
-                            </div>
-                        </div>
-                        <div class="mt-3 form-check">
-                            <input class=" form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                <img class="w-25" src="./imgs/paypal-logo-png-16.png" alt="">
-                            </label>
-                        </div>
-
-                        <div class="mt-3 ps-4 d-flex align-items-center">
-                            <img class="payment-logoslast" src="./imgs/VISA-Logo-2014.png" alt="">
-                            <img class="payment-logoslast" src="./imgs/Mastercard-Logo.png" alt="">
-                            <img class="payment-logoslast" src="./imgs/Emex-logo.png" alt="">
-                        </div>
-                        <div id="asd" style="display: none;">
-                            <div class="mt-3">
-                                <label for="">Email</label>
-                                <input type="text" name="" id="" class="form-control shadow-none"
-                                    placeholder="Email">
-                            </div>
-                            <div class="mt-3">
-                                <label for="">Password</label>
-                                <input type="password" class="text-dark form-control shadow-none"
-                                    placeholder="Password">
-                            </div>
-                            <div class="text-center mt-3">
-                                <input type="submit" value="Login"
-                                    class="golden-bg border-0 rounded-pill px-3 py-2">
-                            </div>
-                        </div>
-                    </form>
+                <div class="mt-3">
+                    <label for="">Password</label>
+                    <input type="password" class="text-dark form-control shadow-none" placeholder="Password">
                 </div>
-                <div class="modal-footer">
-                    <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle6 "
-                        class="btn mybutton px-4 border-0 rounded-pill">Pay Secure</button>
+                <div class="text-center mt-3">
+                    <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle6" aria-hidden="true" aria-labelledby="exampleModalToggleLabel6"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel5">Summary</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div>
-                            <label for="" class="fw-semibold">Product description</label>
-                            <p class="shadow-none font-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Vivamus ac odio ac justo facilisis fringilla ac eu justo.</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Qty</label>
-                            <p class="shadow-none font-12">4</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Receipt No.</label>
-                            <p class="shadow-none font-12">200</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Date Paid</label>
-                            <p class="shadow-none font-12">8/18/2023</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Payment Method</label>
-                            <p class="shadow-none font-12">PayPal</p>
-                        </div>
-                        <div>
-                            <label for="" class="w-100 fw-semibold">Logo</label>
-                            <img class="w-25" src="./imgs/logo_text.png" alt="">
-                            <p class="d-flex">Liberta<span class="way_color">d</span>elmundo</p>
-                        </div>
-                        <div class="mt-3">
-                            <label for="" class="fw-semibold">Person name</label>
-                            <p class="shadow-none font-12">Ashir Ali Bhalli</p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button data-bs-toggle="modal" aria-label="Close"
-                        class="btn mybutton px-4 border-0 rounded-pill">Send Email</button>
-                </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <input type="submit" value="Pay Secure"
+                    class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
             </div>
-        </div>
+        </form>
     </div>
+    @endif
     @include('template.jslinks')
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu1gwHCSzLG9ACacQqLk-LG8oJMkarNF0&libraries=drawing,places&callback=initAutocomplete">
+    </script>
+    <script>
+        function searchFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById('myinput');
+            filter = input.value.toUpperCase();
+            li = document.getElementsByClassName('city-result');
+
+            cusall = document.getElementsByClassName('customer-all-main');
+            var resultsFound = false; // initialize the flag to false
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByClassName('searchable')[0];
+                if (a.innerHTML.toUpperCase().startsWith(filter)) {
+                    li[i].style.display = "";
+                    resultsFound = true;
+                } else {
+                    li[i].style.display = 'none';
+                }
+            }
+            document.getElementById('filter-heading').style.display = 'none';
+            for (var j = 0; j < cusall.length; j++) {
+                cusall[j].style.display = 'none';
+            }
+            if (!resultsFound) {
+                document.getElementById('searcherror').style.display = 'block';
+                document.getElementById('error_msg').style.display = 'none';
+
+            } else {
+                document.getElementById('searcherror').style.display = 'none';
+            }
+        }
+
+        $(".res-model").hide();
+        $(".open-book").click(function() {
+            $(".book-model").show();
+        });
+        $(".open-res").click(function() {
+            $(".res-model").show();
+        });
+        $(".close-m").click(function() {
+            $(".book-model").hide();
+            $(".res-model").hide();
+            $(".show-model").hide();
+            $(".payment-model").hide();
+        });
+        $(document).ready(function() {
+            $("#paypal-det").hide();
+            $("#credit").click(function() {
+                $("#credit-det").show();
+                $("#paypal-det").hide();
+            });
+            $("#paypal").click(function() {
+                $("#credit-det").hide();
+                $("#paypal-det").show();
+            });
+        });
+        $(document).ready(function() {
+            var currentDate = new Date();
+            var tomorrow = new Date();
+            tomorrow.setDate(currentDate.getDate() + 1);
+            var formattedDate = tomorrow.toISOString().split('T')[0];
+            $('#date').attr('min', formattedDate);
+        });
+
+        $(document).ready(function() {
+            $('.vid').click(function() {
+                var vidValue = $(this).val();
+                var vpValue = $(this).parent().siblings(".vprice").val();
+                var vpeople = $(this).parent().siblings(".vpeople").val();
+                var vtype = $(this).parent().siblings(".vtype").val();
+                $('#vgetValue').val(vidValue);
+                $('#pgetValue').val(vpValue);
+                $('#peopleget').val(vpeople);
+                $('#typeget').val(vtype);
+            });
+        });
+    </script>
 </body>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<script type="text/javascript">
+    $(function() {
+
+        var $form = $(".require-validation");
+
+        $('form.require-validation').bind('submit', function(e) {
+            var $form = $(".require-validation"),
+                inputSelector = ['input[type=email]', 'input[type=password]',
+                    'input[type=text]', 'input[type=file]',
+                    'textarea'
+                ].join(', '),
+                $inputs = $form.find('.required').find(inputSelector),
+                $errorMessage = $form.find('div.error'),
+                valid = true;
+            $errorMessage.addClass('hide');
+
+            $('.has-error').removeClass('has-error');
+            $inputs.each(function(i, el) {
+                var $input = $(el);
+                if ($input.val() === '') {
+                    $input.parent().addClass('has-error');
+                    $errorMessage.removeClass('hide');
+                    e.preventDefault();
+                }
+            });
+
+            if (!$form.data('cc-on-file')) {
+                e.preventDefault();
+                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val()
+                }, stripeResponseHandler);
+            }
+
+        });
+
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                $('.error')
+                    .removeClass('hide')
+                    .find('.alert')
+                    .text(response.error.message);
+            } else {
+                var token = response['id'];
+                $form.find('input[type=text]').empty();
+                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                $form.get(0).submit();
+            }
+        }
+    });
+</script>
 
 </html>

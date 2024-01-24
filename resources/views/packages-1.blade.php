@@ -76,18 +76,20 @@
                         </div>
 
                         <div class="autoplay_1 second_slider my-3 pb-3">
-                            <a href="{{ asset('pakage') }}" class="text-decoration-none text-dark">
+                          @foreach ($packages as $package)
+                            <a href="{{"package_details/" .$package['id'] }}" class="text-decoration-none text-dark">
                                 <div class="card mx-3 first_card_slider border-0">
-                                    <img src="./imgs/slider_img_1.png" alt="Avatar" class="image1_2 rounded_top">
+                                    <img src="<?php echo asset('uploads/' . $package['img'])?>" alt="" class="image1_2 rounded_top">
                                     <div class="card-body card_bottom" style="background-color: #E2BE4E;">
                                         <div class="d-flex justify-content-between">
-                                            <p class="mb-0 fs-12">Package#1</p>
-                                            <p class="mb-0 fs-12">USD 65</p>
+                                            <p class="mb-0 fs-12">{{$package['name']}}</p>
+                                            <p class="mb-0 fs-12">{{$package['price']}} USD</p>
                                         </div>
-                                        <p class="mb-0 fs-12">No. of Nights : 0</p>
+                                        <p class="mb-0 fs-12">No. of Nights : {{$package['nights']}}</p>
                                     </div>
                                 </div>
                             </a>
+                            @endforeach
                         </div>
                         @includeif('template.social_mbl')
 

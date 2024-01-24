@@ -93,13 +93,15 @@
                                         <h5 class="my-auto text-uppercase" style="color: #E2BE4E;">Airport shuttle:</h5>
                                     </div>
                                     <div class="container-fluid">
+                                       <form action="search_vehicle" method="GET">
+                                        @csrf
                                         <div class="d-flex align-items-end">
                                             <div class="input-des d-flex align-items-center p-0 w-100">
                                                 <div class="input-container">
                                                     <div>
                                                         <label for="" class="font-12 text-white">From</label>
                                                         <input type="text" id="locationInput" value="" placeholder="Airport"
-                                                            class="form-control shadow-none bg-transparent text-white">
+                                                            class="form-control shadow-none bg-transparent text-white" name="from" required>
                                                     </div>
                                                     <div class="mt-3">
                                                         <span id="swap-icon" onclick="swapFields()">🔄</span>
@@ -107,22 +109,17 @@
                                                     <div>
                                                         <label for="" class="font-12 text-white">To</label>
                                                         <input type="text" id="locationInput1" value="" placeholder="Hotel name"
-                                                            class="form-control shadow-none bg-transparent text-white">
+                                                            class="form-control shadow-none bg-transparent text-white" name="to" required>
                                                     </div>
                                                 </div>
                                                 <div class="">
                                                     <label for="" class="fs-12 text-white">Number of
                                                         people</label>
                                                     <input type="number" value="1" class="form-control text-white"
-                                                        name="" id=""
-                                                        style="background-color: transparent;">
+                                                        name="people" id=""
+                                                        style="background-color: transparent;" required>
                                                 </div>
-                                                <div class="">
-                                                    <label for="" class="fs-12 text-white">Check in Date</label>
-                                                    <input type="date" name="" class="form-control"
-                                                        id=""
-                                                        style="background-color: transparent; color: white;">
-                                                </div>
+                                   
                                                 <div class=" d-flex align-items-end">
                                                     <div class="">
                                                         <a href="{{ asset('vehicle') }}">
@@ -136,6 +133,7 @@
                                             </div>
 
                                         </div>
+                                       </form>
                                     </div>
                                 </div>
                                 <div class="container-fluid">
@@ -472,7 +470,7 @@
             </div>
             <div class="mt-3">
                 <label for="" class="fw-semibold">Drop-of location</label>
-                <input type="address" name="drop_location" class="form-control shadow-none" required>
+                <input type="address" id="locationInput3" name="drop_location" class="form-control shadow-none" required>
             </div>
            </div>
             <div class="border-1 border-top mt-3 d-flex justify-content-end">

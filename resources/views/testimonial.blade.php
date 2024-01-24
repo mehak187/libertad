@@ -401,8 +401,61 @@
                             <i class="bi bi-chevron-left"></i>
                         </div>
                     </div>
-                @endif
-                    
+                    @endif
+                    @if (count($packageRatings) > 0)
+                        <h2 class="sky-clr fw-bold mt-2 ps-3"><span class="golden-clr">Packages</h2>
+                        <div class="position-relative mt-5 h-100">
+                            <div class="prev_arrow11">
+                                <i class="bi bi-chevron-right"></i>
+                            </div>
+                            <div class="row mt-3 testimonial11">
+                                @foreach ($packageRatings as $packageRating)
+                                <div class="col-12 m-3">
+                                    <div class="border-golden sky-bg rounded-3 p-3 sld">
+                                        <div class="blue-light-bg rounded-3 p-3">
+                                            <div class="d-flex align-items-center ">
+                                                <div class="">
+                                                    <i class="fa-solid fa-user fs-1"></i>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <input type="hidden" value="{{$packageRating['star']}}" name="star" class="d-none">
+                                                        <div class="rating-show border-0 d-flex" direction="ltr" style="max-width: 100%">
+                                                        <label class="py-0" for="star5"></label>
+                                                        <label class="py-0" for="star4"></label>
+                                                        <label class="py-0" for="star3"></label>
+                                                        <label class="py-0" for="star2"></label>
+                                                        <label class="py-0" for="star1"></label>
+                                                        </div>
+                                                        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                                        <script>
+                                                        $(document).ready(function(){
+                                                            var starValue = $('input[name="star"]').val();
+                                                            $('.rating-show label').removeClass('active');
+                                                            for (var i = 1; i <= starValue; i++) {
+                                                            $('.rating-show label:nth-child(' + i + ')').addClass('active');
+                                                            }
+                                                        });
+                                                        </script>
+                                                    </div>
+                                                    <div>
+                                                        <h5 class="m-0 ms-2">{{$packageRating['name']}} {{$packageRating['lastname']}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="mt-3">{{$packageRating['review']}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            <div class="next_arrow11">
+                                <i class="bi bi-chevron-left"></i>
+                            </div>
+                        </div>
+                    @endif
                 @else
                     <div class="d-flex align-items-center mt-3 ">
                         <i class="fas fa-exclamation-triangle text-danger fs-4 me-2"></i><p class="text-danger fs-5 mb-0">No record to show</p>
