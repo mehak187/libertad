@@ -71,6 +71,9 @@
                                 elseif($role == 7) {
                                   $role = "Daily Activities";
                                 }
+                                elseif($role == 9) {
+                                  $role = "Sites and monuments";
+                                }
                             @endphp
                             <td>{{$role}} - {{$payment['tour_name']}}</td>
                             <td>  

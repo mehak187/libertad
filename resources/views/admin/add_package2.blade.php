@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <h4 class="rounded-8 text-capitalize create-head px-3 py-3 mt-3">Add Packages</h4>
-                    <form action="save_sites_and_monuments" method="POST" enctype="multipart/form-data" class="mt-2">
+                    <form action="save_packages2" method="POST" enctype="multipart/form-data" class="mt-2">
                         @csrf
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field mt-4">
@@ -33,8 +33,18 @@
                                 @enderror
                             </div>
                             <div class="input-field mt-4">
-                                <input type="text" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}">
+                                <input type="number" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}">
                                 @error('nights')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                            <div class="input-field mt-4">
+                                <input type="text" class="w-100" placeholder="Package price" name="price" value="{{old('price')}}">
+                                @error('price')
                                     <span class="error text-danger">
                                         {{ $message }}
                                     </span>
@@ -89,7 +99,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <input type="text" name="city" value="{{$cityname}}" class="d-none" readonly>
+                        <input type="number" name="city" value="{{$city}}" class="d-none" readonly>
                         @if(count($sites)>0)
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field w-100 dark-btn mt-4 mb-4">
@@ -150,7 +160,7 @@
 
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field dark-btn mt-4">
-                                <input type="submit" value="Save site and monuments" class="w-100">
+                                <input type="submit" value="Save Package" class="w-100">
                             </div>
                         </div>
                     </form>

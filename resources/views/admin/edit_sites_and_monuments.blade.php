@@ -36,12 +36,23 @@
                                 name="location">
                         </div>
                     </div>
+                
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="night" class="text-dark fw-bold">No. of nights</label>
                             <input type="text" class="w-100" id="nights" value="{{ $citytour->nights }}"
                                 name="night">
                         </div>
+                        <div class="input-field mt-4">
+                            <input type="text" class="w-100" placeholder="Price" name="price" value="{{ $citytour->price }}">
+                            @error('price')
+                                <span class="error text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
                             <label for="night" class="text-dark fw-bold">City</label>
                             <select name="city" class="w-100">

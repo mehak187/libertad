@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'role' => '0',
             'password' => Hash::make('12345678'),
             'lastname' => 'admin',
-            'phone' => '03136144184',
+            'phone' => '03646546456',
         ]);
     }
 }

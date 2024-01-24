@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class packagesite extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'site_id',
+        'package_id',
+    ];
 }

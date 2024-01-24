@@ -18,6 +18,8 @@ use App\Http\Controllers\adminController;
 // Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::controller(userController::class)->group(function(){
         Route::get('airport','airport');
+        Route::get('search_vehicle','search_vehicle');
+        Route::get('vehicle','vehicle');
         Route::get('book','book');
         Route::get('contact','contact');
         Route::get('dailyactivites','dailyactivites');
@@ -27,8 +29,8 @@ use App\Http\Controllers\adminController;
         Route::get('/','index');
         Route::get('museum1','museum1');
         Route::get('notification','notification');
-        Route::get('pakage','pakage');
         Route::get('pakages','pakages');
+        Route::get('package_details/{id}','package_details');
         Route::get('productsandtools','productsandtools');
         Route::get('accommodation',  'accommodation');
         Route::get('sites','sites');
@@ -39,7 +41,6 @@ use App\Http\Controllers\adminController;
         Route::get('tours','tours');
         Route::get('travelyourway','travelyourway');
         Route::get('travelyourway2/{cityTourId}', 'travelyourway2')->name('travelyourway2');
-        Route::get('vehicle','vehicle');
         Route::get('accomodation_detail1/{id}','accomodation_detail1');
         Route::get('cities_detail/{id}','cities_detail');
         Route::get('city_tour_det/{id}','city_tour_det');
@@ -57,6 +58,7 @@ use App\Http\Controllers\adminController;
         Route::post('acc_review','acc_review');
         Route::get('product_detial/{id}','product_detial');
         Route::post('tripbooking','tripbooking');
+        Route::post('packagereview','packagereview');
     });
 
  Route::group(['middleware' => ['UserMiddleware']], function () {
@@ -110,6 +112,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('packages_details/{id}','packages_details');
         Route::get('delete_packages/{id}','delete_packages');
         Route::post('update_packages','update_packages');
+        Route::post('save_packages2','save_packages2');
 
         Route::get('manage_musuem','manage_musuem');
         Route::post('save_musuem','save_musuem');

@@ -11,23 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sites', function (Blueprint $table) {
+        Schema::create('package_galleries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('location');
-            $table->string('nights');
-            $table->integer('city');
-            $table->text('des');
-            $table->string('img');
-            $table->integer('price');
+            $table->unsignedInteger('package_id');
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('sites');
+        Schema::dropIfExists('package_galleries');
     }
 };

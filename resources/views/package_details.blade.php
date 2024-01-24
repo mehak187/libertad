@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sites and Monuments</title>
+    <title>Package</title>
     @include('template.csslinks')
 </head>
 
@@ -13,12 +13,12 @@
     <script>
         swal("Good job!", "{{ session('success') }}", "success");
     </script>
-    @endif
-    @if (session('error'))
-        <script>
-            swal("Ooops!", "{{ session('error') }}", "error");
-        </script>
-    @endif
+@endif
+@if (session('error'))
+    <script>
+        swal("Ooops!", "{{ session('error') }}", "error");
+    </script>
+@endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -27,19 +27,19 @@
             <div class="container">
                 <div class="main-border py-2 d-flex align-items-center gap-2">
                     <div>
-                        <a href="{{ URL::previous() }}" id="goBackButton" class="text-decoration-none"><i
+                        <a href="{{ asset('pakages') }}" class="text-decoration-none"><i
                                 class="bi bi-arrow-left text-dark sky-light pb-2 pt-1 px-2 rounded-2"></i></a>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <p class="text-white m-0 font-22">Sites and Monuments</p>
+                        <p class="golden-clr m-0 font-22">Packages</p>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row align-items-start mt-3">
                     <div class="col-lg-6">
-                        <img src="<?php echo asset('uploads/' . $sites['img']); ?>" alt="" class="img-tree rounded-4">
+                        <img src="<?php echo asset('uploads/' . $citytour['img'])?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
-                        <p class="golden-clr">{{ $sites->name }}</p>
+                        <p class="golden-clr">{{$citytour->name}}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
                                 <a href="#"
@@ -48,89 +48,130 @@
                                     <p class="m-0 text-white ">Share</p>
                                 </a>
                                 @include('template.popup')
-                            @if (auth()->check())
                                 <button type="button"
                                         class="d-inline-block mt-3 mt-sm-0 mt-lg-3 mt-xl-0 rate-button"
                                         data-bs-toggle="modal" data-bs-target="#myModal">
                                         Rate &
                                         Review
                                     </button>
-                            @endif
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <p class="text-white">{{ $sites->des }}</p>
+                            <p class="text-white">{{$citytour->des}}
+                            </p>
                         </div>
                         <div class="d-flex gap-2">
                             <p class="golden-clr">No. of nights:</p>
-                            <span class="text-white">{{ $sites->nights }}</span>
+                            <span class="text-white">{{$citytour->nights}}</span>
                         </div>
                         <div class="d-flex gap-2">
-                            <p class="golden-clr">Price:</p>
-                            <span class="text-white">{{ $sites->price }} USD</span>
+                            <p class="golden-clr">Tour Price:</p>
+                            <span class="text-white">{{$citytour->price}} USD per adult</span>
                         </div>
-                        <div class="d-flex align-items-center gap-2">
-                            @if (auth()->check())
-                            <div class="">
-                                    <div class="button_border rounded-pill">
-                                        <button type="button"
-                                            class="button_leniar_style px-5 rounded-pill open-res">Book</button>
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-
-                </div>
-                @php
-                    $day_nmbr = 1;
-                @endphp
-                @foreach ($days as $day)
-                    <div class="mt-5">
                         <div>
-                            <div class="d-flex align-items-center">
-                                <div class="sky-bg py-1 px-3 rounded-3">{{ $day_nmbr }}</div>
-                                <div class="d-flex align-items-center mt-2">
-                                    <h5 class="golden-clr mx-2 fw-normal">Day {{ $day_nmbr }} : </h5>
-                                    <h5 class="sky-clr  fw-normal"> {{ $day['day_title'] }}</h5>
-
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-white fw-light fs-small">
-                                    {{ $day['day_des'] }}
-                                </p>
+                            <h6 class="golden-clr">Sightseeing</h6>
+                            <ul>
+                                @php
+                                $inputString = $citytour['sight_seeing'];
+                                $dataArray = explode(',', $inputString);
+                                @endphp
+                                <ul class="text-white">
+                                    @foreach ($dataArray as $item)
+                                        <li class="text-white">{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            </ul>
+                        </div>
+                        <div>
+                            <h6 class="golden-clr">Include</h6>
+                            <ul>
+                                @php
+                                $inputString = $citytour['include'];
+                                $dataArray = explode(',', $inputString);
+                                @endphp
+                                <ul class="text-white">
+                                    @foreach ($dataArray as $item)
+                                        <li class="text-white">{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            </ul>
+                        </div>
+                        @if (auth()->check())
+                        <div class="">
+                            <div class="button_border rounded-pill">
+                                <button type="button"
+                                    class="button_leniar_style px-5 rounded-pill open-res">Book</button>
                             </div>
                         </div>
+                    @endif
                     </div>
-                    @php
-                        $day_nmbr = $day_nmbr + 1;
-                    @endphp
-                @endforeach
-
-                <div class="row">
-
                 </div>
-
-                @if (count($galleryImages) > 0)
-                    <div class="row mt-5 position-relative">
-                        <h5 class="text-white">Photos and gallery</h5>
-                        <div class="col site-bg rounded-4 px-4 py-2 my-4">
-                            <div class="prev_arrow2t1">
-                                <i class="fa-solid fa-arrow-left rounded-circle site-bg px-2 py-2 text-dark"></i>
-                            </div>
-                            <div class="row site-mapt1 ">
-                                @foreach ($galleryImages as $galleryImage)
-                                    <div class="col-12 mx-2 my-2">
-                                        <img src="<?php echo asset('uploads/' . $galleryImage['image_path']); ?>" alt="" class="img-fluid rounded-4">
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="next_arrow2t1">
-                                <i class="fa-solid fa-arrow-right rounded-circle site-bg px-2 py-2 text-dark"></i>
+                <div class="mt-5">
+                    @php
+                        $i=1;
+                    @endphp
+                    @foreach ($days as $day)
+                    <div>
+                        <div class="d-flex align-items-center">
+                            <div class="sky-bg py-1 px-3 rounded-3">{{$i++}}</div>
+                            <div class="d-flex align-items-center mt-2">
+                                <h5 class="golden-clr mx-2 fw-normal">{{$day->day_title}} : </h5>
                             </div>
                         </div>
+                        <div>
+                            <p class="text-white fw-light fs-small">
+                                {{$day->day_des}}
+                            </p>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
+                <div class=" mt-5 position-relative sandm sites px-4 px-sm-5 px-md-3 ">
+                    <h4 class="text-white ps-4">Sites and Monuments</h4>
+                    <div class="prev_arrow5">
+                        <i class="fa-solid fa-arrow-left rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                    </div>
+                    <div class="row site-map p-3">
+                    @foreach ($psites as $psite)
+                        <div class="col-12 mx-2">
+                            <a href="/{{"sitesandmonoments/" .$psite['id'] }}" class="text-decoration-none text-dark">
+                                <div>
+                                    <img src="<?php echo asset('uploads/' . $psite['img'])?>" alt="" class="minor-img">
+                                </div>
+                                <div class="sky-bg p-2 round-site px-2 py-3">
+                                    <h5 class="font-14">{{$psite['name']}}</h5>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <p class="m-0 font-13">{{$psite['location']}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                    </div>
+                    <div class="next_arrow5 ">
+                        <i class="fa-solid fa-arrow-right rounded-circle sky-bg px-2 py-2 text-dark"></i>
+                    </div>
+                </div>
+                @if (count($galleryImages) > 0)
+                <div class="row mt-3 position-relative mx-5 mx-md-4 ">
+                    <h5 class="text-white">Photos and gallery</h5>
+                    <div class="col site-bg rounded-4 px-4 py-2 my-2">
+                        <div class="prev_arrow2t">
+                            <i class="fa-solid fa-arrow-left rounded-circle site-bg px-2 py-2 text-dark"></i>
+                        </div>
+                        <div class="row site-mapt ">
+                        @foreach ($galleryImages as $galleryImage)
+                            <div class="col-12 mx-2 my-2">
+                                <img src="<?php echo asset('uploads/' . $galleryImage['image_path'])?>" alt="" class="img-fluid rounded-4">
+                            </div>
+                        @endforeach
+                        </div>
+                        <div class="next_arrow2t">
+                            <i class="fa-solid fa-arrow-right rounded-circle site-bg px-2 py-2 text-dark"></i>
+                        </div>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>
@@ -150,7 +191,7 @@
                     placeholder="date" id="date" required>
             </div>
             @php
-                $price = $sites->price;
+                $price = $citytour->price;
             @endphp
             <div class="px-3">
                 <label for="" class="font-12">No. of people</label>
@@ -182,9 +223,9 @@
                     <h1 class="modal-title fs-5 ">Booking Data</h1>
                     <i class="fas fa-times text-secondary fs-4 close-m"></i>
                 </div>
-                <input type="number" class="d-none" name="tour_id" value="{{ $sites->id }}">
-                <input type="text" class="d-none" name="tour_name" value="{{ $sites->name }}">
-                <input type="number" class="d-none" name="role" value="9" readonly>
+                <input type="number" class="d-none" name="tour_id" value="{{ $citytour->id }}">
+                <input type="text" class="d-none" name="tour_name" value="{{ $citytour->name }}">
+                <input type="number" class="d-none" name="role" value="8" readonly>
                 <input type="number" id="pvalue" class="d-none" value="{{ session('requestData.people') }}"
                     readonly>
                 <input type="number" name="peoplenew" id="tpriceInputn" class="d-none" value="" readonly>
@@ -281,16 +322,8 @@
                 <div class="px-3">
                     <h6 class="fw-bold mt-3">Tour data</h6>
                     <div class="">
-                        <h6>Sites and monuments Name</h6>
-                        <p>{{ $sites->name }}</p>
-                    </div>
-                    <div class="">
-                        <h6>Cities</h6>
-                        <p>{{ $ct->Cityname }}</p>
-                    </div>
-                    <div class="">
-                        <h6>No. of nights</h6>
-                        <p>{{ $sites->nights }}</p>
+                        <h6>Package Name</h6>
+                        <p>{{ $citytour->name }}</p>
                     </div>
                     <div class="">
                         <h6>Date</h6>
@@ -300,6 +333,11 @@
                         <h6>No. of people</h6>
                         <p>{{ session('booking')->people }}</p>
                     </div>
+                    <div class="">
+                        <h6>No. of nights</h6>
+                        <p>{{$citytour->nights}}</p>
+                    </div>
+
                     <h6 class="fw-bold">Total Price</h6>
                     <p>{{ session('booking')->t_price }}$</p>
                     <input type="" name="totalamount" value="{{ session('booking')->t_price }}"
@@ -528,9 +566,9 @@
                 <h1 class="modal-title fs-5 brown-clr">Rate & Review</h1>
             </div>
             <div class="modal-body pt-0 px-5">
-                <form action="/site_review" enctype="multipart/form-data" method="POST">
+                <form action="/packagereview" enctype="multipart/form-data" method="POST">
                     @csrf
-                    <input type="number" class="d-none" name="stour_id" value="{{ $sites->id }}">
+                    <input type="number" class="d-none" name="stour_id" value="{{ $citytour->id }}">
                     <div>
                         <div class="rating">
                             <input type="radio" id="star5" name="rating" value="5">
@@ -544,7 +582,7 @@
                             <input type="radio" id="star1" name="rating" value="1">
                             <label for="star1" onclick="updateStarValue(1)"></label>
                         </div>
-                        <input type="number" id="star" name="star" class="d-none" value=""  required>
+                        <input type="number" id="star" name="star" class="d-none" value="" required>
                         <script>
                             function updateStarValue(value) {
                                 document.getElementById('star').value = value;
@@ -557,7 +595,6 @@
                     <div class="mt-3">
                         <button type="submit" class="mybutton button_border rounded-pill px-5 py-2">Save</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>

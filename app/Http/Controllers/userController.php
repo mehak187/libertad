@@ -29,6 +29,7 @@ use App\Models\accRating;
 use App\Models\activitiesRating;
 use App\Models\musuemRating;
 use App\Models\siteRating;
+use App\Models\packageRating;
 use App\Models\booking;
 use App\Models\traveller;
 use App\Models\payment;
@@ -37,7 +38,10 @@ use App\Models\spayment;
 use App\Models\trip_city;
 use App\Models\TripRating;
 use App\Models\tripbooking;
-
+use App\Models\package;
+use App\Models\packageday;
+use App\Models\packageGallery;
+use App\Models\packagesite;
 use Stripe;
 use Session;
 
@@ -61,6 +65,52 @@ class userController extends Controller
         else{
             return view('airport-shuttle',['vehicles'=>$data]);
         }
+    }
+    // public function vehicle(){
+    //     $data=shuttle::all();
+    //     if ($data->isEmpty()) {
+    //         return view('vehicle-destination')->with ('error','No record to show');
+    //     }
+    //     if($data->count()>5){
+    //         $upper=$data->take($data->count()/2);
+    //         $lower=$data->skip($data->count()/2);
+    //         return view('vehicle-destination',[
+    //             'vehicles1'=>$upper,
+    //             'vehicles2'=>$lower
+    //         ]);
+    //     }
+    //     else{
+    //         return view('vehicle-destination',['vehicles'=>$data]);
+    //     }
+    // }
+        // public function vehicle(){
+    //     $data=shuttle::all();
+    //     if ($data->isEmpty()) {
+    //         return view('vehicle-destination')->with ('error','No record to show');
+    //     }
+    //     if($data->count()>5){
+    //         $upper=$data->take($data->count()/2);
+    //         $lower=$data->skip($data->count()/2);
+    //         return view('vehicle-destination',[
+    //             'vehicles1'=>$upper,
+    //             'vehicles2'=>$lower
+    //         ]);
+    //     }
+    //     else{
+    //         return view('vehicle-destination',['vehicles'=>$data]);
+    //     }
+    // }
+    public function search_vehicle(Request $request){
+        $request->validate([
+            '*' => 'required'
+        ]);
+
+        $to = $request->to;
+        $from = $request->from;
+        $people = $request->people;
+
+        $data = shuttle::where('to',$to)->where('from',$from)->where('passengers',$people)->get();
+        return view('vehicle-destination',['shuttles'=>$data] );
     }
     public function book(){
         $data=book::paginate(9);
@@ -252,10 +302,27 @@ class userController extends Controller
         return view('notification-page');
     }
     public function pakages(){
-        return view('packages-1');
+        $data = package::all();
+        return view('packages-1',['packages'=>$data]);
     }
-    public function pakage(){
-        return view('package');
+    public function package_details($id){
+        $data['citytour'] =package::find($id);
+        $cityTourId = $data['citytour']->id;
+
+        $data['galleryImages'] = packageGallery::leftJoin('packages', 'package_galleries.package_id', '=', 'packages.id')
+        ->where('package_galleries.package_id', $cityTourId)
+        ->select('package_galleries.*')
+        ->get();
+
+        $data['days'] = packageday::leftJoin('packages', 'packagedays.package_id', '=', 'packages.id')
+            ->where('packagedays.package_id', $cityTourId)
+            ->select('packagedays.*')
+            ->get();
+
+        $data['psites'] = packagesite::leftJoin('sites', 'packagesites.site_id', '=', 'sites.id')
+        ->get();
+
+        return view('package_details',$data);
     }
     public function accommodation(){
         $data=accomodation::all();
@@ -308,26 +375,12 @@ class userController extends Controller
         $data7=TripRating::leftJoin('users', 'trip_ratings.user_id', '=', 'users.id')
         ->select('trip_ratings.*', 'users.*')
        ->orderBy('trip_ratings.id', 'desc')->get();
-
-        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6,'tripRatings'=>$data7]);
+        $data8=packageRating::leftJoin('users', 'package_ratings.user_id', '=', 'users.id')
+        ->select('package_ratings.*', 'users.*')
+        ->orderBy('package_ratings.id', 'desc')->get();
+        return view('testimonial',['StourRatings'=>$data,'citytourRatings'=>$data2,'musuemRatings'=>$data3,'siteRatings'=>$data4,'activitiesRatings'=>$data5,'accRatings'=>$data6,'tripRatings'=>$data7,'packageRatings'=>$data8]);
     }
-    public function vehicle(){
-        $data=shuttle::all();
-        if ($data->isEmpty()) {
-            return view('vehicle-destination')->with ('error','No record to show');
-        }
-        if($data->count()>5){
-            $upper=$data->take($data->count()/2);
-            $lower=$data->skip($data->count()/2);
-            return view('vehicle-destination',[
-                'vehicles1'=>$upper,
-                'vehicles2'=>$lower
-            ]);
-        }
-        else{
-            return view('vehicle-destination',['vehicles'=>$data]);
-        }
-    }
+   
     public function productsandtools(){
         // $data = categories::join('products', 'categories.id', '=', 'products.p_catg')
         // ->select('categories.*')
@@ -400,6 +453,21 @@ class userController extends Controller
         citytourRating::create($data);
         return redirect()->back()->with('success', 'Thanks for your review');
     }
+    public function packagereview(request $request){
+        $request->validate([
+            '*'=>'required',
+            ]);
+        $user_id = auth()->user()->id;
+        $stour_id = $request->input('stour_id');
+        if (packageRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
+            return redirect()->back()->with('error', 'You have already submitted a review');
+        }
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        packageRating::create($data);
+        return redirect()->back()->with('success', 'Thanks for your review');
+    }
+    
     public function musuem_review(request $request){
         $request->validate([
             '*'=>'required',
@@ -614,6 +682,7 @@ class userController extends Controller
         $latestBookingId = $booking->id;
         return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
     }
+ 
     public function shuttle_check(request $request){
         $request->validate([
             '*' => 'required',

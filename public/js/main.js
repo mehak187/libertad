@@ -768,8 +768,8 @@ function switchToTab(tabName) {
   event.target.classList.add("active");
 }
 function swapFields() {
-  const input1 = document.getElementById('input1');
-  const input2 = document.getElementById('input2');
+  const input1 = document.getElementById('locationInput');
+  const input2 = document.getElementById('locationInput1');
   const tempValue = input1.value;
   input1.value = input2.value;
   input2.value = tempValue;
@@ -840,11 +840,13 @@ function initAutocomplete() {
   var input = document.getElementById('locationInput');
   var input1 = document.getElementById('locationInput1');
   var input2 = document.getElementById('locationInput2');
+  var input3 = document.getElementById('locationInput3');
 
 
   var autocomplete = new google.maps.places.Autocomplete(input);
   var autocomplete1 = new google.maps.places.Autocomplete(input1);
   var autocomplete2 = new google.maps.places.Autocomplete(input2);
+  var autocomplete3 = new google.maps.places.Autocomplete(input3);
 
 }
 

@@ -30,6 +30,12 @@ use App\Models\payment;
 use App\Models\sbooking;
 use App\Models\spayment;
 use App\Models\trip;
+use App\Models\package;
+use App\Models\packageday;
+use App\Models\packageGallery;
+use App\Models\packagesite;
+
+
 use Stripe;
 use Session;
 
@@ -513,6 +519,7 @@ class adminController extends Controller
             'nights' => $request->nights,
             'city' => $request->city,
             'des' => $request->des,
+            'price' => $request->price,
             'img' => $photo_name,
         ]);
         // --------get latest store id------
@@ -598,6 +605,7 @@ class adminController extends Controller
             'night' => $request->night,
             'des' => $request->des,
             'city' => $request->city,
+            'price' => $request->price,
         ];
     
         if ($request->file('img') !== null) {
@@ -707,14 +715,88 @@ class adminController extends Controller
         $sites = site::where('city',$city)
             ->orderBy('id', 'desc')
             ->get();
-    // print_r($sites); die();
-        return view('admin.add_package2', compact('cityname', 'sites'));
+        return view('admin.add_package2', compact('cityname','city','sites'));
     }
-    
-    // public function add_packages2(){
-    //     $data=city::all();
-    //     return view('admin.add_package2',['cities'=>$data]);
-    // }
+    public function save_packages2(Request $request){
+        $request->validate([
+            '*' => 'required',
+            'img'=>'required|mimes:jpeg,png,jpg,svg,webp',
+        ]);
+        $photo = $request->file('img');
+        $photo_name =time()."-".$photo->getClientOriginalName();
+        $photo_destination=public_path('uploads');
+        $photo->move($photo_destination,$photo_name);
+        $site = package::create([
+            'name' => $request->name,
+            'nights' => $request->nights,
+            'city' => $request->city,
+            'des' => $request->des,
+            'img' => $photo_name,
+            'price' => $request->price,
+            'sight_seeing' => $request->sight_seeing,
+            'include' => $request->include,
+        ]);
+        $siteId = $site->id;
+        $imagePaths = $request->file('images');
+        if ($imagePaths) {
+            foreach ($imagePaths as $image) {
+                $originalName = time() . "-" . $image->getClientOriginalName();
+                $imagePathDestination = public_path('uploads');
+                $image->move($imagePathDestination, $originalName);
+                packageGallery::create([
+                    'package_id' => $site->id,
+                    'image_path' => $originalName,
+                ]);
+            }
+        }
+        $dayTitles = $request->day_title;
+        $dayDescriptions = $request->day_des;
+        if (count($dayTitles) == count($dayDescriptions)) {
+            foreach ($dayTitles as $index => $dayTitle) {
+                $dayDescription = $dayDescriptions[$index];
+                packageday::create([
+                    'package_id' => $site->id,
+                    'site_id' => $siteId,
+                    'day_title' => $dayTitle,
+                    'day_des' => $dayDescription,
+                ]);
+            }
+        } 
+        $psites = $request->psites;
+        if ($psites) {
+            foreach ($psites as $psite) {
+                packagesite::create([
+                    'package_id' => $site->id,
+                    'site_id' => $psite,
+                ]);
+            }
+        }
+        return redirect('/manage_packages')->with('savectour', 'Sites and monuments added Successfully');
+    }
+    public function manage_packages(){
+        $data = package::leftJoin('cities', 'packages.city', '=', 'cities.id')
+        ->select('packages.*', 'cities.Cityname')
+        ->orderBy('id', 'desc')->get();
+        return view('admin.manage_packages',['citytours'=>$data]);
+    }
+    public function packages_details($id){
+        $data['citytour'] =package::find($id);
+        $cityTourId = $data['citytour']->id;
+
+        $data['galleryImages'] = packageGallery::leftJoin('packages', 'package_galleries.package_id', '=', 'packages.id')
+        ->where('package_galleries.package_id', $cityTourId)
+        ->select('package_galleries.*')
+        ->get();
+
+        $data['days'] = packageday::leftJoin('packages', 'packagedays.package_id', '=', 'packages.id')
+            ->where('packagedays.package_id', $cityTourId)
+            ->select('packagedays.*')
+            ->get();
+
+        $data['psites'] = packagesite::leftJoin('sites', 'packagesites.site_id', '=', 'sites.id')
+        ->get();
+        return view('admin.package_details',$data);
+    }
 
     public function add_daily_activities(){
         return view('admin.add_daily_activities');

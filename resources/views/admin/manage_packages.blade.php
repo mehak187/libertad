@@ -23,7 +23,7 @@
           @include('admin.templates.adminheader')
             <div class="px-4 py-4 m-content px-lg-5">
               <div class="d-flex justify-content-end">
-                <a href="/add_sites_and_monuments" class="bg-yellow text-dark py-2 px-3 text-decoration-none rounded-3">Add Sites and Monuments</a>
+                <a href="/add_packages" class="bg-yellow text-dark py-2 px-3 text-decoration-none rounded-3">Add Packages</a>
             </div>
             @if (count($citytours) > 0)
                 <div class="tbl-main mt-3 table-responsive">
@@ -32,9 +32,7 @@
                           <tr>
                             <th>Name</th>
                             <th>No of nights</th>
-                            <th>Location</th>
                             <th>City name</th>
-                            <th>Price</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -43,13 +41,11 @@
                           <tr>
                             <td>{{$citytour['name']}}</td>
                             <td>{{$citytour['nights']}}</td>
-                            <td>{{$citytour['location']}}</td>
                             <td>{{$citytour['Cityname']}}</td>
-                            <td>{{$citytour['price']}}</td>
                             <td>
-                                <a href="{{"sites_and_monuments_details/" .$citytour['id'] }}" class="bg-success d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">View Details</a>
-                                <a href="{{"edit_sites_and_monuments/" .$citytour['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>
-                                <a href="{{"delete_sites_and_monuments/" .$citytour['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
+                                <a href="{{"packages_details/" .$citytour['id'] }}" class="bg-success d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">View Details</a>
+                                <a href="{{"edit_packages/" .$citytour['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>
+                                <a href="{{"delete_packages/" .$citytour['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
                             </td>
                           </tr>
                           @endforeach

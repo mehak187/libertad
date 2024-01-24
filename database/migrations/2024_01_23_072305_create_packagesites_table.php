@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('packagesites', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('site_id');
+            $table->integer('package_id');
             $table->timestamps();
         });
     }
