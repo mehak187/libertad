@@ -81,6 +81,8 @@
                             <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
                         </div>
                     </div>
+                    <input type="number" class="form-control shadow-none d-none border border-dark font-12"
+                    value="1" name="role" required readonly> 
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="des" class="text-dark fw-bold">Description</label>

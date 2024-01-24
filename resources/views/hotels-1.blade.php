@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Accommodation</title>
     @include('template.csslinks')
+
 </head>
 
 <body class="background_img">
+    @if (session('success'))
+    <script>
+        swal("Good job!", "{{session('success')}}", "success");
+    </script>
+@endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -83,11 +89,13 @@
                                 <div class="slider_popup pb-4 px-sm-3 px-2 pt-3">
                                     <div class="d-flex flex-wrap align-items-center gap-2 ">
                                         <h5 class="my-auto" style="color: #E2BE4E;">Search Accommodation:</h5>
+                                    @if (auth()->check())
                                         <div class="button_border rounded-pill ms-auto mt-3">
                                             <button class="button_leniar_style px-4 rounded-pill fs-12"
                                                 data-bs-toggle="modal" data-bs-target="#propertylisting">List your
                                                 property</button>
                                         </div>
+                                    @endif
                                     </div>
                                     <div class="container-fluid">
                                         <div class="d-flex align-items-end">
@@ -260,7 +268,15 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form action="">
+                <form action="/savelist" method="POST" enctype="multipart/form-data" class="mt-2">
+                    @csrf
+                    {{-- <input type="text" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Hotel name here" name="name" required>
+                                        <button type="submit"
+                                        class="mybutton border-5 border-golden3 rounded-pill px-4 py-2">
+                                        Submit for
+                                        approval
+                                    </button> --}}
                     <div class="row">
                         <div class="col-12 bg-white rounded-4">
                             <div class="px-3 border-golden1 d-flex justify-content-between align-items-center">
@@ -276,66 +292,68 @@
                                 <div class="col-lg-4 col-sm-6 ">
                                     <label for="" class="font-12">Hotel name:</label>
                                     <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Hotel name here">
+                                        placeholder="Hotel name here" name="name" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-sm-0 mt-3">
                                     <label for="" class="font-12">Location:</label>
                                     <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Location of the hotels here">
+                                        placeholder="Location of the hotels here" name="location" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-lg-0 mt-3">
                                     <label for="" class="font-12">price in USD:</label>
                                     <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="price of USD">
+                                        placeholder="price of USD" name="tour_price" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <label for="" class="font-12">No. of Nights</label>
                                     <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01">
+                                        placeholder="01" name="nights_nmbr" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <label for="" class="font-12">Number of rooms:</label>
                                     <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01">
+                                        placeholder="01" name="rooms" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <label for="" class="font-12">Choose city:</label>
-                                    <select name="city" class="form-control shadow-none border border-dark font-12" >
-                                        <option value="">Choose city</option>
-                                        {{-- @foreach ($cities as $city)
+                                    <select name="city" class="form-control shadow-none border border-dark font-12" name="city" required>
+                                        <option value="" selected disabled hidden>Choose city</option>
+                                        @foreach ($cities as $city)
                                             <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Sight seeing:</label>
-                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Sight seeing" cols="40" rows="5"></textarea>
+                                    <textarea id="" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Sight seeing" cols="40" rows="5" name="sight_seeing" required></textarea>
                                         <p class="mb-0"><b>Note:</b> Separate each with comma</p>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Include:</label>
-                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Include" cols="40" rows="5"></textarea>
+                                    <textarea id="" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Include" cols="40" rows="5" name="include" required></textarea>
                                         <p class="mb-0"><b>Note:</b> Separate each with comma</p>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Description:</label>
-                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Description" cols="40" rows="5"></textarea>
+                                    <textarea id="" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Description" cols="40" rows="5" name="card_des" required></textarea>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="myImg">
                                         <img id="blah" src="./imgs/add_profile.png" alt=""
                                             class="profile-img">
                                     </label>
-                                    <input type="file" name="img" class="d-none" id="myImg"
-                                        onchange="readURL(this);">
+                                    <input type="file" class="d-none" id="myImg"
+                                        onchange="readURL(this);" name="tourimg" required>
                                 </div>
+                                <input type="number" class="form-control shadow-none d-none border border-dark font-12"
+                                       value="0" name="role" required readonly>
                                 <div class="d-flex gap-2 mt-5">
                                     <input type="checkbox" class="form-check-input shadow-none" id="myCheck"
-                                        checked>
+                                        checked required>
                                     <label for="myCheck">Our Terms and Conditions</label>
                                 </div>
                                 <div class="mt-3">
@@ -352,6 +370,7 @@
             </div>
         </div>
     </div>
+    
     @include('template.jslinks')
 </body>
 

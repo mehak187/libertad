@@ -18,6 +18,7 @@ class accomodation extends Model
         'sight_seeing',
         'include',
         'card_des',
-        'tourimg'
+        'tourimg',
+        'role'
     ];
 }

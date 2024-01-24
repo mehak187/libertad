@@ -266,7 +266,8 @@ class userController extends Controller
         return view('travel-your-way',['events'=>$data]);
     }
     public function hotels(){
-        $data=accomodation::all();
+        $data=accomodation::orderBy('id', 'desc')->where('role',1)->get();
+        $data2=city::all();
         if ($data->isEmpty()) {
             return view('hotels-1')->with ('error','No record to show');
         }
@@ -279,7 +280,7 @@ class userController extends Controller
             ]);
         }
         else{
-            return view('hotels-1',['hotels'=>$data]);
+            return view('hotels-1',['hotels'=>$data],['cities'=>$data2]);
         }
     }
     public function index(){
@@ -729,5 +730,18 @@ class userController extends Controller
         $data->delete();
         return back()->with ('Delete','Airport Shuttle Deleted Successfully');
     } 
-    
+    public function savelist(request $request){
+        $request->validate([
+            '*'=>'required',
+            'tourimg'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            ]);
+            $data =$request->all();
+            $photo = $request->file('tourimg');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['tourimg'] = $photo_name;
+            accomodation::create($data);
+            return redirect('hotels')->with ('success','Property submitted and now pending admin approval. Thank you for your submission');
+    }
 }
