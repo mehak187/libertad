@@ -274,9 +274,9 @@
                             </div>
                             <div class="row p-4">
                                 <div class="col-lg-4 col-sm-6 ">
-                                    <label for="" class="font-12">Property name:</label>
+                                    <label for="" class="font-12">Hotel name:</label>
                                     <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Property name here">
+                                        placeholder="Hotel name here">
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-sm-0 mt-3">
                                     <label for="" class="font-12">Location:</label>
@@ -284,36 +284,46 @@
                                         placeholder="Location of the hotels here">
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-lg-0 mt-3">
+                                    <label for="" class="font-12">price in USD:</label>
+                                    <input type="text" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="price of USD">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">No. of Nights</label>
+                                    <input type="number" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="01">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
                                     <label for="" class="font-12">Number of rooms:</label>
                                     <input type="number" class="form-control shadow-none border border-dark font-12"
                                         placeholder="01">
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">Capacity/no of people</label>
-                                    <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01">
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">From:</label>
-                                    <input type="date" class="form-control shadow-none border border-dark font-12">
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">To:</label>
-                                    <input type="date" class="form-control shadow-none border border-dark font-12">
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">Rent duration category:</label>
-                                    <select class="form-select shadow-none border border-dark font-12">
-                                        <option value="daily">Daily</option>
-                                        <option value="daily rent">Daily Rent</option>
-                                        <option value="monthly rent">Monthly Rent</option>
-                                        <option value="yearly rent">Yearly Rent</option>
+                                    <label for="" class="font-12">Choose city:</label>
+                                    <select name="city" class="form-control shadow-none border border-dark font-12" >
+                                        <option value="">Choose city</option>
+                                        {{-- @foreach ($cities as $city)
+                                            <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
+                                        @endforeach --}}
                                     </select>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <label for="" class="font-12">Sight seeing:</label>
+                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Sight seeing" cols="40" rows="5"></textarea>
+                                        <p class="mb-0"><b>Note:</b> Separate each with comma</p>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label for="" class="font-12">Include:</label>
+                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Include" cols="40" rows="5"></textarea>
+                                        <p class="mb-0"><b>Note:</b> Separate each with comma</p>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Description:</label>
                                     <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Description" cols="40" rows="6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, eos esse. Laudantium explicabo minus temporibus sed nam corporis blanditiis veniam sapiente eligendi, ad ipsa repellat incidunt qui animi maxime labore.</textarea>
+                                        placeholder="Description" cols="40" rows="5"></textarea>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="myImg">
