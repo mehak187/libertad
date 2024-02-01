@@ -23,7 +23,7 @@
                             <th>Email</th>
                             <th>Total Price</th>
                             <th>Date</th>
-                            <th>Travelers</th>
+                            <th>Travelers/ <br>Quantity</th>
                             <th>Plan</th>
                             <th>Status</th>
                           </tr>

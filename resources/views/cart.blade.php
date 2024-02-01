@@ -61,7 +61,13 @@
                                                                         {{-- <th class="w-25 px-4 py-3">Image</th> --}}
                                                                         <th class="w-25 px-4 py-3">Activity Name</th>
                                                                         <th class="w-25 px-4 py-3">Unit price</th>
-                                                                        <th class="w-25 px-4 py-3">People</th>
+                                                                        <th class="w-25 px-4 py-3">
+                                                                            @if($unpaidproduct['booking_role'] == 6)
+                                                                                Quantity
+                                                                            @else
+                                                                                People
+                                                                            @endif
+                                                                        </th>
                                                                         <th class="w-25 px-4 py-3 position-relative">
                                                                             Total
                                                                             <a href="{{"deletecart/" .$unpaidproduct['bk_id'] }}" class="del_item">
@@ -158,7 +164,13 @@
                                                                         {{-- <th class="w-25 px-4 py-3">Image</th> --}}
                                                                         <th class="w-25 px-4 py-3">Product Name</th>
                                                                         <th class="w-25 px-4 py-3">Unit price</th>
-                                                                        <th class="w-25 px-4 py-3">People</th>
+                                                                        <th class="w-25 px-4 py-3">
+                                                                            @if($product['booking_role'] == 6)
+                                                                                Quantity
+                                                                            @else
+                                                                                People
+                                                                            @endif
+                                                                        </th>
                                                                         <th
                                                                             class="w-25 px-4 py-3 position-relative">
                                                                             Total

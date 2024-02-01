@@ -42,6 +42,7 @@ use App\Models\package;
 use App\Models\packageday;
 use App\Models\packageGallery;
 use App\Models\packagesite;
+use App\Models\userhotel;
 use Stripe;
 use Session;
 
@@ -266,7 +267,8 @@ class userController extends Controller
         return view('travel-your-way',['events'=>$data]);
     }
     public function hotels(){
-        $data=accomodation::all();
+        $data=accomodation::orderBy('id', 'desc')->where('role',1)->get();
+        $data2=city::all();
         if ($data->isEmpty()) {
             return view('hotels-1')->with ('error','No record to show');
         }
@@ -279,7 +281,7 @@ class userController extends Controller
             ]);
         }
         else{
-            return view('hotels-1',['hotels'=>$data]);
+            return view('hotels-1',['hotels'=>$data],['cities'=>$data2]);
         }
     }
     public function index(){
@@ -302,7 +304,7 @@ class userController extends Controller
         return view('notification-page');
     }
     public function pakages(){
-        $data = package::all();
+        $data = package::orderBy('id', 'desc')->get();
         return view('packages-1',['packages'=>$data]);
     }
     public function package_details($id){
@@ -320,6 +322,7 @@ class userController extends Controller
             ->get();
 
         $data['psites'] = packagesite::leftJoin('sites', 'packagesites.site_id', '=', 'sites.id')
+        ->where('packagesites.package_id', $cityTourId)
         ->get();
 
         return view('package_details',$data);
@@ -393,11 +396,12 @@ class userController extends Controller
         return view('productsandtools',['catagories'=>$data,'products'=>$data2]);
     }
     public function product_detial($id){
-        $data =product::where('p_catg',$id)->orderBy('id', 'desc')->get();
+        $data =product::leftJoin('product_prices', 'products.id', '=', 'product_prices.p_id')
+        ->where('products.p_catg',$id)
+        ->select('products.*', 'product_prices.*','products.id as product_id')
+        ->get();
         $data2['category'] =categories::find($id);
-        // print_r($data2);die();
         return view('product_details',['products'=>$data],$data2);
-        
     }
     public function libertad(){
         $data['libertad'] =libertad::first();
@@ -418,7 +422,6 @@ class userController extends Controller
         if (StourRating::where('user_id', $user_id)->where('stour_id', $stour_id)->exists()) {
             return redirect()->back()->with('error', 'You have already submitted a review');
         }
-       
         $data = $request->all();
         $data['user_id'] = $user_id;
         StourRating::create($data);
@@ -524,6 +527,25 @@ class userController extends Controller
         accRating::create($data);
         return redirect()->back()->with('success', 'Thanks for your review');
     }
+    public function product_next(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+
+        $requestData = $request->myp_id;
+        $bookproduct =product::leftJoin('product_prices', 'products.id', '=', 'product_prices.p_id')
+        ->where('products.id',$requestData)
+        ->select('products.*', 'product_prices.*','products.id as product_id','products.name as product_name')
+        ->get();
+        return back()->with('bookingm', 'City tour added Successfully')->with('bookproduct', $bookproduct);
+    }
+    public function bookingstep(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $bookdata = $request->all();
+        return back()->with('bookingshow', 'City tour added Successfully')->with('bookdata', $bookdata);
+    }
     public function book1(request $request){
         $request->validate([
             '*' => 'required',
@@ -531,6 +553,7 @@ class userController extends Controller
         $requestData = $request->all();
         return back()->with('bookingm', 'City tour added Successfully')->with('requestData', $requestData);
     }
+    
     public function savebooking(request $request){
         $request->validate([
             '*' => 'required',
@@ -572,7 +595,7 @@ class userController extends Controller
         ->with('booking', $booking)
         ->with('t_price', $request->t_price)
         ->with('latestBookingId', $latestBookingId);
-        // return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
+        return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
     }
     public function check(request $request){
         $request->validate([
@@ -703,7 +726,7 @@ class userController extends Controller
     
         $data2 = booking::leftJoin('payments', 'bookings.id', '=', 'payments.book_id')
             ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
-            ->select('bookings.*', 'payments.*', 'users.name as user_name', 'bookings.id as bk_id', 'users.*')
+            ->select('bookings.*', 'payments.*', 'users.name as user_name', 'bookings.id as bk_id','bookings.role as booking_role', 'users.*')
             ->where('bookings.user_id', $id)
             ->whereNull('payments.book_id')
             ->orderBy('bookings.id', 'desc')
@@ -729,5 +752,18 @@ class userController extends Controller
         $data->delete();
         return back()->with ('Delete','Airport Shuttle Deleted Successfully');
     } 
-    
+    public function savelist(request $request){
+        $request->validate([
+            '*'=>'required',
+            'tourimg'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            ]);
+            $data =$request->all();
+            $photo = $request->file('tourimg');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['tourimg'] = $photo_name;
+            userhotel::create($data);
+            return redirect('hotels')->with ('success','Property submitted successfully');
+    }
 }

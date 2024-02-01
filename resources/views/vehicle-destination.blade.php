@@ -69,6 +69,32 @@
                         </div>
                     </div>
                     <div class="mt-auto">
+                        @if (session('success'))
+                    <script>
+                        swal("Good job!", "{{session('success')}}", "success");
+                    </script>
+                    @endif
+                        <div class="d-md-block d-none">
+                            @if(auth()->user())
+                            <u style="color: #E4C14F;">Leave your Review</u>
+                            <form action="/savereview" method="POST">
+                                    @csrf
+                                <div class="d-flex gap-2">
+                                    <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
+                                        placeholder="Please leave your Review" maxlength="400"></textarea>
+                                    <button class="p-0 mt-auto btn_submit_rivew">
+                                        <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
+                                            alt="">
+                                    </button>
+                                    @error('review')
+                                    <span class="error text-danger">
+                                        {{$message}}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </form>
+                            @endif
+                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>

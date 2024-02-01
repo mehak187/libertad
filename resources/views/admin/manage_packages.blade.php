@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.templates.links')
-    <title>Manage city tours</title>
+    <title>Manage Packages</title>
 </head>
 
 <body>
@@ -44,7 +44,6 @@
                             <td>{{$citytour['Cityname']}}</td>
                             <td>
                                 <a href="{{"packages_details/" .$citytour['id'] }}" class="bg-success d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">View Details</a>
-                                <a href="{{"edit_packages/" .$citytour['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>
                                 <a href="{{"delete_packages/" .$citytour['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
                             </td>
                           </tr>

@@ -34,8 +34,8 @@ use App\Models\package;
 use App\Models\packageday;
 use App\Models\packageGallery;
 use App\Models\packagesite;
-
-
+use App\Models\userhotel;
+use App\Models\ProductPrice;
 use Stripe;
 use Session;
 
@@ -698,8 +698,14 @@ class adminController extends Controller
             foreach ($days as $day) {
                 $day->delete();
             }
+
+        $sites = packagesite::where('package_id', $cityTour->id)->get();
+            foreach ($sites as $site) {
+                $site->delete();
+            }
         return redirect('manage_sites_and_monuments')->with ('Delete','Sites and Monuments Deleted Successfully');
     }
+
     public function add_packages(){
         $data=city::all();
         return view('admin.add_package',['cities'=>$data]);
@@ -794,10 +800,142 @@ class adminController extends Controller
             ->get();
 
         $data['psites'] = packagesite::leftJoin('sites', 'packagesites.site_id', '=', 'sites.id')
+        ->where('packagesites.package_id', $cityTourId)
         ->get();
         return view('admin.package_details',$data);
     }
+    public function delete_packages($id){
+        $cityTour = package::find($id);
+        $cityTour->delete();
+        $imagePath = public_path('uploads/' . $cityTour->img);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        $galleryImages = packageGallery::where('package_id', $cityTour->id)->get();
+        if ($galleryImages) {
+            foreach ($galleryImages as $image) {
+                $imagePath = public_path('uploads/' . $image->image_path);
+                if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                }
+                $image->delete();
+            }
+        }
+        $days = packageday::where('package_id', $cityTour->id)->get();
+            foreach ($days as $day) {
+                $day->delete();
+            }
+        $sites = packagesite::where('package_id', $cityTour->id)->get();
+            foreach ($sites as $site) {
+                $site->delete();
+            }
+        return redirect('manage_packages')->with ('Delete','Packages Deleted Successfully');
+    }
+    // public function edit_packages($id){
+    //     $data['cities']=city::all();
+    //     $data['citytour'] =package::find($id);
+    //     $cityTourId = $data['citytour']->id;
 
+    //     $data['galleryImages'] = packageGallery::leftJoin('packages', 'package_galleries.package_id', '=', 'packages.id')
+    //     ->where('package_galleries.package_id', $cityTourId)
+    //     ->select('package_galleries.*')
+    //     ->get();
+
+    //     $data['days'] = packageday::leftJoin('packages', 'packagedays.package_id', '=', 'packages.id')
+    //     ->where('packagedays.package_id', $cityTourId)
+    //     ->select('packagedays.*')
+    //     ->get();
+
+    //     $data['psites'] = packagesite::leftJoin('sites', 'packagesites.site_id', '=', 'sites.id')
+    //     ->get();
+    //     return view('admin.edit_packages',$data);
+    // }
+    // public function update_package(Request $request){
+    //     $request->validate([
+    //     ]);
+    
+    //     $cityTour = package::find($request->id);
+    
+    //     if (!$cityTour) {
+    //         return redirect('/manage_packages')->with('error', 'Package not found');
+    //     }
+    
+    //     $dataToUpdate = [
+    //         'name' => $request->name,
+    //         'night' => $request->night,
+    //         'des' => $request->des,
+    //         'city' => $request->city,
+    //         'price' => $request->price,
+    //     ];
+    
+    //     if ($request->file('img') !== null) {
+    //         $photo = $request->file('img');
+    //         $photo_name = time() . "-" . $photo->getClientOriginalName();
+    //         $photo_destination = public_path('uploads');
+    //         $photo->move($photo_destination, $photo_name);
+    //         $dataToUpdate['img'] = $photo_name;
+    //     }
+    
+    //     $cityTour->update($dataToUpdate);
+    //     $imagePathsold = $request->file('imagesold');
+    //     $galleryIds = $request->input('gallery_id', []);
+    
+    //     if ($imagePathsold) {
+    //         foreach ($galleryIds as $key => $galleryId) {
+    //             $gimg = packageGallery::find($galleryId);
+    //             if (!$gimg) {
+    //                 return redirect('/manage_packages')->with('error', 'Gallery image not found');
+    //             }
+    //             if (isset($imagePathsold[$key])) {
+    //                 $image = $imagePathsold[$key];
+    //                 $originalName = time() . "-" . $image->getClientOriginalName();
+    //                 $imagePathDestination = public_path('uploads');
+    //                 $image->move($imagePathDestination, $originalName);
+    //                 $gimg->update([
+    //                     'image_path' => $originalName,
+    //                 ]);
+    //             }
+    //         }
+    //     }
+    
+    //     //add new imgs
+    //     $imagePaths = $request->file('images');
+    //     if ($imagePaths) {
+    //         foreach ($imagePaths as $image) {
+    //             $originalName = time() . "-" . $image->getClientOriginalName();
+    //             $imagePathDestination = public_path('uploads');
+    //             $image->move($imagePathDestination, $originalName);
+    //             packageGallery::create([
+    //                 'site_id' => $cityTour->id,
+    //                 'image_path' => $originalName,
+    //             ]);
+    //         }
+    //     }
+    //     // Handle updating day titles and descriptions
+    //     $dayTitles = $request->day_title;
+    //     $dayDescriptions = $request->day_des;
+    //     $daysIds = $request->input('days_id', []);
+    
+    //     if (count($dayTitles) === count($dayDescriptions) && count($dayTitles) === count($daysIds)) {
+    //         foreach ($daysIds as $key => $daysId) {
+    //             $gday = SiteDay::find($daysId);
+    
+    //             if (!$gday) {
+    //                 return redirect('/manage_sites_and_monuments')->with('error', 'Site day not found');
+    //             }
+    
+    //             $dayTitle = $dayTitles[$key];
+    //             $dayDescription = $dayDescriptions[$key];
+    
+    //             $gday->update([
+    //                 'day_title' => $dayTitle,
+    //                 'day_des' => $dayDescription,
+    //             ]);
+    //         }
+    //     }
+    
+    //     return redirect('/manage_sites_and_monuments')->with('savectour', 'Sites and monuments updated successfully');
+    // }
     public function add_daily_activities(){
         return view('admin.add_daily_activities');
     }
@@ -911,7 +1049,6 @@ class adminController extends Controller
                 }
             }
         }
-        //add new imgs
         $imagePaths = $request->file('images');
         if ($imagePaths) {
             foreach ($imagePaths as $image) {
@@ -965,7 +1102,7 @@ class adminController extends Controller
             return redirect('manage_accomodation')->with ('success','Accomodation added Successfully');
     }
     public function manage_accomodation(){
-        $data =accomodation::orderBy('id', 'desc')->get();
+        $data =accomodation::orderBy('id', 'desc')->where('role',1)->get();
         return view('admin.manage_accomodation',['hotels'=>$data]);
     }
     public function edit_accomodation($id){
@@ -1024,7 +1161,36 @@ class adminController extends Controller
         }
         return redirect('manage_accomodation')->with ('Delete','Accomodation Deleted Successfully');
     }
-
+    public function manage_listings(){
+        // $data =accomodation::orderBy('id', 'desc')->where('role',0)->get();
+        $data =userhotel::orderBy('id', 'desc')->get();
+        return view('admin.manage_listings',['hotels'=>$data]);
+    }
+    public function listing_detail($id){
+        // $data['hotel_old'] =userhotel::find($id);
+        // $city = $data['hotel_old']->city;
+        // $data['hotel'] = userhotel::join('cities', 'accomodations.city', '=', 'cities.id')
+        // ->select('accomodations.*', 'cities.Cityname')
+        // ->where('accomodations.id', $id)
+        // ->first();
+        $data['hotel'] =userhotel::find($id);
+        return view('admin.listing_details',$data);
+    }
+    public function delete_listing($id){
+        $data =accomodation::find($id);
+        $imagePath = public_path('uploads/' . $data->tourimg);
+        $data->delete();
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        return redirect('manage_listings')->with ('Delete','Listing Deleted Successfully');
+    }
+    public function approve_listing($id){
+        accomodation::find($id)->update([
+            'role' => 1,
+        ]);
+        return redirect('manage_listings')->with ('update','Property Approved Successfully');
+    }
     public function add_book(){
         return view('admin.add_book');
     }
@@ -1291,20 +1457,49 @@ class adminController extends Controller
         $data=categories::all();
         return view('admin.add_products',['catagories'=>$data]);
     }
-    public function addproducts(request $request){
+   
+    public function addproducts(Request $request){
         $request->validate([
-            '*'=>'required',
-            'img'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            'img' => 'required|file|mimes:jpeg,png,jpg,svg,webp',
+        ]);
+    
+        $data = $request->all();
+        $photo = $request->file('img');
+        $photo_name = time() . "-" . $photo->getClientOriginalName();
+        $photo_destination = public_path('uploads');
+        $photo->move($photo_destination, $photo_name);
+        $data['img'] = $photo_name;
+    
+        $price = null;
+    
+        if ($request->mlfifty || $request->mlhundred || $request->sm || $request->md || $request->lg) {
+            $price = null;
+        } else {
+            $price = $request->price;
+        }
+    
+        $cityTour = product::create([
+            'name' => $request->name,
+            'p_catg' => $request->p_catg,
+            'price' => $price, 
+            'des' => $request->des,
+            'img' => $photo_name,
+        ]);
+    
+        $cityTourId = $cityTour->id;
+        if ($request->mlfifty || $request->mlhundred || $request->sm || $request->md || $request->lg) {
+            ProductPrice::create([
+                'p_id' => $cityTour->id,
+                'mlfifty' => $request->mlfifty,
+                'mlhundred' => $request->mlhundred,
+                'sm' => $request->sm,
+                'md' => $request->md,
+                'lg' => $request->lg,
             ]);
-            $data =$request->all();
-            $photo = $request->file('img');
-            $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('uploads');
-            $photo->move($photo_destination,$photo_name);
-            $data['img'] = $photo_name;
-            product::create($data);
-        return redirect('manage_products')->with ('success','Product added Successfully');
+        }
+        return redirect('manage_products')->with('success', 'Product added successfully');
     }
+    
     public function edit_products($id){
         $data['catagories']=categories::all();
         $data['product'] =product::find($id);

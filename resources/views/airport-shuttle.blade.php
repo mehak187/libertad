@@ -69,6 +69,27 @@
                         </div>
                     </div>
                     <div>
+                        <div class="d-md-block d-none">
+                            @if(auth()->user())
+                            <u style="color: #E4C14F;">Leave your Review</u>
+                            <form action="/savereview" method="POST">
+                                    @csrf
+                                <div class="d-flex gap-2">
+                                    <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
+                                        placeholder="Please leave your Review" maxlength="400"></textarea>
+                                    <button class="p-0 mt-auto btn_submit_rivew">
+                                        <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
+                                            alt="">
+                                    </button>
+                                    @error('review')
+                                    <span class="error text-danger">
+                                        {{$message}}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </form>
+                            @endif
+                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>
@@ -163,8 +184,8 @@
                                                                     <div class="card-body card_bottom"
                                                                         style="background-color: #E2BE4E;">
                                                                         <div
-                                                                            class="d-flex justify-content-between align-items-end">
-                                                                            <div>
+                                                                            class="d-flex flex-wrap justify-content-between align-items-end">
+                                                                            <div class="w-100 mb-3">
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle1['from'] }} to
                                                                                     {{ $vehicle1['to'] }}</p>
@@ -222,8 +243,8 @@
                                                                     <div class="card-body card_bottom"
                                                                         style="background-color: #E2BE4E;">
                                                                         <div
-                                                                            class="d-flex justify-content-between align-items-end">
-                                                                            <div>
+                                                                            class="d-flex flex-wrap justify-content-between align-items-end">
+                                                                            <div class="w-100 mb-3">
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle2['from'] }} to
                                                                                     {{ $vehicle2['to'] }}</p>
@@ -283,8 +304,8 @@
                                                                     <div class="card-body card_bottom"
                                                                         style="background-color: #E2BE4E;">
                                                                         <div
-                                                                            class="d-flex justify-content-between align-items-end">
-                                                                            <div>
+                                                                            class="d-flex flex-wrap justify-content-between align-items-end">
+                                                                            <div class="w-100 mb-3">
                                                                                 <p class="mb-0 fs-12 fw-bold">
                                                                                     {{ $vehicle['from'] }} to
                                                                                     {{ $vehicle['to'] }}</p>
@@ -336,6 +357,22 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+                    <div class="d-md-none d-block px-3 mt-4">
+                        @if(auth()->user()) 
+                        <u style="color: #E4C14F;">Leave your Review</u>
+                        <div class="d-flex bg_review mt-2 p-3 rounded-3 width-text">
+                            <form action="/savereview" method="POST">
+                                @csrf
+                                <textarea class="bg-transparent border-0 w-100" name="review" id="" rows="3"
+                                    placeholder="Please leave your Review" style="resize: none;"></textarea>
+                                <button type="submit" class="p-0 mt-auto btn_submit_rivew">
+                                    <img src="./imgs/review_button.png" class="img-fluid" width="40px"
+                                        height="40px" alt="">
+                                </button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                     @includeif('template.social_mbl')
                 </div>

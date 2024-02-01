@@ -128,6 +128,8 @@
                             </span>
                         @enderror
                     </div>
+                    <input type="number" class="form-control shadow-none d-none border border-dark font-12"
+                    value="1" name="role" required readonly> 
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <input type="submit" value="Save Accomodation" class="w-100">

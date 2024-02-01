@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('include');
             $table->text('card_des');
             $table->string('tourimg');
+            $table->integer('role');
             $table->timestamps();
         });
     }

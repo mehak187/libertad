@@ -71,6 +71,9 @@ use App\Http\Controllers\adminController;
         Route::post('shuttle_check','shuttle_check');
         Route::get('deletecart/{bk_id}','deletecart');
         Route::get('cart','cart');
+        Route::post('savelist','savelist');
+        Route::post('product_next','product_next');
+        Route::post('bookingstep','bookingstep');
     });
 });
 
@@ -198,6 +201,13 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('manage_shuttle_payments','manage_shuttle_payments');
 
         Route::get('manage_trip','manage_trip');
+
+        Route::get('manage_listings','manage_listings');
+        Route::get('listing_detail/{id}','listing_detail');
+        Route::get('delete_listing/{id}','delete_listing');
+        Route::post('updatealisting', 'updatelisting');
+        Route::get('approve_listing/{id}','approve_listing');
+        
     });
 });
 

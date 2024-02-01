@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Accommodation</title>
     @include('template.csslinks')
+
 </head>
 
 <body class="background_img">
+    @if (session('success'))
+    <script>
+        swal("Good job!", "{{session('success')}}", "success");
+    </script>
+@endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -64,6 +70,32 @@
                         </div>
                     </div>
                     <div class="mt-auto">
+                        @if (session('success'))
+                    <script>
+                        swal("Good job!", "{{session('success')}}", "success");
+                    </script>
+                    @endif
+                        <div class="d-md-block d-none">
+                            @if(auth()->user())
+                            <u style="color: #E4C14F;">Leave your Review</u>
+                            <form action="/savereview" method="POST">
+                                    @csrf
+                                <div class="d-flex gap-2">
+                                    <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
+                                        placeholder="Please leave your Review" maxlength="400"></textarea>
+                                    <button class="p-0 mt-auto btn_submit_rivew">
+                                        <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
+                                            alt="">
+                                    </button>
+                                    @error('review')
+                                    <span class="error text-danger">
+                                        {{$message}}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </form>
+                            @endif
+                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>
@@ -83,11 +115,13 @@
                                 <div class="slider_popup pb-4 px-sm-3 px-2 pt-3">
                                     <div class="d-flex flex-wrap align-items-center gap-2 ">
                                         <h5 class="my-auto" style="color: #E2BE4E;">Search Accommodation:</h5>
+                                    @if (auth()->check())
                                         <div class="button_border rounded-pill ms-auto mt-3">
                                             <button class="button_leniar_style px-4 rounded-pill fs-12"
                                                 data-bs-toggle="modal" data-bs-target="#propertylisting">List your
                                                 property</button>
                                         </div>
+                                    @endif
                                     </div>
                                     <div class="container-fluid">
                                         <div class="d-flex align-items-end">
@@ -250,6 +284,22 @@
                         @endif
                         <div>
                             @includeif('template.social_mbl')
+                            <div class="d-md-none d-block px-3 mt-4">
+                                @if(auth()->user()) 
+                                <u style="color: #E4C14F;">Leave your Review</u>
+                                <div class="d-flex bg_review mt-2 p-3 rounded-3 width-text">
+                                    <form action="/savereview" method="POST">
+                                        @csrf
+                                        <textarea class="bg-transparent border-0 w-100" name="review" id="" rows="3"
+                                            placeholder="Please leave your Review" style="resize: none;"></textarea>
+                                        <button type="submit" class="p-0 mt-auto btn_submit_rivew">
+                                            <img src="./imgs/review_button.png" class="img-fluid" width="40px"
+                                                height="40px" alt="">
+                                        </button>
+                                    </form>
+                                </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -260,7 +310,8 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form action="">
+                <form action="/savelist" method="POST" enctype="multipart/form-data" class="mt-2">
+                    @csrf
                     <div class="row">
                         <div class="col-12 bg-white rounded-4">
                             <div class="px-3 border-golden1 d-flex justify-content-between align-items-center">
@@ -276,66 +327,56 @@
                                 <div class="col-lg-4 col-sm-6 ">
                                     <label for="" class="font-12">Hotel name:</label>
                                     <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Hotel name here">
+                                        placeholder="Hotel name here" name="name" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-sm-0 mt-3">
                                     <label for="" class="font-12">Location:</label>
                                     <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Location of the hotels here">
+                                        placeholder="Location of the hotels here" name="location" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-lg-0 mt-3">
-                                    <label for="" class="font-12">price in USD:</label>
-                                    <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="price of USD">
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">No. of Nights</label>
-                                    <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01">
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
                                     <label for="" class="font-12">Number of rooms:</label>
-                                    <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01">
+                                    <input type="number" class="form-control shadow-none border border-dark font-12" name="room" placeholder="01">
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">Choose city:</label>
-                                    <select name="city" class="form-control shadow-none border border-dark font-12" >
-                                        <option value="">Choose city</option>
-                                        {{-- @foreach ($cities as $city)
-                                            <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
-                                        @endforeach --}}
+                                    <label for="" class="font-12">Capacity/no of people</label>
+                                    <input type="number" class="form-control shadow-none border border-dark font-12" name="people" placeholder="01">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">From:</label>
+                                    <input type="date" class="form-control shadow-none border border-dark font-12" name="from">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">To:</label>
+                                    <input type="date" class="form-control shadow-none border border-dark font-12" name="to">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">Rent duration category:</label>
+                                    <select class="form-select shadow-none border border-dark font-12" name="rent_catg">
+                                        <option value="daily">Daily</option>
+                                        <option value="daily rent">Daily Rent</option>
+                                        <option value="monthly rent">Monthly Rent</option>
+                                        <option value="yearly rent">Yearly Rent</option>
                                     </select>
                                 </div>
-
-                                <div class="col-12 mt-3">
-                                    <label for="" class="font-12">Sight seeing:</label>
-                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Sight seeing" cols="40" rows="5"></textarea>
-                                        <p class="mb-0"><b>Note:</b> Separate each with comma</p>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <label for="" class="font-12">Include:</label>
-                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Include" cols="40" rows="5"></textarea>
-                                        <p class="mb-0"><b>Note:</b> Separate each with comma</p>
-                                </div>
+                              
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Description:</label>
-                                    <textarea name="" id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Description" cols="40" rows="5"></textarea>
+                                    <textarea id="" class="form-control shadow-none border border-dark font-12"
+                                        placeholder="Description" cols="40" rows="5" name="des" required></textarea>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="myImg">
                                         <img id="blah" src="./imgs/add_profile.png" alt=""
                                             class="profile-img">
                                     </label>
-                                    <input type="file" name="img" class="d-none" id="myImg"
-                                        onchange="readURL(this);">
+                                    <input type="file" class="d-none" id="myImg"
+                                        onchange="readURL(this);" name="tourimg" required>
                                 </div>
+                            
                                 <div class="d-flex gap-2 mt-5">
                                     <input type="checkbox" class="form-check-input shadow-none" id="myCheck"
-                                        checked>
+                                        checked required>
                                     <label for="myCheck">Our Terms and Conditions</label>
                                 </div>
                                 <div class="mt-3">
@@ -352,6 +393,7 @@
             </div>
         </div>
     </div>
+    
     @include('template.jslinks')
 </body>
 
