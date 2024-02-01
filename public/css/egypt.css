@@ -1467,25 +1467,25 @@ body {
   transform: translate(-50%, -50%);
   background: #fff;
   padding: 20px 0;
+  max-height: 97vh;
   border-radius: 10px;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
 }
 .close-res,
 .close-book {
   cursor: pointer;
 }
-.custom-model {
-  max-height: 97vh;
+
+.custom-model form{
   overflow-y: auto;
   overflow-x: hidden;
-}
-.custom-model form{
-  overflow: auto;
-  overflow-x: hidden;
+  max-height: 89vh;
   /* max-height: 97vh; */
 }
-.custom-model::-webkit-scrollbar {
+/* .custom-model::-webkit-scrollbar {
   width: 0
-}
+} */
 .form-control-n {
   display: block;
     width: 100%;

@@ -35,9 +35,9 @@
                         <thead>
                           <tr>
                             <th>name</th>
-                            <th>No of nights</th>
+                            <th>rooms</th>
                             <th>Location</th>
-                            <th>Price</th>
+                            <th>Rent Category</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -45,13 +45,13 @@
                           @foreach ($hotels as $hotel)
                           <tr>
                             <td>{{$hotel['name']}}</td>
-                            <td>{{$hotel['nights_nmbr']}}</td>
+                            <td>{{$hotel['room']}}</td>
                             <td>{{$hotel['location']}}</td>
-                            <td>{{$hotel['tour_price']}}</td>
+                            <td>{{$hotel['rent_catg']}}</td>
                             <td>
                                 <a href="{{"listing_detail/" .$hotel['id'] }}" class="bg-success d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">View Details</a>
-                                <a href="{{"approve_listing/" .$hotel['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Approve</a>
-                                <a href="{{"delete_listing/" .$hotel['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Reject</a>
+                                {{-- <a href="{{"approve_listing/" .$hotel['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Approve</a> --}}
+                                <a href="{{"delete_listing/" .$hotel['id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
                             </td>
                           </tr>
                           @endforeach

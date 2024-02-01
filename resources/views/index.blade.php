@@ -158,7 +158,22 @@
                         </div>
                     </div>
                     @includeif('template.social_mbl')
-
+                    <div class="d-md-none d-block px-3 mt-4">
+                        @if(auth()->user()) 
+                        <u style="color: #E4C14F;">Leave your Review</u>
+                        <div class="d-flex bg_review mt-2 p-3 rounded-3 width-text">
+                            <form action="/savereview" method="POST">
+                                @csrf
+                                <textarea class="bg-transparent border-0 w-100" name="review" id="" rows="3"
+                                    placeholder="Please leave your Review" style="resize: none;"></textarea>
+                                <button type="submit" class="p-0 mt-auto btn_submit_rivew">
+                                    <img src="./imgs/review_button.png" class="img-fluid" width="40px"
+                                        height="40px" alt="">
+                                </button>
+                            </form>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

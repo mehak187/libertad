@@ -72,6 +72,8 @@ use App\Http\Controllers\adminController;
         Route::get('deletecart/{bk_id}','deletecart');
         Route::get('cart','cart');
         Route::post('savelist','savelist');
+        Route::post('product_next','product_next');
+        Route::post('bookingstep','bookingstep');
     });
 });
 

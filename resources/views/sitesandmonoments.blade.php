@@ -65,11 +65,11 @@
                             <p class="golden-clr">No. of nights:</p>
                             <span class="text-white">{{ $sites->nights }}</span>
                         </div>
-                        <div class="d-flex gap-2">
+                        {{-- <div class="d-flex gap-2">
                             <p class="golden-clr">Price:</p>
                             <span class="text-white">{{ $sites->price }} USD</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
+                        </div> --}}
+                        {{-- <div class="d-flex align-items-center gap-2">
                             @if (auth()->check())
                             <div class="">
                                     <div class="button_border rounded-pill">
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>

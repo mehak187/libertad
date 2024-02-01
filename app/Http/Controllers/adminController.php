@@ -34,8 +34,8 @@ use App\Models\package;
 use App\Models\packageday;
 use App\Models\packageGallery;
 use App\Models\packagesite;
-
-
+use App\Models\userhotel;
+use App\Models\ProductPrice;
 use Stripe;
 use Session;
 
@@ -698,6 +698,11 @@ class adminController extends Controller
             foreach ($days as $day) {
                 $day->delete();
             }
+
+        $sites = packagesite::where('package_id', $cityTour->id)->get();
+            foreach ($sites as $site) {
+                $site->delete();
+            }
         return redirect('manage_sites_and_monuments')->with ('Delete','Sites and Monuments Deleted Successfully');
     }
 
@@ -795,6 +800,7 @@ class adminController extends Controller
             ->get();
 
         $data['psites'] = packagesite::leftJoin('sites', 'packagesites.site_id', '=', 'sites.id')
+        ->where('packagesites.package_id', $cityTourId)
         ->get();
         return view('admin.package_details',$data);
     }
@@ -1156,16 +1162,18 @@ class adminController extends Controller
         return redirect('manage_accomodation')->with ('Delete','Accomodation Deleted Successfully');
     }
     public function manage_listings(){
-        $data =accomodation::orderBy('id', 'desc')->where('role',0)->get();
+        // $data =accomodation::orderBy('id', 'desc')->where('role',0)->get();
+        $data =userhotel::orderBy('id', 'desc')->get();
         return view('admin.manage_listings',['hotels'=>$data]);
     }
     public function listing_detail($id){
-        $data['hotel_old'] =accomodation::find($id);
-        $city = $data['hotel_old']->city;
-        $data['hotel'] = accomodation::join('cities', 'accomodations.city', '=', 'cities.id')
-        ->select('accomodations.*', 'cities.Cityname')
-        ->where('accomodations.id', $id)
-        ->first();
+        // $data['hotel_old'] =userhotel::find($id);
+        // $city = $data['hotel_old']->city;
+        // $data['hotel'] = userhotel::join('cities', 'accomodations.city', '=', 'cities.id')
+        // ->select('accomodations.*', 'cities.Cityname')
+        // ->where('accomodations.id', $id)
+        // ->first();
+        $data['hotel'] =userhotel::find($id);
         return view('admin.listing_details',$data);
     }
     public function delete_listing($id){
@@ -1449,20 +1457,49 @@ class adminController extends Controller
         $data=categories::all();
         return view('admin.add_products',['catagories'=>$data]);
     }
-    public function addproducts(request $request){
+   
+    public function addproducts(Request $request){
         $request->validate([
-            '*'=>'required',
-            'img'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            'img' => 'required|file|mimes:jpeg,png,jpg,svg,webp',
+        ]);
+    
+        $data = $request->all();
+        $photo = $request->file('img');
+        $photo_name = time() . "-" . $photo->getClientOriginalName();
+        $photo_destination = public_path('uploads');
+        $photo->move($photo_destination, $photo_name);
+        $data['img'] = $photo_name;
+    
+        $price = null;
+    
+        if ($request->mlfifty || $request->mlhundred || $request->sm || $request->md || $request->lg) {
+            $price = null;
+        } else {
+            $price = $request->price;
+        }
+    
+        $cityTour = product::create([
+            'name' => $request->name,
+            'p_catg' => $request->p_catg,
+            'price' => $price, 
+            'des' => $request->des,
+            'img' => $photo_name,
+        ]);
+    
+        $cityTourId = $cityTour->id;
+        if ($request->mlfifty || $request->mlhundred || $request->sm || $request->md || $request->lg) {
+            ProductPrice::create([
+                'p_id' => $cityTour->id,
+                'mlfifty' => $request->mlfifty,
+                'mlhundred' => $request->mlhundred,
+                'sm' => $request->sm,
+                'md' => $request->md,
+                'lg' => $request->lg,
             ]);
-            $data =$request->all();
-            $photo = $request->file('img');
-            $photo_name =time()."-".$photo->getClientOriginalName();
-            $photo_destination=public_path('uploads');
-            $photo->move($photo_destination,$photo_name);
-            $data['img'] = $photo_name;
-            product::create($data);
-        return redirect('manage_products')->with ('success','Product added Successfully');
+        }
+        return redirect('manage_products')->with('success', 'Product added successfully');
     }
+    
     public function edit_products($id){
         $data['catagories']=categories::all();
         $data['product'] =product::find($id);

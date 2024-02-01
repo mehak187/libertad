@@ -27,47 +27,28 @@
                     <div class="col-lg-6 py-3 px-4">
                         <p class="text-dark small">{{$hotel['name']}}</p>
                         <div class="row mt-3">
-                            <p class="text-dark small">{{$hotel['card_des']}}</p>
+                            <p class="text-dark small">{{$hotel['des']}}</p>
                             <div class="d-flex gap-2 mt-4">
-                                <h6 class="golden-clr">City:</h6>
-                                <span class="text-dark">{{$hotel['Cityname']}}</span>
-                            </div>
-                            <div class="d-flex gap-2 mt-4">
-                                <h6 class="golden-clr">No. of nights:</h6>
-                                <span class="text-dark">{{$hotel['nights_nmbr']}}</span>
-                            </div>
-                            <div class="d-flex gap-2 mt-4">
-                                <h6 class="golden-clr">No. of rooms:</h6>
-                                <span class="text-dark">{{$hotel['rooms']}}</span>
+                                <h6 class="golden-clr">People:</h6>
+                                <span class="text-dark">{{$hotel['people']}}</span>
                             </div>
                             <div class="d-flex gap-2">
-                                <h6 class="golden-clr">Tour Price:</h6>
-                                <span class="text-dark">{{$hotel['tour_price']}} USD per adult</span>
+                                <h6 class="golden-clr">No. of rooms:</h6>
+                                <span class="text-dark">{{$hotel['room']}}</span>
                             </div>
-                            <div>
-                                <h6 class="golden-clr mt-3">Sightseeing</h6>
-                                @php
-                                $inputString = $hotel['sight_seeing'];
-                                $dataArray = explode(',', $inputString);
-                                @endphp
-                                <ul class="text-dark">
-                                    @foreach ($dataArray as $item)
-                                        <li class="text-dark">{{ $item }}</li>
-                                    @endforeach
-                                </ul>
+                            <div class="d-flex gap-2">
+                                <h6 class="golden-clr">From:</h6>
+                                <span class="text-dark">{{$hotel['from']}}</span>
                             </div>
-                            <div>
-                                <h6 class="golden-clr">Include</h6>
-                                @php
-                                $inputString = $hotel['include'];
-                                $dataArray = explode(',', $inputString);
-                                @endphp
-                                <ul class="text-dark">
-                                    @foreach ($dataArray as $item)
-                                        <li class="text-dark">{{ $item }}</li>
-                                    @endforeach
-                                </ul>
+                            <div class="d-flex gap-2">
+                                <h6 class="golden-clr">To:</h6>
+                                <span class="text-dark">{{$hotel['to']}}</span>
                             </div>
+                            <div class="d-flex gap-2">
+                                <h6 class="golden-clr">Rent Category:</h6>
+                                <span class="text-dark">{{$hotel['rent_catg']}}</span>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>

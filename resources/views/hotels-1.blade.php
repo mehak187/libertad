@@ -70,6 +70,32 @@
                         </div>
                     </div>
                     <div class="mt-auto">
+                        @if (session('success'))
+                    <script>
+                        swal("Good job!", "{{session('success')}}", "success");
+                    </script>
+                    @endif
+                        <div class="d-md-block d-none">
+                            @if(auth()->user())
+                            <u style="color: #E4C14F;">Leave your Review</u>
+                            <form action="/savereview" method="POST">
+                                    @csrf
+                                <div class="d-flex gap-2">
+                                    <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
+                                        placeholder="Please leave your Review" maxlength="400"></textarea>
+                                    <button class="p-0 mt-auto btn_submit_rivew">
+                                        <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
+                                            alt="">
+                                    </button>
+                                    @error('review')
+                                    <span class="error text-danger">
+                                        {{$message}}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </form>
+                            @endif
+                        </div>
                         @includeif('template.social_desktop')
                     </div>
                 </div>
@@ -258,6 +284,22 @@
                         @endif
                         <div>
                             @includeif('template.social_mbl')
+                            <div class="d-md-none d-block px-3 mt-4">
+                                @if(auth()->user()) 
+                                <u style="color: #E4C14F;">Leave your Review</u>
+                                <div class="d-flex bg_review mt-2 p-3 rounded-3 width-text">
+                                    <form action="/savereview" method="POST">
+                                        @csrf
+                                        <textarea class="bg-transparent border-0 w-100" name="review" id="" rows="3"
+                                            placeholder="Please leave your Review" style="resize: none;"></textarea>
+                                        <button type="submit" class="p-0 mt-auto btn_submit_rivew">
+                                            <img src="./imgs/review_button.png" class="img-fluid" width="40px"
+                                                height="40px" alt="">
+                                        </button>
+                                    </form>
+                                </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -270,13 +312,6 @@
             <div class="modal-content">
                 <form action="/savelist" method="POST" enctype="multipart/form-data" class="mt-2">
                     @csrf
-                    {{-- <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Hotel name here" name="name" required>
-                                        <button type="submit"
-                                        class="mybutton border-5 border-golden3 rounded-pill px-4 py-2">
-                                        Submit for
-                                        approval
-                                    </button> --}}
                     <div class="row">
                         <div class="col-12 bg-white rounded-4">
                             <div class="px-3 border-golden1 d-flex justify-content-between align-items-center">
@@ -300,46 +335,35 @@
                                         placeholder="Location of the hotels here" name="location" required>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-lg-0 mt-3">
-                                    <label for="" class="font-12">price in USD:</label>
-                                    <input type="text" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="price of USD" name="tour_price" required>
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">No. of Nights</label>
-                                    <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01" name="nights_nmbr" required>
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
                                     <label for="" class="font-12">Number of rooms:</label>
-                                    <input type="number" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="01" name="rooms" required>
+                                    <input type="number" class="form-control shadow-none border border-dark font-12" name="room" placeholder="01">
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
-                                    <label for="" class="font-12">Choose city:</label>
-                                    <select name="city" class="form-control shadow-none border border-dark font-12" name="city" required>
-                                        <option value="" selected disabled hidden>Choose city</option>
-                                        @foreach ($cities as $city)
-                                            <option value="{{$city['id']}}">{{$city['Cityname']}}</option>
-                                        @endforeach
+                                    <label for="" class="font-12">Capacity/no of people</label>
+                                    <input type="number" class="form-control shadow-none border border-dark font-12" name="people" placeholder="01">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">From:</label>
+                                    <input type="date" class="form-control shadow-none border border-dark font-12" name="from">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">To:</label>
+                                    <input type="date" class="form-control shadow-none border border-dark font-12" name="to">
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <label for="" class="font-12">Rent duration category:</label>
+                                    <select class="form-select shadow-none border border-dark font-12" name="rent_catg">
+                                        <option value="daily">Daily</option>
+                                        <option value="daily rent">Daily Rent</option>
+                                        <option value="monthly rent">Monthly Rent</option>
+                                        <option value="yearly rent">Yearly Rent</option>
                                     </select>
                                 </div>
-
-                                <div class="col-12 mt-3">
-                                    <label for="" class="font-12">Sight seeing:</label>
-                                    <textarea id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Sight seeing" cols="40" rows="5" name="sight_seeing" required></textarea>
-                                        <p class="mb-0"><b>Note:</b> Separate each with comma</p>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <label for="" class="font-12">Include:</label>
-                                    <textarea id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Include" cols="40" rows="5" name="include" required></textarea>
-                                        <p class="mb-0"><b>Note:</b> Separate each with comma</p>
-                                </div>
+                              
                                 <div class="col-12 mt-3">
                                     <label for="" class="font-12">Description:</label>
                                     <textarea id="" class="form-control shadow-none border border-dark font-12"
-                                        placeholder="Description" cols="40" rows="5" name="card_des" required></textarea>
+                                        placeholder="Description" cols="40" rows="5" name="des" required></textarea>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="myImg">
@@ -349,8 +373,7 @@
                                     <input type="file" class="d-none" id="myImg"
                                         onchange="readURL(this);" name="tourimg" required>
                                 </div>
-                                <input type="number" class="form-control shadow-none d-none border border-dark font-12"
-                                       value="0" name="role" required readonly>
+                            
                                 <div class="d-flex gap-2 mt-5">
                                     <input type="checkbox" class="form-check-input shadow-none" id="myCheck"
                                         checked required>
