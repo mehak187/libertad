@@ -1508,6 +1508,10 @@ body {
 .container-travel img {
   height: 74vh
 }
+.focus-b-none:focus {
+  border: none !important;
+  outline: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .search1 {
     --transition-time-icon: 0s !important;

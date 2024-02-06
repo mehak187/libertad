@@ -140,7 +140,12 @@
                                                         name="people" id=""
                                                         style="background-color: transparent;" required>
                                                 </div>
-                                   
+                                                <div class="">
+                                                    <label for="" class="fs-12 text-white">Date</label>
+                                                    <input type="date" class="form-control text-white"
+                                                        name="date" id=""
+                                                        style="background-color: transparent;" required>
+                                                </div>
                                                 <div class=" d-flex align-items-end">
                                                     <div class="">
                                                         <a href="{{ asset('vehicle') }}">
@@ -152,7 +157,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                        </form>
                                     </div>

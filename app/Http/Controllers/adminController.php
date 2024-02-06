@@ -36,6 +36,8 @@ use App\Models\packageGallery;
 use App\Models\packagesite;
 use App\Models\userhotel;
 use App\Models\ProductPrice;
+use App\Models\Vehicle;
+use App\Models\VehicleBooking;
 use Stripe;
 use Session;
 
@@ -1579,7 +1581,67 @@ class adminController extends Controller
         }
         return redirect('manage_shuttle')->with ('update','Airport Shuttle updated Successfully');
     }
-
+    public function add_vehicle(){
+        return view('admin.add_vehicle');
+    }
+    public function savevehicle(request $request){
+        $request->validate([
+            '*'=>'required',
+            'img'=>'required|file|mimes:jpeg,png,jpg,svg,webp'
+            ]);
+            $data =$request->all();
+            $photo = $request->file('img');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['img'] = $photo_name;
+            Vehicle::create($data);
+        return redirect('manage_vehicle')->with ('success','Vehicle added Successfully');
+    }
+    public function edit_vehicle($id){
+        $data['vehicle']=Vehicle::find($id);
+        return view('admin.edit_vehicle',$data);
+    }
+    public function deletevehicle($id){
+        $data =Vehicle::find($id);
+        $imagePath = public_path('uploads/' . $data->img);
+        $data->delete();
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        return redirect('manage_vehicle')->with ('Delete','Vehicle Deleted Successfully');
+    } 
+    public function updatevehicle(request $request){
+        if($request->file('img')==NULL){
+            $data = $request->except('img');
+            Vehicle::find($request->id)->update($data);
+        }else{
+            $data =$request->all();
+            $photo = $request->file('img');
+            $photo_name =time()."-".$photo->getClientOriginalName();
+            $photo_destination=public_path('uploads');
+            $photo->move($photo_destination,$photo_name);
+            $data['img'] = $photo_name;
+            Vehicle::find($request->id)->update($data);
+        }
+        return redirect('manage_vehicle')->with ('update','Vehicle updated Successfully');
+    }
+    public function manage_vehicle(){
+        $data=Vehicle::orderBy('id', 'desc')->get();
+        return view('admin.manage_vehicle',['vehicles'=>$data]);
+    }
+    public function manage_vehicle_bookings(){
+        $data=VehicleBooking::leftjoin('users', 'vehicle_bookings.user_id', '=', 'users.id')
+        ->select('vehicle_bookings.*','users.name as u_name','vehicle_bookings.id as v_id','vehicle_bookings.name as v_name')
+        ->orderBy('vehicle_bookings.id', 'desc')
+        ->get();
+        return view('admin.manage_vehicle_bookings',['vehicles'=>$data]);
+    }   
+    public function deletevehicle_bookings($id){
+        $data =VehicleBooking::find($id);
+        $data->delete();
+        return redirect('manage_vehicle_bookings')->with ('Delete','Booking Deleted Successfully');
+    } 
     public function manage_why_libertad(){
         $data['libertad'] = libertad::first();
         if ($data['libertad']) {

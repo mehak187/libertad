@@ -1,7 +1,6 @@
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
 
-<form action="">
     <div class="div-main pic-bg d-md-none d-block py-2">
         <div class="container-fluid px-md-4">
             <div class="d-flex justify-content-between align-items-center">
@@ -255,6 +254,9 @@
             </div>
         </div>
     </div>
+    {{-- -----------------------------------
+    destop
+    ------------------------------------ --}}
     <div class="dashboard-sec height-sec">
         <div class="container-fluid gx-0">
             <div class="yellow-bg m-0 px-md-3 px-1 align-items-center justify-content-between">
