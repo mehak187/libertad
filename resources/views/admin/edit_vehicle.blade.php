@@ -26,10 +26,18 @@
                    
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="vehicle Type" value="{{$vehicle['vehicle']}}" name="vehicle">
+                            <input type="text" class="w-100" placeholder="" value="{{$vehicle['vehicle']}}" name="vehicle">
                         </div>
                         <div class="input-field mt-4">
                             <input type="text" class="w-100" placeholder="" value="{{$vehicle['name']}}" name="name">
+                        </div>
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field mt-4">
+                            <input type="number" class="w-100" placeholder="" value="{{$vehicle['price']}}" name="price">
+                        </div>
+                        <div class="input-field mt-4">
+                            <input type="number" class="w-100" placeholder="" value="{{$vehicle['people']}}" name="people">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">

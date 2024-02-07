@@ -38,6 +38,7 @@ use App\Models\userhotel;
 use App\Models\ProductPrice;
 use App\Models\Vehicle;
 use App\Models\VehicleBooking;
+use App\Models\Paymentvehicle;
 use Stripe;
 use Session;
 
@@ -1631,12 +1632,17 @@ class adminController extends Controller
         return view('admin.manage_vehicle',['vehicles'=>$data]);
     }
     public function manage_vehicle_bookings(){
-        $data=VehicleBooking::leftjoin('users', 'vehicle_bookings.user_id', '=', 'users.id')
-        ->select('vehicle_bookings.*','users.name as u_name','vehicle_bookings.id as v_id','vehicle_bookings.name as v_name')
-        ->orderBy('vehicle_bookings.id', 'desc')
-        ->get();
-        return view('admin.manage_vehicle_bookings',['vehicles'=>$data]);
+        $data = VehicleBooking::leftJoin('paymentvehicles', 'vehicle_bookings.id', '=', 'paymentvehicles.book_id')
+            ->leftJoin('users', 'vehicle_bookings.user_id', '=', 'users.id')
+            ->whereColumn('vehicle_bookings.id', '=', 'paymentvehicles.book_id')
+            ->select('paymentvehicles.*','vehicle_bookings.*', 'users.name as u_name', 'vehicle_bookings.id as v_id', 'vehicle_bookings.name as v_name','vehicle_bookings.people as v_people')
+            ->orderBy('vehicle_bookings.id', 'desc')
+            ->get();
+        
+        return view('admin.manage_vehicle_bookings', ['vehicles' => $data]);
     }   
+      
+    
     public function deletevehicle_bookings($id){
         $data =VehicleBooking::find($id);
         $data->delete();

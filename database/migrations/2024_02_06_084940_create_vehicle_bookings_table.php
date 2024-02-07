@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('type');
                 $table->integer('people');
                 $table->string('date');
+                $table->integer('price');
                 $table->string('img')->nullable();
                 $table->timestamps();
         });

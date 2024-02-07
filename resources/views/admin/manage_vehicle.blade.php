@@ -36,8 +36,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Vehicle name</th>
-                                <th>Vehicle Type</th>
+                                <th>Name</th>
+                                <th>Model</th>
+                                <th>Price</th>
+                                <th>Passengers</th>
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
@@ -47,6 +49,8 @@
                           <tr>
                             <td>{{$vehicle['name']}}</td>
                             <td>{{$vehicle['vehicle']}}</td>
+                            <td>{{$vehicle['price']}}</td>
+                            <td>{{$vehicle['people']}}</td>
                             <td><img src="<?php echo asset('uploads/' . $vehicle['img'])?>" alt="" ></td>
                             <td>
                                 <a href="{{"edit_vehicle/" .$vehicle['id'] }}" class="bg-primary d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Edit</a>

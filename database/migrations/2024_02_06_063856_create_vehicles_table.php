@@ -16,6 +16,8 @@ return new class extends Migration
                 $table->string('name',);
                 $table->string('vehicle');
                 $table->string('img');
+                $table->integer('people');
+                $table->integer('price');
                 $table->timestamps();
         });
     }

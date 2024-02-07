@@ -32,7 +32,7 @@
                             @enderror
                         </div>
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="vehicle Type" name="vehicle">
+                            <input type="text" class="w-100" placeholder="vehicle Model" name="vehicle">
                             @error('vehicle')
                                 <span class="error text-danger">
                                     {{$message}}
@@ -40,7 +40,24 @@
                             @enderror
                         </div>
                     </div>
-                   
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field mt-4">
+                            <input type="number" class="w-100" placeholder="Price" name="price">
+                            @error('price')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="input-field mt-4">
+                            <input type="number" class="w-100" placeholder="No. of Passengers" name="people">
+                            @error('people')
+                                <span class="error text-danger">
+                                    {{$message}}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field dark-btn mt-4">
                             <label for="tour-img" class="text-dark fs-bold">Vehicle image</label>

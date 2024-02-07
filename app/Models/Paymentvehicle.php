@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicle extends Model
+class Paymentvehicle extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'vehicle',
-        'img',
-        'people',
-        'price',
+        'book_id',
+        'amount',
+        'currency',
+        'stripe_token',
+        'description'
     ];
 }

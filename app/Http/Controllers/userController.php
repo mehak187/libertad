@@ -45,6 +45,7 @@ use App\Models\packagesite;
 use App\Models\userhotel;
 use App\Models\Vehicle;
 use App\Models\VehicleBooking;
+use App\Models\Paymentvehicle;
 use Stripe;
 use Session;
 
@@ -110,10 +111,13 @@ class userController extends Controller
 
         // $to = $request->to;
         // $from = $request->from;
-        // $people = $request->people;
+        $people = $request->people;
         $data2['vehicle'] = $request->all();
-        // $data = shuttle::where('to',$to)->where('from',$from)->where('passengers',$people)->get();
-        $data = Vehicle::all();
+        $data = Vehicle::where('people',$people)->get();
+        if ($data->isEmpty()) {
+            $data = Vehicle::where('people', '>', $people)->get();
+        }
+        // $data = Vehicle::all();
         return view('vehicle-destination',['shuttles'=>$data],$data2);
     }
     public function book(){
@@ -642,6 +646,18 @@ class userController extends Controller
             Session::flash("success","Payment completed successfully!");
     	    return back();
         }
+        // -------vehicles------
+        elseif($req->has('book_role') && $req->input('book_role') == 3){
+            Paymentvehicle::create([
+                'book_id' => $req->shuttle_id,
+                'amount' => $req->amount,
+                'currency' => 'usd', // Adjust accordingly
+                'stripe_token' => $req->stripeToken,
+                'description' => "Test payment from " . auth()->user()->name,
+            ]);
+            Session::flash("success","Payment completed successfully!");
+    	    return back();
+        }
         elseif($req->has('book_role') && $req->input('book_role') == 1){
             payment::create([
                 'book_id' => $req->booking_id,
@@ -691,7 +707,7 @@ class userController extends Controller
             '*' => 'required',
         ]);
         $user_id = auth()->user()->id;
-        $booking = VehicleBooking::create([
+        $requestData = VehicleBooking::create([
             'user_id' => $user_id,
             'shuttle_id' => $request->shuttle_id,
             'from' => $request->from,
@@ -699,41 +715,43 @@ class userController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'people' => $request->people,
+            'price' => $request->price,
             'date' => $request->date,
         ]);
+        $latestBookingId = $requestData->id;
+
+        return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData)->with($latestBookingId);
+    }
+    public function shuttlebooking(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+
+        $user_id = auth()->user()->id;
+        $booking = sbooking::create([
+            'user_id' => $user_id,
+            'shuttle_id' => $request->shuttle_id,
+            'price' => $request->price,
+            'people' => $request->people,
+            'type' => $request->type,
+            'date' => $request->date,
+            'pick_time' => $request->pick_time,
+            'pick_location' => $request->pick_location,
+            'drop_time' => $request->drop_time,
+            'drop_location' => $request->drop_location,
+        ]);
+       
         $latestBookingId = $booking->id;
         return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
     }
-    // public function shuttlebooking(request $request){
-    //     $request->validate([
-    //         '*' => 'required',
-    //     ]);
-
-    //     $user_id = auth()->user()->id;
-    //     $booking = sbooking::create([
-    //         'user_id' => $user_id,
-    //         'shuttle_id' => $request->shuttle_id,
-    //         'price' => $request->price,
-    //         'people' => $request->people,
-    //         'type' => $request->type,
-    //         'date' => $request->date,
-    //         'pick_time' => $request->pick_time,
-    //         'pick_location' => $request->pick_location,
-    //         'drop_time' => $request->drop_time,
-    //         'drop_location' => $request->drop_location,
-    //     ]);
-       
-    //     $latestBookingId = $booking->id;
-    //     return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
-    // }
  
-    // public function shuttle_check(request $request){
-    //     $request->validate([
-    //         '*' => 'required',
-    //     ]);
-    //     $requestData = $request->all();
-    //     return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData);
-    // }
+    public function shuttle_check(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $requestData = $request->all();
+        return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData);
+    }
     public function cart(){
         $id =  auth()->user()->id;
     

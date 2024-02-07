@@ -16,6 +16,7 @@ class VehicleBooking extends Model
         'name',
         'type',
         'people',
-        'date'
+        'date',
+        'price'
     ];
 }

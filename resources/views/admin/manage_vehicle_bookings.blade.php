@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.templates.links')
-    <title>Manage Airport Shuttle</title>
+    <title>Manage Vehicle bookings</title>
 </head>
 
 <body>
@@ -37,11 +37,12 @@
                             <tr>
                                 <th>User name</th>
                                 <th>Vehicle name</th>
-                                <th>Vehicle Type</th>
+                                <th>Vehicle Model</th>
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Passengers</th>
                                 <th>Date</th>
+                                <th>Amount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,8 +54,9 @@
                             <td>{{$vehicle['type']}}</td>
                             <td>{{$vehicle['from']}}</td>
                             <td>{{$vehicle['to']}}</td>
-                            <td>{{$vehicle['people']}}</td>
+                            <td>{{$vehicle['v_people']}}</td>
                             <td>{{$vehicle['date']}}</td>
+                            <td>{{$vehicle['amount']}} USD</td>
                             <td>
                                 <a href="{{"deletevehicle_bookings/" .$vehicle['v_id'] }}" class="bg-danger d-inline-block text-white text-decoration-none py-2 my-1 px-3 rounded-3">Delete</a>
                             </td>
