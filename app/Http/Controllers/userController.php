@@ -43,6 +43,9 @@ use App\Models\packageday;
 use App\Models\packageGallery;
 use App\Models\packagesite;
 use App\Models\userhotel;
+use App\Models\Vehicle;
+use App\Models\VehicleBooking;
+use App\Models\Paymentvehicle;
 use Stripe;
 use Session;
 
@@ -106,12 +109,16 @@ class userController extends Controller
             '*' => 'required'
         ]);
 
-        $to = $request->to;
-        $from = $request->from;
+        // $to = $request->to;
+        // $from = $request->from;
         $people = $request->people;
-
-        $data = shuttle::where('to',$to)->where('from',$from)->where('passengers',$people)->get();
-        return view('vehicle-destination',['shuttles'=>$data] );
+        $data2['vehicle'] = $request->all();
+        $data = Vehicle::where('people',$people)->get();
+        if ($data->isEmpty()) {
+            $data = Vehicle::where('people', '>', $people)->get();
+        }
+        // $data = Vehicle::all();
+        return view('vehicle-destination',['shuttles'=>$data],$data2);
     }
     public function book(){
         $data=book::paginate(9);
@@ -639,6 +646,18 @@ class userController extends Controller
             Session::flash("success","Payment completed successfully!");
     	    return back();
         }
+        // -------vehicles------
+        elseif($req->has('book_role') && $req->input('book_role') == 3){
+            Paymentvehicle::create([
+                'book_id' => $req->shuttle_id,
+                'amount' => $req->amount,
+                'currency' => 'usd', // Adjust accordingly
+                'stripe_token' => $req->stripeToken,
+                'description' => "Test payment from " . auth()->user()->name,
+            ]);
+            Session::flash("success","Payment completed successfully!");
+    	    return back();
+        }
         elseif($req->has('book_role') && $req->input('book_role') == 1){
             payment::create([
                 'book_id' => $req->booking_id,
@@ -682,6 +701,26 @@ class userController extends Controller
         ->with('showm', 'City tour added Successfully')
         ->with('booking', $booking);
         // return back()->with('showm', 'City tour added Successfully')->with('booking', $booking)->with($latestBookingId);
+    }
+    public function bookvehicle(request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $user_id = auth()->user()->id;
+        $requestData = VehicleBooking::create([
+            'user_id' => $user_id,
+            'shuttle_id' => $request->shuttle_id,
+            'from' => $request->from,
+            'to' => $request->to,
+            'name' => $request->name,
+            'type' => $request->type,
+            'people' => $request->people,
+            'price' => $request->price,
+            'date' => $request->date,
+        ]);
+        $latestBookingId = $requestData->id;
+
+        return back()->with('paymentm', 'City tour added Successfully')->with('requestData', $requestData)->with($latestBookingId);
     }
     public function shuttlebooking(request $request){
         $request->validate([

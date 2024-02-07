@@ -10,10 +10,10 @@
 
 <body class="background_img">
     @if (session('success'))
-    <script>
-        swal("Good job!", "{{ session('success') }}", "success");
-    </script>
-@endif
+        <script>
+            swal("Good job!", "{{ session('success') }}", "success");
+        </script>
+    @endif
     @include('template.header')
     <section class="main-tem">
         @include('template.sidepanel')
@@ -70,29 +70,29 @@
                     </div>
                     <div class="mt-auto">
                         @if (session('success'))
-                    <script>
-                        swal("Good job!", "{{session('success')}}", "success");
-                    </script>
-                    @endif
+                            <script>
+                                swal("Good job!", "{{ session('success') }}", "success");
+                            </script>
+                        @endif
                         <div class="d-md-block d-none">
-                            @if(auth()->user())
-                            <u style="color: #E4C14F;">Leave your Review</u>
-                            <form action="/savereview" method="POST">
+                            @if (auth()->user())
+                                <u style="color: #E4C14F;">Leave your Review</u>
+                                <form action="/savereview" method="POST">
                                     @csrf
-                                <div class="d-flex gap-2">
-                                    <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
-                                        placeholder="Please leave your Review" maxlength="400"></textarea>
-                                    <button class="p-0 mt-auto btn_submit_rivew">
-                                        <img src="./imgs/review_button.png" class="img-fluid" width="40px" height="40px"
-                                            alt="">
-                                    </button>
-                                    @error('review')
-                                    <span class="error text-danger">
-                                        {{$message}}
-                                    </span>
-                                    @enderror
-                                </div>
-                            </form>
+                                    <div class="d-flex gap-2">
+                                        <textarea class="rounded-3 bg_review border-0 px-3" name="review" id="" cols="25" rows="3"
+                                            placeholder="Please leave your Review" maxlength="400"></textarea>
+                                        <button class="p-0 mt-auto btn_submit_rivew">
+                                            <img src="./imgs/review_button.png" class="img-fluid" width="40px"
+                                                height="40px" alt="">
+                                        </button>
+                                        @error('review')
+                                            <span class="error text-danger">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </form>
                             @endif
                         </div>
                         @includeif('template.social_desktop')
@@ -114,7 +114,6 @@
                                     </div>
                                 </div>
                                 @if (count($shuttles) > 0)
-
                                     <div class="row me-md-0 me-sm-2 my-3">
                                         <div class="col-xl-11">
                                             <div class="first_slider">
@@ -127,44 +126,52 @@
                                                                 <div class="card-body card_bottom"
                                                                     style="background-color: #E2BE4E;">
                                                                     <div
-                                                                        class="d-flex justify-content-between align-items-end">
-                                                                        <div>
-                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                        class="d-flex flex-wrap justify-content-end align-items-end">
+                                                                        <div class="col-12">
+                                                                            {{-- <p class="mb-0 fs-12 fw-bold">
                                                                                 {{ $shuttle['from'] }} to
-                                                                                {{ $shuttle['to'] }}</p>
+                                                                                {{ $shuttle['to'] }}</p> --}}
+
                                                                             <p class="mb-0 fs-12 fw-bold">
-                                                                                Vehicle type:
-                                                                                <span class="searchable1">
+                                                                                Vehicle Model:
+                                                                                <span class="fw-normal searchable1">
                                                                                     {{ $shuttle['vehicle'] }}</span>
                                                                             </p>
-                                                                            <p class="mb-0 fs-12 fw-bold">No. of
-                                                                                people:
-                                                                                {{ $shuttle['passengers'] }}
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                No. of Passengers:
+                                                                                <span class="fw-normal">
+                                                                                    {{ $shuttle['people'] }}</span>
                                                                             </p>
-                                                                            <p class="mb-0 fs-12 fw-bold">Price:
-                                                                                USD
-                                                                                {{ $shuttle['price'] }}</p>
+                                                                            <p class="mb-0 fs-12 fw-bold">
+                                                                                Price:
+                                                                                <span class="fw-normal">
+                                                                                    {{ $shuttle['price'] }} USD</span>
+                                                                            </p>
                                                                         </div>
-                                                                        <div class="button_border rounded-pill">
-                                                                            <div class="d-flex">
-                                                                                <button
-                                                                                    class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
-                                                                                    style="height: 25px;">
+                                                                        @if (auth()->check())
+                                                                            <div
+                                                                                class="col-12 d-flex justify-content-end button_border rounded-pill">
+                                                                                <div
+                                                                                    class="d-flex justify-content-end">
+                                                                                    <button
+                                                                                        class="button_leniar_style position-relative px-4 rounded-pill fs-12 open-res"
+                                                                                        style="height: 25px;">
+                                                                                        <input type="text"
+                                                                                            class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
+                                                                                            value="{{ $shuttle['id'] }}">
+                                                                                        Book</button>
                                                                                     <input type="text"
-                                                                                        class="vid w-100 h-100 position-absolute bg-transparent border-0 color-transparent start-0 top-0 rounded-pill"
-                                                                                        value="{{ $shuttle['id'] }}">
-                                                                                    Book</button>
-                                                                                <input type="text"
-                                                                                    class="vprice d-none w-0 border-0 bg-transparent"
-                                                                                    value="{{ $shuttle['price'] }}">
-                                                                                <input type="text"
-                                                                                    class="vpeople d-none w-0 border-0 bg-transparent"
-                                                                                    value="{{ $shuttle['passengers'] }}">
-                                                                                <input type="text"
-                                                                                    class="vtype d-none w-0 border-0 bg-transparent"
-                                                                                    value="{{ $shuttle['vehicle'] }}">
+                                                                                        class="vprice d-none w-0 border-0 bg-transparent"
+                                                                                        value="{{ $shuttle['price'] }}">
+                                                                                    <input type="text"
+                                                                                        class="vpeople d-none w-0 border-0 bg-transparent"
+                                                                                        value="{{ $shuttle['name'] }}">
+                                                                                    <input type="text"
+                                                                                        class="vtype d-none w-0 border-0 bg-transparent"
+                                                                                        value="{{ $shuttle['vehicle'] }}">
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -190,141 +197,64 @@
         </div>
     </section>
     <div class="custom-model res-model">
-        {{-- <form action="/shuttlebooking" method="POST">
+        <form action="/bookvehicle" method="POST">
             @csrf
             <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
-                <h1 class="modal-title fs-5 ">Reservation</h1>
+                <h1 class="modal-title fs-5 ">Booking Information</h1>
                 <i class="fas fa-times text-secondary fs-4 close-m"></i>
             </div>
-           <div class="px-3">
-            <input type="number" value="" class="d-none vget" id="vgetValue" name="shuttle_id" readonly required>
-            <input type="number" value="" class="d-none pget" id="pgetValue" name="price" readonly required>
-            <input type="text" value="" class="d-none " id="peopleget" name="people" readonly required>
-            <input type="text" value="" class="d-none " id="typeget" name="type" readonly required>
-            <div class="mt-3">
-                <label for="" class="fw-semibold">Date of the ride</label>
-                <input type="date" name="date" class="form-control shadow-none" id="date" required>
+            <div class="px-3">
+                <input type="number" value="" class="vget d-none" id="vgetValue" name="shuttle_id" readonly
+                    required>
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">Vehicle Name</label>
+                    <input type="text" value="" class="bg-transparent focus-b-none text-dark w-100 border-0"
+                        id="peopleget" name="name" readonly required>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">Model</label>
+                    <input type="text" value="" class="bg-transparent focus-b-none text-dark w-100 border-0"
+                        id="typeget" name="type" readonly required>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">Price in USD</label>
+                    <input type="number" value=""
+                        class=" pget bg-transparent focus-b-none text-dark w-100 border-0" id="pgetValue"
+                        name="price" readonly required>
+                </div>
+
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">From</label>
+                    <input type="text" value="{{ $vehicle['from'] }}"
+                        class="bg-transparent focus-b-none text-dark w-100 border-0" name="from" readonly>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">To</label>
+                    <input type="text" value="{{ $vehicle['to'] }}"
+                        class="bg-transparent focus-b-none text-dark w-100 border-0" name="to" readonly>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">No. of Passengers</label>
+                    <input type="number" value="{{ $vehicle['people'] }}"
+                        class="bg-transparent focus-b-none text-dark w-100 border-0" name="people" readonly>
+                </div>
+                <div class="mt-3">
+                    <label for="" class="w-100 fw-semibold">Date</label>
+                    <input type="text" value="{{ $vehicle['date'] }}"
+                        class="bg-transparent focus-b-none text-dark w-100 border-0" name="date" readonly>
+                </div>
+                <div class="border-1 border-top mt-3 d-flex justify-content-end">
+                    <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Confirm</button>
+                </div>
             </div>
-            <div class="mt-3">
-                <label for="" class="fw-semibold">Pick-Up time</label>
-                <select name="pick_time" class="input time  w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none bg-white grey-bg" id="arrivetime"  required>
-                    <option value="00:00:00">12:00 AM</option>
-                    <option value="00:30:00">12:30 AM</option>
-                    <option value="01:00:00">01:00 AM</option>
-                    <option value="01:30:00">01:30 AM</option>
-                    <option value="02:00:00">02:00 AM</option>
-                    <option value="02:30:00">02:30 AM</option>
-                    <option value="03:00:00">03:00 AM</option>
-                    <option value="03:30:00">03:30 AM</option>
-                    <option value="04:00:00">04:00 AM</option>
-                    <option value="04:30:00">04:30 AM</option>
-                    <option value="05:00:00">05:00 AM</option>
-                    <option value="05:30:00">05:30 AM</option>
-                    <option value="06:00:00">06:00 AM</option>
-                    <option value="06:30:00">06:30 AM</option>
-                    <option value="07:00:00">07:00 AM</option>
-                    <option value="07:30:00">07:30 AM</option>
-                    <option value="08:00:00">08:00 AM</option>
-                    <option value="08:30:00">08:30 AM</option>
-                    <option value="09:00:00">09:00 AM</option>
-                    <option value="09:30:00">09:30 AM</option>
-                    <option value="10:00:00">10:00 AM</option>
-                    <option value="10:30:00">10:30 AM</option>
-                    <option value="11:00:00">11:00 AM</option>
-                    <option value="11:30:00">11:30 AM</option>
-                    <option value="12:00:00">12:00 PM</option>
-                    <option value="12:30:00">12:30 PM</option>
-                    <option value="13:00:00">01:00 PM</option>
-                    <option value="13:30:00">01:30 PM</option>
-                    <option value="14:00:00">02:00 PM</option>
-                    <option value="14:30:00">02:30 PM</option>
-                    <option value="15:00:00">03:00 PM</option>
-                    <option value="15:30:00">03:30 PM</option>
-                    <option value="16:00:00">04:00 PM</option>
-                    <option value="16:30:00">04:30 PM</option>
-                    <option value="17:00:00">05:00 PM</option>
-                    <option value="17:30:00">05:30 PM</option>
-                    <option value="18:00:00">06:00 PM</option>
-                    <option value="18:30:00">06:30 PM</option>
-                    <option value="19:00:00">07:00 PM</option>
-                    <option value="19:30:00">07:30 PM</option>
-                    <option value="20:00:00">08:00 PM</option>
-                    <option value="20:30:00">08:30 PM</option>
-                    <option value="21:00:00">09:00 PM</option>
-                    <option value="21:30:00">09:30 PM</option>
-                    <option value="22:00:00">10:00 PM</option>
-                    <option value="22:30:00">10:30 PM</option>
-                    <option value="23:00:00">11:00 PM</option>
-                    <option value="23:30:00">11:30 PM</option>
-                </select>
-            </div>
-            <div class="mt-3">
-                <label for="" class="fw-semibold">Pick-up location</label>
-                <input type="text" id="locationInput2" name="pick_location" class="form-control shadow-none" required>
-            </div>
-            <div class="mt-3">
-                <label for="" class="fw-semibold">Drop-of time</label>
-                <select name="drop_time" class="input time  w-100 text-secondary py-2 border border-1 rounded-3 px-2 shadow-none bg-white grey-bg" id="arrivetime"  required>
-                    <option value="00:00:00">12:00 AM</option>
-                    <option value="00:30:00">12:30 AM</option>
-                    <option value="01:00:00">01:00 AM</option>
-                    <option value="01:30:00">01:30 AM</option>
-                    <option value="02:00:00">02:00 AM</option>
-                    <option value="02:30:00">02:30 AM</option>
-                    <option value="03:00:00">03:00 AM</option>
-                    <option value="03:30:00">03:30 AM</option>
-                    <option value="04:00:00">04:00 AM</option>
-                    <option value="04:30:00">04:30 AM</option>
-                    <option value="05:00:00">05:00 AM</option>
-                    <option value="05:30:00">05:30 AM</option>
-                    <option value="06:00:00">06:00 AM</option>
-                    <option value="06:30:00">06:30 AM</option>
-                    <option value="07:00:00">07:00 AM</option>
-                    <option value="07:30:00">07:30 AM</option>
-                    <option value="08:00:00">08:00 AM</option>
-                    <option value="08:30:00">08:30 AM</option>
-                    <option value="09:00:00">09:00 AM</option>
-                    <option value="09:30:00">09:30 AM</option>
-                    <option value="10:00:00">10:00 AM</option>
-                    <option value="10:30:00">10:30 AM</option>
-                    <option value="11:00:00">11:00 AM</option>
-                    <option value="11:30:00">11:30 AM</option>
-                    <option value="12:00:00">12:00 PM</option>
-                    <option value="12:30:00">12:30 PM</option>
-                    <option value="13:00:00">01:00 PM</option>
-                    <option value="13:30:00">01:30 PM</option>
-                    <option value="14:00:00">02:00 PM</option>
-                    <option value="14:30:00">02:30 PM</option>
-                    <option value="15:00:00">03:00 PM</option>
-                    <option value="15:30:00">03:30 PM</option>
-                    <option value="16:00:00">04:00 PM</option>
-                    <option value="16:30:00">04:30 PM</option>
-                    <option value="17:00:00">05:00 PM</option>
-                    <option value="17:30:00">05:30 PM</option>
-                    <option value="18:00:00">06:00 PM</option>
-                    <option value="18:30:00">06:30 PM</option>
-                    <option value="19:00:00">07:00 PM</option>
-                    <option value="19:30:00">07:30 PM</option>
-                    <option value="20:00:00">08:00 PM</option>
-                    <option value="20:30:00">08:30 PM</option>
-                    <option value="21:00:00">09:00 PM</option>
-                    <option value="21:30:00">09:30 PM</option>
-                    <option value="22:00:00">10:00 PM</option>
-                    <option value="22:30:00">10:30 PM</option>
-                    <option value="23:00:00">11:00 PM</option>
-                    <option value="23:30:00">11:30 PM</option>
-                </select>
-            </div>
-            <div class="mt-3">
-                <label for="" class="fw-semibold">Drop-of location</label>
-                <input type="address" id="locationInput3" name="drop_location" class="form-control shadow-none" required>
-            </div>
-           </div>
-            <div class="border-1 border-top mt-3 d-flex justify-content-end">
-                <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Confirm and pay</button>
-            </div>
-        </form> --}}
-        <form action="/shuttlebooking" method="POST">
+        </form>
+    </div>
+    {{-- @if (session('showm'))
+        <script>
+            swal("Good job!", "Your booking completed successfully", "success");
+        </script>
+        @endif --}}
+    {{-- <form action="/shuttlebooking" method="POST">
             @csrf
             <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
                 <h1 class="modal-title fs-5 ">Reservation</h1>
@@ -457,9 +387,8 @@
              <div class="border-1 border-top mt-3 d-flex justify-content-end">
                 <button type="submit" class="btn mybutton px-4 rounded-pill mt-3 mx-3 open-book">Confirm and pay</button>
             </div>
-        </form>
-    </div>
-    @if (session('showm'))
+        </form> --}}
+    {{-- @if (session('showm'))
     <div class="custom-model show-model">
         <form action="/shuttle_check" method="POST">
             @csrf
@@ -514,97 +443,97 @@
             </div>
         </form>
     </div>
-    @endif
+    @endif --}}
     @if (session('paymentm'))
-    <div class="custom-model payment-model">
-        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
-            data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
-            @csrf
-            <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
-                <h1 class="modal-title fs-5">Payment methods</h1>
-                <i class="fas fa-times text-secondary fs-4 close-m"></i>
-            </div>
+        <div class="custom-model payment-model">
+            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
+                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                @csrf
+                <div class="d-flex justify-content-between border-1 pb-3 border-bottom px-3 ">
+                    <h1 class="modal-title fs-5">Payment methods</h1>
+                    <i class="fas fa-times text-secondary fs-4 close-m"></i>
+                </div>
 
-            <div class="row d-flex align-items-center justify-content-between px-3">
-                <div class="col-6 form-check px-3">
-                    <label class="form-check-label  ms-3" for="flexRadioDefault1" id="credit">
+                <div class="row d-flex align-items-center justify-content-between px-3">
+                    <div class="col-6 form-check px-3">
+                        <label class="form-check-label  ms-3" for="flexRadioDefault1" id="credit">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1" checked>
+                            Credit Card
+                        </label>
+                    </div>
+                    <div class="col-6 d-flex align-items-center justify-content-end">
+                        <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                        <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                        <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
+                    </div>
+                </div>
+                {{-- -----credit card---- --}}
+                <div id="credit-det" class="px-3 ">
+                    <div class="mt-3">
+                        <input type="text" class="form-control shadow-none" name="name"
+                            placeholder="Cardholder name" required>
+                    </div>
+                    <div class="mt-3">
+                        <input type="number" name="" id="flexRadioDefault1" autocomplete='off'
+                            placeholder="Card number" class='form-control shadow-none card-number' required>
+                    </div>
+                    <div class="mt-3">
+                        <input type="name" class='form-control card-number text-dark d-none'
+                            value="{{ session('requestData.price') }}" name="amount" readonly>
+                        <input type="text" class='form-control card-number d-none'
+                            value="{{ session('requestData.id') }}" name="shuttle_id" readonly>
+                        <input type="" name="book_role" value="3" class='d-none' readonly>
+                    </div>
+                    <div class="row mt-3">
+                        <div class='col-md-6 form-group expiration required'>
+                            <input class='form-control card-expiry-month' placeholder='MM' size='2'
+                                type='text' required>
+                        </div>
+                        <div class='col-md-6 col-md-4 form-group expiration required'>
+                            <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                type='text' required>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV"
+                            maxlength='4' required>
+                    </div>
+                </div>
+                {{-- ----paypal---- --}}
+                <div class="mt-3 form-check " class="px-3">
+                    <label class="form-check-label  ms-3" for="flexRadioDefault2" id="paypal">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault1" checked>
-                        Credit Card
+                            id="flexRadioDefault2">
+                        <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
                     </label>
                 </div>
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img class="payment-logos" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
-                    <img class="payment-logos" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
-                    <img class="payment-logos" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
-                </div>
-            </div>
-            {{-- -----credit card---- --}}
-            <div id="credit-det" class="px-3 ">
-                <div class="mt-3">
-                    <input type="text" class="form-control shadow-none" name="name"
-                        placeholder="Cardholder name" required>
-                </div>
-                <div class="mt-3">
-                    <input type="number" name="" id="flexRadioDefault1" autocomplete='off'
-                        placeholder="Card number" class='form-control shadow-none card-number' required>
-                </div>
-                <div class="mt-3">
-                    <input type="text" class='form-control card-number d-none'
-                        value="{{ session('requestData.totalamount') }}" name="amount" readonly>
-                    <input type="text" class='form-control card-number d-none'
-                        value="{{ session('requestData.booking_id') }}" name="booking_id" readonly>
-                    <input type="" name="book_role" value="2" class='d-none' readonly>
-                </div>
-                <div class="row mt-3">
-                    <div class='col-md-6 form-group expiration required'>
-                        <input class='form-control card-expiry-month' placeholder='MM' size='2'
-                            type='text' required>
-                    </div>
-                    <div class='col-md-6 col-md-4 form-group expiration required'>
-                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                            type='text' required>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <input type="number" class="form-control shadow-none card-cvc" placeholder="CCV"
-                        maxlength='4' required>
-                </div>
-            </div>
-            {{-- ----paypal---- --}}
-            <div class="mt-3 form-check " class="px-3">
-                <label class="form-check-label  ms-3" for="flexRadioDefault2" id="paypal">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault2">
-                    <img class="w-25" src="{{ asset('imgs/paypal-logo-png-16.png') }}" alt="">
-                </label>
-            </div>
 
-            <div class="mt-3 ps-4 d-flex align-items-center px-3">
-                <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
-                <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
-                <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
-            </div>
-            <div class="px-3" id="paypal-det">
-                <div class="mt-3">
-                    <label for="">Email</label>
-                    <input type="text" name="" id="" class="form-control shadow-none"
-                        placeholder="Email">
+                <div class="mt-3 ps-4 d-flex align-items-center px-3">
+                    <img class="payment-logoslast" src="{{ asset('imgs/VISA-Logo-2014.png') }}" alt="">
+                    <img class="payment-logoslast" src="{{ asset('imgs/Mastercard-Logo.png') }}" alt="">
+                    <img class="payment-logoslast" src="{{ asset('imgs/Emex-logo.png') }}" alt="">
                 </div>
-                <div class="mt-3">
-                    <label for="">Password</label>
-                    <input type="password" class="text-dark form-control shadow-none" placeholder="Password">
+                <div class="px-3" id="paypal-det">
+                    <div class="mt-3">
+                        <label for="">Email</label>
+                        <input type="text" name="" id="" class="form-control shadow-none"
+                            placeholder="Email">
+                    </div>
+                    <div class="mt-3">
+                        <label for="">Password</label>
+                        <input type="password" class="text-dark form-control shadow-none" placeholder="Password">
+                    </div>
+                    <div class="text-center mt-3">
+                        <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                    </div>
                 </div>
-                <div class="text-center mt-3">
-                    <input type="submit" value="Login" class="golden-bg border-0 rounded-pill px-3 py-2">
+                <div class="mt-3 d-flex justify-content-end">
+                    <input type="submit" value="Pay Secure"
+                        class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
                 </div>
-            </div>
-            <div class="mt-3 d-flex justify-content-end">
-                <input type="submit" value="Pay Secure"
-                    class="w-100 mx-3 w-auto text-dark border-0 mybutton px-4 rounded-pill py-2">
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
     @endif
     @include('template.jslinks')
     <script async defer
@@ -643,9 +572,9 @@
         }
 
         $(".res-model").hide();
-        $(".open-book").click(function() {
-            $(".book-model").show();
-        });
+        // $(".open-book").click(function() {
+        //     $(".book-model").show();
+        // });
         $(".open-res").click(function() {
             $(".res-model").show();
         });

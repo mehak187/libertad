@@ -25,7 +25,7 @@
                         @csrf
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field mt-4">
-                                <input type="text" class="w-100" placeholder="Package name" name="name" value="{{old('name')}}">
+                                <input type="text" class="w-100" placeholder="Package name" name="name" value="{{old('name')}}" required>
                                 @error('name')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -33,7 +33,7 @@
                                 @enderror
                             </div>
                             <div class="input-field mt-4">
-                                <input type="number" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}">
+                                <input type="number" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}" required>
                                 @error('nights')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field mt-4">
-                                <input type="text" class="w-100" placeholder="Package price" name="price" value="{{old('price')}}">
+                                <input type="number" class="w-100" placeholder="Package price" name="price" value="{{old('price')}}" required>
                                 @error('price')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -69,7 +69,7 @@
                         </div> --}}
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field w-100 dark-btn mt-4">
-                                <textarea class="w-100" placeholder="Sight Seeing" name="sight_seeing">{{old('sight_seeing')}}</textarea>
+                                <textarea class="w-100" placeholder="Sight Seeing" name="sight_seeing" required>{{old('sight_seeing')}}</textarea>
                                 @error('sight_seeing')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -80,7 +80,7 @@
                         </div>
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field w-100 dark-btn mt-4">
-                                <textarea class="w-100" placeholder="include" name="include">{{old('include')}}</textarea>
+                                <textarea class="w-100" placeholder="include" name="include" required>{{old('include')}}</textarea>
                                 @error('include')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field w-100 dark-btn mt-4">
-                                <textarea class="w-100" placeholder="Description" maxlength="250" name="des">{{old('des')}}</textarea>
+                                <textarea class="w-100" placeholder="Description" maxlength="250" name="des" required>{{old('des')}}</textarea>
                                 @error('des')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -121,7 +121,7 @@
                             <div class="input-field dark-btn mt-2">
                                 <label for="book_img" class="text-dark fs-bold">Package image</label>
                                 <input type="file" class="w-100" id="book_img" name="img"
-                                    onchange="showImagePreview(this)">
+                                    onchange="showImagePreview(this)" required>
                                 @error('img')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -137,12 +137,12 @@
                                 <p class="fs-6 mb-0">Day 1:</p>
                                 <div class="form-field d-sm-flex justify-content-between flex-wrap mt-2">
                                     <div class="input-field">
-                                        <input type="text" class="w-100" placeholder="Day 1 title" name="day_title[]">
+                                        <input type="text" class="w-100" placeholder="Day 1 title" name="day_title[]" required>
                                     </div>
                                 </div>
                                 <div class="form-field d-sm-flex justify-content-between flex-wrap">
                                     <div class="input-field w-100 dark-btn mt-4">
-                                        <textarea class="w-100" placeholder="Day 1 Description" maxlength="250" name="day_des[]"></textarea>
+                                        <textarea class="w-100" placeholder="Day 1 Description" maxlength="250" name="day_des[]" required></textarea>
                                     </div>
                                 </div>
                             </div>

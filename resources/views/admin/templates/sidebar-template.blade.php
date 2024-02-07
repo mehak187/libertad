@@ -22,11 +22,6 @@
                             <h3 class="nav-text m-0 ms-2 ">Manage Special Tours</h3>
                         </a>
                     </li>
-                    {{-- <li class="mt-3">
-                        <a href="/manage_cities" class="d-flex align-items-center">
-                            <h3 class="nav-text m-0 ms-2">Manage Cities</h3>
-                        </a>
-                    </li> --}}
                     <li class="mt-3">
                         <a href="/manage_city_tours" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage city tours</h3>
@@ -52,7 +47,6 @@
                             <h3 class="nav-text m-0 ms-2">Manage Listings</h3>
                         </a>
                     </li>
-                    
                     <li class="mt-3">
                         <a href="/manage_shuttle" class="d-flex align-items-center">
                             <h3 class="nav-text m-0 ms-2">Manage Airport Shuttle</h3>
@@ -113,7 +107,16 @@
                             <h3 class="nav-text m-0 ms-2">Manage trips</h3>
                         </a>
                     </li>
-                   
+                    <li class="mt-3">
+                        <a href="/manage_vehicle" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Manage Vehicles</h3>
+                        </a>
+                    </li>
+                    <li class="mt-3">
+                        <a href="/manage_vehicle_bookings" class="d-flex align-items-center">
+                            <h3 class="nav-text m-0 ms-2">Vehicles Booking</h3>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

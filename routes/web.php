@@ -19,7 +19,7 @@ use App\Http\Controllers\adminController;
     Route::controller(userController::class)->group(function(){
         Route::get('airport','airport');
         Route::get('search_vehicle','search_vehicle');
-        Route::get('vehicle','vehicle');
+        // Route::get('vehicle','vehicle');
         Route::get('book','book');
         Route::get('contact','contact');
         Route::get('dailyactivites','dailyactivites');
@@ -59,6 +59,7 @@ use App\Http\Controllers\adminController;
         Route::get('product_detial/{id}','product_detial');
         Route::post('tripbooking','tripbooking');
         Route::post('packagereview','packagereview');
+
     });
 
  Route::group(['middleware' => ['UserMiddleware']], function () {
@@ -74,6 +75,8 @@ use App\Http\Controllers\adminController;
         Route::post('savelist','savelist');
         Route::post('product_next','product_next');
         Route::post('bookingstep','bookingstep');
+        Route::post('bookvehicle','bookvehicle');
+
     });
 });
 
@@ -187,6 +190,9 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('deleteshuttle/{id}','deleteshuttle');
         Route::post('updateshuttle',  'updateshuttle');
 
+        Route::get('manage_vehicle_bookings','manage_vehicle_bookings');
+        Route::get('deletevehicle_bookings/{id}','deletevehicle_bookings');
+        
         Route::get('manage_city_tours','manage_city_tours');
         Route::post('save_citytour','save_citytour');
         Route::get('add_city_tours','add_city_tours');
@@ -207,6 +213,13 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
         Route::get('delete_listing/{id}','delete_listing');
         Route::post('updatealisting', 'updatelisting');
         Route::get('approve_listing/{id}','approve_listing');
+        
+        Route::get('manage_vehicle','manage_vehicle');
+        Route::get('add_vehicle','add_vehicle');
+        Route::post('savevehicle','savevehicle');
+        Route::get('edit_vehicle/{id}','edit_vehicle');
+        Route::get('deletevehicle/{id}','deletevehicle');
+        Route::post('updatevehicle',  'updatevehicle');
         
     });
 });
