@@ -16,6 +16,7 @@ class citytour extends Model
         'city',
         'sight_seeing',
         'include',
+        'exclude',
         'des',
         'img',
     ];

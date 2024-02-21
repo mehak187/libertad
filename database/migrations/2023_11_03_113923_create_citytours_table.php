@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('city');
             $table->text('sight_seeing');
             $table->text('include');
+            $table->text('exclude')->nullable();
             $table->text('des');
             $table->string('img');
             $table->timestamps();

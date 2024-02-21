@@ -71,6 +71,9 @@
                                 elseif($role == 7) {
                                   $role = "Daily Activities";
                                 }
+                                elseif($role == 8) {
+                                  $role = "Package";
+                                }
                                 elseif($role == 9) {
                                   $role = "Sites and monuments";
                                 }

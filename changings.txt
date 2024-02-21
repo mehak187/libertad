@@ -1,0 +1,8 @@
+Change sightseeing to tour highlights
+packages slider issue
+bullets issue
+
+packages, city tour and special tour 
+changes in frontend
+
+excludes after include

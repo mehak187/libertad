@@ -16,6 +16,7 @@ class package extends Model
         'img',
         'sight_seeing',
         'include',
+        'exclude',
         'price'
     ];
 }

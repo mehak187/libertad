@@ -96,6 +96,7 @@ class adminController extends Controller
             $rooms =$request->rooms;
             $sight_seeing =$request->sight_seeing;
             $include =$request->include;
+            $exclude =$request->exclude;
             $des =$request->des;
             specialtours::find($request->id)->update([
                 'name' => $name,
@@ -104,6 +105,7 @@ class adminController extends Controller
                 'night' => $night,
                 'sight_seeing' => $sight_seeing,
                 'include' => $include,
+                'exclude' => $exclude,
                 'des' => $des,
             ]);
         }else{
@@ -117,6 +119,7 @@ class adminController extends Controller
             $night =$request->night;
             $sight_seeing =$request->sight_seeing;
             $include =$request->include;
+            $exclude =$request->exclude;
             $des =$request->des;
             specialtours::find($request->id)->update([
                 'name' => $name,
@@ -125,6 +128,7 @@ class adminController extends Controller
                 'night' => $night,
                 'sight_seeing' => $sight_seeing,
                 'include' => $include,
+                'exclude' => $exclude,
                 'des' => $des,
                 'img'=>$photo_name
             ]);
@@ -163,6 +167,7 @@ class adminController extends Controller
             'city' => $request->city,
             'sight_seeing' => $request->sight_seeing,
             'include' => $request->include,
+            'exclude' => $request->exclude,
             'des' => $request->des,
             'img' => $photo_name,
         ]);
@@ -228,6 +233,7 @@ class adminController extends Controller
             'night' => $request->night,
             'sight_seeing' => $request->sight_seeing,
             'include' => $request->include,
+            'exclude' => $request->exclude,
             'des' => $request->des,
             'city' => $request->city,
         ];
@@ -744,6 +750,7 @@ class adminController extends Controller
             'price' => $request->price,
             'sight_seeing' => $request->sight_seeing,
             'include' => $request->include,
+            'exclude' => $request->exclude,
         ]);
         $siteId = $site->id;
         $imagePaths = $request->file('images');

@@ -69,7 +69,7 @@
                         </div> --}}
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field w-100 dark-btn mt-4">
-                                <textarea class="w-100" placeholder="Sight Seeing" name="sight_seeing" required>{{old('sight_seeing')}}</textarea>
+                                <textarea class="w-100" placeholder="Tour highlights" name="sight_seeing" required>{{old('sight_seeing')}}</textarea>
                                 @error('sight_seeing')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -82,6 +82,17 @@
                             <div class="input-field w-100 dark-btn mt-4">
                                 <textarea class="w-100" placeholder="include" name="include" required>{{old('include')}}</textarea>
                                 @error('include')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                                <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
+                            </div>
+                        </div>
+                        <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                            <div class="input-field w-100 dark-btn mt-4">
+                                <textarea class="w-100" placeholder="exclude" name="exclude" required>{{old('exclude')}}</textarea>
+                                @error('exclude')
                                     <span class="error text-danger">
                                         {{ $message }}
                                     </span>

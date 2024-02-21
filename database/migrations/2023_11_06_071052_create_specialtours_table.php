@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nights');
             $table->text('sight_seeing');
             $table->text('include');
+            $table->text('exclude')->nullable();
             $table->text('des');
             $table->string('img');
             $table->timestamps();
