@@ -33,7 +33,7 @@
                                 @enderror
                             </div>
                             <div class="input-field mt-4">
-                                <input type="number" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}" required>
+                                <input type="text" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}" required>
                                 @error('nights')
                                     <span class="error text-danger">
                                         {{ $message }}

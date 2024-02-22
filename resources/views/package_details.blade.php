@@ -39,7 +39,7 @@
                         <img src="<?php echo asset('uploads/' . $citytour['img'])?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
-                        <p class="golden-clr">{{$citytour->name}}</p>
+                        <p class="golden-clr fs-4 fw-bold">{{$citytour->name}}</p>
                         <div class="row align-items-center">
                             <div class="col-sm-6 col-lg-12 col-xl-6 d-flex align-items-center gap-4 border-tb py-2 max">
                                 <a href="#"

@@ -1,8 +1,30 @@
-Change sightseeing to tour highlights
-packages slider issue
-bullets issue
+
 
 packages, city tour and special tour 
 changes in frontend
 
 excludes after include
+
+1st video clear
+
+2nd video:
+bullets issue
+Tour itenerary added
+front end changings
+
+3rd video
+packages:
+Heading size updated
+update no of nights to text
+
+
+cities fetch left (multiple)
+pic slider left
+read more description left
+change no of nights to tour duration
+
+4 video
+Change sightseeing to tour highlights
+packages slider issue
+important tourist info
+price 
