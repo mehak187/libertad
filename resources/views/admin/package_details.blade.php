@@ -31,7 +31,7 @@
                                 {{$citytour->des}}
                             </p>
                             <div class="d-flex align-items-center gap-2 mt-3">
-                                <h6 class="golden-clr mb-0">No. of nights:</h6>
+                                <h6 class="golden-clr mb-0">Tour Duration:</h6>
                                 <span class="text-dark mb-0">{{$citytour->nights}}</span>
                             </div>
                             <div>

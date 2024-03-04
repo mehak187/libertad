@@ -61,7 +61,7 @@
                             <p class="text-white">{{ $hotel['card_des'] }}
                         </div>
                         <div class="d-flex gap-2">
-                            <p class="golden-clr mb-0">No. of nights:</p>
+                            <p class="golden-clr mb-0">Tour Duration:</p>
                             <span class="text-white mb-0">{{ $hotel['nights_nmbr'] }}</span>
                         </div>
                         <div class="d-flex gap-2">

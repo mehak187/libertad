@@ -39,7 +39,7 @@
                             <input type="number" class="w-100" id="price" value="{{$stour['price']}}" name="price">
                         </div>
                         <div class="input-field mt-4">
-                            <label for="night" class="text-dark fw-bold">No. of nights</label>
+                            <label for="night" class="text-dark fw-bold">Tour Duration</label>
                             <input type="text" class="w-100" id="nights" value="{{$stour['night']}}" name="night">
                         </div>
                     </div>

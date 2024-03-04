@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="input-field mt-4">
-                                <input type="text" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}">
+                                <input type="text" class="w-100" placeholder="Tour Duration" name="nights" value="{{old('nights')}}">
                                 @error('nights')
                                     <span class="error text-danger">
                                         {{ $message }}

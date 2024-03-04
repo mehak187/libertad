@@ -111,7 +111,7 @@
                                             <p class="mb-0 fs-12">{{$package['name']}}</p>
                                             <p class="mb-0 fs-12">{{$package['price']}} USD</p>
                                         </div>
-                                        <p class="mb-0 fs-12">No. of Nights : {{$package['nights']}}</p>
+                                        <p class="mb-0 fs-12">Tour Duration: {{$package['nights']}}</p>
                                     </div>
                                 </div>
                             </a>

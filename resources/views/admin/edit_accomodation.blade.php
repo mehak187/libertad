@@ -43,7 +43,7 @@
                                 value="{{ $accomodation['tour_price'] }}" name="price">
                         </div>
                         <div class="input-field mt-4">
-                            <label for="night" class="text-dark fw-bold">No. of nights</label>
+                            <label for="night" class="text-dark fw-bold">Tour Duration</label>
                             <input type="text" class="w-100" id="nights"
                                 value="{{ $accomodation['nights_nmbr'] }}" name="night">
                         </div>

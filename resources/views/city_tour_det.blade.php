@@ -71,7 +71,7 @@
                 </div>
                 <div>
                     <div class="d-flex gap-2 mt-4">
-                        <h6 class="golden-clr">No. of nights:</h6>
+                        <h6 class="golden-clr">Tour duration</h6>
                         <span class=" mb-0 text-white">{{ $citytour->nights }}</span>
                     </div>
                     <h6 class="golden-clr">Tour Highlights</h6>

@@ -43,14 +43,14 @@
                                 name="price">
                         </div>
                         <div class="input-field mt-4">
-                            <label for="night" class="text-dark fw-bold">No. of nights</label>
+                            <label for="night" class="text-dark fw-bold">Tour Duration</label>
                             <input type="text" class="w-100" id="nights" value="{{ $citytour->nights }}"
                                 name="night">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field mt-4">
-                            <label for="night" class="text-dark fw-bold">City</label>
+                            <label for="city" class="text-dark fw-bold">City</label>
                             <select name="city" class="w-100">
                                 <option value="" selected disabled hidden>Choose city</option>
                                 @foreach ($cities as $city)

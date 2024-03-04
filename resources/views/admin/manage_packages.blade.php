@@ -31,7 +31,7 @@
                         <thead>
                           <tr>
                             <th>Name</th>
-                            <th>No of nights</th>
+                            <th>Tour Duration</th>
                             <th>City name</th>
                             <th>Action</th>
                           </tr>

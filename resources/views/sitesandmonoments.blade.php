@@ -62,7 +62,7 @@
                             <p class="text-white">{{ $sites->des }}</p>
                         </div>
                         <div class="d-flex gap-2">
-                            <p class="golden-clr">No. of nights:</p>
+                            <p class="golden-clr">Tour Duration:</p>
                             <span class="text-white">{{ $sites->nights }}</span>
                         </div>
                         {{-- <div class="d-flex gap-2">
@@ -289,7 +289,7 @@
                         <p>{{ $ct->Cityname }}</p>
                     </div>
                     <div class="">
-                        <h6>No. of nights</h6>
+                        <h6>Tour Duration</h6>
                         <p>{{ $sites->nights }}</p>
                     </div>
                     <div class="">

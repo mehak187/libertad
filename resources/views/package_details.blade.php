@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class=" gap-2 mt-5">
-                    <h6 class="golden-clr fs-5 mb-0">No of nights</h6>
+                    <h6 class="golden-clr fs-5 mb-0">Tour Duration</h6>
                     <p class="text-white">{{$citytour->nights}}</p>
                 </div>
                 <div>
@@ -339,7 +339,7 @@
                         <p>{{ session('booking')->people }}</p>
                     </div>
                     <div class="">
-                        <h6>No. of nights</h6>
+                        <h6>Tour Duration</h6>
                         <p>{{$citytour->nights}}</p>
                     </div>
 

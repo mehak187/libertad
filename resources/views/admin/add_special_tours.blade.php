@@ -50,7 +50,7 @@
                             @enderror
                         </div>
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="No of nights" name="nights">
+                            <input type="text" class="w-100" placeholder="Tour Duration" name="nights">
                             @error('nights')
                             <span class="error text-danger">
                                 {{$message}}

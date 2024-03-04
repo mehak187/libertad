@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="d-flex gap-2 mt-5 mb-3">
-                    <p class="golden-clr mb-0">No. of nights:</p>
+                    <p class="golden-clr mb-0">Tour Duration:</p>
                     <span class="text-white mb-0">{{ $stour['nights'] }} </span>
                 </div>
                 <div>
