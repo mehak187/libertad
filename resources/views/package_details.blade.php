@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row align-items-start mt-3">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <img src="<?php echo asset('uploads/' . $citytour['img'])?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
@@ -57,8 +57,10 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <p class="text-white">{{$citytour->des}}
+                            <p class="text-white text-fun">{{$citytour->des}}
                             </p>
+                            <a href="#" class="read-morebtn golden-clr">Read More</a>
+                            <a href="#" class="read-lessbtn golden-clr">Read Less</a>
                         </div>
                        
                     </div>
@@ -505,6 +507,20 @@
 
             // Set the maximum date for the input
             $('#dob').attr('max', formattedDate);
+        });
+        // ===read more====
+        $(document).ready(function() {
+            $('.read-lessbtn').hide();
+            $('.read-morebtn').click(function(e) {
+                $('.text-fun').addClass('show-more');
+                $('.read-morebtn').hide();
+                $('.read-lessbtn').show();
+            });
+            $('.read-lessbtn').click(function(e) {
+                $('.text-fun').removeClass('show-more');
+                $('.read-morebtn').show();
+                $('.read-lessbtn').hide();
+            });
         });
     </script>
 </body>

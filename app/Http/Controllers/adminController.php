@@ -1390,8 +1390,6 @@ class adminController extends Controller
             'yt_link' => 'required|url',
             'insta_link' => 'required|url',
             'des' => 'required',
-        ], [
-            'google.required' => 'Whatsapp field is required.',
         ]);
         if ($record) {
             $record->update($request->all());

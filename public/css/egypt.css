@@ -1512,6 +1512,15 @@ body {
   border: none !important;
   outline: none;
 }
+.text-fun {
+  overflow: hidden;
+  max-height: 100px; /* Adjust this value as needed */
+  transition: max-height 0.5s ease;
+}
+
+.show-more {
+  max-height: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .search1 {
     --transition-time-icon: 0s !important;

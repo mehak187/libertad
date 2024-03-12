@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <img src="<?php echo asset('uploads/' . $stour['img']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
