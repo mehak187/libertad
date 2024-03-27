@@ -101,9 +101,9 @@
                                     class="way_color">PACKAGES</span></p>
                         </div>
 
-                        <div class="autoplay_1 second_slider my-3 pb-3">
+                        <div class="row second_slider my-3 pb-3">
                           @foreach ($packages as $package)
-                            <a href="{{"package_details/" .$package['id'] }}" class="text-decoration-none text-dark">
+                            <a href="{{"package_details/" .$package['id'] }}" class="col-4 my-3 text-decoration-none text-dark">
                                 <div class="card mx-3 first_card_slider border-0">
                                     <img src="<?php echo asset('uploads/' . $package['img'])?>" alt="" class="image1_2 rounded_top">
                                     <div class="card-body card_bottom" style="background-color: #E2BE4E;">
@@ -111,7 +111,7 @@
                                             <p class="mb-0 fs-12">{{$package['name']}}</p>
                                             <p class="mb-0 fs-12">{{$package['price']}} USD</p>
                                         </div>
-                                        <p class="mb-0 fs-12">No. of Nights : {{$package['nights']}}</p>
+                                        <p class="mb-0 fs-12">Tour Duration: {{$package['nights']}}</p>
                                     </div>
                                 </div>
                             </a>

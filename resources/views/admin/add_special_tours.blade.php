@@ -50,7 +50,7 @@
                             @enderror
                         </div>
                         <div class="input-field mt-4">
-                            <input type="text" class="w-100" placeholder="No of nights" name="nights">
+                            <input type="text" class="w-100" placeholder="Tour Duration" name="nights">
                             @error('nights')
                             <span class="error text-danger">
                                 {{$message}}
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
-                            <textarea class="w-100" placeholder="Sight Seeing" name="sight_seeing"></textarea>
+                            <textarea class="w-100" placeholder="Tour highlights" name="sight_seeing"></textarea>
                             <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
                             @error('sight_seeing')
                             <span class="error text-danger">
@@ -82,7 +82,18 @@
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
-                            <textarea class="w-100" placeholder="Card description" maxlength="250" name="des"></textarea>
+                            <textarea class="w-100" placeholder="exclude" name="exclude"></textarea>
+                            <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
+                            @error('exclude')
+                            <span class="error text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                        </div> 
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field w-100 dark-btn mt-4">
+                            <textarea class="w-100" placeholder="description" maxlength="250" name="des"></textarea>
                             @error('des')
                             <span class="error text-danger">
                                 {{$message}}

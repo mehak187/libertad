@@ -65,49 +65,62 @@
                             <p class="text-white">
                                 {{ $citytour->des }}
                             </p>
-                            <div class="d-flex gap-2 mt-4">
-                                <h6 class="golden-clr">No. of nights:</h6>
-                                <span class=" mb-0 text-white">{{ $citytour->nights }}</span>
-                            </div>
-                            <div class="d-flex gap-2">
-                                <h6 class="golden-clr">Tour Price:</h6>
-                                <span class=" mb-0 text-white">{{ $citytour->price }} USD per adult</span>
-                            </div>
-                            <div>
-                                <h6 class="golden-clr">Sightseeing</h6>
-                                @php
-                                    $inputString = $citytour['sight_seeing'];
-                                    $dataArray = explode(',', $inputString);
-                                @endphp
-                                <ul class="text-white">
-                                    @foreach ($dataArray as $item)
-                                        <li class="text-white">{{ $item }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div>
-                                <h6 class="golden-clr">Include</h6>
-                                @php
-                                    $inputString = $citytour['include'];
-                                    $dataArray = explode(',', $inputString);
-                                @endphp
-                                <ul class="text-white">
-                                    @foreach ($dataArray as $item)
-                                        <li class="text-white">{{ $item }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
                         </div>
-                        @if (auth()->check())
-                            <div class="">
-                                <div class="button_border rounded-pill">
-                                    <button type="button"
-                                        class="button_leniar_style px-5 rounded-pill open-res">Book</button>
-                                </div>
-                            </div>
-                        @endif
+                       
                     </div>
                 </div>
+                <div>
+                    <div class="d-flex gap-2 mt-4">
+                        <h6 class="golden-clr">Tour duration</h6>
+                        <span class=" mb-0 text-white">{{ $citytour->nights }}</span>
+                    </div>
+                    <h6 class="golden-clr">Tour Highlights</h6>
+                    @php
+                        $inputString = $citytour['sight_seeing'];
+                        $dataArray = explode(',', $inputString);
+                    @endphp
+                    <ul class="text-white">
+                        @foreach ($dataArray as $item)
+                            <li class="text-white">{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="golden-clr">Includes</h6>
+                    @php
+                        $inputString = $citytour['include'];
+                        $dataArray = explode(',', $inputString);
+                    @endphp
+                    <ul class="text-white">
+                        @foreach ($dataArray as $item)
+                            <li class="text-white">{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="golden-clr">Excludes</h6>
+                    @php
+                        $inputString = $citytour['exclude'];
+                        $dataArray = explode(',', $inputString);
+                    @endphp
+                    <ul class="text-white">
+                        @foreach ($dataArray as $item)
+                            <li class="text-white">{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="d-flex gap-2">
+                    <h6 class="golden-clr">Tour Price:</h6>
+                    <span class=" mb-0 text-white">{{ $citytour->price }} USD</span>
+                </div>
+                @if (auth()->check())
+                <div class="">
+                    <div class="button_border rounded-pill">
+                        <button type="button"
+                            class="button_leniar_style px-5 rounded-pill open-res">Book</button>
+                    </div>
+                </div>
+            @endif
                 @if (count($galleryImages) > 0)
                     <div class="row mt-5 mx-sm-0 mx-2">
                         <h5 class="text-white">Photos and gallery</h5>

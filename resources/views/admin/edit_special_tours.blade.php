@@ -39,13 +39,13 @@
                             <input type="number" class="w-100" id="price" value="{{$stour['price']}}" name="price">
                         </div>
                         <div class="input-field mt-4">
-                            <label for="night" class="text-dark fw-bold">No. of nights</label>
+                            <label for="night" class="text-dark fw-bold">Tour Duration</label>
                             <input type="text" class="w-100" id="nights" value="{{$stour['night']}}" name="night">
                         </div>
                     </div>
                     <div class="form-field d-sm-flex justify-content-between flex-wrap">
                         <div class="input-field w-100 dark-btn mt-4">
-                            <label for="sight_seeing" class="text-dark fw-bold">Sight Seeing</label>
+                            <label for="sight_seeing" class="text-dark fw-bold">Tour highlights</label>
                             <textarea class="w-100" name="sight_seeing" id="sight_seeing">{{$stour['sight_seeing']}}> </textarea>
                         </div>
                     </div>
@@ -53,6 +53,13 @@
                         <div class="input-field w-100 dark-btn mt-4">
                             <label for="include" class="text-dark fw-bold">Include</label>
                             <textarea class="w-100" id="include" name="include">{{$stour['include']}} </textarea>
+                            <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
+                        </div> 
+                    </div>
+                    <div class="form-field d-sm-flex justify-content-between flex-wrap">
+                        <div class="input-field w-100 dark-btn mt-4">
+                            <label for="exclude" class="text-dark fw-bold">Exclude</label>
+                            <textarea class="w-100" id="exclude" name="exclude">{{$stour['exclude']}} </textarea>
                             <p class="note mb-0"><b>Note:</b> Separate each with comma</p>
                         </div> 
                     </div>

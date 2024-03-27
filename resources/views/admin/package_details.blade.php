@@ -31,11 +31,11 @@
                                 {{$citytour->des}}
                             </p>
                             <div class="d-flex align-items-center gap-2 mt-3">
-                                <h6 class="golden-clr mb-0">No. of nights:</h6>
+                                <h6 class="golden-clr mb-0">Tour Duration:</h6>
                                 <span class="text-dark mb-0">{{$citytour->nights}}</span>
                             </div>
                             <div>
-                                <h6 class="golden-clr mt-3">Sightseeing</h6>
+                                <h6 class="golden-clr mt-3">Tour highlights</h6>
                                 @php
                                 $inputString = $citytour['sight_seeing'];
                                 $dataArray = explode(',', $inputString);
@@ -45,12 +45,23 @@
                                         <li class="text-dark">{{ $item }}</li>
                                     @endforeach
                                 </ul>
-                               
                             </div>
                             <div>
                                 <h6 class="golden-clr">Include</h6>
                                 @php
                                 $inputString = $citytour['include'];
+                                $dataArray = explode(',', $inputString);
+                                @endphp
+                                <ul class="text-dark">
+                                    @foreach ($dataArray as $item)
+                                        <li class="text-dark">{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="golden-clr">Exclude</h6>
+                                @php
+                                $inputString = $citytour['exclude'];
                                 $dataArray = explode(',', $inputString);
                                 @endphp
                                 <ul class="text-dark">

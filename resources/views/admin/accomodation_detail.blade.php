@@ -33,7 +33,7 @@
                                 <span class="text-dark">{{$hotel['Cityname']}}</span>
                             </div>
                             <div class="d-flex gap-2 mt-4">
-                                <h6 class="golden-clr">No. of nights:</h6>
+                                <h6 class="golden-clr">Tour Duration:</h6>
                                 <span class="text-dark">{{$hotel['nights_nmbr']}}</span>
                             </div>
                             <div class="d-flex gap-2 mt-4">

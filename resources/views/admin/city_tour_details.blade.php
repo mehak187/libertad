@@ -31,7 +31,7 @@
                                 {{$citytour->des}}
                             </p>
                             <div class="d-flex gap-2 mt-4">
-                                <h6 class="golden-clr">No. of nights:</h6>
+                                <h6 class="golden-clr">Tour Duration:</h6>
                                 <span class="text-dark mb-0">{{$citytour->nights}}</span>
                             </div>
                             <div class="d-flex gap-2">
@@ -39,7 +39,7 @@
                                 <span class="text-dark mb-0">{{$citytour->price}} USD per adult</span>
                             </div>
                             <div>
-                                <h6 class="golden-clr mt-3">Sightseeing</h6>
+                                <h6 class="golden-clr mt-3">Tour highlights</h6>
                                 @php
                                 $inputString = $citytour['sight_seeing'];
                                 $dataArray = explode(',', $inputString);
@@ -55,6 +55,18 @@
                                 <h6 class="golden-clr">Include</h6>
                                 @php
                                 $inputString = $citytour['include'];
+                                $dataArray = explode(',', $inputString);
+                                @endphp
+                                <ul class="text-dark">
+                                    @foreach ($dataArray as $item)
+                                        <li class="text-dark">{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="golden-clr">Exclude</h6>
+                                @php
+                                $inputString = $citytour['exclude'];
                                 $dataArray = explode(',', $inputString);
                                 @endphp
                                 <ul class="text-dark">

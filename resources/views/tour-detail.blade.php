@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <img src="<?php echo asset('uploads/' . $stour['img']); ?>" alt="" class="img-tree rounded-4">
                     </div>
                     <div class="col-lg-6 py-3 px-4">
@@ -64,51 +64,64 @@
                         <div class="row mt-3">
                             <p class="text-white">{{ $stour['des'] }} </p>
                         </div>
-                        <div class="d-flex gap-2">
-                            <p class="golden-clr mb-0">No. of nights:</p>
-                            <span class="text-white mb-0">{{ $stour['nights'] }} </span>
-                        </div>
-                        <div class="d-flex gap-2">
-                            <p class="golden-clr mb-0">Tour Price:</p>
-                            <span class="text-white mb-0">{{ $stour['price'] }} USD per adult</span>
-                        </div>
-                        <div>
-                            <h6 class="golden-clr">Sightseeing</h6>
-                            @php
-                                $inputString = $stour['sight_seeing'];
-                                $dataArray = explode(',', $inputString);
-                            @endphp
-                            <ul class="text-light">
-                                @foreach ($dataArray as $item)
-                                    <li class="text-light">{{ $item }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div>
-                            <h6 class="golden-clr">Include</h6>
-                            @php
-                                $inputString = $stour['include'];
-                                $dataArray = explode(',', $inputString);
-                            @endphp
-                            <ul class="text-light">
-                                @foreach ($dataArray as $item)
-                                    <li class="text-light">{{ $item }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @if (auth()->check())
-                            <div class="d-flex align-items-center flex-wrap gap-2">
-                                <div class="">
-                                    <div class="button_border rounded-pill">
-                                        <button type="button"
-                                            class="button_leniar_style px-5 rounded-pill open-res">Book</button>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                     
+                        
                     </div>
                 </div>
-
+                <div class="d-flex gap-2 mt-5 mb-3">
+                    <p class="golden-clr mb-0">Tour Duration:</p>
+                    <span class="text-white mb-0">{{ $stour['nights'] }} </span>
+                </div>
+                <div>
+                    <h6 class="golden-clr">Tour Highlights</h6>
+                    @php
+                        $inputString = $stour['sight_seeing'];
+                        $dataArray = explode(',', $inputString);
+                    @endphp
+                    <ul class="text-light">
+                        @foreach ($dataArray as $item)
+                            <li class="text-light">{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="golden-clr">Includes</h6>
+                    @php
+                        $inputString = $stour['include'];
+                        $dataArray = explode(',', $inputString);
+                    @endphp
+                    <ul class="text-light">
+                        @foreach ($dataArray as $item)
+                            <li class="text-light">{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="golden-clr">Excludes</h6>
+                    @php
+                        $inputString = $stour['exclude'];
+                        $dataArray = explode(',', $inputString);
+                    @endphp
+                    <ul class="text-light">
+                        @foreach ($dataArray as $item)
+                            <li class="text-light">{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="d-flex gap-2">
+                    <p class="golden-clr mb-0">Tour Price:</p>
+                    <span class="text-white mb-0">{{ $stour['price'] }} USD</span>
+                </div>
+                @if (auth()->check())
+                    <div class="d-flex align-items-center flex-wrap gap-2 mt-3">
+                        <div class="">
+                            <div class="button_border rounded-pill">
+                                <button type="button"
+                                    class="button_leniar_style px-5 rounded-pill open-res">Book</button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

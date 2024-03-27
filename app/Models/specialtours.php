@@ -15,6 +15,7 @@ class specialtours extends Model
         'nights',
         'sight_seeing',
         'include',
+        'exclude',
         'des',
         'img',
     ];

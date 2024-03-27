@@ -1,0 +1,62 @@
+
+
+packages, city tour and special tour 
+changes in frontend
+
+excludes after include
+
+1st video clear
+
+2nd video:
+bullets issue
+Tour itenerary added
+front end changings
+
+3rd video
+packages:
+Heading size updated
+update no of nights to text
+
+
+cities fetch left (multiple)
+pic slider left
+read more description left
+change no of nights to tour duration
+
+4 video
+Change sightseeing to tour highlights
+packages slider issue
+important tourist info
+price 
+
+
+
+
+
+
+
+
+
+
+
+Still not all the comments have addressed 
+1- The comments are for packages and libertad special tour Only 
+2- I have asked for the picture in the tour to be smaller in size and to add more than one picture( slider) because the package is for many cities, picture for each city,
+3- to add another box for ( tourist info) next to share& rate box
+4- for the tour overview - i want “ read more” to show / hide the text
+6- tour itinerary -> - i want “ read more” to show / hide the text
+7- add part named ( Exludes) after include
+8- tour price should include 4 items 1- price for  adult 2- price for children 3- price for single room 4- price for double riom
+
+10- slider for pictures
+11- site & monument
+
+ 5- no. Of nights -> to be changed to “Tour duration” =======done 
+ 9- book function after the price
+ packages read more description
+ Change sightseeing to tour highlights
+ convert  no of nights into text field
+ bullets issue resolved
+ packages box (convert into rows and columns)
+Tour itenerary added
+Added excludes after include

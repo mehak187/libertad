@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-field d-sm-flex justify-content-between flex-wrap">
                             <div class="input-field mt-4">
-                                <input type="number" class="w-100" placeholder="No of nights" name="nights" value="{{old('nights')}}">
+                                <input type="number" class="w-100" placeholder="Tour Duration" name="nights" value="{{old('nights')}}">
                                 @error('nights')
                                     <span class="error text-danger">
                                         {{ $message }}
